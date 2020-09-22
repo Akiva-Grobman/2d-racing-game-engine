@@ -3,14 +3,13 @@ package com.akivaGrobman.display;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
+import java.awt.image.ImageObserver;
 
 public class Window {
 
+    public final int WIDTH;
+    public final int HEIGHT;
     private final String title;
-    private final int WIDTH;
-    private final int HEIGHT;
-
-
     private JFrame frame;
     private Canvas canvas;
 

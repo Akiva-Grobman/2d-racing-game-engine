@@ -1,6 +1,7 @@
 package com.akivaGrobman;
 
 import com.akivaGrobman.display.Window;
+import com.akivaGrobman.graphics.Assets;
 
 import java.awt.*;
 
@@ -56,6 +57,7 @@ public class Game {
     private void render() {
         Graphics graphics = window.getGraphics();
         window.clear();
+        graphics.drawImage(Assets.getImage(Assets.TRACK_KEY), 0, 0, window.WIDTH, window.HEIGHT, null);
         // todo
 //        if(GameStateManager.getCurrentState() != null) {
 //            GameStateManager.getCurrentState().render(graphics);

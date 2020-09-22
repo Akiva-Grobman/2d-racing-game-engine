@@ -1,16 +1,18 @@
-package com.akivaGrobman.assets;
+package com.akivaGrobman.graphics;
 
 import java.awt.image.BufferedImage;
 import java.util.Hashtable;
+import static com.akivaGrobman.utils.Utils.loadImage;
 
 public class Assets {
 
+    public static final String TRACK_KEY = "Track";
     private volatile static Assets singletonInstance;
-    private Hashtable<String, BufferedImage> images;
+    private final Hashtable<String, BufferedImage> images;
 
     private Assets() {
         images = new Hashtable<>();
-        //todo load images into hashtable
+        images.put(TRACK_KEY, loadImage(TRACK_KEY, ".jpg"));
     }
 
     public static BufferedImage getImage(String imageKey) {
