@@ -1,8 +1,13 @@
 package com.akivaGrobman;
 
+import com.akivaGrobman.display.Window;
+
+import java.awt.*;
+
 public class Game {
 
     private boolean isRunning;
+    private Window window;
 
     public Game() {
 
@@ -18,7 +23,8 @@ public class Game {
     }
 
     private void initialize() {
-
+        window = new Window("2d-racing-game-engine");
+        window.setBufferStrategy(3);
     }
 
     private void runGameLoop() {
@@ -41,11 +47,20 @@ public class Game {
     }
 
     private void tick() {
-
+        // todo
+//        if(GameStateManager.getCurrentState() != null) {
+//            GameStateManager.getCurrentState().render(graphics);
+//        }
     }
 
     private void render() {
-
+        Graphics graphics = window.getGraphics();
+        window.clear();
+        // todo
+//        if(GameStateManager.getCurrentState() != null) {
+//            GameStateManager.getCurrentState().render(graphics);
+//        }
+        window.show();
     }
 
 }
