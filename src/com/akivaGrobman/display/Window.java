@@ -2,8 +2,6 @@ package com.akivaGrobman.display;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferStrategy;
-import java.awt.image.ImageObserver;
 
 public class Window {
 

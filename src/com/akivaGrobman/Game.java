@@ -21,6 +21,7 @@ public class Game {
 
     public void stop() {
         isRunning = false;
+        System.exit(0);
     }
 
     private void initialize() {
