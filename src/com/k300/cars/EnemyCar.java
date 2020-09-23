@@ -1,6 +1,6 @@
 package com.k300.cars;
 
-import com.k300.input.EnemyInput;
+import com.k300.io.EnemyInput;
 
 public class EnemyCar extends Car {
 
@@ -14,6 +14,7 @@ public class EnemyCar extends Car {
     @Override
     public void tick() {
         //todo
+        input.tick();
         x = input.getX();
         y = input.getY();
         angle = input.getAngle();

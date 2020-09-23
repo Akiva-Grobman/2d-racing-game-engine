@@ -2,6 +2,7 @@ package com.k300.display;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyListener;
 
 public class Window {
 
@@ -12,8 +13,6 @@ public class Window {
     private Canvas canvas;
 
     public Window(String title) {
-        // todo
-        // fix height
         this(title, Toolkit.getDefaultToolkit().getScreenSize().width, Toolkit.getDefaultToolkit().getScreenSize().height);
     }
 
@@ -47,6 +46,10 @@ public class Window {
         if(canvas.getBufferStrategy() == null) {
             canvas.createBufferStrategy(sumOfBuffers);
         }
+    }
+
+    public void setKeyListener(KeyListener keyListener) {
+        frame.addKeyListener(keyListener);
     }
 
     public Graphics getGraphics() {
