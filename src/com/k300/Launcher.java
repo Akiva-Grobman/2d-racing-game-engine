@@ -5,6 +5,7 @@ import com.k300.states.GameState;
 import com.k300.states.StateManager;
 
 import java.awt.*;
+import java.awt.event.KeyListener;
 
 public class Launcher {
 
@@ -29,6 +30,18 @@ public class Launcher {
         }
         isRunning = false;
         System.exit(0);
+    }
+
+    public void setKeyListener(KeyListener listener) {
+        window.setKeyListener(listener);
+    }
+
+    public int getWindowHeight() {
+        return window.getFrameHeight();
+    }
+
+    public int getWindowWidth() {
+        return window.getFrameWidth();
     }
 
     private void initialize() {
@@ -71,14 +84,6 @@ public class Launcher {
             StateManager.getCurrentState().render(graphics);
         }
         window.show();
-    }
-
-    public int getWindowHeight() {
-        return window.getFrameHeight();
-    }
-
-    public int getWindowWidth() {
-        return window.getFrameWidth();
     }
 
 }

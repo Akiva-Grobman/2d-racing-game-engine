@@ -8,6 +8,7 @@ import java.awt.image.BufferedImage;
 
 public abstract class Car {
 
+    protected final int velocity;
     protected double x;
     protected double y;
     protected double angle;
@@ -18,6 +19,7 @@ public abstract class Car {
         this.x = x;
         this.y = y;
         angle = 0;
+        velocity = 5;
     }
 
     public abstract void tick();

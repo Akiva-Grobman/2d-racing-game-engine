@@ -2,6 +2,7 @@ package com.k300.display;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyListener;
 
 public class Window {
 
@@ -47,6 +48,10 @@ public class Window {
         if(canvas.getBufferStrategy() == null) {
             canvas.createBufferStrategy(sumOfBuffers);
         }
+    }
+
+    public void setKeyListener(KeyListener keyListener) {
+        frame.addKeyListener(keyListener);
     }
 
     public Graphics getGraphics() {

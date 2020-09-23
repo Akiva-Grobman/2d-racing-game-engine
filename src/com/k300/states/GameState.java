@@ -4,10 +4,11 @@ import com.k300.Launcher;
 import com.k300.tracks.Track;
 
 import java.awt.*;
+import java.awt.event.KeyListener;
 
 public class GameState extends State {
 
-    private Track track;
+    private final Track track;
 
     public GameState(Launcher launcher) {
         super(launcher);
@@ -23,6 +24,10 @@ public class GameState extends State {
     @Override
     public void render(Graphics graphics) {
         track.render(graphics);
+    }
+
+    public void setKeyListener(KeyListener keyListener) {
+        launcher.setKeyListener(keyListener);
     }
 
 }
