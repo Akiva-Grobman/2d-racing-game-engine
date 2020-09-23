@@ -28,10 +28,6 @@ public class Launcher {
         System.exit(0);
     }
 
-    public Window getWindow() {
-        return window;
-    }
-
     private void initialize() {
         window = new Window("2d-racing-game-engine");
         window.setBufferStrategy(3);
