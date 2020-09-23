@@ -12,8 +12,7 @@ public class PlayerCar extends Car {
 
     @Override
     public void tick() {
-//        carAngle = AffineTransform.getTranslateInstance(x, y);
-//        carAngle.rotate(Math.toDegrees(angle), width, height);
+        //todo update x,y,angle
     }
 
 }
