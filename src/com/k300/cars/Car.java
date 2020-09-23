@@ -1,5 +1,7 @@
 package com.k300.cars;
 
+import com.k300.graphics.Assets;
+
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
@@ -10,6 +12,13 @@ public abstract class Car {
     protected double y;
     protected double angle;
     protected BufferedImage carImage;
+
+    public Car(String carColor, int x, int y) {
+        carImage = Assets.getImage(carColor);
+        this.x = x;
+        this.y = y;
+        angle = 0;
+    }
 
     public abstract void tick();
 

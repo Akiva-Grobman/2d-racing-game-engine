@@ -15,7 +15,8 @@ public class Track {
     public Track(State gameState) {
         this.gameState = gameState;
         cars = new Car[1];
-        cars[0] = new PlayerCar();
+        // testing this should be information given from the server
+        cars[0] = new PlayerCar(Assets.BLUE_CAR_KEY, 500, 500);
     }
 
     public void tick() {
