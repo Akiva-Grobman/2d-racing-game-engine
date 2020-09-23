@@ -1,14 +1,16 @@
 package com.k300.cars;
 
 import com.k300.io.PlayerKeyListener;
+
+import java.awt.*;
 import java.awt.event.KeyListener;
 
 public class PlayerCar extends Car {
 
     private final PlayerKeyListener keyListener;
 
-    public PlayerCar(String carColor, int x, int y) {
-        super(carColor, x, y);
+    public PlayerCar(String carColor, Point startingPosition) {
+        super(carColor, startingPosition);
         keyListener = new PlayerKeyListener();
     }
 
