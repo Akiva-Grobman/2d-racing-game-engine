@@ -1,6 +1,5 @@
 package com.k300.cars;
 
-import com.google.gson.Gson;
 import com.k300.graphics.Assets;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
@@ -32,6 +31,18 @@ public abstract class Car {
         graphics.drawImage(carImage, carAngle, null);
         graphics.setColor(Color.red);
         graphics.fillRect((int)x, (int)y, 30,30);
+    }
+
+    public double getX() {
+        return x;
+    }
+
+    public double getY() {
+        return y;
+    }
+
+    public double getAngle() {
+        return angle;
     }
 
 }

@@ -1,4 +1,4 @@
-package com.k300.input;
+package com.k300.io;
 
 import java.awt.event.KeyEvent;
 

@@ -1,6 +1,6 @@
 package com.k300.cars;
 
-import com.k300.input.PlayerKeyListener;
+import com.k300.io.PlayerKeyListener;
 import java.awt.event.KeyListener;
 
 public class PlayerCar extends Car {
