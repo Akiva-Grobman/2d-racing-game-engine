@@ -14,6 +14,9 @@ public abstract class Car {
     public abstract void tick();
 
     public final void render(Graphics2D graphics) {
+        if(carImage == null) {
+            return;
+        }
         AffineTransform carAngle = AffineTransform.getTranslateInstance(x, y);
         carAngle.rotate(Math.toDegrees(angle), carImage.getWidth() / 2f, carImage.getHeight() / 2f);
         graphics.drawImage(carImage, carAngle, null);
