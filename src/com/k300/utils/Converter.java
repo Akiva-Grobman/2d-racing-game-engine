@@ -7,56 +7,53 @@ public class Converter {
     private static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     private static final double SCREEN_WIDTH = screenSize.getWidth();
     private static final double SCREEN_HEIGHT = screenSize.getHeight();
-    private double width = SCREEN_WIDTH;
-    private double height = SCREEN_HEIGHT;
 
 
-
-    public double getProportionalNumber(double number) {
+    public static double getProportionalNumber(double number) {
         return number * (1920 / SCREEN_WIDTH);
     }
 
-    public double getAxisX(double x){
-        return x - (width / 2.0);
+    public static double getAxisX(double x){
+        return x - (SCREEN_WIDTH / 2.0);
     }
 
-    public double getAxisY(double y){
-        return  - (y - (height / 2.0));
+    public static double getAxisY(double y){
+        return  - (y - (SCREEN_HEIGHT / 2.0));
     }
 
-    public double getFrameX(double x) {
-        return (width / 2.0) + x;
+    public static double getFrameX(double x) {
+        return (SCREEN_WIDTH / 2.0) + x;
     }
 
-    public double getFrameY(double y) {
-        return (height / 2.0) - y;
+    public static double getFrameY(double y) {
+        return (SCREEN_HEIGHT / 2.0) - y;
     }
 
-    public double getDistance(int x1, int y1, int x2, int y2) {
+    public static double getDistance(int x1, int y1, int x2, int y2) {
         return Math.sqrt( (Math.pow((y2-y1), 2) + Math.pow((x2-x1), 2)) );
     }
 
-    public double getPositiveC(int a, int b) {
+    public static double getPositiveC(int a, int b) {
         return (int) Math.sqrt( (Math.pow(a, 2) - Math.pow(b, 2)) );
     }
 
-    public double getNegativeC(int a, int b) {
+    public static double getNegativeC(int a, int b) {
         return - (int) Math.sqrt( (Math.pow(a, 2) - Math.pow(b, 2)) );
     }
 
-    public double getFrameXPoint(int xPosition) {
+    public static double getFrameXPoint(int xPosition) {
         return 1920/2 + xPosition;
     }
 
-    public double getFrameYPoint(int yPosition) {
+    public static double getFrameYPoint(int yPosition) {
         return 1080/2 - yPosition;
     }
 
-    public double getAxisXPoint(int xPosition) {
+    public static double getAxisXPoint(int xPosition) {
         return xPosition - 1920/2;
     }
 
-    public double getAxisYPoint(int yPosition) {
+    public static double getAxisYPoint(int yPosition) {
         return -(yPosition - 1080/2);
     }
 }
