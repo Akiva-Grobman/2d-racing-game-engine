@@ -1,4 +1,4 @@
-package com.akivaGrobman.utils;
+package com.k300.utils;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;

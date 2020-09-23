@@ -1,6 +1,6 @@
-package com.akivaGrobman.cars;
+package com.k300.cars;
 
-import com.akivaGrobman.input.EnemyInput;
+import com.k300.input.EnemyInput;
 
 public class EnemyCar extends Car {
 

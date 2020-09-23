@@ -1,8 +1,10 @@
-package com.akivaGrobman;
+package com.k300;
 
-import com.akivaGrobman.display.Window;
-import com.akivaGrobman.tracks.Track;
+import com.k300.display.Window;
+import com.k300.states.GameState;
+import com.k300.states.StateManager;
 
+import javax.swing.plaf.nimbus.State;
 import java.awt.*;
 
 public class Launcher {
@@ -33,6 +35,9 @@ public class Launcher {
     private void initialize() {
         window = new Window("2d-racing-game-engine");
         window.setBufferStrategy(3);
+
+        //Testing
+        StateManager.setCurrentState(new GameState(this));
     }
 
     private void runGameLoop() {
@@ -55,20 +60,26 @@ public class Launcher {
     }
 
     private void tick() {
-        // todo
-//        if(GameStateManager.getCurrentState() != null) {
-//            GameStateManager.getCurrentState().tick();
-//        }
+        if(StateManager.getCurrentState() != null) {
+            StateManager.getCurrentState().tick();
+        }
     }
 
     private void render() {
         Graphics graphics = window.getGraphics();
         window.clear();
-        // todo
-//        if(GameStateManager.getCurrentState() != null) {
-//            GameStateManager.getCurrentState().render(graphics);
-//        }
+        if(StateManager.getCurrentState() != null) {
+            StateManager.getCurrentState().render(graphics);
+        }
         window.show();
+    }
+
+    public int getWindowHeight() {
+        return window.getFrameHeight();
+    }
+
+    public int getWindowWidth() {
+        return window.getFrameWidth();
     }
 
 }
