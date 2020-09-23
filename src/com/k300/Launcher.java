@@ -1,4 +1,4 @@
-package com.akivaGrobman;
+package com.k300;
 
 import com.akivaGrobman.display.Window;
 import java.awt.*;
