@@ -1,8 +1,8 @@
-package com.akivaGrobman.graphics;
+package com.k300.graphics;
 
 import java.awt.image.BufferedImage;
 import java.util.Hashtable;
-import static com.akivaGrobman.utils.Utils.loadImage;
+import static com.k300.utils.Utils.loadImage;
 
 public class Assets {
 

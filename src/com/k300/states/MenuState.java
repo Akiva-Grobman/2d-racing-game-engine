@@ -1,4 +1,23 @@
-package com.akivaGrobman.states;
+package com.k300.states;
 
-public class MenuState {
+import com.k300.Launcher;
+import com.k300.tracks.Track;
+
+import java.awt.*;
+
+public class MenuState extends State {
+
+
+    public MenuState(Launcher launcher) {
+        super(launcher);
+    }
+
+    @Override
+    public void tick() {
+    }
+
+    @Override
+    public void render(Graphics graphics) {
+    }
+
 }

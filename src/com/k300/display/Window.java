@@ -1,4 +1,4 @@
-package com.akivaGrobman.display;
+package com.k300.display;
 
 import javax.swing.*;
 import java.awt.*;

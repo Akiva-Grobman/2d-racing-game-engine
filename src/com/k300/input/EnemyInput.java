@@ -1,4 +1,4 @@
-package com.akivaGrobman.input;
+package com.k300.input;
 
 public class EnemyInput {
 

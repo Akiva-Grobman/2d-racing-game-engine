@@ -1,4 +1,4 @@
-package com.akivaGrobman.states;
+package com.k300.states;
 
 public class SettingsState {
 }
