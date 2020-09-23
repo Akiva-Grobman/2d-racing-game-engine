@@ -3,6 +3,7 @@ package com.k300;
 import com.k300.display.Window;
 import com.k300.states.GameState;
 import com.k300.states.StateManager;
+
 import java.awt.*;
 
 public class Launcher {

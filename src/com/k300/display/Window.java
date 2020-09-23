@@ -30,6 +30,9 @@ public class Window {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getRootPane().setWindowDecorationStyle(JRootPane.NONE);
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        frame.setResizable(false);
+        frame.toFront();
+        //frame.setUndecorated(true);
         frame.setVisible(true);
         canvas = new Canvas();
         canvas.setPreferredSize(new Dimension(WIDTH, HEIGHT));
