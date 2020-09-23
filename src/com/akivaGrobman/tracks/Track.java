@@ -1,15 +1,12 @@
 package com.akivaGrobman.tracks;
 
-import com.akivaGrobman.Launcher;
 import com.akivaGrobman.cars.Car;
 import com.akivaGrobman.cars.PlayerCar;
-import com.akivaGrobman.graphics.Assets;
-
 import java.awt.*;
 
 public class Track {
 
-    private Car[] cars;
+    private final Car[] cars;
 
     public Track() {
         cars = new Car[1];

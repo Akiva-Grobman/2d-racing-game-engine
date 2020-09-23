@@ -13,6 +13,8 @@ public abstract class Car {
 
     public abstract void tick();
 
-    public abstract void render(Graphics2D graphics);
+    public final void render(Graphics2D graphics) {
+        graphics.drawImage(carImage, carAngle, null);
+    }
 
 }

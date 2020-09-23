@@ -9,7 +9,7 @@ public class Launcher {
     private Window window;
 
     public Launcher() {
-
+        isRunning = false;
     }
 
     public void start() {
