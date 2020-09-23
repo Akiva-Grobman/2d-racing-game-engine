@@ -26,7 +26,7 @@ public abstract class Car {
         if(carImage == null) {
             return;
         }
-        AffineTransform carAngle = AffineTransform.getTranslateInstance(x, y);
+        AffineTransform carAngle = AffineTransform.getTranslateInstance(x - carImage.getWidth() / 2f, y -  carImage.getHeight() / 2f);
         carAngle.rotate(Math.toDegrees(angle), carImage.getWidth() / 2f, carImage.getHeight() / 2f);
         graphics.drawImage(carImage, carAngle, null);
     }
