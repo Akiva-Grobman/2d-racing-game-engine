@@ -6,7 +6,8 @@ public class EnemyCar extends Car {
 
     private EnemyInput input;
 
-    public EnemyCar() {
+    public EnemyCar(String carColor, int x, int y) {
+        super(carColor, x, y);
         input = new EnemyInput();
     }
 
