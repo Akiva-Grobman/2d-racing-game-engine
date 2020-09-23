@@ -8,7 +8,6 @@ public class Launcher {
 
     private boolean isRunning;
     private Window window;
-    private Track track;
 
     public Launcher() {
 
