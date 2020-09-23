@@ -5,8 +5,8 @@ import java.awt.*;
 
 public class Window {
 
-    public final int WIDTH;
-    public final int HEIGHT;
+    private final int WIDTH;
+    private final int HEIGHT;
     private final String title;
     private JFrame frame;
     private Canvas canvas;
@@ -29,6 +29,7 @@ public class Window {
         frame.setSize(WIDTH, HEIGHT);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getRootPane().setWindowDecorationStyle(JRootPane.NONE);
+        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.setVisible(true);
         canvas = new Canvas();
         canvas.setPreferredSize(new Dimension(WIDTH, HEIGHT));
@@ -56,6 +57,14 @@ public class Window {
 
     public void clear() {
         canvas.getBufferStrategy().getDrawGraphics().fillRect(0, 0, WIDTH, HEIGHT);
+    }
+
+    public int getFrameHeight() {
+        return frame.getHeight();
+    }
+
+    public int getFrameWidth() {
+        return frame.getWidth();
     }
 
 }

@@ -1,27 +1,37 @@
 package com.akivaGrobman;
 
 import com.akivaGrobman.display.Window;
-import com.akivaGrobman.graphics.Assets;
-
+import com.akivaGrobman.tracks.Track;
 import java.awt.*;
 
-public class Game {
+public class Launcher {
 
     private boolean isRunning;
     private Window window;
+    private Track track;
 
-    public Game() {
+    public Launcher() {
 
     }
 
     public void start() {
+        if(isRunning) {
+            return;
+        }
         initialize();
         runGameLoop();
     }
 
-    public void stop() {
+    public synchronized void stop() {
+        if(!isRunning) {
+            return;
+        }
         isRunning = false;
         System.exit(0);
+    }
+
+    public Window getWindow() {
+        return window;
     }
 
     private void initialize() {
@@ -51,14 +61,13 @@ public class Game {
     private void tick() {
         // todo
 //        if(GameStateManager.getCurrentState() != null) {
-//            GameStateManager.getCurrentState().render(graphics);
+//            GameStateManager.getCurrentState().tick();
 //        }
     }
 
     private void render() {
         Graphics graphics = window.getGraphics();
         window.clear();
-        graphics.drawImage(Assets.getImage(Assets.TRACK_KEY), 0, 0, window.WIDTH, window.HEIGHT, null);
         // todo
 //        if(GameStateManager.getCurrentState() != null) {
 //            GameStateManager.getCurrentState().render(graphics);

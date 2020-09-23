@@ -2,7 +2,7 @@ package com.akivaGrobman.input;
 
 import java.awt.event.KeyEvent;
 
-public class KeyListener implements java.awt.event.KeyListener {
+public class PlayerKeyListener implements java.awt.event.KeyListener {
 
     public static final int LEFT_ARROW = KeyEvent.VK_LEFT;
     public static final int UP_ARROW = KeyEvent.VK_UP;
@@ -10,7 +10,7 @@ public class KeyListener implements java.awt.event.KeyListener {
     public static final int DOWN_ARROW = KeyEvent.VK_DOWN;
     private boolean[] arrowKeys;
 
-    public KeyListener() {
+    public PlayerKeyListener() {
         arrowKeys = new boolean[4];
     }
 
@@ -25,6 +25,9 @@ public class KeyListener implements java.awt.event.KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
+        if(e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+            System.exit(0);
+        }
         keyPressed(e.getKeyCode(), true);
     }
 

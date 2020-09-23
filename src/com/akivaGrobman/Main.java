@@ -3,8 +3,8 @@ package com.akivaGrobman;
 public class Main {
 
     public static void main(String[] args) {
-        Game game = new Game();
-        game.start();
+        Launcher launcher = new Launcher();
+        launcher.start();
     }
 
 }
