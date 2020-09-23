@@ -10,10 +10,8 @@ import java.awt.*;
 public class Track {
 
     private Car[] cars;
-    private Launcher launcher;
 
-    public Track(Launcher launcher) {
-        this.launcher = launcher;
+    public Track() {
         cars = new Car[1];
         cars[0] = new PlayerCar();
     }
@@ -25,7 +23,10 @@ public class Track {
     }
 
     public void render(Graphics graphics) {
-        graphics.drawImage(Assets.getImage(Assets.TRACK_KEY), 0, 0, launcher.getWindow().getFrameWidth(), launcher.getWindow().getFrameHeight(), null);
+        // todo
+//        int width = getWindowWidth();
+//        int height = getWindowHeight();
+//        graphics.drawImage(Assets.getImage(Assets.TRACK_KEY), 0, 0, width, height, null);
         for (Car car: cars) {
             car.render((Graphics2D) graphics);
         }
