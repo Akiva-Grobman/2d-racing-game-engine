@@ -1,10 +1,14 @@
 package com.k300;
 
+<<<<<<< HEAD
 import com.k300.display.Window;
 import com.k300.states.GameState;
 import com.k300.states.StateManager;
 
 import javax.swing.plaf.nimbus.State;
+=======
+import com.akivaGrobman.display.Window;
+>>>>>>> 2995cec2152695e574095a65180b4e4ea0d87034
 import java.awt.*;
 
 public class Launcher {
