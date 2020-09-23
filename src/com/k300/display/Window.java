@@ -13,8 +13,6 @@ public class Window {
     private Canvas canvas;
 
     public Window(String title) {
-        // todo
-        // fix height
         this(title, Toolkit.getDefaultToolkit().getScreenSize().width, Toolkit.getDefaultToolkit().getScreenSize().height);
     }
 

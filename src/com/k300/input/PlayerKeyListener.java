@@ -8,7 +8,7 @@ public class PlayerKeyListener implements java.awt.event.KeyListener {
     public static final int UP_ARROW = KeyEvent.VK_UP;
     public static final int RIGHT_ARROW = KeyEvent.VK_RIGHT;
     public static final int DOWN_ARROW = KeyEvent.VK_DOWN;
-    private boolean[] arrowKeys;
+    private final boolean[] arrowKeys;
 
     public PlayerKeyListener() {
         arrowKeys = new boolean[4];

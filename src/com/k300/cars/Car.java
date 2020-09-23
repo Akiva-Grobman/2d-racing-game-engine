@@ -1,14 +1,14 @@
 package com.k300.cars;
 
+import com.google.gson.Gson;
 import com.k300.graphics.Assets;
-
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 
 public abstract class Car {
 
-    protected final int velocity;
+    protected static final int velocity = 5;
     protected double x;
     protected double y;
     protected double angle;
@@ -19,7 +19,6 @@ public abstract class Car {
         this.x = x;
         this.y = y;
         angle = 0;
-        velocity = 5;
     }
 
     public abstract void tick();
@@ -31,6 +30,8 @@ public abstract class Car {
         AffineTransform carAngle = AffineTransform.getTranslateInstance(x - carImage.getWidth() / 2f, y -  carImage.getHeight() / 2f);
         carAngle.rotate(Math.toDegrees(angle), carImage.getWidth() / 2f, carImage.getHeight() / 2f);
         graphics.drawImage(carImage, carAngle, null);
+        graphics.setColor(Color.red);
+        graphics.fillRect((int)x, (int)y, 30,30);
     }
 
 }
