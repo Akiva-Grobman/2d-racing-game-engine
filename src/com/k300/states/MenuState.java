@@ -1,7 +1,6 @@
 package com.k300.states;
 
 import com.k300.Launcher;
-import com.k300.tracks.Track;
 
 import java.awt.*;
 
