@@ -17,7 +17,7 @@ public class Track {
         this.gameState = gameState;
         cars = new Car[1];
         // testing this should be information given from the server
-        cars[0] = new PlayerCar(Assets.BLUE_CAR_KEY, 500, 500);
+        cars[0] = new PlayerCar(Assets.BLUE_CAR_KEY, 0, 0);
         ((GameState)gameState).setKeyListener(((PlayerCar)cars[0]).getKeyListener());
     }
 
