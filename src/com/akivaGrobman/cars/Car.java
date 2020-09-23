@@ -6,9 +6,9 @@ import java.awt.image.BufferedImage;
 
 public abstract class Car {
 
-    protected float x;
-    protected float y;
-    protected float angle;
+    protected double x;
+    protected double y;
+    protected double angle;
     protected BufferedImage carImage;
 
     public abstract void tick();
