@@ -13,10 +13,10 @@ public abstract class Car {
     protected double angle;
     protected BufferedImage carImage;
 
-    public Car(String carColor, int x, int y) {
+    public Car(String carColor, Point startingPosition) {
         carImage = Assets.getImage(carColor);
-        this.x = x;
-        this.y = y;
+        x = startingPosition.x;
+        y = startingPosition.y;
         angle = 0;
     }
 

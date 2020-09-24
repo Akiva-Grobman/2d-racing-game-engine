@@ -5,7 +5,6 @@ import com.k300.cars.PlayerCar;
 import com.k300.graphics.Assets;
 import com.k300.states.GameState;
 import com.k300.states.State;
-
 import java.awt.*;
 
 public class Track {
@@ -17,7 +16,7 @@ public class Track {
         this.gameState = gameState;
         cars = new Car[1];
         // testing this should be information given from the server
-        cars[0] = new PlayerCar(Assets.BLUE_CAR_KEY, 500, 500);
+        cars[0] = new PlayerCar(Assets.BLUE_CAR_KEY, new Point(500, 500));
         ((GameState)gameState).setKeyListener(((PlayerCar)cars[0]).getKeyListener());
     }
 
