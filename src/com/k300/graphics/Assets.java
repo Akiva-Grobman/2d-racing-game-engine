@@ -22,7 +22,7 @@ public class Assets {
         final int widthWight = 3;
         final int heightWight = 5;
         // this will determine the size of the car
-        double multiplier = 1.5;
+        double multiplier = 2;
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         int carImageWidth = screenSize.width / (int)Math.floor(heightWight * multiplier);
         int carImageHeight = screenSize.height / (int)Math.floor(widthWight * multiplier);
