@@ -27,9 +27,14 @@ public abstract class Car {
             return;
         }
         AffineTransform carAngle = AffineTransform.getTranslateInstance(x - carImage.getWidth() / 2f, y -  carImage.getHeight() / 2f);
-        carAngle.rotate(Math.toDegrees(angle), carImage.getWidth() / 2f, carImage.getHeight() / 2f);
+        carAngle.rotate(Math.toRadians(-angle), carImage.getWidth() / 2f, carImage.getHeight() / 2f); //need Minus because Java is multiplier minus
         graphics.setColor(Color.red);
         graphics.drawImage(carImage, carAngle, null);
+
+        graphics.setFont(new Font("TimesRoman", Font.BOLD, 60));
+        graphics.drawString("Angle: " + Double.toString(angle), 600, 350);
+        graphics.drawString("X: " + Double.toString(x), 600, 450);
+        graphics.drawString("Y: " + Double.toString(y), 600, 550);
     }
 
     public double getX() {
