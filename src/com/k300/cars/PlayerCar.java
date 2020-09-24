@@ -9,7 +9,7 @@ public class PlayerCar extends Car {
 
     private final PlayerKeyListener keyListener;
     private double carTurnAngle;
-    private double speed;
+
 
     public PlayerCar(String carColor, Point startingPosition) {
         super(carColor, startingPosition);
@@ -36,19 +36,74 @@ public class PlayerCar extends Car {
     }
 
     private void forward() {
-        y -= velocity;
+        double newX;
+        double newY;
+        if(angle >= 0 && angle <= 90) {
+            newX = x + (speed / Math.sqrt(1 + Math.tan(Math.toRadians(angle)) * Math.tan(Math.toRadians(angle))));
+            newY = y - Math.tan(Math.toRadians(angle)) * (speed / Math.sqrt(1 + Math.tan(Math.toRadians(angle)) * Math.tan(Math.toRadians(angle))));
+        } else if(angle >= 90 && angle <= 180) {
+            newX = x - (speed / Math.sqrt(1 + Math.tan(Math.toRadians(angle)) * Math.tan(Math.toRadians(angle))));
+            newY = y + Math.tan(Math.toRadians(angle)) * (speed / Math.sqrt(1 + Math.tan(Math.toRadians(angle)) * Math.tan(Math.toRadians(angle))));
+        } else if(angle >= 180 && angle <= 270) {
+            newX = x - (speed / Math.sqrt(1 + Math.tan(Math.toRadians(angle)) * Math.tan(Math.toRadians(angle))));
+            newY = y + Math.tan(Math.toRadians(angle)) * (speed / Math.sqrt(1 + Math.tan(Math.toRadians(angle)) * Math.tan(Math.toRadians(angle))));
+        } else /*if(angle >= 270 && angle <= 360)*/ {
+            newX = x + (speed / Math.sqrt(1 + Math.tan(Math.toRadians(angle)) * Math.tan(Math.toRadians(angle))));
+            newY = y - Math.tan(Math.toRadians(angle)) * (speed / Math.sqrt(1 + Math.tan(Math.toRadians(angle)) * Math.tan(Math.toRadians(angle))));
+        }
+        x = newX;
+        x = Math.round(x*10000)/10000.0; //5 numbers after the decimal point
+        y = newY;
+        y = Math.round(y*10000)/10000.0; //5 numbers after the decimal point
     }
 
     private void backwards() {
-        y += velocity;
+        double newX;
+        double newY;
+        if(angle >= 0 && angle <= 90) {
+            newX = x - (speed / Math.sqrt(1 + Math.tan(Math.toRadians(angle)) * Math.tan(Math.toRadians(angle))));
+            newY = y + Math.tan(Math.toRadians(angle)) * (speed / Math.sqrt(1 + Math.tan(Math.toRadians(angle)) * Math.tan(Math.toRadians(angle))));
+        } else if(angle >= 90 && angle <= 180) {
+            newX = x + (speed / Math.sqrt(1 + Math.tan(Math.toRadians(angle)) * Math.tan(Math.toRadians(angle))));
+            newY = y - Math.tan(Math.toRadians(angle)) * (speed / Math.sqrt(1 + Math.tan(Math.toRadians(angle)) * Math.tan(Math.toRadians(angle))));
+        } else if(angle >= 180 && angle <= 270) {
+            newX = x + (speed / Math.sqrt(1 + Math.tan(Math.toRadians(angle)) * Math.tan(Math.toRadians(angle))));
+            newY = y - Math.tan(Math.toRadians(angle)) * (speed / Math.sqrt(1 + Math.tan(Math.toRadians(angle)) * Math.tan(Math.toRadians(angle))));
+        } else /*if(angle >= 270 && angle <= 360)*/ {
+            newX = x - (speed / Math.sqrt(1 + Math.tan(Math.toRadians(angle)) * Math.tan(Math.toRadians(angle))));
+            newY = y + Math.tan(Math.toRadians(angle)) * (speed / Math.sqrt(1 + Math.tan(Math.toRadians(angle)) * Math.tan(Math.toRadians(angle))));
+        }
+        x = newX;
+        x = Math.round(x*10000)/10000.0; //5 numbers after the decimal point
+        y = newY;
+        y = Math.round(y*10000)/10000.0; //5 numbers after the decimal point
     }
 
     private void right() {
-        x += velocity;
+        angle -= carTurnAngle;
+        if (angle == 90) {
+            angle -= carTurnAngle;
+        }
+
+        if (angle > 360) {
+            angle = 0;
+        } else if (angle < 0) {
+            angle = 360;
+        }
     }
 
     private void left() {
-        x -= velocity;
+        angle += carTurnAngle;
+        if (angle == 90) {
+            angle += carTurnAngle;
+        }
+
+        if (angle > 360) {
+            angle = 0;
+        } else if (angle < 0) {
+            angle = 360;
+        }
+
     }
 
     public KeyListener getKeyListener() {
