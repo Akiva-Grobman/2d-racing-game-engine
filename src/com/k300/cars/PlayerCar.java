@@ -7,7 +7,6 @@ public class PlayerCar extends Car {
 
     private final PlayerKeyListener keyListener;
     private double carTurnAngle;
-    private double speed;
 
     public PlayerCar(String carColor, int x, int y) {
         super(carColor, x, y);

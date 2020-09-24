@@ -7,7 +7,7 @@ import java.awt.image.BufferedImage;
 
 public abstract class Car {
 
-    protected static final int speed = 10;
+    protected int speed = 5;
     protected double x;
     protected double y;
     protected double angle;
