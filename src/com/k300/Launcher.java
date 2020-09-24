@@ -47,8 +47,7 @@ public class Launcher {
     private void initialize() {
         window = new Window("2d-racing-game-engine");
         window.setBufferStrategy(3);
-
-        //Testing
+        //Testing(this should start with the menu state)
         StateManager.setCurrentState(new GameState(this));
     }
 

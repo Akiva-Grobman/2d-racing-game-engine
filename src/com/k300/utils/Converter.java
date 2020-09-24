@@ -4,48 +4,49 @@ import java.awt.*;
 
 public class Converter {
 
-    private static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-    private static final double SCREEN_WIDTH = screenSize.getWidth();
-    private static final double SCREEN_HEIGHT = screenSize.getHeight();
-
+    private static final double SCREEN_WIDTH = Toolkit.getDefaultToolkit().getScreenSize().getWidth();
+    private static final double SCREEN_HEIGHT = Toolkit.getDefaultToolkit().getScreenSize().getHeight();
+    private static final int TRACK_ORIGINAL_WIDTH = 1920;
+    private static final int TRACK_ORIGINAL_HEIGHT = 1080;
 
     public static double getProportionalNumber(double number) {
-        return number * (1920 / SCREEN_WIDTH);
+        return number * (TRACK_ORIGINAL_WIDTH / SCREEN_WIDTH);
     }
 
     public static double getAxisX(double x){
-        return x - (SCREEN_WIDTH / 2.0);
+        return x - (SCREEN_WIDTH / 2f);
     }
 
     public static double getAxisY(double y){
-        return  - (y - (SCREEN_HEIGHT / 2.0));
+        return  - (y - (SCREEN_HEIGHT / 2f));
     }
 
     public static double getFrameX(double x) {
-        return (SCREEN_WIDTH / 2.0) + x;
+        return (SCREEN_WIDTH / 2f) + x;
     }
 
     public static double getFrameY(double y) {
-        return (SCREEN_HEIGHT / 2.0) - y;
+        return (SCREEN_HEIGHT / 2f) - y;
     }
 
     public static double getDistance(int x1, int y1, int x2, int y2) {
-        return Math.sqrt( (Math.pow((y2-y1), 2) + Math.pow((x2-x1), 2)) );
+        return Math.sqrt( (Math.pow((y2 - y1), 2) + Math.pow((x2 - x1), 2)) );
     }
 
     public static double getFrameXPoint(int xPosition) {
-        return 1920/2 + xPosition;
+        return TRACK_ORIGINAL_WIDTH / 2f + xPosition;
     }
 
     public static double getFrameYPoint(int yPosition) {
-        return 1080/2 - yPosition;
+        return TRACK_ORIGINAL_HEIGHT / 2f - yPosition;
     }
 
     public static double getAxisXPoint(int xPosition) {
-        return xPosition - 1920/2;
+        return xPosition - TRACK_ORIGINAL_WIDTH / 2f;
     }
 
     public static double getAxisYPoint(int yPosition) {
-        return -(yPosition - 1080/2);
+        return -(yPosition - TRACK_ORIGINAL_HEIGHT / 2f);
     }
+
 }

@@ -7,7 +7,7 @@ import java.awt.image.BufferedImage;
 
 public abstract class Car {
 
-    protected int speed = 10;
+    protected int speed;
     protected double x;
     protected double y;
     protected double angle;
@@ -15,6 +15,7 @@ public abstract class Car {
 
     public Car(String carColor, Point startingPosition) {
         carImage = Assets.getImage(carColor);
+        speed = 10;
         x = startingPosition.x;
         y = startingPosition.y;
         angle = 0;
@@ -27,10 +28,10 @@ public abstract class Car {
             return;
         }
         AffineTransform carAngle = AffineTransform.getTranslateInstance(x - carImage.getWidth() / 2f, y -  carImage.getHeight() / 2f);
-        carAngle.rotate(Math.toRadians(-angle), carImage.getWidth() / 2f, carImage.getHeight() / 2f); //need Minus because Java is multiplier minus
-        graphics.setColor(Color.red);
+        carAngle.rotate(Math.toRadians(-angle), carImage.getWidth() / 2f, carImage.getHeight() / 2f); //angle needs Minus because Java is multiplier minus
         graphics.drawImage(carImage, carAngle, null);
-
+        // testing code
+        graphics.setColor(Color.red);
         graphics.setFont(new Font("TimesRoman", Font.BOLD, 60));
         graphics.drawString("Angle: " + angle, 600, 350);
         graphics.drawString("X: " + x, 600, 450);

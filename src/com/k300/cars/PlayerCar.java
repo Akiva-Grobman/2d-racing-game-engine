@@ -7,103 +7,115 @@ import java.awt.event.KeyListener;
 
 public class PlayerCar extends Car {
 
+    private static final int NINETY_ANGLE = 90;
+    private final double CAR_TURNING_ANGLE;
     private final PlayerKeyListener keyListener;
-    private double carTurnAngle;
-
 
     public PlayerCar(String carColor, Point startingPosition) {
         super(carColor, startingPosition);
-        carTurnAngle = 4;
+        CAR_TURNING_ANGLE = 4;
         keyListener = new PlayerKeyListener();
     }
 
-
     @Override
     public void tick() {
-        //todo add calculations
         if(keyListener.getKeyIsPressed(PlayerKeyListener.UP_ARROW)) {
-            forward();
+            moveForward();
         }
         if(keyListener.getKeyIsPressed(PlayerKeyListener.DOWN_ARROW)) {
-            backwards();
+            moveBackwards();
         }
         if(keyListener.getKeyIsPressed(PlayerKeyListener.RIGHT_ARROW)) {
-            right();
+            moveRight();
         }
         if(keyListener.getKeyIsPressed(PlayerKeyListener.LEFT_ARROW)) {
-            left();
+            moveLeft();
         }
     }
 
-    private void forward() {
+    private void moveForward() {
         double newX;
         double newY;
-        if(angle >= 0 && angle <= 90) {
-            newX = x + (speed / Math.sqrt(1 + Math.tan(Math.toRadians(angle)) * Math.tan(Math.toRadians(angle))));
-            newY = y - Math.tan(Math.toRadians(angle)) * (speed / Math.sqrt(1 + Math.tan(Math.toRadians(angle)) * Math.tan(Math.toRadians(angle))));
-        } else if(angle >= 90 && angle <= 180) {
-            newX = x - (speed / Math.sqrt(1 + Math.tan(Math.toRadians(angle)) * Math.tan(Math.toRadians(angle))));
-            newY = y + Math.tan(Math.toRadians(angle)) * (speed / Math.sqrt(1 + Math.tan(Math.toRadians(angle)) * Math.tan(Math.toRadians(angle))));
-        } else if(angle >= 180 && angle <= 270) {
-            newX = x - (speed / Math.sqrt(1 + Math.tan(Math.toRadians(angle)) * Math.tan(Math.toRadians(angle))));
-            newY = y + Math.tan(Math.toRadians(angle)) * (speed / Math.sqrt(1 + Math.tan(Math.toRadians(angle)) * Math.tan(Math.toRadians(angle))));
+        if(isInBoundsOf(0, NINETY_ANGLE)) {
+            newX = x + angle();
+            newY = y - yMovement();
+        } else if(isInBoundsOf(NINETY_ANGLE, NINETY_ANGLE * 2)) {
+            newX = x - angle();
+            newY = y + yMovement();
+        } else if(isInBoundsOf(NINETY_ANGLE * 2, NINETY_ANGLE * 3)) {
+            newX = x - angle();
+            newY = y + yMovement();
         } else /*if(angle >= 270 && angle <= 360)*/ {
-            newX = x + (speed / Math.sqrt(1 + Math.tan(Math.toRadians(angle)) * Math.tan(Math.toRadians(angle))));
-            newY = y - Math.tan(Math.toRadians(angle)) * (speed / Math.sqrt(1 + Math.tan(Math.toRadians(angle)) * Math.tan(Math.toRadians(angle))));
+            newX = x + angle();
+            newY = y - yMovement();
         }
-        x = newX;
-        x = Math.round(x*10000)/10000.0; //5 numbers after the decimal point
-        y = newY;
-        y = Math.round(y*10000)/10000.0; //5 numbers after the decimal point
+        setNewXY(newX, newY);
     }
 
-    private void backwards() {
+    private void moveBackwards() {
         double newX;
         double newY;
-        if(angle >= 0 && angle <= 90) {
-            newX = x - (speed / Math.sqrt(1 + Math.tan(Math.toRadians(angle)) * Math.tan(Math.toRadians(angle))));
-            newY = y + Math.tan(Math.toRadians(angle)) * (speed / Math.sqrt(1 + Math.tan(Math.toRadians(angle)) * Math.tan(Math.toRadians(angle))));
-        } else if(angle >= 90 && angle <= 180) {
-            newX = x + (speed / Math.sqrt(1 + Math.tan(Math.toRadians(angle)) * Math.tan(Math.toRadians(angle))));
-            newY = y - Math.tan(Math.toRadians(angle)) * (speed / Math.sqrt(1 + Math.tan(Math.toRadians(angle)) * Math.tan(Math.toRadians(angle))));
-        } else if(angle >= 180 && angle <= 270) {
-            newX = x + (speed / Math.sqrt(1 + Math.tan(Math.toRadians(angle)) * Math.tan(Math.toRadians(angle))));
-            newY = y - Math.tan(Math.toRadians(angle)) * (speed / Math.sqrt(1 + Math.tan(Math.toRadians(angle)) * Math.tan(Math.toRadians(angle))));
+        if(isInBoundsOf(0, NINETY_ANGLE)) {
+            newX = x - angle();
+            newY = y + yMovement();
+        } else if(isInBoundsOf(NINETY_ANGLE, NINETY_ANGLE * 2)) {
+            newX = x + angle();
+            newY = y - yMovement();
+        } else if(isInBoundsOf(NINETY_ANGLE * 2, NINETY_ANGLE * 3)) {
+            newX = x + angle();
+            newY = y - yMovement();
         } else /*if(angle >= 270 && angle <= 360)*/ {
-            newX = x - (speed / Math.sqrt(1 + Math.tan(Math.toRadians(angle)) * Math.tan(Math.toRadians(angle))));
-            newY = y + Math.tan(Math.toRadians(angle)) * (speed / Math.sqrt(1 + Math.tan(Math.toRadians(angle)) * Math.tan(Math.toRadians(angle))));
+            newX = x - angle();
+            newY = y + yMovement();
         }
-        x = newX;
-        x = Math.round(x*10000)/10000.0; //5 numbers after the decimal point
-        y = newY;
-        y = Math.round(y*10000)/10000.0; //5 numbers after the decimal point
+        setNewXY(newX, newY);
     }
 
-    private void right() {
-        angle -= carTurnAngle;
-        if (angle == 90) {
-            angle -= carTurnAngle;
-        }
+    private boolean isInBoundsOf(int lowerBound, int upperBound) {
+        return angle >= lowerBound && angle <= upperBound;
+    }
 
+    private double angle() {
+        return (speed / Math.sqrt(1 + Math.tan(Math.toRadians(angle)) * Math.tan(Math.toRadians(angle))));
+    }
+
+    private double yMovement() {
+        return tanOfAngle() * angle();
+    }
+
+    private double tanOfAngle() {
+        return Math.tan(Math.toRadians(angle));
+    }
+
+    private void setNewXY(double newX, double newY) {
+        // rounding is for display prepossess
+        // 5 numbers after the decimal point
+        x = Math.round(newX * 10000) / 10000.0;
+        y = Math.round(newY * 10000) / 10000.0;
+    }
+
+    private void moveRight() {
+        turn(-1);
+    }
+
+    private void moveLeft() {
+        turn(1);
+    }
+
+    private void turn(int multiplier) {
+        angle += CAR_TURNING_ANGLE * multiplier;
+        if(angle == NINETY_ANGLE) {
+            angle += CAR_TURNING_ANGLE * multiplier;
+        }
+        resetAngle();
+    }
+
+    private void resetAngle() {
         if (angle > 360) {
             angle = 0;
         } else if (angle < 0) {
             angle = 360;
         }
-    }
-
-    private void left() {
-        angle += carTurnAngle;
-        if (angle == 90) {
-            angle += carTurnAngle;
-        }
-
-        if (angle > 360) {
-            angle = 0;
-        } else if (angle < 0) {
-            angle = 360;
-        }
-
     }
 
     public KeyListener getKeyListener() {

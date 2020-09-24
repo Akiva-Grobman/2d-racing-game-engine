@@ -9,35 +9,42 @@ import static com.k300.utils.Utils.resizeImage;
 public class Assets {
 
     public static final String TRACK_KEY = "Track";
+    public static final String PLAY_BUTTON_KEY = "PlayButton";
     public static final String RED_CAR_KEY = "car_red";
     public static final String BLUE_CAR_KEY = "car_blue";
     public static final String YELLOW_CAR_KEY = "car_yellow";
-    public static final String PLAY_BUTTON_KEY = "PlayButton";
     private volatile static Assets singletonInstance;
     private final Hashtable<String, BufferedImage> images;
-
-    private Assets() {
-        images = new Hashtable<>();
-        // these two variables represent the width relative to the height
-        final int widthWight = 3;
-        final int heightWight = 5;
-        // this will determine the size of the car
-        double multiplier = 2;
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        int carImageWidth = screenSize.width / (int)Math.floor(heightWight * multiplier);
-        int carImageHeight = screenSize.height / (int)Math.floor(widthWight * multiplier);
-        images.put(TRACK_KEY, loadImage(TRACK_KEY, ".jpg"));
-        images.put(RED_CAR_KEY, resizeImage(loadImage(RED_CAR_KEY, ".png"), carImageWidth, carImageHeight));
-        images.put(BLUE_CAR_KEY, resizeImage(loadImage(BLUE_CAR_KEY, ".png"), carImageWidth, carImageHeight));
-        images.put(YELLOW_CAR_KEY, resizeImage(loadImage(YELLOW_CAR_KEY, ".png"), carImageWidth, carImageHeight));
-        images.put(PLAY_BUTTON_KEY, loadImage(PLAY_BUTTON_KEY, ".png"));
-    }
-
+    // these two variables represent the width relative to the height
+    private static final int WIDTH_WEIGHT = 5;
+    private static final int HEIGHT_WEIGHT = 3;
+    // this will determine the size of the car(the greater the value the smaller the car)
+    private static final double SCALE = 2;
+    
     public static BufferedImage getImage(String imageKey) {
         if(singletonInstance == null) {
             singletonInstance = new Assets();
         }
         return singletonInstance.images.get(imageKey);
+    }
+
+    private Assets() {
+        images = new Hashtable<>();
+        images.put(TRACK_KEY, loadImage(TRACK_KEY, ".jpg"));
+        images.put(PLAY_BUTTON_KEY, loadImage(PLAY_BUTTON_KEY, ".png"));
+        int carImageWidth = getCarImageWidth();
+        int carImageHeight = getCarImageHeight();
+        images.put(RED_CAR_KEY, resizeImage(loadImage(RED_CAR_KEY, ".png"), carImageWidth, carImageHeight));
+        images.put(BLUE_CAR_KEY, resizeImage(loadImage(BLUE_CAR_KEY, ".png"), carImageWidth, carImageHeight));
+        images.put(YELLOW_CAR_KEY, resizeImage(loadImage(YELLOW_CAR_KEY, ".png"), carImageWidth, carImageHeight));
+    }
+
+    private int getCarImageWidth() {
+        return Toolkit.getDefaultToolkit().getScreenSize().width / (int)Math.floor(WIDTH_WEIGHT * SCALE);
+    }
+
+    private int getCarImageHeight() {
+        return Toolkit.getDefaultToolkit().getScreenSize().height / (int)Math.floor(HEIGHT_WEIGHT * SCALE);
     }
 
 }
