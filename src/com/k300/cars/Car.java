@@ -7,7 +7,7 @@ import java.awt.image.BufferedImage;
 
 public abstract class Car {
 
-    protected int speed = 5;
+    protected int speed = 10;
     protected double x;
     protected double y;
     protected double angle;
@@ -32,9 +32,9 @@ public abstract class Car {
         graphics.drawImage(carImage, carAngle, null);
 
         graphics.setFont(new Font("TimesRoman", Font.BOLD, 60));
-        graphics.drawString("Angle: " + Double.toString(angle), 600, 350);
-        graphics.drawString("X: " + Double.toString(x), 600, 450);
-        graphics.drawString("Y: " + Double.toString(y), 600, 550);
+        graphics.drawString("Angle: " + angle, 600, 350);
+        graphics.drawString("X: " + x, 600, 450);
+        graphics.drawString("Y: " + y, 600, 550);
     }
 
     public double getX() {
