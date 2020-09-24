@@ -6,9 +6,13 @@ import java.awt.event.KeyListener;
 public class PlayerCar extends Car {
 
     private final PlayerKeyListener keyListener;
+    private double carTurnAngle;
+    private double speed;
 
     public PlayerCar(String carColor, int x, int y) {
         super(carColor, x, y);
+        carTurnAngle = 4;
+        speed = 10;
         keyListener = new PlayerKeyListener();
     }
 
@@ -29,7 +33,6 @@ public class PlayerCar extends Car {
         }
     }
 
-
     private void forward() {
         y -= velocity;
     }
@@ -45,7 +48,6 @@ public class PlayerCar extends Car {
     private void left() {
         x -= velocity;
     }
-
 
     public KeyListener getKeyListener() {
         return keyListener;
