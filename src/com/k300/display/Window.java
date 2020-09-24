@@ -31,7 +31,7 @@ public class Window {
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.setResizable(false);
         frame.toFront();
-        //frame.setUndecorated(true);
+        frame.setUndecorated(true);
         frame.setVisible(true);
         canvas = new Canvas();
         canvas.setPreferredSize(new Dimension(WIDTH, HEIGHT));

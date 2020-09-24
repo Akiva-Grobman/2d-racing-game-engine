@@ -17,6 +17,7 @@ public class MenuState extends State {
 
     @Override
     public void render(Graphics graphics) {
+
     }
 
 }
