@@ -15,21 +15,40 @@ public class PlayerCar extends Car {
     @Override
     public void tick() {
         //todo add calculations
-        if(keyListener.getKeyIsPressed(PlayerKeyListener.RIGHT_ARROW)) {
-            x += velocity;
-        }
-        if(keyListener.getKeyIsPressed(PlayerKeyListener.LEFT_ARROW)) {
-            x -= velocity;
-        }
         if(keyListener.getKeyIsPressed(PlayerKeyListener.UP_ARROW)) {
-            y -= velocity;
+            forward();
         }
         if(keyListener.getKeyIsPressed(PlayerKeyListener.DOWN_ARROW)) {
-            y += velocity;
+            backwards();
+        }
+        if(keyListener.getKeyIsPressed(PlayerKeyListener.RIGHT_ARROW)) {
+            right();
+        }
+        if(keyListener.getKeyIsPressed(PlayerKeyListener.LEFT_ARROW)) {
+            left();
         }
     }
+
+
+    private void forward() {
+        y -= velocity;
+    }
+
+    private void backwards() {
+        y += velocity;
+    }
+
+    private void right() {
+        x += velocity;
+    }
+
+    private void left() {
+        x -= velocity;
+    }
+
 
     public KeyListener getKeyListener() {
         return keyListener;
     }
+
 }

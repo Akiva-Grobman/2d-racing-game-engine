@@ -33,14 +33,6 @@ public class Converter {
         return Math.sqrt( (Math.pow((y2-y1), 2) + Math.pow((x2-x1), 2)) );
     }
 
-    public static double getPositiveC(int a, int b) {
-        return (int) Math.sqrt( (Math.pow(a, 2) - Math.pow(b, 2)) );
-    }
-
-    public static double getNegativeC(int a, int b) {
-        return - (int) Math.sqrt( (Math.pow(a, 2) - Math.pow(b, 2)) );
-    }
-
     public static double getFrameXPoint(int xPosition) {
         return 1920/2 + xPosition;
     }
