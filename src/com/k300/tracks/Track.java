@@ -5,8 +5,6 @@ import com.k300.cars.PlayerCar;
 import com.k300.graphics.Assets;
 import com.k300.states.GameState;
 import com.k300.states.State;
-import org.ietf.jgss.Oid;
-
 import java.awt.*;
 
 public class Track {

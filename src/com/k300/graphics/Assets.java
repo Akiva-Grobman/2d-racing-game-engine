@@ -3,6 +3,7 @@ package com.k300.graphics;
 import java.awt.image.BufferedImage;
 import java.util.Hashtable;
 import static com.k300.utils.Utils.loadImage;
+import static com.k300.utils.Utils.resizeImage;
 
 public class Assets {
 
@@ -16,8 +17,9 @@ public class Assets {
 
     private Assets() {
         images = new Hashtable<>();
+        BufferedImage smallRed = resizeImage(loadImage(RED_CAR_KEY, ".png"), loadImage(RED_CAR_KEY, ".png").getWidth() / 2, loadImage(RED_CAR_KEY, ".png").getHeight() / 2);
         images.put(TRACK_KEY, loadImage(TRACK_KEY, ".jpg"));
-        images.put(RED_CAR_KEY, loadImage(RED_CAR_KEY, ".png"));
+        images.put(RED_CAR_KEY, smallRed);
         images.put(BLUE_CAR_KEY, loadImage(BLUE_CAR_KEY, ".png"));
         images.put(YELLOW_CAR_KEY, loadImage(YELLOW_CAR_KEY, ".png"));
         images.put(PLAY_BUTTON_KEY, loadImage(PLAY_BUTTON_KEY, ".png"));
