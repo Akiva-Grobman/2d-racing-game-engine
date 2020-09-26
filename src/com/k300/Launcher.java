@@ -16,7 +16,7 @@ public class Launcher {
         isRunning = false;
     }
 
-    public void start() {
+    public void launch() {
         if(isRunning) {
             return;
         }
@@ -56,12 +56,12 @@ public class Launcher {
         final double FRAMES_PER_SECOND = 60;
         double timePerUpdate = 1000000000 / FRAMES_PER_SECOND;
         double timeFromLastUpdate = 0;
-        long now;
-        long last = System.nanoTime();
+        long currentTime;
+        long previousTime = System.nanoTime();
         while (isRunning) {
-            now = System.nanoTime();
-            timeFromLastUpdate += (now - last) / timePerUpdate;
-            last = now;
+            currentTime = System.nanoTime();
+            timeFromLastUpdate += (currentTime - previousTime) / timePerUpdate;
+            previousTime = currentTime;
             if(timeFromLastUpdate >= 1) {
                 tick();
                 render();

@@ -16,8 +16,8 @@ public class Margins {
     public Margins(int a, int b) {
         smallA = a / 2f;
         bigA = (a * 1.7) / 2f;
-        double bigB = (b * 1.7) / 2f;
-        double smallB = b / 2f;
+        final double bigB = (b * 1.7) / 2f;
+        final double smallB = b / 2f;
 
         positiveSmallC = getPositiveC(smallA, smallB);
         negativeSmallC = getNegativeC(smallA, smallB);
@@ -37,19 +37,19 @@ public class Margins {
         axisX = Converter.getAxisX(carX);
         axisY = Converter.getAxisY(carY);
 
-        smallDistance1 = getDistance(positiveSmallC, axisX, axisY);
-        smallDistance2 = getDistance(negativeSmallC, axisX, axisY);
+        smallDistance1 = getDistance(positiveSmallC, axisX, 0, axisY);
+        smallDistance2 = getDistance(negativeSmallC, axisX, 0, axisY);
 
-        bigDistance1 = getDistance(positiveBigC, axisX, axisY);
-        bigDistance2 = getDistance(negativeBigC, axisX, axisY);
+        bigDistance1 = getDistance(positiveBigC, axisX, 0, axisY);
+        bigDistance2 = getDistance(negativeBigC, axisX, 0, axisY);
 
         double smallDistance = smallDistance1 + smallDistance2;
         double bigDistance = bigDistance1 + bigDistance2;
         return (smallDistance > (2 * smallA) && bigDistance < (2 * bigA));
     }
 
-    private double getDistance(double x1, double x2, double y2) {
-        return Point2D.distance(x1, 0, x2, y2);
+    private double getDistance(double x1, double x2, double y1, double y2) {
+        return Point2D.distance(x1, y1, x2, y2);
     }
 
     private double getPositiveC(double a, double b) {
