@@ -1,6 +1,7 @@
 package com.k300.cars;
 
 import com.k300.io.EnemyInput;
+import com.k300.utils.Point;
 
 import java.awt.*;
 

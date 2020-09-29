@@ -1,6 +1,8 @@
 package com.k300.cars;
 
 import com.k300.graphics.Assets;
+import com.k300.utils.Point;
+
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
