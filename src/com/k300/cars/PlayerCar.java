@@ -3,7 +3,6 @@ package com.k300.cars;
 import com.k300.io.PlayerKeyListener;
 import com.k300.utils.Point;
 
-import java.awt.*;
 import java.awt.event.KeyListener;
 
 public class PlayerCar extends Car {
@@ -37,17 +36,17 @@ public class PlayerCar extends Car {
         double newX;
         double newY;
         if(isInBoundsOf(0, 90)) {
-            newX = x + distance();
-            newY = y - yMovement();
+            newX = x + xDistance();
+            newY = y - yDistance();
         } else if(isInBoundsOf(90, 180)) {
-            newX = x - distance();
-            newY = y + yMovement();
+            newX = x - xDistance();
+            newY = y + yDistance();
         } else if(isInBoundsOf(180, 270)) {
-            newX = x - distance();
-            newY = y + yMovement();
+            newX = x - xDistance();
+            newY = y + yDistance();
         } else /*if(angle >= 270 && angle <= 360)*/ {
-            newX = x + distance();
-            newY = y - yMovement();
+            newX = x + xDistance();
+            newY = y - yDistance();
         }
         setNewXY(newX, newY);
     }
@@ -56,17 +55,17 @@ public class PlayerCar extends Car {
         double newX;
         double newY;
         if(isInBoundsOf(0, 90)) {
-            newX = x - distance();
-            newY = y + yMovement();
+            newX = x - xDistance();
+            newY = y + yDistance();
         } else if(isInBoundsOf(90, 180)) {
-            newX = x + distance();
-            newY = y - yMovement();
+            newX = x + xDistance();
+            newY = y - yDistance();
         } else if(isInBoundsOf(180, 270)) {
-            newX = x + distance();
-            newY = y - yMovement();
+            newX = x + xDistance();
+            newY = y - yDistance();
         } else /*if(angle >= 270 && angle <= 360)*/ {
-            newX = x - distance();
-            newY = y + yMovement();
+            newX = x - xDistance();
+            newY = y + yDistance();
         }
         setNewXY(newX, newY);
     }
@@ -75,19 +74,19 @@ public class PlayerCar extends Car {
         return angle >= lowerBound && angle <= upperBound;
     }
 
-    // this is most of the distance formula (with the x extracted instead of the standard distance extracted)
-    // meaning x +- distance() the -/+ will be determined by the angle and direction (in the forwards and backwards methods)
+    // This is most of the distance formula (with the x extracted instead of the standard distance extracted).
+    // Meaning x +- distance() the -/+ will be determined by the angle and direction (in the forwards and backwards methods)
     // and the y will use this as well for it's distance calculation.
-    private double distance() {
-        return (speed / sqrtOfAnglePlusOne() * tanOfAngle());
+    private double xDistance() {
+        return (speed / sqrtOfSquareAnglePlusOne());
     }
 
-    private double yMovement() {
-        return tanOfAngle() * distance();
+    private double yDistance() {
+        return tanOfAngle() * xDistance();
     }
 
-    private double sqrtOfAnglePlusOne() {
-        return Math.sqrt(1 + tanOfAngle());
+    private double sqrtOfSquareAnglePlusOne() {
+        return Math.sqrt(1 + tanOfAngle()*tanOfAngle());
     }
 
     private double tanOfAngle() {
