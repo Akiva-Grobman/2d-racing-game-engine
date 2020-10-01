@@ -34,7 +34,6 @@ public class Window {
         frame.setResizable(false);
         frame.toFront();
         frame.setUndecorated(true);
-        frame.setVisible(true);
         canvas = new Canvas();
         canvas.setPreferredSize(new Dimension(WIDTH, HEIGHT));
         canvas.setMaximumSize(new Dimension(WIDTH, HEIGHT));
@@ -56,6 +55,10 @@ public class Window {
 
     public Graphics getGraphics() {
         return canvas.getBufferStrategy().getDrawGraphics();
+    }
+
+    public void setVisible() {
+        frame.setVisible(true);
     }
 
     public void show() {

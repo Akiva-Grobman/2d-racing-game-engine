@@ -65,19 +65,22 @@ public class MenuBackground {
     }
 
     public void render(Graphics graphics) {
+        // background image
         graphics.drawImage(Assets.getImage(Assets.K_300_LOGO_KEY), 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, null);
+        // draw בס"ד
         graphics.setColor(new Color(93,188,210));
         graphics.setFont(new Font("Italic", Font.ITALIC, SCREEN_WIDTH / 90));
         graphics.drawString("בס\"ד", SCREEN_WIDTH / 20 * 19, SCREEN_HEIGHT / 15);
+        // draw red car
         graphics.drawImage(Assets.getImage(Assets.RED_CAR_KEY), redCarPosition.x, redCarPosition.y, null);
-
+        // draw blue car
         AffineTransform blueCarAngle = AffineTransform.getTranslateInstance(blueCarPosition.x - Assets.getImage(Assets.BLUE_CAR_KEY).getWidth() / 2f,
                 blueCarPosition.y -  Assets.getImage(Assets.BLUE_CAR_KEY).getHeight() / 2f);
         blueCarAngle.rotate(Math.toRadians(-180),
                 Assets.getImage(Assets.BLUE_CAR_KEY).getWidth() / 2f,
                 Assets.getImage(Assets.BLUE_CAR_KEY).getHeight() / 2f);
         ((Graphics2D) graphics).drawImage(Assets.getImage(Assets.BLUE_CAR_KEY), blueCarAngle, null);
-
+        // draw yellow car
         AffineTransform carAngle = AffineTransform.getTranslateInstance(yellowCarPosition.x - Assets.getImage(Assets.YELLOW_CAR_KEY).getWidth() / 2f,
                 yellowCarPosition.y -  Assets.getImage(Assets.YELLOW_CAR_KEY).getHeight() / 2f);
         carAngle.rotate(Math.toRadians(-yellowAngle),

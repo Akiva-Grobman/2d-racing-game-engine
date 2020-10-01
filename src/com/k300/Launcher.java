@@ -53,7 +53,9 @@ public class Launcher {
         window.setBufferStrategy(3);
         mouseListener = new MouseListener();
         window.addMouseListener(mouseListener);
+        setKeyListener(new com.k300.io.KeyListener());
         StateManager.setCurrentState(new MenuState(this));
+        window.setVisible();
     }
 
     private void runGameLoop() {
