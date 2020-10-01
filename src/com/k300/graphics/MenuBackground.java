@@ -76,9 +76,6 @@ public class MenuBackground {
         carAngle.rotate(Math.toRadians(-yellowAngle),
                 Assets.getImage(Assets.YELLOW_CAR_KEY).getWidth() / 2f,
                 Assets.getImage(Assets.YELLOW_CAR_KEY).getHeight() / 2f);
-        graphics.setColor(Color.red);
-        graphics.drawString("" + yellowAngle, 40, 40);
-        graphics.drawString("" + yellowCarPosition, 40, 50);
         ((Graphics2D)graphics).drawImage(Assets.getImage(Assets.YELLOW_CAR_KEY), carAngle, null);
     }
 

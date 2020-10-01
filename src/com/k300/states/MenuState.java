@@ -29,10 +29,7 @@ public class MenuState extends State{
         int height = screenSize.height / 7 * 3;
         int x = (screenSize.width - width) / 2;
         int y = (screenSize.height - height) / 2;
-        ClickListener listener = () -> {
-            launcher.getMouseListener().setUiManager(null);
-            StateManager.setCurrentState(launcher.getGameState());
-        };
+        ClickListener listener = launcher::startGame;
         return new UIPlayButtonButton(x, y, width, height, listener);
     }
 

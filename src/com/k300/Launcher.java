@@ -15,7 +15,6 @@ public class Launcher {
     private boolean isRunning;
     private Window window;
     private MouseListener mouseListener;
-    private State gameState;
 
     public Launcher() {
         isRunning = false;
@@ -53,9 +52,7 @@ public class Launcher {
         window = new Window("2d-racing-game-engine");
         window.setBufferStrategy(3);
         mouseListener = new MouseListener();
-        gameState = new GameState(this);
         window.addMouseListener(mouseListener);
-        //Testing
         StateManager.setCurrentState(new MenuState(this));
     }
 
@@ -97,7 +94,9 @@ public class Launcher {
         return mouseListener;
     }
 
-    public State getGameState() {
-        return gameState;
+    public void startGame() {
+        mouseListener.setUiManager(null);
+        StateManager.setCurrentState(new GameState(this));
     }
+
 }
