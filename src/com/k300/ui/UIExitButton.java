@@ -26,8 +26,6 @@ public class UIExitButton extends UIObject {
         }
         //todo not real width and height
         graphics.drawImage(image, (int)x, (int)y, width, height, null);
-        graphics.setColor(Color.red);
-        graphics.drawRect((int)x, (int)y, width, height);
     }
 
     @Override
