@@ -33,7 +33,8 @@ public class MenuBackground {
         blueCarPosition.x -= speed;
         blueCarPosition.x = clamp(blueCarPosition.x,
                 SCREEN_WIDTH - Assets.getImage(Assets.BLUE_CAR_KEY).getWidth(),
-                () -> blueCarPosition.x <= -Assets.getImage(Assets.BLUE_CAR_KEY).getWidth());
+                () -> blueCarPosition.x <= -Assets.getImage(Assets.BLUE_CAR_KEY).getWidth()
+        );
         redCarPosition.x += speed;
         redCarPosition.x = clamp(redCarPosition.x,
                 SCREEN_WIDTH / 20,
