@@ -17,6 +17,10 @@ public class Assets {
     public static final String PLAY_BUTTON_HOVER_KEY = "PlayButtonHover";
     public static final String EXIT_BUTTON_KEY = "ExitButton";
     public static final String EXIT_BUTTON_HOVER_KEY = "ExitButtonHover";
+    private static final String CAR_DIR = "cars";
+    private static final String BUTTON_DIR = "button-images";
+    private static final String TYPE_PNG = ".png";
+    private static final String TYPE_JPG = ".jpg";
     private volatile static Assets singletonInstance;
     private final Hashtable<String, BufferedImage> images;
 
@@ -30,15 +34,15 @@ public class Assets {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         int carImageWidth = screenSize.width / (int)Math.floor(heightWight * multiplier);
         int carImageHeight = screenSize.height / (int)Math.floor(widthWight * multiplier);
-        images.put(TRACK_KEY, loadImage(TRACK_KEY, ".jpg"));
-        images.put(K_300_LOGO_KEY, loadImage(K_300_LOGO_KEY, ".jpg"));
-        images.put(RED_CAR_KEY, resizeImage(loadImage(RED_CAR_KEY, ".png"), carImageWidth, carImageHeight));
-        images.put(BLUE_CAR_KEY, resizeImage(loadImage(BLUE_CAR_KEY, ".png"), carImageWidth, carImageHeight));
-        images.put(YELLOW_CAR_KEY, resizeImage(loadImage(YELLOW_CAR_KEY, ".png"), carImageWidth, carImageHeight));
-        images.put(PLAY_BUTTON_KEY, loadImage(PLAY_BUTTON_KEY, ".png"));
-        images.put(PLAY_BUTTON_HOVER_KEY, loadImage(PLAY_BUTTON_HOVER_KEY, ".png"));
-        images.put(EXIT_BUTTON_KEY, loadImage(EXIT_BUTTON_KEY, ".png"));
-        images.put(EXIT_BUTTON_HOVER_KEY, loadImage(EXIT_BUTTON_HOVER_KEY, ".png"));
+        images.put(TRACK_KEY, loadImage(TRACK_KEY, TYPE_JPG));
+        images.put(K_300_LOGO_KEY, loadImage(K_300_LOGO_KEY, TYPE_JPG));
+        images.put(RED_CAR_KEY, resizeImage(loadImage(CAR_DIR + RED_CAR_KEY, TYPE_PNG), carImageWidth, carImageHeight));
+        images.put(BLUE_CAR_KEY, resizeImage(loadImage(CAR_DIR + BLUE_CAR_KEY, TYPE_PNG), carImageWidth, carImageHeight));
+        images.put(YELLOW_CAR_KEY, resizeImage(loadImage(CAR_DIR + YELLOW_CAR_KEY, TYPE_PNG), carImageWidth, carImageHeight));
+        images.put(PLAY_BUTTON_KEY, loadImage(BUTTON_DIR + PLAY_BUTTON_KEY, TYPE_PNG));
+        images.put(PLAY_BUTTON_HOVER_KEY, loadImage(BUTTON_DIR + PLAY_BUTTON_HOVER_KEY, TYPE_PNG));
+        images.put(EXIT_BUTTON_KEY, loadImage(BUTTON_DIR + EXIT_BUTTON_KEY, TYPE_PNG));
+        images.put(EXIT_BUTTON_HOVER_KEY, loadImage(BUTTON_DIR + EXIT_BUTTON_HOVER_KEY, TYPE_PNG));
     }
 
     public static BufferedImage getImage(String imageKey) {
