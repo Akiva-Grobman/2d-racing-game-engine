@@ -55,10 +55,10 @@ public class Launcher {
         window.addMouseListener(mouseListener);
         setKeyListener(new com.k300.io.KeyListener());
         StateManager.setCurrentState(new MenuState(this));
-        window.setVisible();
     }
 
     private void runGameLoop() {
+        window.setVisible();
         isRunning = true;
         final double FRAMES_PER_SECOND = 60;
         double timePerUpdate = 1000000000 / FRAMES_PER_SECOND;
