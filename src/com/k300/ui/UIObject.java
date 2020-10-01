@@ -32,9 +32,7 @@ public abstract class UIObject {
     }
 
     public void onMouseRelease(MouseEvent e) {
-        System.out.println("released");
         if(isHovering) {
-            System.out.println("clicked");
             onClick();
         }
     }

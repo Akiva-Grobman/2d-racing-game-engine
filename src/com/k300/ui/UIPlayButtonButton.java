@@ -1,17 +1,18 @@
 package com.k300.ui;
 
+import com.k300.graphics.Assets;
+
 import java.awt.*;
-import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
-public class UIImageButton extends UIObject {
+public class UIPlayButtonButton extends UIObject {
 
-    private final BufferedImage image;
     private final ClickListener clickListener;
+    private final BufferedImage image;
 
-    public UIImageButton(float x, float y, int width, int height, BufferedImage image, ClickListener clickListener) {
+    public UIPlayButtonButton(float x, float y, int width, int height, ClickListener clickListener) {
         super(x, y, width, height);
-        this.image = image;
+        image = Assets.getImage(Assets.PLAY_BUTTON_KEY);
         this.clickListener = clickListener;
     }
 
