@@ -9,7 +9,7 @@ import java.awt.event.KeyListener;
 public class PlayerCar extends Car {
 
     private final PlayerKeyListener keyListener;
-    private double carTurnAngle;
+    private final double carTurnAngle;
 
 
     public PlayerCar(String carColor, Point startingPosition) {

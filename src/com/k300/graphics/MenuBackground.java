@@ -16,9 +16,12 @@ public class MenuBackground {
     private int yellowAngle;
 
     public MenuBackground() {
-        final int blueCarY = SCREEN_HEIGHT / 5;
-        final int redCarY = SCREEN_HEIGHT / 5 * 4;
-        final int yellowCarX = SCREEN_WIDTH / 5;
+        // button on the bottom
+//        final int blueCarY = SCREEN_HEIGHT / 5 * 2;
+        // button in the center
+        final int blueCarY = SCREEN_HEIGHT / 5 * 4;
+        final int redCarY = SCREEN_HEIGHT / 5;
+        final int yellowCarX = SCREEN_WIDTH / 5 * 4;
         blueCarPosition = new Point(SCREEN_WIDTH - Assets.getImage(Assets.BLUE_CAR_KEY).getWidth(), blueCarY);
         redCarPosition = new Point(SCREEN_WIDTH / 20, redCarY);
         yellowCarPosition = new Point(yellowCarX, -Assets.getImage(Assets.YELLOW_CAR_KEY).getHeight());
@@ -35,8 +38,8 @@ public class MenuBackground {
         redCarPosition.x = clamp(redCarPosition.x,
                 SCREEN_WIDTH / 20,
                 () -> redCarPosition.x >= SCREEN_WIDTH);
-        yellowCarPosition.y += getYellowMultiplier() * speed;
         resetYellowPosition();
+        yellowCarPosition.y += getYellowMultiplier() * speed;
     }
 
     private void resetYellowPosition() {
@@ -62,6 +65,10 @@ public class MenuBackground {
     }
 
     public void render(Graphics graphics) {
+        graphics.drawImage(Assets.getImage(Assets.K_300_LOGO_KEY), 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, null);
+        graphics.setColor(new Color(93,188,210));
+        graphics.setFont(new Font("Italic", Font.ITALIC, SCREEN_WIDTH / 90));
+        graphics.drawString("בס\"ד", SCREEN_WIDTH / 20 * 19, SCREEN_HEIGHT / 15);
         graphics.drawImage(Assets.getImage(Assets.RED_CAR_KEY), redCarPosition.x, redCarPosition.y, null);
 
         AffineTransform blueCarAngle = AffineTransform.getTranslateInstance(blueCarPosition.x - Assets.getImage(Assets.BLUE_CAR_KEY).getWidth() / 2f,

@@ -28,7 +28,10 @@ public class MenuState extends State{
         int width = screenSize.width / 3 * 2;
         int height = screenSize.height / 7 * 3;
         int x = (screenSize.width - width) / 2;
+        // button in the center
         int y = (screenSize.height - height) / 2;
+        // button on the bottom
+//        int y = (screenSize.height - height) + screenSize.height / 20;
         ClickListener listener = launcher::startGame;
         return new UIPlayButtonButton(x, y, width, height, listener);
     }

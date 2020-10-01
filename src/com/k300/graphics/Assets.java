@@ -8,6 +8,7 @@ import static com.k300.utils.Utils.resizeImage;
 
 public class Assets {
 
+    public static final String K_300_LOGO_KEY = "background";
     public static final String TRACK_KEY = "Track";
     public static final String RED_CAR_KEY = "car_red";
     public static final String BLUE_CAR_KEY = "car_blue";
@@ -27,6 +28,7 @@ public class Assets {
         int carImageWidth = screenSize.width / (int)Math.floor(heightWight * multiplier);
         int carImageHeight = screenSize.height / (int)Math.floor(widthWight * multiplier);
         images.put(TRACK_KEY, loadImage(TRACK_KEY, ".jpg"));
+        images.put(K_300_LOGO_KEY, loadImage(K_300_LOGO_KEY, ".jpg"));
         images.put(RED_CAR_KEY, resizeImage(loadImage(RED_CAR_KEY, ".png"), carImageWidth, carImageHeight));
         images.put(BLUE_CAR_KEY, resizeImage(loadImage(BLUE_CAR_KEY, ".png"), carImageWidth, carImageHeight));
         images.put(YELLOW_CAR_KEY, resizeImage(loadImage(YELLOW_CAR_KEY, ".png"), carImageWidth, carImageHeight));
