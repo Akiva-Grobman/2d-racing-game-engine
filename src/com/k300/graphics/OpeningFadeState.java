@@ -10,7 +10,7 @@ public class OpeningFadeState extends FadeState {
     private int fadeCount;
 
     public OpeningFadeState(Launcher launcher, BufferedImage image, FadeListener fadeListener) {
-        super(launcher, image, fadeListener);
+        super(launcher, image, fadeListener, 2);
         fadeCount = 0;
     }
 

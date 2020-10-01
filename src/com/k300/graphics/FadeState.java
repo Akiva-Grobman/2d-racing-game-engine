@@ -9,17 +9,18 @@ import java.awt.image.BufferedImage;
 
 public class FadeState extends State {
 
-    private static final int SECONDS = 2;
+    private final int SECONDS;
     private final BufferedImage image;
     private final FadeListener fadeListener;
     private float alpha;
     private Long startTime;
     private boolean fadeout;
 
-    public FadeState(Launcher launcher, BufferedImage image, FadeListener fadeListener) {
+    public FadeState(Launcher launcher, BufferedImage image, FadeListener fadeListener, int fadeTime) {
         super(launcher);
         this.image = image;
         this.fadeListener = fadeListener;
+        SECONDS = fadeTime;
         setIsFadingIn(true);
         alpha = 1;
     }
