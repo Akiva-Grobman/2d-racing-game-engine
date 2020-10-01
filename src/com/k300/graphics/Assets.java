@@ -17,8 +17,8 @@ public class Assets {
     public static final String PLAY_BUTTON_HOVER_KEY = "PlayButtonHover";
     public static final String EXIT_BUTTON_KEY = "ExitButton";
     public static final String EXIT_BUTTON_HOVER_KEY = "ExitButtonHover";
-    private static final String CAR_DIR = "cars";
-    private static final String BUTTON_DIR = "button-images";
+    private static final String CAR_DIR = "cars/";
+    private static final String BUTTON_DIR = "button-images/";
     private static final String TYPE_PNG = ".png";
     private static final String TYPE_JPG = ".jpg";
     private volatile static Assets singletonInstance;
