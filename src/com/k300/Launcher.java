@@ -1,6 +1,7 @@
 package com.k300;
 
 import com.k300.display.Window;
+import com.k300.graphics.Assets;
 import com.k300.io.MouseListener;
 import com.k300.states.GameState;
 import com.k300.states.MenuState;
@@ -55,10 +56,13 @@ public class Launcher {
         window.addMouseListener(mouseListener);
         setKeyListener(new com.k300.io.KeyListener());
         StateManager.setCurrentState(new MenuState(this));
+        // this will make sure assets were loaded before we display the window
+        Assets.getImage(Assets.K_300_LOGO_KEY);
+        window.setVisible();
+
     }
 
     private void runGameLoop() {
-        window.setVisible();
         isRunning = true;
         final double FRAMES_PER_SECOND = 60;
         double timePerUpdate = 1000000000 / FRAMES_PER_SECOND;

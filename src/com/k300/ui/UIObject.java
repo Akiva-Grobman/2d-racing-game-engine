@@ -37,4 +37,15 @@ public abstract class UIObject {
         }
     }
 
+    public float getX() {
+        return x;
+    }
+
+    public float getY() {
+        return y;
+    }
+
+    public int getHeight() {
+        return height;
+    }
 }

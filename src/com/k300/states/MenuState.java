@@ -4,11 +4,8 @@ import com.k300.Launcher;
 
 import java.awt.*;
 
-import com.k300.graphics.Assets;
 import com.k300.graphics.MenuBackground;
-import com.k300.ui.ClickListener;
-import com.k300.ui.UIPlayButtonButton;
-import com.k300.ui.UIManager;
+import com.k300.ui.*;
 
 public class MenuState extends State{
 
@@ -20,7 +17,9 @@ public class MenuState extends State{
         uiManager = new UIManager();
         background = new MenuBackground();
         launcher.getMouseListener().setUiManager(uiManager);
-        uiManager.addUIObject(getPlayButton(launcher));
+        UIPlayButtonButton playButton = getPlayButton(launcher);
+        uiManager.addUIObject(playButton);
+        uiManager.addUIObject(getExitButton(playButton));
     }
 
     private UIPlayButtonButton getPlayButton(Launcher launcher) {
@@ -34,6 +33,15 @@ public class MenuState extends State{
 //        int y = (screenSize.height - height) + screenSize.height / 20;
         ClickListener listener = launcher::startGame;
         return new UIPlayButtonButton(x, y, width, height, listener);
+    }
+
+    private UIObject getExitButton(UIObject playButton) {
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        int width = screenSize.width / 3;
+        int height = (int) ((screenSize.height - playButton.getY()) / 7 * 3);
+        int x = (screenSize.width - width) / 2;
+        int y = (int) ((screenSize.height + playButton.getHeight() + playButton.getY() - height) / 2);
+        return new UIExitButton(x, y, width, height);
     }
 
     @Override

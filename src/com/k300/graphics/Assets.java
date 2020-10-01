@@ -14,6 +14,9 @@ public class Assets {
     public static final String BLUE_CAR_KEY = "car_blue";
     public static final String YELLOW_CAR_KEY = "car_yellow";
     public static final String PLAY_BUTTON_KEY = "PlayButton";
+    public static final String PLAY_BUTTON_HOVER_KEY = "PlayButtonHover";
+    public static final String EXIT_BUTTON_KEY = "ExitButton";
+    public static final String EXIT_BUTTON_HOVER_KEY = "ExitButtonHover";
     private volatile static Assets singletonInstance;
     private final Hashtable<String, BufferedImage> images;
 
@@ -33,6 +36,9 @@ public class Assets {
         images.put(BLUE_CAR_KEY, resizeImage(loadImage(BLUE_CAR_KEY, ".png"), carImageWidth, carImageHeight));
         images.put(YELLOW_CAR_KEY, resizeImage(loadImage(YELLOW_CAR_KEY, ".png"), carImageWidth, carImageHeight));
         images.put(PLAY_BUTTON_KEY, loadImage(PLAY_BUTTON_KEY, ".png"));
+        images.put(PLAY_BUTTON_HOVER_KEY, loadImage(PLAY_BUTTON_HOVER_KEY, ".png"));
+        images.put(EXIT_BUTTON_KEY, loadImage(EXIT_BUTTON_KEY, ".png"));
+        images.put(EXIT_BUTTON_HOVER_KEY, loadImage(EXIT_BUTTON_HOVER_KEY, ".png"));
     }
 
     public static BufferedImage getImage(String imageKey) {

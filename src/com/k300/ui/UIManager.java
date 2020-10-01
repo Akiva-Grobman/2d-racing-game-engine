@@ -1,7 +1,5 @@
 package com.k300.ui;
 
-import com.k300.Launcher;
-
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
