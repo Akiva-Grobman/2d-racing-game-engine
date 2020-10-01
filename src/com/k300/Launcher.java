@@ -2,11 +2,14 @@ package com.k300;
 
 import com.k300.display.Window;
 import com.k300.graphics.Assets;
+import com.k300.graphics.OpeningFadeState;
+import com.k300.ui.FadeListener;
+import com.k300.graphics.FadeState;
 import com.k300.io.MouseListener;
 import com.k300.states.GameState;
 import com.k300.states.MenuState;
-import com.k300.states.State;
 import com.k300.states.StateManager;
+import com.k300.ui.OpenFadeListener;
 
 import java.awt.*;
 import java.awt.event.KeyListener;
@@ -55,14 +58,16 @@ public class Launcher {
         mouseListener = new MouseListener();
         window.addMouseListener(mouseListener);
         setKeyListener(new com.k300.io.KeyListener());
-        StateManager.setCurrentState(new MenuState(this));
-        // this will make sure assets were loaded before we display the window
-        Assets.getImage(Assets.K_300_LOGO_KEY);
-        window.setVisible();
-
+        StateManager.setCurrentState(
+                new OpeningFadeState(this,
+                    Assets.getImage(Assets.K_300_LOGO_KEY),
+                    new OpenFadeListener()
+                )
+        );
     }
 
     private void runGameLoop() {
+        window.setVisible();
         isRunning = true;
         final double FRAMES_PER_SECOND = 60;
         double timePerUpdate = 1000000000 / FRAMES_PER_SECOND;

@@ -67,7 +67,7 @@ public class MenuBackground {
 
     public void render(Graphics graphics) {
         // background image
-        graphics.drawImage(Assets.getImage(Assets.K_300_LOGO_KEY), 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, null);
+        graphics.drawImage(Assets.getImage(Assets.TRACK_KEY), 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, null);
         // draw בס"ד
         graphics.setColor(new Color(93,188,210));
         graphics.setFont(new Font("Italic", Font.ITALIC, SCREEN_WIDTH / 90));
