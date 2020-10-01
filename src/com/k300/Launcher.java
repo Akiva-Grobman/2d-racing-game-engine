@@ -1,7 +1,10 @@
 package com.k300;
 
 import com.k300.display.Window;
+import com.k300.io.MouseListener;
 import com.k300.states.GameState;
+import com.k300.states.MenuState;
+import com.k300.states.State;
 import com.k300.states.StateManager;
 
 import java.awt.*;
@@ -11,6 +14,8 @@ public class Launcher {
 
     private boolean isRunning;
     private Window window;
+    private MouseListener mouseListener;
+    private State gameState;
 
     public Launcher() {
         isRunning = false;
@@ -47,9 +52,11 @@ public class Launcher {
     private void initialize() {
         window = new Window("2d-racing-game-engine");
         window.setBufferStrategy(3);
-
+        mouseListener = new MouseListener();
+        gameState = new GameState(this);
+        window.addMouseListener(mouseListener);
         //Testing
-        StateManager.setCurrentState(new GameState(this));
+        StateManager.setCurrentState(new MenuState(this));
     }
 
     private void runGameLoop() {
@@ -86,4 +93,11 @@ public class Launcher {
         window.show();
     }
 
+    public MouseListener getMouseListener() {
+        return mouseListener;
+    }
+
+    public State getGameState() {
+        return gameState;
+    }
 }

@@ -1,5 +1,7 @@
 package com.k300.display;
 
+import com.k300.io.MouseListener;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyListener;
@@ -71,6 +73,13 @@ public class Window {
 
     public int getFrameWidth() {
         return frame.getWidth();
+    }
+
+    public void addMouseListener(MouseListener mouseListener) {
+        frame.addMouseListener(mouseListener);
+        frame.addMouseMotionListener(mouseListener);
+        canvas.addMouseListener(mouseListener);
+        canvas.addMouseMotionListener(mouseListener);
     }
 
 }

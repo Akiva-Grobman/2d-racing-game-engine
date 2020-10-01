@@ -10,7 +10,7 @@ public abstract class UIObject {
     protected int width;
     protected int height;
     protected boolean isHovering;
-    private Rectangle bounds;
+    private final Rectangle bounds;
 
     public UIObject(float x, float y, int width, int height) {
         this.x = x;
@@ -19,46 +19,6 @@ public abstract class UIObject {
         this.height = height;
         isHovering = false;
         bounds = new Rectangle((int)x, (int)y, width, height);
-    }
-
-    public float getX() {
-        return x;
-    }
-
-    public void setX(float x) {
-        this.x = x;
-    }
-
-    public float getY() {
-        return y;
-    }
-
-    public void setY(float y) {
-        this.y = y;
-    }
-
-    public int getWidth() {
-        return width;
-    }
-
-    public void setWidth(int width) {
-        this.width = width;
-    }
-
-    public int getHeight() {
-        return height;
-    }
-
-    public void setHeight(int height) {
-        this.height = height;
-    }
-
-    public boolean isHovering() {
-        return isHovering;
-    }
-
-    public void setHovering(boolean hovering) {
-        isHovering = hovering;
     }
 
     public abstract void tick();
@@ -72,7 +32,9 @@ public abstract class UIObject {
     }
 
     public void onMouseRelease(MouseEvent e) {
+        System.out.println("released");
         if(isHovering) {
+            System.out.println("clicked");
             onClick();
         }
     }

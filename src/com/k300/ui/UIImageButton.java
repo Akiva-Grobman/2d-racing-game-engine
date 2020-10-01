@@ -1,16 +1,17 @@
 package com.k300.ui;
 
 import java.awt.*;
+import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
 public class UIImageButton extends UIObject {
 
-    private BufferedImage[] images;
-    private ClickListener clickListener;
+    private final BufferedImage image;
+    private final ClickListener clickListener;
 
-    public UIImageButton(float x, float y, int width, int height, BufferedImage[] images, ClickListener clickListener) {
+    public UIImageButton(float x, float y, int width, int height, BufferedImage image, ClickListener clickListener) {
         super(x, y, width, height);
-        this.images = images;
+        this.image = image;
         this.clickListener = clickListener;
     }
 
@@ -21,12 +22,7 @@ public class UIImageButton extends UIObject {
 
     @Override
     public void render(Graphics graphics) {
-        BufferedImage image;
-        if(isHovering) {
-            image = images[0];
-        } else {
-            image = images[1];
-        }
+        //todo add another image for hovering
         graphics.drawImage(image, (int)x, (int)y, width, height, null);
     }
 

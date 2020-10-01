@@ -9,12 +9,10 @@ import java.util.List;
 
 public class UIManager {
 
-    private Launcher launcher;
-    private List<UIObject> uiObjects;
+    private final List<UIObject> uiObjects;
 
-    public UIManager(Launcher launcher) {
-        this.launcher = launcher;
-        uiObjects = new ArrayList<UIObject>();
+    public UIManager() {
+        uiObjects = new ArrayList<>();
     }
 
     public void tick() {
