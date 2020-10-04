@@ -2,11 +2,8 @@ package com.k300.cars;
 
 import com.k300.io.PlayerKeyListener;
 import com.k300.tracks.Collisions;
-import com.k300.tracks.Margins;
-import com.k300.tracks.Obstacle;
 import com.k300.utils.Point;
 
-import java.awt.*;
 import java.awt.event.KeyListener;
 
 public class PlayerCar extends Car {
@@ -28,13 +25,13 @@ public class PlayerCar extends Car {
     public void tick() {
         if(keyListener.getKeyIsPressed(PlayerKeyListener.UP_ARROW)) {
             forward();
-            if(!onTheTrack()) {
+            if(isOffTrack()) {
                 backwards();
             }
         }
         if(keyListener.getKeyIsPressed(PlayerKeyListener.DOWN_ARROW)) {
             backwards();
-            if(!onTheTrack()) {
+            if(isOffTrack()) {
                 forward();
             }
         }
@@ -117,8 +114,8 @@ public class PlayerCar extends Car {
 
     }
 
-    private boolean onTheTrack() {
-        return collisions.onTheTrack(x, y);
+    private boolean isOffTrack() {
+        return !collisions.onTheTrack(x, y);
     }
 
     public KeyListener getKeyListener() {
