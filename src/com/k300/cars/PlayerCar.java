@@ -1,6 +1,9 @@
 package com.k300.cars;
 
 import com.k300.io.PlayerKeyListener;
+import com.k300.tracks.Collisions;
+import com.k300.tracks.Margins;
+import com.k300.tracks.Obstacle;
 import com.k300.utils.Point;
 
 import java.awt.*;
@@ -10,10 +13,12 @@ public class PlayerCar extends Car {
 
     private final PlayerKeyListener keyListener;
     private final double carTurnAngle;
+    private Collisions collisions;
 
 
-    public PlayerCar(String carColor, Point startingPosition) {
+    public PlayerCar(String carColor, Point startingPosition, Collisions collisions) {
         super(carColor, startingPosition);
+        this.collisions = collisions;
         carTurnAngle = 4;
         keyListener = new PlayerKeyListener();
     }
@@ -21,12 +26,17 @@ public class PlayerCar extends Car {
 
     @Override
     public void tick() {
-        //todo add calculations
         if(keyListener.getKeyIsPressed(PlayerKeyListener.UP_ARROW)) {
             forward();
+            if(!onTheTrack()) {
+                backwards();
+            }
         }
         if(keyListener.getKeyIsPressed(PlayerKeyListener.DOWN_ARROW)) {
             backwards();
+            if(!onTheTrack()) {
+                forward();
+            }
         }
         if(keyListener.getKeyIsPressed(PlayerKeyListener.RIGHT_ARROW)) {
             right();
@@ -105,6 +115,10 @@ public class PlayerCar extends Car {
             angle = 360;
         }
 
+    }
+
+    private boolean onTheTrack() {
+        return collisions.onTheTrack(x, y);
     }
 
     public KeyListener getKeyListener() {

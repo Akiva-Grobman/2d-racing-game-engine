@@ -37,6 +37,9 @@ public abstract class Car {
         graphics.drawString("Angle: " + angle, 600, 350);
         graphics.drawString("X: " + x, 600, 450);
         graphics.drawString("Y: " + y, 600, 550);
+
+        //Testing
+        graphics.fillOval((int)(x-25/2) , (int)(y-25/2), 25, 25);
     }
 
     public double getX() {
