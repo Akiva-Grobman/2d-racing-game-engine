@@ -11,9 +11,15 @@ public class PlayerCar extends Car {
     private final double CAR_TURNING_ANGLE;
     private final int RIGHT_ROTATION;
     private final int LEFT_ROTATION;
+    private final double START_SPEED_INCREMENT;
+    private final double START_SPEED_DECREMENT;
+    private final double COLLISION_SPEED_DECREMENT;
+
     private final PlayerKeyListener keyListener;
     private final Collisions collisions;
     private int keyReleased;
+    private boolean speedFadeForward;
+    private boolean speedFadeBackwards;
 
 
     public PlayerCar(String carColor, Point startingPosition, Collisions collisions) {
@@ -22,42 +28,63 @@ public class PlayerCar extends Car {
         CAR_TURNING_ANGLE = 4;
         RIGHT_ROTATION = -1;
         LEFT_ROTATION = 1;
+        speedFadeForward = false;
+        speedFadeBackwards = false;
+        START_SPEED_INCREMENT = 0.2;
+        START_SPEED_DECREMENT = 0.3;
+        COLLISION_SPEED_DECREMENT = 1;
         keyListener = new PlayerKeyListener();
     }
 
 
     @Override
     public void tick() {
-        if(keyListener.getKeyIsPressed(PlayerKeyListener.UP_ARROW)) {
+        if (speedFadeForward) {
+            moveForward();
+            if(isOffTrack()) {
+                moveBackwards();
+                speedFadeForward = false;
+                speedFadeBackwards = true;
+            }
+            decreaseSpeed(COLLISION_SPEED_DECREMENT);
+        } else if (speedFadeBackwards) {
+            moveBackwards();
+            if(isOffTrack()) {
+                moveForward();
+                speedFadeForward = true;
+                speedFadeBackwards = false;
+            }
+            decreaseSpeed(COLLISION_SPEED_DECREMENT);
+        } else if (keyListener.getKeyIsPressed(PlayerKeyListener.UP_ARROW)) {
             if(keyReleased != PlayerKeyListener.UP_ARROW) {
                 resetSpeed();
             }
             moveForward();
-            increaseSpeed();
+            increaseSpeed(START_SPEED_INCREMENT);
             if(isOffTrack()) {
                 moveBackwards();
-                resetSpeed();
+                speedFadeBackwards = true;
             }
             keyReleased = PlayerKeyListener.UP_ARROW;
-        } else if(keyListener.getKeyIsPressed(PlayerKeyListener.DOWN_ARROW)) {
+        } else if (keyListener.getKeyIsPressed(PlayerKeyListener.DOWN_ARROW)) {
             if(keyReleased != PlayerKeyListener.DOWN_ARROW) {
                 resetSpeed();
             }
             moveBackwards();
-            increaseSpeed();
+            increaseSpeed(START_SPEED_INCREMENT);
             if(isOffTrack()) {
                 moveForward();
-                resetSpeed();
+                speedFadeForward = true;
             }
             keyReleased = PlayerKeyListener.DOWN_ARROW;
         } else if (keyReleased == PlayerKeyListener.UP_ARROW){
-            decreaseSpeed();
+            decreaseSpeed(START_SPEED_DECREMENT);
             moveForward();
             if(isOffTrack()) {
                 moveBackwards();
             }
         } else if (keyReleased == PlayerKeyListener.DOWN_ARROW){
-            decreaseSpeed();
+            decreaseSpeed(START_SPEED_DECREMENT);
             moveBackwards();
             if(isOffTrack()) {
                 moveForward();
@@ -71,9 +98,6 @@ public class PlayerCar extends Car {
             moveLeft();
         }
     }
-
-
-
 
     private void moveForward() {
         double newX;
@@ -171,23 +195,25 @@ public class PlayerCar extends Car {
         return !collisions.onTheTrack(x, y);
     }
 
-    private void increaseSpeed() {
+    private void resetSpeed() {
+        speed = 0;
+    }
+
+    private void increaseSpeed(double increment) {
         if(speed < maxSpeed) {
-            speed = speed + 0.2;
+            speed = speed + increment;
         } else {
             speed = maxSpeed;
         }
     }
 
-    private void resetSpeed() {
-        speed = 0;
-    }
-
-    private void decreaseSpeed() {
+    private void decreaseSpeed(double decrement) {
         if(speed > 0) {
-            speed = speed - 0.3;
+            speed = speed - decrement;
         } else {
             speed = 0;
+            speedFadeForward = false;
+            speedFadeBackwards = false;
         }
     }
 
