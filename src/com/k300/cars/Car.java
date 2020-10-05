@@ -9,7 +9,8 @@ import java.awt.image.BufferedImage;
 
 public abstract class Car {
 
-    protected int speed = 10;
+    protected double maxSpeed = 15;
+    protected double speed;
     protected double x;
     protected double y;
     protected double angle;
@@ -20,6 +21,7 @@ public abstract class Car {
         x = startingPosition.x;
         y = startingPosition.y;
         angle = 0;
+        speed = 0;
     }
 
     public abstract void tick();

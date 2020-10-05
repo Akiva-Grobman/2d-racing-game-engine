@@ -13,6 +13,7 @@ public class PlayerCar extends Car {
     private final int LEFT_ROTATION;
     private final PlayerKeyListener keyListener;
     private final Collisions collisions;
+    private int keyReleased;
 
 
     public PlayerCar(String carColor, Point startingPosition, Collisions collisions) {
@@ -28,17 +29,41 @@ public class PlayerCar extends Car {
     @Override
     public void tick() {
         if(keyListener.getKeyIsPressed(PlayerKeyListener.UP_ARROW)) {
+            if(keyReleased != PlayerKeyListener.UP_ARROW) {
+                resetSpeed();
+            }
+            moveForward();
+            increaseSpeed();
+            if(isOffTrack()) {
+                moveBackwards();
+                resetSpeed();
+            }
+            keyReleased = PlayerKeyListener.UP_ARROW;
+        } else if(keyListener.getKeyIsPressed(PlayerKeyListener.DOWN_ARROW)) {
+            if(keyReleased != PlayerKeyListener.DOWN_ARROW) {
+                resetSpeed();
+            }
+            moveBackwards();
+            increaseSpeed();
+            if(isOffTrack()) {
+                moveForward();
+                resetSpeed();
+            }
+            keyReleased = PlayerKeyListener.DOWN_ARROW;
+        } else if (keyReleased == PlayerKeyListener.UP_ARROW){
+            decreaseSpeed();
             moveForward();
             if(isOffTrack()) {
                 moveBackwards();
             }
-        }
-        if(keyListener.getKeyIsPressed(PlayerKeyListener.DOWN_ARROW)) {
+        } else if (keyReleased == PlayerKeyListener.DOWN_ARROW){
+            decreaseSpeed();
             moveBackwards();
             if(isOffTrack()) {
                 moveForward();
             }
         }
+
         if(keyListener.getKeyIsPressed(PlayerKeyListener.RIGHT_ARROW)) {
             moveRight();
         }
@@ -46,6 +71,9 @@ public class PlayerCar extends Car {
             moveLeft();
         }
     }
+
+
+
 
     private void moveForward() {
         double newX;
@@ -141,6 +169,26 @@ public class PlayerCar extends Car {
 
     private boolean isOffTrack() {
         return !collisions.onTheTrack(x, y);
+    }
+
+    private void increaseSpeed() {
+        if(speed < maxSpeed) {
+            speed = speed + 0.2;
+        } else {
+            speed = maxSpeed;
+        }
+    }
+
+    private void resetSpeed() {
+        speed = 0;
+    }
+
+    private void decreaseSpeed() {
+        if(speed > 0) {
+            speed = speed - 0.3;
+        } else {
+            speed = 0;
+        }
     }
 
     public KeyListener getKeyListener() {
