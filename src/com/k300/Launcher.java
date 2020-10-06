@@ -19,6 +19,7 @@ public class Launcher {
     private boolean isRunning;
     private Window window;
     private MouseListener mouseListener;
+    private int fps;
 
     public Launcher() {
         isRunning = false;
@@ -77,14 +78,28 @@ public class Launcher {
         double timeFromLastUpdate = 0;
         long now;
         long last = System.nanoTime();
+        int timer = 0;
+        int ticks = 0;
+
         while (isRunning) {
             now = System.nanoTime();
             timeFromLastUpdate += (now - last) / timePerUpdate;
+
+            timer += now - last;
+
             last = now;
             if(timeFromLastUpdate >= 1) {
                 tick();
                 render();
                 timeFromLastUpdate--;
+
+                ticks++;
+            }
+
+            if(timer >= 1000000000) {
+                fps = ticks;
+                ticks = 0;
+                timer = 0;
             }
         }
     }
@@ -100,6 +115,7 @@ public class Launcher {
         window.clear();
         if(StateManager.getCurrentState() != null) {
             StateManager.getCurrentState().render(graphics);
+            graphics.drawString("FPS: " + fps, 30, 60);
         }
         window.show();
     }
