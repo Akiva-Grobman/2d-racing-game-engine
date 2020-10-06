@@ -10,6 +10,7 @@ public class Assets {
 
     public static final String K_300_LOGO_KEY = "background";
     public static final String TRACK_KEY = "Track";
+    public static final String OBSTACLE_KEY = "Obstacle";
     public static final String RED_CAR_KEY = "car_red";
     public static final String BLUE_CAR_KEY = "car_blue";
     public static final String YELLOW_CAR_KEY = "car_yellow";
@@ -35,6 +36,7 @@ public class Assets {
         int carImageWidth = screenSize.width / (int)Math.floor(heightWight * multiplier);
         int carImageHeight = screenSize.height / (int)Math.floor(widthWight * multiplier);
         images.put(TRACK_KEY, loadImage(TRACK_KEY, TYPE_JPG));
+        images.put(OBSTACLE_KEY, loadImage(OBSTACLE_KEY, TYPE_PNG));
         images.put(K_300_LOGO_KEY, loadImage(K_300_LOGO_KEY, TYPE_JPG));
         images.put(RED_CAR_KEY, resizeImage(loadImage(CAR_DIR + RED_CAR_KEY, TYPE_PNG), carImageWidth, carImageHeight));
         images.put(BLUE_CAR_KEY, resizeImage(loadImage(CAR_DIR + BLUE_CAR_KEY, TYPE_PNG), carImageWidth, carImageHeight));
