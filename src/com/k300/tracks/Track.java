@@ -57,6 +57,7 @@ public class Track {
         collisions.render(graphics); //Testing
 
         graphics.drawImage(Assets.getImage(Assets.INSIDE_MARGIN_KEY), 0, 0, width, height, null);
+        graphics.drawImage(Assets.getImage(Assets.OUTSIDE_MARGIN_KEY), 0, 0, width, height, null);
 
         for (Car car: cars) {
             car.render((Graphics2D) graphics);
