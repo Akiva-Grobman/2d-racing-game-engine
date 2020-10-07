@@ -54,13 +54,13 @@ public class Track {
         }
 
         //Testing
-//        double xLocation = SCREEN_WIDTH/2;
-//        double yLocation = SCREEN_HEIGHT/2;
-//        double bigA = a * 1.85;
-//        double bigB = b * 1.7;
-//
-//        graphics.drawOval((int)(xLocation-a/2), (int)(yLocation-b/2), (int) a, (int) b);
-//        graphics.drawOval((int)(xLocation-bigA/2), (int)(yLocation-bigB/2), (int) bigA, (int) bigB);
+        double xLocation = SCREEN_WIDTH/2;
+        double yLocation = SCREEN_HEIGHT/2;
+        double bigA = a * 1.85;
+        double bigB = b * 1.7;
+
+        graphics.drawOval((int)(xLocation-a/2), (int)(yLocation-b/2), (int) a, (int) b);
+        graphics.drawOval((int)(xLocation-bigA/2), (int)(yLocation-bigB/2), (int) bigA, (int) bigB);
     }
 
 }
