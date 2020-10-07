@@ -17,8 +17,8 @@ public class PlayerCar extends Car {
     private final PlayerKeyListener keyListener;
     private final Collisions collisions;
     private int keyReleased;
-    private boolean speedFadeForwards;
-    private boolean speedFadeBackwards;
+    private boolean frontalCollision;
+    private boolean rearCollision;
 
 
     public PlayerCar(String carColor, Point startingPosition, Collisions collisions) {
@@ -34,7 +34,7 @@ public class PlayerCar extends Car {
 
     @Override
     public void tick() {
-        if(speedFadeForwards || speedFadeBackwards) {
+        if(frontalCollision || rearCollision) {
             collisionEffect();
         } else if (keyListener.getKeyIsPressed(PlayerKeyListener.UP_ARROW)) {
             if(keyReleased != PlayerKeyListener.UP_ARROW) {
@@ -44,7 +44,7 @@ public class PlayerCar extends Car {
             increaseSpeed(START_SPEED_INCREMENT);
             if(isOffTrack()) {
                 mover.driveBackwards();
-                speedFadeBackwards = true;
+                frontalCollision = true;
             }
             keyReleased = PlayerKeyListener.UP_ARROW;
         } else if (keyListener.getKeyIsPressed(PlayerKeyListener.DOWN_ARROW)) {
@@ -55,7 +55,7 @@ public class PlayerCar extends Car {
             increaseSpeed(START_SPEED_INCREMENT);
             if(isOffTrack()) {
                 mover.driveForwards();
-                speedFadeForwards = true;
+                rearCollision = true;
             }
             keyReleased = PlayerKeyListener.DOWN_ARROW;
         } else if (keyReleased == PlayerKeyListener.UP_ARROW){
@@ -102,25 +102,25 @@ public class PlayerCar extends Car {
             speed = speed - decrement;
         } else {
             speed = 0;
-            speedFadeForwards = false;
-            speedFadeBackwards = false;
+            frontalCollision = false;
+            rearCollision = false;
         }
     }
 
     private void collisionEffect() {
-        if (speedFadeForwards) {
+        if (rearCollision) {
             mover.driveForwards();
             if(isOffTrack()) {
                 mover.driveBackwards();
-                speedFadeForwards = false;
-                speedFadeBackwards = true;
+                rearCollision = false;
+                frontalCollision = true;
             }
-        } else if (speedFadeBackwards) {
+        } else if (frontalCollision) {
             mover.driveBackwards();
             if(isOffTrack()) {
                 mover.driveForwards();
-                speedFadeForwards = true;
-                speedFadeBackwards = false;
+                rearCollision = true;
+                frontalCollision = false;
             }
         }
         decreaseSpeed(COLLISION_SPEED_DECREMENT);
