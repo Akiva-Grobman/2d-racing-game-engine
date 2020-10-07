@@ -37,7 +37,7 @@ public class PlayerCar extends Car {
         if(frontalCollision || rearCollision) {
             collisionEffect();
         } else if (keyListener.getKeyIsPressed(PlayerKeyListener.UP_ARROW)) {
-            if(keyReleased != PlayerKeyListener.UP_ARROW) {
+            if(isChangedDriveDirection(PlayerKeyListener.UP_ARROW)) {
                 resetSpeed();
             }
             mover.driveForwards();
@@ -48,7 +48,7 @@ public class PlayerCar extends Car {
             }
             keyReleased = PlayerKeyListener.UP_ARROW;
         } else if (keyListener.getKeyIsPressed(PlayerKeyListener.DOWN_ARROW)) {
-            if(keyReleased != PlayerKeyListener.DOWN_ARROW) {
+            if(isChangedDriveDirection(PlayerKeyListener.DOWN_ARROW)) {
                 resetSpeed();
             }
             mover.driveBackwards();
@@ -105,6 +105,10 @@ public class PlayerCar extends Car {
             frontalCollision = false;
             rearCollision = false;
         }
+    }
+
+    private boolean isChangedDriveDirection(int key) {
+        return keyReleased != key;
     }
 
     private void collisionEffect() {
