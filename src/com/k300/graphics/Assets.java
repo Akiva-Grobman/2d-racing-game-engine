@@ -10,6 +10,8 @@ public class Assets {
 
     public static final String K_300_LOGO_KEY = "background";
     public static final String TRACK_KEY = "Track";
+    public static final String TRACK_MIDDLE_KEY = "InsideMarginFill";
+    public static final String TRACK_OUTSIDE_KEY = "OutsideMargin";
     public static final String OBSTACLE_KEY = "obstacle";
     public static final String RED_CAR_KEY = "car_red";
     public static final String BLUE_CAR_KEY = "car_blue";
@@ -37,29 +39,31 @@ public class Assets {
         images = new Hashtable<>();
         images.put(K_300_LOGO_KEY, loadImage(K_300_LOGO_KEY, TYPE_JPG));
         images.put(OBSTACLE_KEY, loadImage(TRACK_DIR + OBSTACLE_KEY, TYPE_PNG));
-        addTrack();
-        addCar(RED_CAR_KEY);
-        addCar(BLUE_CAR_KEY);
-        addCar(YELLOW_CAR_KEY);
-        addButton(PLAY_BUTTON_KEY);
-        addButton(PLAY_BUTTON_HOVER_KEY);
-        addButton(EXIT_BUTTON_KEY);
-        addButton(EXIT_BUTTON_HOVER_KEY);
+        addTrackImages();
+        addCarImage(RED_CAR_KEY);
+        addCarImage(BLUE_CAR_KEY);
+        addCarImage(YELLOW_CAR_KEY);
+        addButtonImage(PLAY_BUTTON_KEY);
+        addButtonImage(PLAY_BUTTON_HOVER_KEY);
+        addButtonImage(EXIT_BUTTON_KEY);
+        addButtonImage(EXIT_BUTTON_HOVER_KEY);
     }
 
-    private void addTrack() {
+    private void addTrackImages() {
         final BufferedImage track = loadImage(TRACK_DIR + TRACK_KEY, TYPE_JPG);
         Graphics trackGraphics = track.getGraphics();
         trackGraphics.drawImage(getTrackLayer("insideMargin"), 0, 0, track.getWidth(), track.getHeight(), null);
         trackGraphics.drawImage(getTrackLayer("OutsideMargin"), 0, 0, track.getWidth(), track.getHeight(), null);
         images.put(TRACK_KEY, track);
+        images.put(TRACK_MIDDLE_KEY, loadImage(TRACK_DIR + TRACK_MIDDLE_KEY, TYPE_PNG));
+        images.put(TRACK_OUTSIDE_KEY, loadImage(TRACK_DIR + TRACK_OUTSIDE_KEY, TYPE_PNG));
     }
 
     private BufferedImage getTrackLayer(String key){
         return loadImage(TRACK_DIR + key, TYPE_PNG);
     }
 
-    private void addCar(String key) {
+    private void addCarImage(String key) {
         // these two variables represent the width relative to the height
         final int widthWight = 7;
         final int heightWight = 5;
@@ -71,7 +75,7 @@ public class Assets {
         images.put(key, resizeImage(loadImage(CAR_DIR + key, TYPE_PNG), carImageWidth, carImageHeight));
     }
 
-    private void addButton(String key) {
+    private void addButtonImage(String key) {
         images.put(key, loadImage(Assets.BUTTON_DIR + key, Assets.TYPE_PNG));
     }
 
