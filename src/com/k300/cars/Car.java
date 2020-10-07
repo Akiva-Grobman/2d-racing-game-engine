@@ -1,5 +1,6 @@
 package com.k300.cars;
 
+import com.k300.cars.player_car.PlayerCarCorners;
 import com.k300.graphics.Assets;
 import com.k300.utils.Point;
 
@@ -9,12 +10,12 @@ import java.awt.image.BufferedImage;
 
 public abstract class Car {
 
-    protected double maxSpeed = 15;
-    protected double speed;
-    protected double x;
-    protected double y;
-    protected double angle;
-    protected BufferedImage carImage;
+    public double maxSpeed = 15;
+    public double speed;
+    public double x;
+    public double y;
+    public double angle;
+    public BufferedImage carImage;
 
     private PlayerCarCorners playerCarCorners;
 

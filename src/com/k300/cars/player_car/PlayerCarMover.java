@@ -1,4 +1,4 @@
-package com.k300.cars;
+package com.k300.cars.player_car;
 
 import static com.k300.utils.math.AnalyticalMath.*;
 

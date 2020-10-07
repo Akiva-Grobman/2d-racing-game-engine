@@ -1,5 +1,6 @@
-package com.k300.cars;
+package com.k300.cars.player_car;
 
+import com.k300.cars.Car;
 import com.k300.io.PlayerKeyListener;
 import com.k300.tracks.Collisions;
 import com.k300.utils.Point;
