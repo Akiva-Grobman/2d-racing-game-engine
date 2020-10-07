@@ -20,16 +20,10 @@ public class PlayerCarMover {
     public void driveForwards() {
         double newX;
         double newY;
-        if(isInBoundsOf(car.angle, 0, 90)) {
-            newX = car.x + getXDistanceFactor(car.speed, car.angle);
-            newY = car.y - getYDistanceFactor(car.speed, car.angle);
-        } else if(isInBoundsOf(car.angle, 90, 180)) {
+        if(isInBoundsOf(car.angle, 90, 270)) {
             newX = car.x - getXDistanceFactor(car.speed, car.angle);
             newY = car.y + getYDistanceFactor(car.speed, car.angle);
-        } else if(isInBoundsOf(car.angle, 180, 270)) {
-            newX = car.x - getXDistanceFactor(car.speed, car.angle);
-            newY = car.y + getYDistanceFactor(car.speed, car.angle);
-        } else /*if(angle >= 270 && angle <= 360)*/ {
+        } else /*if(isInBoundsOf(car.angle, 0, 90) || if(isInBoundsOf(car.angle, 270, 360))*/ {
             newX = car.x + getXDistanceFactor(car.speed, car.angle);
             newY = car.y - getYDistanceFactor(car.speed, car.angle);
         }
@@ -39,16 +33,10 @@ public class PlayerCarMover {
     public void driveBackwards() {
         double newX;
         double newY;
-        if(isInBoundsOf(car.angle, 0, 90)) {
-            newX = car.x - getXDistanceFactor(car.speed, car.angle);
-            newY = car.y + getYDistanceFactor(car.speed, car.angle);
-        } else if(isInBoundsOf(car.angle, 90, 180)) {
+        if(isInBoundsOf(car.angle, 90, 270)) {
             newX = car.x + getXDistanceFactor(car.speed, car.angle);
             newY = car.y - getYDistanceFactor(car.speed, car.angle);
-        } else if(isInBoundsOf(car.angle, 180, 270)) {
-            newX = car.x + getXDistanceFactor(car.speed, car.angle);
-            newY = car.y - getYDistanceFactor(car.speed, car.angle);
-        } else /*if(angle >= 270 && angle <= 360)*/ {
+        } else /*if(isInBoundsOf(car.angle, 0, 90) || if(isInBoundsOf(car.angle, 270, 360))*/ {
             newX = car.x - getXDistanceFactor(car.speed, car.angle);
             newY = car.y + getYDistanceFactor(car.speed, car.angle);
         }
