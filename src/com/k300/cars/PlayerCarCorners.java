@@ -31,17 +31,17 @@ public class PlayerCarCorners {
     public Point getTopRightCorner() {
         double rotatedSlantAngle = car.angle + slantAngle;
         if(isInBoundsOf(rotatedSlantAngle,0, 90)) {
-            topRightCorner.x = car.x + getXDistanceFactor(rotatedSlantAngle, slant);
-            topRightCorner.y = car.y - getYDistanceFactor(rotatedSlantAngle, slant);
+            topRightCorner.x = car.x + getXDistanceFactor(slant, rotatedSlantAngle);
+            topRightCorner.y = car.y - getYDistanceFactor(slant, rotatedSlantAngle);
         } else if(isInBoundsOf(rotatedSlantAngle,90, 180)) {
-            topRightCorner.x = car.x - getXDistanceFactor(rotatedSlantAngle, slant);
-            topRightCorner.y = car.y + getYDistanceFactor(rotatedSlantAngle, slant);
+            topRightCorner.x = car.x - getXDistanceFactor(slant, rotatedSlantAngle);
+            topRightCorner.y = car.y + getYDistanceFactor(slant, rotatedSlantAngle);
         } else if(isInBoundsOf(rotatedSlantAngle,180, 270)) {
-            topRightCorner.x = car.x - getXDistanceFactor(rotatedSlantAngle, slant);
+            topRightCorner.x = car.x - getXDistanceFactor(slant, rotatedSlantAngle);
             topRightCorner.y = car.y + getYDistanceFactor(slant, rotatedSlantAngle);
         } else /*if(angle >= 270 && angle <= 360)*/ {
-            topRightCorner.x = car.x + getXDistanceFactor(rotatedSlantAngle, slant);
-            topRightCorner.y = car.y - getYDistanceFactor(rotatedSlantAngle, slant);
+            topRightCorner.x = car.x + getXDistanceFactor(slant, rotatedSlantAngle);
+            topRightCorner.y = car.y - getYDistanceFactor(slant, rotatedSlantAngle);
         }
         return topRightCorner;
     }
@@ -50,17 +50,17 @@ public class PlayerCarCorners {
         double rotatedSlantAngle = car.angle - slantAngle;
 
         if(isInBoundsOf(rotatedSlantAngle,0, 90)) {
-            bottomRightCorner.x = car.x + getXDistanceFactor(rotatedSlantAngle, slant);
-            bottomRightCorner.y = car.y - getYDistanceFactor(rotatedSlantAngle, slant);
+            bottomRightCorner.x = car.x + getXDistanceFactor(slant, rotatedSlantAngle);
+            bottomRightCorner.y = car.y - getYDistanceFactor(slant, rotatedSlantAngle);
         } else if(isInBoundsOf(rotatedSlantAngle,90, 180)) {
-            bottomRightCorner.x = car.x - getXDistanceFactor(rotatedSlantAngle, slant);
-            bottomRightCorner.y = car.y + getYDistanceFactor(rotatedSlantAngle, slant);
+            bottomRightCorner.x = car.x - getXDistanceFactor(slant, rotatedSlantAngle);
+            bottomRightCorner.y = car.y + getYDistanceFactor(slant, rotatedSlantAngle);
         } else if(isInBoundsOf(rotatedSlantAngle,180, 270)) {
-            bottomRightCorner.x = car.x - getXDistanceFactor(rotatedSlantAngle, slant);
-            bottomRightCorner.y = car.y + getYDistanceFactor(rotatedSlantAngle, slant);
+            bottomRightCorner.x = car.x - getXDistanceFactor(slant, rotatedSlantAngle);
+            bottomRightCorner.y = car.y + getYDistanceFactor(slant, rotatedSlantAngle);
         } else /*if(angle >= 270 && angle <= 360)*/ {
-            bottomRightCorner.x = car.x + getXDistanceFactor(rotatedSlantAngle, slant);
-            bottomRightCorner.y = car.y - getYDistanceFactor(rotatedSlantAngle, slant);
+            bottomRightCorner.x = car.x + getXDistanceFactor(slant, rotatedSlantAngle);
+            bottomRightCorner.y = car.y - getYDistanceFactor(slant, rotatedSlantAngle);
         }
         return bottomRightCorner;
     }
@@ -69,17 +69,17 @@ public class PlayerCarCorners {
         double rotatedSlantAngle = car.angle - slantAngle;
 
         if(isInBoundsOf(rotatedSlantAngle,0, 90)) {
-            topLeftCorner.x = car.x - getXDistanceFactor(rotatedSlantAngle, slant);
-            topLeftCorner.y = car.y + getYDistanceFactor(rotatedSlantAngle, slant);
+            topLeftCorner.x = car.x - getXDistanceFactor(slant, rotatedSlantAngle);
+            topLeftCorner.y = car.y + getYDistanceFactor(slant, rotatedSlantAngle);
         } else if(isInBoundsOf(rotatedSlantAngle,90, 180)) {
-            topLeftCorner.x = car.x + getXDistanceFactor(rotatedSlantAngle, slant);
-            topLeftCorner.y = car.y - getYDistanceFactor(rotatedSlantAngle, slant);
+            topLeftCorner.x = car.x + getXDistanceFactor(slant, rotatedSlantAngle);
+            topLeftCorner.y = car.y - getYDistanceFactor(slant, rotatedSlantAngle);
         } else if(isInBoundsOf(rotatedSlantAngle,180, 270)) {
-            topLeftCorner.x = car.x + getXDistanceFactor(rotatedSlantAngle, slant);
-            topLeftCorner.y = car.y - getYDistanceFactor(rotatedSlantAngle, slant);
+            topLeftCorner.x = car.x + getXDistanceFactor(slant, rotatedSlantAngle);
+            topLeftCorner.y = car.y - getYDistanceFactor(slant, rotatedSlantAngle);
         } else /*if(angle >= 270 && angle <= 360)*/ {
-            topLeftCorner.x = car.x - getXDistanceFactor(rotatedSlantAngle, slant);
-            topLeftCorner.y = car.y + getYDistanceFactor(rotatedSlantAngle, slant);
+            topLeftCorner.x = car.x - getXDistanceFactor(slant, rotatedSlantAngle);
+            topLeftCorner.y = car.y + getYDistanceFactor(slant, rotatedSlantAngle);
         }
         return topLeftCorner;
     }
@@ -88,17 +88,17 @@ public class PlayerCarCorners {
         double rotatedSlantAngle = car.angle + slantAngle;
 
         if(isInBoundsOf(rotatedSlantAngle,0, 90)) {
-            bottomLeftCorner.x = car.x - getXDistanceFactor(rotatedSlantAngle, slant);
-            bottomLeftCorner.y = car.y + getYDistanceFactor(rotatedSlantAngle, slant);
+            bottomLeftCorner.x = car.x - getXDistanceFactor(slant, rotatedSlantAngle);
+            bottomLeftCorner.y = car.y + getYDistanceFactor(slant, rotatedSlantAngle);
         } else if(isInBoundsOf(rotatedSlantAngle,90, 180)) {
-            bottomLeftCorner.x = car.x + getXDistanceFactor(rotatedSlantAngle, slant);
-            bottomLeftCorner.y = car.y - getYDistanceFactor(rotatedSlantAngle, slant);
+            bottomLeftCorner.x = car.x + getXDistanceFactor(slant, rotatedSlantAngle);
+            bottomLeftCorner.y = car.y - getYDistanceFactor(slant, rotatedSlantAngle);
         } else if(isInBoundsOf(rotatedSlantAngle,180, 270)) {
-            bottomLeftCorner.x = car.x + getXDistanceFactor(rotatedSlantAngle, slant);
-            bottomLeftCorner.y = car.y - getYDistanceFactor(rotatedSlantAngle, slant);
+            bottomLeftCorner.x = car.x + getXDistanceFactor(slant, rotatedSlantAngle);
+            bottomLeftCorner.y = car.y - getYDistanceFactor(slant, rotatedSlantAngle);
         } else /*if(angle >= 270 && angle <= 360)*/ {
-            bottomLeftCorner.x = car.x - getXDistanceFactor(rotatedSlantAngle, slant);
-            bottomLeftCorner.y = car.y + getYDistanceFactor(rotatedSlantAngle, slant);
+            bottomLeftCorner.x = car.x - getXDistanceFactor(slant, rotatedSlantAngle);
+            bottomLeftCorner.y = car.y + getYDistanceFactor(slant, rotatedSlantAngle);
         }
         return bottomLeftCorner;
     }
