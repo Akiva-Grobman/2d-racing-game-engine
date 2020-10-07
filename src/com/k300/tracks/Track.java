@@ -17,26 +17,25 @@ public class Track {
     private final Car[] cars;
     private final State gameState;
     private final Collisions collisions;
-
+    private final ObstacleManager obstacleManager;
     private final double a;
     private final double b;
 
     public Track(State gameState) {
         this.gameState = gameState;
-
+        obstacleManager = new ObstacleManager();
 
         //Margins
         a = 750;
         b = 410;
         Margins margins = new Margins(a, b);
-        collisions = new Collisions(margins);
-        collisions.addObstacle(900, 800, 200);
-        collisions.addObstacle(900, 250, 100);
-
+        collisions = new Collisions(margins, obstacleManager);
+        obstacleManager.addObstacle(new Obstacle(900, 800, 200));
+        obstacleManager.addObstacle(new Obstacle(900, 250, 100));
 
         cars = new Car[1];
         // testing this should be information given from the server
-        cars[0] = new PlayerCar(Assets.BLUE_CAR_KEY, new Point(700, 700), collisions);
+        cars[0] = new PlayerCar(Assets.BLUE_CAR_KEY, new Point(500, 700), collisions);
         ((GameState)gameState).setKeyListener(((PlayerCar)cars[0]).getKeyListener());
     }
 
@@ -47,13 +46,9 @@ public class Track {
     }
 
     public void render(Graphics graphics) {
-
-
         int width = gameState.getWindowWidth();
         int height = gameState.getWindowHeight();
         graphics.drawImage(Assets.getImage(Assets.TRACK_KEY), 0, 0, width, height, null);
-
-        collisions.render(graphics); //Testing
 
         graphics.drawImage(Assets.getImage(Assets.INSIDE_MARGIN_KEY), 0, 0, width, height, null);
         graphics.drawImage(Assets.getImage(Assets.OUTSIDE_MARGIN_KEY), 0, 0, width, height, null);
