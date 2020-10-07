@@ -16,10 +16,7 @@ public class MenuBackground {
     private int yellowAngle;
 
     public MenuBackground() {
-        // button on the bottom
-//        final int blueCarY = SCREEN_HEIGHT / 5 * 2;
-        // button in the center
-        final int blueCarY = SCREEN_HEIGHT / 5 * 4;
+        final int blueCarY = SCREEN_HEIGHT / 7 * 5;
         final int redCarY = SCREEN_HEIGHT / 5;
         final int yellowCarX = SCREEN_WIDTH / 5 * 4;
         blueCarPosition = new Point(SCREEN_WIDTH - Assets.getImage(Assets.BLUE_CAR_KEY).getWidth(), blueCarY);
