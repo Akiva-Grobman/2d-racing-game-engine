@@ -31,7 +31,6 @@ public class PlayerCar extends Car {
         mover = new PlayerCarMover(this);
     }
 
-
     @Override
     public void tick() {
         if(frontalCollision || rearCollision) {
