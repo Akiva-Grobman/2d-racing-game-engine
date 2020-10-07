@@ -3,8 +3,13 @@ package com.k300.cars;
 import com.k300.io.PlayerKeyListener;
 import com.k300.tracks.Collisions;
 import com.k300.utils.Point;
-
 import java.awt.event.KeyListener;
+import java.util.function.BiConsumer;
+import java.util.function.BooleanSupplier;
+import java.util.function.Consumer;
+
+import static com.k300.utils.math.Math.getXMovementFactor;
+import static com.k300.utils.math.Math.getYMovementFactor;
 
 public class PlayerCar extends Car {
 
@@ -14,13 +19,11 @@ public class PlayerCar extends Car {
     private final double START_SPEED_INCREMENT;
     private final double START_SPEED_DECREMENT;
     private final double COLLISION_SPEED_DECREMENT;
-
     private final PlayerKeyListener keyListener;
     private final Collisions collisions;
     private int keyReleased;
     private boolean speedFadeForward;
     private boolean speedFadeBackwards;
-
 
     public PlayerCar(String carColor, Point startingPosition, Collisions collisions) {
         super(carColor, startingPosition);
@@ -36,59 +39,34 @@ public class PlayerCar extends Car {
         keyListener = new PlayerKeyListener();
     }
 
-
     @Override
     public void tick() {
         if (speedFadeForward) {
-            moveForward();
-            if(isOffTrack()) {
-                moveBackwards();
-                speedFadeForward = false;
-                speedFadeBackwards = true;
-            }
-            decreaseSpeed(COLLISION_SPEED_DECREMENT);
+            fade().accept(
+                    this::moveForward,
+                    this::moveBackwards
+            );
         } else if (speedFadeBackwards) {
-            moveBackwards();
-            if(isOffTrack()) {
-                moveForward();
-                speedFadeForward = true;
-                speedFadeBackwards = false;
-            }
-            decreaseSpeed(COLLISION_SPEED_DECREMENT);
+            fade().accept(
+                    this::moveBackwards,
+                    this::moveForward
+            );
         } else if (keyListener.getKeyIsPressed(PlayerKeyListener.UP_ARROW)) {
             if(keyReleased != PlayerKeyListener.UP_ARROW) {
                 resetSpeed();
             }
-            moveForward();
-            increaseSpeed(START_SPEED_INCREMENT);
-            if(isOffTrack()) {
-                moveBackwards();
-                speedFadeBackwards = true;
-            }
+            handleKeyPressed(true).accept(this::moveForward, this::moveBackwards);
             keyReleased = PlayerKeyListener.UP_ARROW;
         } else if (keyListener.getKeyIsPressed(PlayerKeyListener.DOWN_ARROW)) {
             if(keyReleased != PlayerKeyListener.DOWN_ARROW) {
                 resetSpeed();
             }
-            moveBackwards();
-            increaseSpeed(START_SPEED_INCREMENT);
-            if(isOffTrack()) {
-                moveForward();
-                speedFadeForward = true;
-            }
+            handleKeyPressed(false).accept(this::moveBackwards, this::moveForward);
             keyReleased = PlayerKeyListener.DOWN_ARROW;
         } else if (keyReleased == PlayerKeyListener.UP_ARROW){
-            decreaseSpeed(START_SPEED_DECREMENT);
-            moveForward();
-            if(isOffTrack()) {
-                moveBackwards();
-            }
+            handleKeyReleased().accept(this::moveForward, this::moveBackwards);
         } else if (keyReleased == PlayerKeyListener.DOWN_ARROW){
-            decreaseSpeed(START_SPEED_DECREMENT);
-            moveBackwards();
-            if(isOffTrack()) {
-                moveForward();
-            }
+            handleKeyReleased().accept(this::moveBackwards, this::moveForward);
         }
 
         if(keyListener.getKeyIsPressed(PlayerKeyListener.RIGHT_ARROW)) {
@@ -99,72 +77,71 @@ public class PlayerCar extends Car {
         }
     }
 
+    private BiConsumer<Runnable, Runnable> fade() {
+        return (runnable, runnable2) -> {
+            runnable.run();
+            if(isOffTrack()) {
+                runnable2.run();
+                speedFadeForward = !speedFadeForward;
+                speedFadeBackwards = !speedFadeBackwards;
+            }
+            decreaseSpeed(COLLISION_SPEED_DECREMENT);
+        };
+    }
+
+    private BiConsumer<Runnable, Runnable> handleKeyPressed(boolean isPressingUp) {
+        return ((runnable, runnable2) -> {
+            runnable.run();
+            increaseSpeed(START_SPEED_INCREMENT);
+            if(isOffTrack()) {
+                runnable2.run();
+                if(isPressingUp) {
+                    speedFadeBackwards = true;
+                } else {
+                    speedFadeForward = true;
+                }
+            }
+        });
+    }
+
+    private BiConsumer<Runnable, Runnable> handleKeyReleased() {
+        return ((runnable, runnable2) ->  {
+            decreaseSpeed(START_SPEED_DECREMENT);
+            runnable.run();
+            if(isOffTrack()) {
+                runnable2.run();
+            }
+        });
+    }
+
     private void moveForward() {
-        double newX;
-        double newY;
-        if(isInBoundsOf(0, 90)) {
-            newX = x + xDistance();
-            newY = y - yDistance();
-        } else if(isInBoundsOf(90, 180)) {
-            newX = x - xDistance();
-            newY = y + yDistance();
-        } else if(isInBoundsOf(180, 270)) {
-            newX = x - xDistance();
-            newY = y + yDistance();
-        } else /*if(angle >= 270 && angle <= 360)*/ {
-            newX = x + xDistance();
-            newY = y - yDistance();
-        }
-        setNewXY(newX, newY);
+        move(() -> isInBoundsOf(90, 270));
     }
 
     private void moveBackwards() {
-        double newX;
-        double newY;
-        if(isInBoundsOf(0, 90)) {
-            newX = x - xDistance();
-            newY = y + yDistance();
-        } else if(isInBoundsOf(90, 180)) {
-            newX = x + xDistance();
-            newY = y - yDistance();
-        } else if(isInBoundsOf(180, 270)) {
-            newX = x + xDistance();
-            newY = y - yDistance();
-        } else /*if(angle >= 270 && angle <= 360)*/ {
-            newX = x - xDistance();
-            newY = y + yDistance();
+        move(() -> isInBoundsOf(0, 90) || isInBoundsOf(270, 360));
+    }
+
+    // TODO: 07/10/2020 rename param
+    private void move(BooleanSupplier boundsCondition) {
+        Point newPosition;
+        if(boundsCondition.getAsBoolean()) {
+            newPosition = new Point(x - getXMovementFactor(speed, angle), y + getYMovementFactor(speed, angle));
+        } else {
+            newPosition = new Point(x + getXMovementFactor(speed, angle), y - getYMovementFactor(speed, angle));
         }
-        setNewXY(newX, newY);
+        setNewXY(newPosition);
     }
 
     private boolean isInBoundsOf(int lowerBound, int upperBound) {
         return angle >= lowerBound && angle <= upperBound;
     }
 
-    // This is most of the distance formula (with the x extracted instead of the standard distance extracted).
-    // Meaning x +- distance() the -/+ will be determined by the angle and direction (in the forwards and backwards methods)
-    // and the y will use this as well for it's distance calculation.
-    private double xDistance() {
-        return (speed / sqrtOfSquareAnglePlusOne());
-    }
-
-    private double yDistance() {
-        return tanOfAngle() * xDistance();
-    }
-
-    private double sqrtOfSquareAnglePlusOne() {
-        return Math.sqrt(1 + tanOfAngle()*tanOfAngle());
-    }
-
-    private double tanOfAngle() {
-        return Math.tan(Math.toRadians(angle));
-    }
-
-    private void setNewXY(double newX, double newY) {
+    private void setNewXY(Point newPosition) {
         // rounding is for display prepossess
         // 5 numbers after the decimal point
-        x = Math.round(newX * 10000) / 10000.0;
-        y = Math.round(newY * 10000) / 10000.0;
+        x = Math.round(newPosition.x * 10000) / 10000.0;
+        y = Math.round(newPosition.y * 10000) / 10000.0;
     }
 
     private void moveRight() {

@@ -1,27 +1,23 @@
 package com.k300.tracks;
 
-import com.k300.utils.Converter;
+import com.k300.utils.math.Converter;
 
 import java.awt.geom.Point2D;
 
 public class Margins {
 
-    private double smallA;
-    private double bigA;
-    private double smallB;
-    private double bigB;
-    private double positiveSmallC;
-    private double negativeSmallC;
-    private double positiveBigC;
-    private double negativeBigC;
-
-
+    private final double smallA;
+    private final double bigA;
+    private final double positiveSmallC;
+    private final double negativeSmallC;
+    private final double positiveBigC;
+    private final double negativeBigC;
 
     public Margins(double a, double b) {
         smallA = a / 2;
         bigA = (a * 1.85) / 2;
-        bigB = (b*1.7) / 2;
-        smallB = b / 2;
+        final double bigB = (b * 1.7) / 2;
+        final double smallB = b / 2;
 
         positiveSmallC = getPositiveC(smallA, smallB);
         negativeSmallC = getNegativeC(smallA, smallB);
