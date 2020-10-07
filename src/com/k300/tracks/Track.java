@@ -12,24 +12,22 @@ import java.awt.image.BufferedImage;
 
 public class Track {
 
-    private static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+    private static final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     private static final double SCREEN_WIDTH = screenSize.getWidth();
     private static final double SCREEN_HEIGHT = screenSize.getHeight();
     private final Car[] cars;
     private final State gameState;
-    private final Collisions collisions;
-    private final ObstacleManager obstacleManager;
     private final double a;
     private final double b;
 
     public Track(State gameState) {
         this.gameState = gameState;
-        obstacleManager = new ObstacleManager();
+        ObstacleManager obstacleManager = new ObstacleManager();
         //set margins
         a = 750;
         b = 410;
         Margins margins = new Margins(a, b);
-        collisions = new Collisions(margins, obstacleManager);
+        Collisions collisions = new Collisions(margins, obstacleManager);
         obstacleManager.addObstacle(new Obstacle(900, 800, 200));
         obstacleManager.addObstacle(new Obstacle(900, 250, 100));
         //set cars
