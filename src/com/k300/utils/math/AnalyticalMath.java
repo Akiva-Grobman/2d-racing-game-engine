@@ -4,10 +4,10 @@ import static java.lang.Math.*;
 
 public class AnalyticalMath {
 
+    //todo put this function in another location
     public static boolean isInBoundsOf(double angle, int lowerBound, int upperBound) {
         return angle >= lowerBound && angle <= upperBound;
     }
-
     // This is most of the distance formula (with the x extracted instead of the standard distance extracted).
     // Meaning x +- distance() the -/+ will be determined by the angle and direction (in the forwards and backwards methods)
     // and the y will use this as well for it's distance calculation.
