@@ -13,14 +13,14 @@ public class Obstacle {
     public Obstacle(double x, double y, double size) {
         a = x;
         b = y;
-        r = size/2;
+        r = size / 2;
     }
 
     private double getDistance(double x1, double y1, double x2,  double y2) {
         return Point2D.distance(x1, y1, x2, y2);
     }
 
-    public boolean onTheTrack(double carX, double carY) {
+    public boolean isOnTrack(double carX, double carY) {
         double distance = getDistance(a, b, carX, carY);
         return distance > r;
     }

@@ -1,38 +1,26 @@
 package com.k300.tracks;
 
+import com.k300.utils.Point;
+
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Collisions {
-    private Margins margins;
-    private ArrayList<Obstacle> obstacles;
 
-    public Collisions(Margins margins) {
+    private final Margins margins;
+    private final ObstacleManager obstacleManager;
+
+    public Collisions(Margins margins, ObstacleManager obstacleManager) {
         this.margins = margins;
-        obstacles = new ArrayList<>();
+        this.obstacleManager = obstacleManager;
     }
 
-    public void addObstacle(double x, double y, double size) {
-        obstacles.add(new Obstacle(x, y, size));
-    }
-
-    public boolean onTheTrack(double carX, double carY) {
-        AtomicBoolean onTheTrack = new AtomicBoolean(true);
-        if (!margins.onTheTrack(carX, carY)) {
+    public boolean onTheTrack(Point position) {
+        if (!margins.onTheTrack(position.x, position.y)) {
             return false;
         }
-        obstacles.forEach((obstacle) -> {
-                    if (!obstacle.onTheTrack(carX, carY)) {
-                        onTheTrack.set(false);
-                    }
-                }
-        );
-        return onTheTrack.get();
+        return !obstacleManager.isCollidingWithObstacle(position);
     }
 
-    //Testing
-    public void render(Graphics graphics) {
-        obstacles.forEach((obstacle) -> obstacle.render(graphics));
-    }
 }
