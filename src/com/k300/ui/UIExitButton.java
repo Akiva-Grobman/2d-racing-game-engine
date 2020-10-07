@@ -1,5 +1,6 @@
 package com.k300.ui;
 
+import com.k300.Launcher;
 import com.k300.graphics.Assets;
 
 import java.awt.*;
@@ -30,7 +31,7 @@ public class UIExitButton extends UIObject {
 
     @Override
     public void onClick() {
-        System.exit(0);
+        Launcher.stop();
     }
 
 }

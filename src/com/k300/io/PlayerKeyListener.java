@@ -1,5 +1,7 @@
 package com.k300.io;
 
+import com.k300.Launcher;
+
 import java.awt.event.KeyEvent;
 
 public class PlayerKeyListener implements java.awt.event.KeyListener {
@@ -26,7 +28,7 @@ public class PlayerKeyListener implements java.awt.event.KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
         if(e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-            System.exit(0);
+            Launcher.stop();
         }
         keyPressed(e.getKeyCode(), true);
     }

@@ -80,7 +80,6 @@ public class PlayerCar extends Car {
         }
     }
 
-
     private boolean isOffTrack() {
         return !collisions.onTheTrack(new Point(x, y));
     }

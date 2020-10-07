@@ -16,7 +16,7 @@ import java.awt.event.KeyListener;
 
 public class Launcher {
 
-    private boolean isRunning;
+    private static boolean isRunning;
     private Window window;
     private MouseListener mouseListener;
     private int fps;
@@ -33,7 +33,7 @@ public class Launcher {
         runGameLoop();
     }
 
-    public synchronized void stop() {
+    public static synchronized void stop() {
         if(!isRunning) {
             return;
         }
@@ -59,15 +59,15 @@ public class Launcher {
         mouseListener = new MouseListener();
         window.addMouseListener(mouseListener);
         setKeyListener(new com.k300.io.KeyListener());
-//        StateManager.setCurrentState(
-//                new OpeningFadeState(this,
-//                    Assets.getImage(Assets.K_300_LOGO_KEY),
-//                    new OpenFadeListener()
-//                )
-//        );
+        StateManager.setCurrentState(
+                new OpeningFadeState(this,
+                    Assets.getImage(Assets.K_300_LOGO_KEY),
+                    new OpenFadeListener()
+                )
+        );
 
         //Testing
-        StateManager.setCurrentState(new GameState(this));
+//        StateManager.setCurrentState(new GameState(this));
     }
 
     private void runGameLoop() {
