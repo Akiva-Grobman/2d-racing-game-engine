@@ -10,8 +10,8 @@ import java.awt.event.KeyListener;
 public class PlayerCar extends Car {
 
     private final PlayerCarMover mover;
-    private final double START_SPEED_INCREMENT;
-    private final double START_SPEED_DECREMENT;
+    private final double SPEED_INCREMENT;
+    private final double SPEED_DECREMENT;
     private final double COLLISION_SPEED_DECREMENT;
 
     private final PlayerKeyListener keyListener;
@@ -24,8 +24,8 @@ public class PlayerCar extends Car {
     public PlayerCar(String carColor, Point startingPosition, Collisions collisions) {
         super(carColor, startingPosition);
         this.collisions = collisions;
-        START_SPEED_INCREMENT = 0.2;
-        START_SPEED_DECREMENT = 0.3;
+        SPEED_INCREMENT = 0.2;
+        SPEED_DECREMENT = 0.3;
         COLLISION_SPEED_DECREMENT = 1;
         keyListener = new PlayerKeyListener();
         mover = new PlayerCarMover(this);
@@ -41,7 +41,7 @@ public class PlayerCar extends Car {
                 resetSpeed();
             }
             mover.driveForwards();
-            increaseSpeed(START_SPEED_INCREMENT);
+            increaseSpeed(SPEED_INCREMENT);
             if(isOffTrack()) {
                 mover.driveBackwards();
                 frontalCollision = true;
@@ -52,20 +52,20 @@ public class PlayerCar extends Car {
                 resetSpeed();
             }
             mover.driveBackwards();
-            increaseSpeed(START_SPEED_INCREMENT);
+            increaseSpeed(SPEED_INCREMENT);
             if(isOffTrack()) {
                 mover.driveForwards();
                 rearCollision = true;
             }
             keyReleased = PlayerKeyListener.DOWN_ARROW;
         } else if (keyReleased == PlayerKeyListener.UP_ARROW){
-            decreaseSpeed(START_SPEED_DECREMENT);
+            decreaseSpeed(SPEED_DECREMENT);
             mover.driveForwards();
             if(isOffTrack()) {
                 mover.driveBackwards();
             }
         } else if (keyReleased == PlayerKeyListener.DOWN_ARROW){
-            decreaseSpeed(START_SPEED_DECREMENT);
+            decreaseSpeed(SPEED_DECREMENT);
             mover.driveBackwards();
             if(isOffTrack()) {
                 mover.driveForwards();
