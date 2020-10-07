@@ -115,7 +115,6 @@ public class PlayerCar extends Car {
                 speedFadeForwards = false;
                 speedFadeBackwards = true;
             }
-            decreaseSpeed(COLLISION_SPEED_DECREMENT);
         } else if (speedFadeBackwards) {
             mover.driveBackwards();
             if(isOffTrack()) {
@@ -123,8 +122,8 @@ public class PlayerCar extends Car {
                 speedFadeForwards = true;
                 speedFadeBackwards = false;
             }
-            decreaseSpeed(COLLISION_SPEED_DECREMENT);
         }
+        decreaseSpeed(COLLISION_SPEED_DECREMENT);
     }
 
     public KeyListener getKeyListener() {
