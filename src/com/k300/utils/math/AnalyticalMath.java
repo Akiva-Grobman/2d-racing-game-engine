@@ -11,12 +11,12 @@ public class AnalyticalMath {
     // This is most of the distance formula (with the x extracted instead of the standard distance extracted).
     // Meaning x +- distance() the -/+ will be determined by the angle and direction (in the forwards and backwards methods)
     // and the y will use this as well for it's distance calculation.
-    public static double getXDistanceFactor(double speed, double angle) {
-        return speed / sqrtOfSquaredAnglePlusOne(angle);
+    public static double getXDistanceFactor(double distance, double angle) {
+        return distance / sqrtOfSquaredAnglePlusOne(angle);
     }
 
-    public static double getYDistanceFactor(double speed, double angle) {
-        return getTanOfAngle(angle) * getXDistanceFactor(speed, angle);
+    public static double getYDistanceFactor(double distance, double angle) {
+        return getTanOfAngle(angle) * getXDistanceFactor(distance, angle);
     }
 
     private static double sqrtOfSquaredAnglePlusOne(double angle) {
