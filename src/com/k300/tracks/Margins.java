@@ -1,6 +1,6 @@
 package com.k300.tracks;
 
-import com.k300.utils.Converter;
+import com.k300.utils.math.Converter;
 
 import java.awt.geom.Point2D;
 

@@ -1,4 +1,4 @@
-package com.k300.utils;
+package com.k300.utils.math;
 
 import java.awt.*;
 
