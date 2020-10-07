@@ -44,6 +44,10 @@ public abstract class Car {
         graphics.fillOval((int)(x-25/2) , (int)(y-25/2), 25, 25);
     }
 
+    void setSpeed(double speed) {
+        this.speed = speed;
+    }
+
     public double getX() {
         return x;
     }

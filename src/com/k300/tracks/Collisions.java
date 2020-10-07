@@ -5,8 +5,9 @@ import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Collisions {
-    private Margins margins;
-    private ArrayList<Obstacle> obstacles;
+
+    private final Margins margins;
+    private final ArrayList<Obstacle> obstacles;
 
     public Collisions(Margins margins) {
         this.margins = margins;
@@ -18,21 +19,22 @@ public class Collisions {
     }
 
     public boolean onTheTrack(double carX, double carY) {
-        AtomicBoolean onTheTrack = new AtomicBoolean(true);
+        AtomicBoolean isOnTrack = new AtomicBoolean(true);
         if (!margins.onTheTrack(carX, carY)) {
             return false;
         }
-        obstacles.forEach((obstacle) -> {
-                    if (!obstacle.onTheTrack(carX, carY)) {
-                        onTheTrack.set(false);
-                    }
-                }
-        );
-        return onTheTrack.get();
+        for (Obstacle obstacle : obstacles) {
+            if (!obstacle.onTheTrack(carX, carY)) {
+                isOnTrack.set(false);
+            }
+        }
+        return isOnTrack.get();
     }
 
     //Testing
     public void render(Graphics graphics) {
-        obstacles.forEach((obstacle) -> obstacle.render(graphics));
+        for (Obstacle obstacle : obstacles) {
+            obstacle.render(graphics);
+        }
     }
 }
