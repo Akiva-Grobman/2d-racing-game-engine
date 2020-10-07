@@ -50,7 +50,6 @@ public class Track {
         for (Car car: cars) {
             car.render((Graphics2D) graphics);
         }
-
         //Testing
 //        double xLocation = SCREEN_WIDTH/2;
 //        double yLocation = SCREEN_HEIGHT/2;

@@ -13,10 +13,7 @@ public class Collisions {
     }
 
     public boolean onTheTrack(Point position) {
-        if (!margins.onTheTrack(position.x, position.y)) {
-            return false;
-        }
-        return !obstacleManager.isCollidingWithObstacle(position);
+        return margins.onTheTrack(position.x, position.y) && !obstacleManager.isCollidingWithObstacle(position);
     }
 
 }

@@ -18,13 +18,13 @@ public class ObstacleManager {
     }
 
     public boolean isCollidingWithObstacle(Point position) {
-        AtomicBoolean isOnTrack = new AtomicBoolean(false);
+        AtomicBoolean isOnTrack = new AtomicBoolean(true);
         for (Obstacle obstacle : obstacles) {
             if (!obstacle.isOnTrack(position.x, position.y)) {
                 isOnTrack.set(false);
             }
         }
-        return isOnTrack.get();
+        return !isOnTrack.get();
     }
 
     public void addObstacle(Obstacle obstacle) {
@@ -32,6 +32,7 @@ public class ObstacleManager {
         addObstacleToTrackImage(obstacle);
         resetTrackBackground();
     }
+
 
     private void resetTrackBackground() {
         BufferedImage track = Assets.getImage(Assets.TRACK_KEY);
