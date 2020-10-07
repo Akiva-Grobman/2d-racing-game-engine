@@ -1,5 +1,6 @@
 package com.k300.cars;
 
+import com.k300.cars.player_car.PlayerCarCorners;
 import com.k300.graphics.Assets;
 import com.k300.utils.Point;
 
@@ -9,12 +10,14 @@ import java.awt.image.BufferedImage;
 
 public abstract class Car {
 
-    protected double maxSpeed = 15;
-    protected double speed;
-    protected double x;
-    protected double y;
-    protected double angle;
-    protected BufferedImage carImage;
+    public double maxSpeed = 15;
+    public double speed;
+    public double x;
+    public double y;
+    public double angle;
+    public BufferedImage carImage;
+
+    private PlayerCarCorners playerCarCorners;
 
     public Car(String carColor, Point startingPosition) {
         carImage = Assets.getImage(carColor);
@@ -22,6 +25,8 @@ public abstract class Car {
         y = startingPosition.y;
         angle = 0;
         speed = 0;
+
+        playerCarCorners = new PlayerCarCorners(this);
     }
 
     public abstract void tick();
@@ -42,6 +47,17 @@ public abstract class Car {
 
         //Testing
         graphics.fillOval((int)(x-25/2) , (int)(y-25/2), 25, 25);
+
+        Point TopRightCorner = playerCarCorners.getTopRightCorner();
+        Point BottomRightCorner = playerCarCorners.getBottomRightCorner();
+        Point TopLeftCorner = playerCarCorners.getTopLeftCorner();
+        Point BottomLeftCorner = playerCarCorners.getBottomLeftCorner();
+
+        graphics.fillOval((int)(TopRightCorner.x-10/2) , (int)(TopRightCorner.y-10/2), 10, 10);
+        graphics.fillOval((int)(BottomRightCorner.x-10/2) , (int)(BottomRightCorner.y-10/2), 10, 10);
+        graphics.fillOval((int)(TopLeftCorner.x-10/2) , (int)(TopLeftCorner.y-10/2), 10, 10);
+        graphics.fillOval((int)(BottomLeftCorner.x-10/2) , (int)(BottomLeftCorner.y-10/2), 10, 10);
+
     }
 
     public double getX() {

@@ -1,11 +1,10 @@
 package com.k300.tracks;
 
 import com.k300.cars.Car;
-import com.k300.cars.PlayerCar;
+import com.k300.cars.player_car.PlayerCar;
 import com.k300.graphics.Assets;
 import com.k300.states.GameState;
 import com.k300.states.State;
-import com.k300.utils.Converter;
 import com.k300.utils.Point;
 
 import java.awt.*;
