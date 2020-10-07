@@ -3,11 +3,8 @@ package com.k300;
 import com.k300.display.Window;
 import com.k300.graphics.Assets;
 import com.k300.graphics.OpeningFadeState;
-import com.k300.ui.FadeListener;
-import com.k300.graphics.FadeState;
 import com.k300.io.MouseListener;
 import com.k300.states.GameState;
-import com.k300.states.MenuState;
 import com.k300.states.StateManager;
 import com.k300.ui.OpenFadeListener;
 
@@ -65,9 +62,6 @@ public class Launcher {
                     new OpenFadeListener()
                 )
         );
-
-        //Testing
-//        StateManager.setCurrentState(new GameState(this));
     }
 
     private void runGameLoop() {

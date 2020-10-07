@@ -4,7 +4,7 @@ import java.awt.*;
 
 public class Converter {
 
-    private static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+    private static final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     private static final double SCREEN_WIDTH = screenSize.getWidth();
     private static final double SCREEN_HEIGHT = screenSize.getHeight();
 
