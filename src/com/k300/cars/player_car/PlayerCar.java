@@ -35,7 +35,7 @@ public class PlayerCar extends Car {
     @Override
     public void tick() {
         if(speedFadeForwards || speedFadeBackwards) {
-            speedEffect();
+            collisionEffect();
         } else if (keyListener.getKeyIsPressed(PlayerKeyListener.UP_ARROW)) {
             if(keyReleased != PlayerKeyListener.UP_ARROW) {
                 resetSpeed();
@@ -107,7 +107,7 @@ public class PlayerCar extends Car {
         }
     }
 
-    private void speedEffect() {
+    private void collisionEffect() {
         if (speedFadeForwards) {
             mover.driveForwards();
             if(isOffTrack()) {
