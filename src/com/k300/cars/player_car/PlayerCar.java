@@ -107,8 +107,8 @@ public class PlayerCar extends Car {
         }
     }
 
-    private boolean isChangedDriveDirection(int key) {
-        return keyReleased != key;
+    private boolean isChangedDriveDirection(int currentKey) {
+        return keyReleased != currentKey;
     }
 
     private void collisionEffect() {
