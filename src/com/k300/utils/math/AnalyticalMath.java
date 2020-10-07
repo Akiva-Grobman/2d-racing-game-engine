@@ -15,7 +15,7 @@ public class AnalyticalMath {
         return speed / sqrtOfSquaredAnglePlusOne(angle);
     }
 
-    public static double getYMovementFactor(double speed, double angle) {
+    public static double getYDistanceFactor(double speed, double angle) {
         return getTanOfAngle(angle) * getXDistanceFactor(speed, angle);
     }
 

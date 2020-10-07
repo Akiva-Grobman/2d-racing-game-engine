@@ -8,9 +8,7 @@ import java.awt.event.KeyListener;
 
 public class PlayerCar extends Car {
 
-    private final double CAR_TURNING_ANGLE;
-    private final int RIGHT_ROTATION;
-    private final int LEFT_ROTATION;
+    private final PlayerCarMover mover;
     private final double START_SPEED_INCREMENT;
     private final double START_SPEED_DECREMENT;
     private final double COLLISION_SPEED_DECREMENT;
@@ -25,32 +23,28 @@ public class PlayerCar extends Car {
     public PlayerCar(String carColor, Point startingPosition, Collisions collisions) {
         super(carColor, startingPosition);
         this.collisions = collisions;
-        CAR_TURNING_ANGLE = 4;
-        RIGHT_ROTATION = -1;
-        LEFT_ROTATION = 1;
-        speedFadeForward = false;
-        speedFadeBackwards = false;
         START_SPEED_INCREMENT = 0.2;
         START_SPEED_DECREMENT = 0.3;
         COLLISION_SPEED_DECREMENT = 1;
         keyListener = new PlayerKeyListener();
+        mover = new PlayerCarMover(this);
     }
 
 
     @Override
     public void tick() {
         if (speedFadeForward) {
-            moveForward();
+            mover.driveForwards();
             if(isOffTrack()) {
-                moveBackwards();
+                mover.driveBackwards();
                 speedFadeForward = false;
                 speedFadeBackwards = true;
             }
             decreaseSpeed(COLLISION_SPEED_DECREMENT);
         } else if (speedFadeBackwards) {
-            moveBackwards();
+            mover.driveBackwards();
             if(isOffTrack()) {
-                moveForward();
+                mover.driveForwards();
                 speedFadeForward = true;
                 speedFadeBackwards = false;
             }
@@ -59,10 +53,10 @@ public class PlayerCar extends Car {
             if(keyReleased != PlayerKeyListener.UP_ARROW) {
                 resetSpeed();
             }
-            moveForward();
+            mover.driveForwards();
             increaseSpeed(START_SPEED_INCREMENT);
             if(isOffTrack()) {
-                moveBackwards();
+                mover.driveBackwards();
                 speedFadeBackwards = true;
             }
             keyReleased = PlayerKeyListener.UP_ARROW;
@@ -70,126 +64,35 @@ public class PlayerCar extends Car {
             if(keyReleased != PlayerKeyListener.DOWN_ARROW) {
                 resetSpeed();
             }
-            moveBackwards();
+            mover.driveBackwards();
             increaseSpeed(START_SPEED_INCREMENT);
             if(isOffTrack()) {
-                moveForward();
+                mover.driveForwards();
                 speedFadeForward = true;
             }
             keyReleased = PlayerKeyListener.DOWN_ARROW;
         } else if (keyReleased == PlayerKeyListener.UP_ARROW){
             decreaseSpeed(START_SPEED_DECREMENT);
-            moveForward();
+            mover.driveForwards();
             if(isOffTrack()) {
-                moveBackwards();
+                mover.driveBackwards();
             }
         } else if (keyReleased == PlayerKeyListener.DOWN_ARROW){
             decreaseSpeed(START_SPEED_DECREMENT);
-            moveBackwards();
+            mover.driveBackwards();
             if(isOffTrack()) {
-                moveForward();
+                mover.driveForwards();
             }
         }
 
         if(keyListener.getKeyIsPressed(PlayerKeyListener.RIGHT_ARROW)) {
-            moveRight();
+            mover.turnRight();
         }
         if(keyListener.getKeyIsPressed(PlayerKeyListener.LEFT_ARROW)) {
-            moveLeft();
+            mover.turnLeft();
         }
     }
 
-    private void moveForward() {
-        double newX;
-        double newY;
-        if(isInBoundsOf(0, 90)) {
-            newX = x + xDistance();
-            newY = y - yDistance();
-        } else if(isInBoundsOf(90, 180)) {
-            newX = x - xDistance();
-            newY = y + yDistance();
-        } else if(isInBoundsOf(180, 270)) {
-            newX = x - xDistance();
-            newY = y + yDistance();
-        } else /*if(angle >= 270 && angle <= 360)*/ {
-            newX = x + xDistance();
-            newY = y - yDistance();
-        }
-        setNewXY(newX, newY);
-    }
-
-    private void moveBackwards() {
-        double newX;
-        double newY;
-        if(isInBoundsOf(0, 90)) {
-            newX = x - xDistance();
-            newY = y + yDistance();
-        } else if(isInBoundsOf(90, 180)) {
-            newX = x + xDistance();
-            newY = y - yDistance();
-        } else if(isInBoundsOf(180, 270)) {
-            newX = x + xDistance();
-            newY = y - yDistance();
-        } else /*if(angle >= 270 && angle <= 360)*/ {
-            newX = x - xDistance();
-            newY = y + yDistance();
-        }
-        setNewXY(newX, newY);
-    }
-
-    private boolean isInBoundsOf(int lowerBound, int upperBound) {
-        return angle >= lowerBound && angle <= upperBound;
-    }
-
-    // This is most of the distance formula (with the x extracted instead of the standard distance extracted).
-    // Meaning x +- distance() the -/+ will be determined by the angle and direction (in the forwards and backwards methods)
-    // and the y will use this as well for it's distance calculation.
-    private double xDistance() {
-        return (speed / sqrtOfSquareAnglePlusOne());
-    }
-
-    private double yDistance() {
-        return tanOfAngle() * xDistance();
-    }
-
-    private double sqrtOfSquareAnglePlusOne() {
-        return Math.sqrt(1 + tanOfAngle()*tanOfAngle());
-    }
-
-    private double tanOfAngle() {
-        return Math.tan(Math.toRadians(angle));
-    }
-
-    private void setNewXY(double newX, double newY) {
-        // rounding is for display prepossess
-        // 5 numbers after the decimal point
-        x = Math.round(newX * 10000) / 10000.0;
-        y = Math.round(newY * 10000) / 10000.0;
-    }
-
-    private void moveRight() {
-        turn(RIGHT_ROTATION);
-    }
-
-    private void moveLeft() {
-        turn(LEFT_ROTATION);
-    }
-
-    private void turn(int multiplier) {
-        angle += CAR_TURNING_ANGLE * multiplier;
-        if(angle == 90) {
-            angle += CAR_TURNING_ANGLE * multiplier;
-        }
-        resetAngle();
-    }
-
-    private void resetAngle() {
-        if (angle > 360) {
-            angle = 0;
-        } else if (angle < 0) {
-            angle = 360;
-        }
-    }
 
     private boolean isOffTrack() {
         return !collisions.onTheTrack(x, y);
