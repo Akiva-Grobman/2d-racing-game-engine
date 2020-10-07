@@ -10,8 +10,6 @@ public class Assets {
 
     public static final String K_300_LOGO_KEY = "background";
     public static final String TRACK_KEY = "Track";
-    public static final String INSIDE_MARGIN_KEY = "insideMargin";
-    public static final String OUTSIDE_MARGIN_KEY = "OutsideMargin";
     public static final String OBSTACLE_KEY = "obstacle";
     public static final String RED_CAR_KEY = "car_red";
     public static final String BLUE_CAR_KEY = "car_blue";
@@ -38,10 +36,8 @@ public class Assets {
     private Assets() {
         images = new Hashtable<>();
         images.put(K_300_LOGO_KEY, loadImage(K_300_LOGO_KEY, TYPE_JPG));
-        images.put(TRACK_KEY, loadImage(TRACK_DIR + TRACK_KEY, TYPE_JPG));
-        addTrackLayers(INSIDE_MARGIN_KEY);
-        addTrackLayers(OUTSIDE_MARGIN_KEY);
-        addTrackLayers(OBSTACLE_KEY);
+        images.put(OBSTACLE_KEY, loadImage(TRACK_DIR + OBSTACLE_KEY, TYPE_PNG));
+        addTrack();
         addCar(RED_CAR_KEY);
         addCar(BLUE_CAR_KEY);
         addCar(YELLOW_CAR_KEY);
@@ -51,8 +47,16 @@ public class Assets {
         addButton(EXIT_BUTTON_HOVER_KEY);
     }
 
-    private void addTrackLayers(String key) {
-        images.put(key, loadImage(TRACK_DIR + key, TYPE_PNG));
+    private void addTrack() {
+        final BufferedImage track = loadImage(TRACK_DIR + TRACK_KEY, TYPE_JPG);
+        Graphics trackGraphics = track.getGraphics();
+        trackGraphics.drawImage(getTrackLayer("insideMargin"), 0, 0, track.getWidth(), track.getHeight(), null);
+        trackGraphics.drawImage(getTrackLayer("OutsideMargin"), 0, 0, track.getWidth(), track.getHeight(), null);
+        images.put(TRACK_KEY, track);
+    }
+
+    private BufferedImage getTrackLayer(String key){
+        return loadImage(TRACK_DIR + key, TYPE_PNG);
     }
 
     private void addCar(String key) {

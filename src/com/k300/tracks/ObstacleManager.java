@@ -32,7 +32,7 @@ public class ObstacleManager {
     }
 
     public void addObstacleToTrackImage(Obstacle obstacle) {
-        Graphics trackGraphics = Assets.getImage(Assets.TRACK_KEY).createGraphics();
+        Graphics trackGraphics = Assets.getImage(Assets.TRACK_KEY).getGraphics();
         obstacle.render(trackGraphics);
     }
 

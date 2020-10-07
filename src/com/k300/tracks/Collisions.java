@@ -20,7 +20,7 @@ public class Collisions {
         if (!margins.onTheTrack(position.x, position.y)) {
             return false;
         }
-        return obstacleManager.isCollidingWithObstacle(position);
+        return !obstacleManager.isCollidingWithObstacle(position);
     }
 
 }

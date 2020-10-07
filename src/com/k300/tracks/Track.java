@@ -8,6 +8,7 @@ import com.k300.states.State;
 import com.k300.utils.Point;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 public class Track {
 
@@ -24,15 +25,14 @@ public class Track {
     public Track(State gameState) {
         this.gameState = gameState;
         obstacleManager = new ObstacleManager();
-
-        //Margins
+        //set margins
         a = 750;
         b = 410;
         Margins margins = new Margins(a, b);
         collisions = new Collisions(margins, obstacleManager);
         obstacleManager.addObstacle(new Obstacle(900, 800, 200));
         obstacleManager.addObstacle(new Obstacle(900, 250, 100));
-
+        //set cars
         cars = new Car[1];
         // testing this should be information given from the server
         cars[0] = new PlayerCar(Assets.BLUE_CAR_KEY, new Point(500, 700), collisions);
@@ -49,10 +49,6 @@ public class Track {
         int width = gameState.getWindowWidth();
         int height = gameState.getWindowHeight();
         graphics.drawImage(Assets.getImage(Assets.TRACK_KEY), 0, 0, width, height, null);
-
-        graphics.drawImage(Assets.getImage(Assets.INSIDE_MARGIN_KEY), 0, 0, width, height, null);
-        graphics.drawImage(Assets.getImage(Assets.OUTSIDE_MARGIN_KEY), 0, 0, width, height, null);
-
         for (Car car: cars) {
             car.render((Graphics2D) graphics);
         }
@@ -65,9 +61,6 @@ public class Track {
 //
 //        graphics.drawOval((int)(xLocation-a/2), (int)(yLocation-b/2), (int) a, (int) b);
 //        graphics.drawOval((int)(xLocation-bigA/2), (int)(yLocation-bigB/2), (int) bigA, (int) bigB);
-
-
-
     }
 
 }
