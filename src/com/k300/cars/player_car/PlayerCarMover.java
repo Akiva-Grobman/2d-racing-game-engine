@@ -21,11 +21,11 @@ public class PlayerCarMover {
         double newX;
         double newY;
         if(isInBoundsOf(car.angle, 90, 270)) {
-            newX = car.x - getXDistanceFactor(car.speed, car.angle);
-            newY = car.y + getYDistanceFactor(car.speed, car.angle);
+            newX = car.position.x - getXDistanceFactor(car.speed, car.angle);
+            newY = car.position.y + getYDistanceFactor(car.speed, car.angle);
         } else /*if(isInBoundsOf(car.angle, 0, 90) || if(isInBoundsOf(car.angle, 270, 360))*/ {
-            newX = car.x + getXDistanceFactor(car.speed, car.angle);
-            newY = car.y - getYDistanceFactor(car.speed, car.angle);
+            newX = car.position.x + getXDistanceFactor(car.speed, car.angle);
+            newY = car.position.y - getYDistanceFactor(car.speed, car.angle);
         }
         setNewPosition(newX, newY);
     }
@@ -34,11 +34,11 @@ public class PlayerCarMover {
         double newX;
         double newY;
         if(isInBoundsOf(car.angle, 90, 270)) {
-            newX = car.x + getXDistanceFactor(car.speed, car.angle);
-            newY = car.y - getYDistanceFactor(car.speed, car.angle);
+            newX = car.position.x + getXDistanceFactor(car.speed, car.angle);
+            newY = car.position.y - getYDistanceFactor(car.speed, car.angle);
         } else /*if(isInBoundsOf(car.angle, 0, 90) || if(isInBoundsOf(car.angle, 270, 360))*/ {
-            newX = car.x - getXDistanceFactor(car.speed, car.angle);
-            newY = car.y + getYDistanceFactor(car.speed, car.angle);
+            newX = car.position.x - getXDistanceFactor(car.speed, car.angle);
+            newY = car.position.y + getYDistanceFactor(car.speed, car.angle);
         }
         setNewPosition(newX, newY);
     }
@@ -46,8 +46,8 @@ public class PlayerCarMover {
     private void setNewPosition(double newX, double newY) {
         // rounding is for display prepossess
         // 5 numbers after the decimal point
-        car.x = Math.round(newX * 10000) / 10000.0;
-        car.y = Math.round(newY * 10000) / 10000.0;
+        car.position.x = Math.round(newX * 10000) / 10000.0;
+        car.position.y = Math.round(newY * 10000) / 10000.0;
     }
 
     public void turnRight() {

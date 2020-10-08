@@ -18,8 +18,8 @@ public class EnemyCar extends Car {
     public void tick() {
         //todo
         input.tick();
-        x = input.getX();
-        y = input.getY();
+        position.x = input.getX();
+        position.y = input.getY();
         angle = input.getAngle();
     }
 
