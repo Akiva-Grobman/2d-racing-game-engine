@@ -4,6 +4,7 @@ package com.k300.cars.player_car;
 import com.k300.cars.Car;
 import com.k300.utils.Point;
 
+import static com.k300.utils.Utils.isInBoundsOf;
 import static com.k300.utils.math.AnalyticalMath.*;
 
 public class PlayerCarCorners {
