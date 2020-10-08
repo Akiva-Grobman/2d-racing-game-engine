@@ -17,7 +17,7 @@ public abstract class Car {
     public double angle;
     public BufferedImage carImage;
 
-    private PlayerCarCorners playerCarCorners;
+    private final PlayerCarCorners playerCarCorners;
 
     public Car(String carColor, Point startingPosition) {
         carImage = Assets.getImage(carColor);
