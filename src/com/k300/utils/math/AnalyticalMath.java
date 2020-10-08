@@ -1,5 +1,7 @@
 package com.k300.utils.math;
 
+import com.k300.utils.Point;
+
 import static java.lang.Math.*;
 
 public class AnalyticalMath {
@@ -8,14 +10,38 @@ public class AnalyticalMath {
     public static boolean isInBoundsOf(double angle, int lowerBound, int upperBound) {
         return angle >= lowerBound && angle <= upperBound;
     }
+
+    public static Point getNewPointByDistanceAndAngle(Point point, double distance, double angle, boolean is2DForward) {
+        Point newPoint = new Point();
+
+        if(is2DForward) {
+            if (isInBoundsOf(angle, 90, 270)) {
+                newPoint.x = point.x - getXDistanceFactor(distance, angle);
+                newPoint.y = point.y + getYDistanceFactor(distance, angle);
+            } else /*if(isInBoundsOf(car.angle, 0, 90) || if(isInBoundsOf(car.angle, 270, 360))*/ {
+                newPoint.x = point.x + getXDistanceFactor(distance, angle);
+                newPoint.y = point.y - getYDistanceFactor(distance, angle);
+            }
+        } else {
+            if (isInBoundsOf(angle, 90, 270)) {
+                newPoint.x = point.x + getXDistanceFactor(distance, angle);
+                newPoint.y = point.y - getYDistanceFactor(distance, angle);
+            } else /*if(isInBoundsOf(car.angle, 0, 90) || if(isInBoundsOf(car.angle, 270, 360))*/ {
+                newPoint.x = point.x - getXDistanceFactor(distance, angle);
+                newPoint.y = point.y + getYDistanceFactor(distance, angle);
+            }
+        }
+        return newPoint;
+    }
+
     // This is most of the distance formula (with the x extracted instead of the standard distance extracted).
     // Meaning x +- distance() the -/+ will be determined by the angle and direction (in the forwards and backwards methods)
     // and the y will use this as well for it's distance calculation.
-    public static double getXDistanceFactor(double distance, double angle) {
+    private static double getXDistanceFactor(double distance, double angle) {
         return distance / sqrtOfSquaredAnglePlusOne(angle);
     }
 
-    public static double getYDistanceFactor(double distance, double angle) {
+    private static double getYDistanceFactor(double distance, double angle) {
         return getTanOfAngle(angle) * getXDistanceFactor(distance, angle);
     }
 
