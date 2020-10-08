@@ -1,5 +1,7 @@
 package com.k300.cars.player_car;
-import static com.k300.utils.Utils.isInBoundsOf;
+
+import com.k300.utils.Point;
+
 import static com.k300.utils.math.AnalyticalMath.*;
 
 public class PlayerCarMover {
@@ -7,6 +9,7 @@ public class PlayerCarMover {
     private final double CAR_TURNING_ANGLE;
     private final int RIGHT_ROTATION;
     private final int LEFT_ROTATION;
+
     private final PlayerCar car;
 
     public PlayerCarMover(PlayerCar car) {
@@ -18,29 +21,13 @@ public class PlayerCarMover {
     }
 
     public void driveForwards() {
-        double newX;
-        double newY;
-        if(isInBoundsOf(car.angle, 90, 270)) {
-            newX = car.position.x - getXDistanceFactor(car.speed, car.angle);
-            newY = car.position.y + getYDistanceFactor(car.speed, car.angle);
-        } else /*if(isInBoundsOf(car.angle, 0, 90) || if(isInBoundsOf(car.angle, 270, 360))*/ {
-            newX = car.position.x + getXDistanceFactor(car.speed, car.angle);
-            newY = car.position.y - getYDistanceFactor(car.speed, car.angle);
-        }
-        setNewPosition(newX, newY);
+        Point newPoint = getNewPointByDistanceAndAngle(car.position, car.speed, car.angle, true);
+        setNewPosition(newPoint.x, newPoint.y);
     }
 
     public void driveBackwards() {
-        double newX;
-        double newY;
-        if(isInBoundsOf(car.angle, 90, 270)) {
-            newX = car.position.x + getXDistanceFactor(car.speed, car.angle);
-            newY = car.position.y - getYDistanceFactor(car.speed, car.angle);
-        } else /*if(isInBoundsOf(car.angle, 0, 90) || if(isInBoundsOf(car.angle, 270, 360))*/ {
-            newX = car.position.x - getXDistanceFactor(car.speed, car.angle);
-            newY = car.position.y + getYDistanceFactor(car.speed, car.angle);
-        }
-        setNewPosition(newX, newY);
+        Point newPoint = getNewPointByDistanceAndAngle(car.position, car.speed, car.angle, false);
+        setNewPosition(newPoint.x, newPoint.y);
     }
 
     private void setNewPosition(double newX, double newY) {

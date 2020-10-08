@@ -24,8 +24,6 @@ public class Utils {
         return newImage;
     }
 
-    public static boolean isInBoundsOf(double angle, int lowerBound, int upperBound) {
-        return angle >= lowerBound && angle <= upperBound;
-    }
+
 
 }
