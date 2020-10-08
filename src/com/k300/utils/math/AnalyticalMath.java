@@ -5,9 +5,7 @@ import com.k300.utils.Point;
 import static java.lang.Math.*;
 
 public class AnalyticalMath {
-
-    //todo put this function in another location
-    public static boolean isInBoundsOf(double angle, int lowerBound, int upperBound) {
+    public static boolean angleIsInBoundsOf(double angle, int lowerBound, int upperBound) {
         return angle >= lowerBound && angle <= upperBound;
     }
 
@@ -15,7 +13,7 @@ public class AnalyticalMath {
         Point newPoint = new Point();
 
         if(is2DForward) {
-            if (isInBoundsOf(angle, 90, 270)) {
+            if (angleIsInBoundsOf(angle, 90, 270)) {
                 newPoint.x = point.x - getXDistanceFactor(distance, angle);
                 newPoint.y = point.y + getYDistanceFactor(distance, angle);
             } else /*if(isInBoundsOf(car.angle, 0, 90) || if(isInBoundsOf(car.angle, 270, 360))*/ {
@@ -23,7 +21,7 @@ public class AnalyticalMath {
                 newPoint.y = point.y - getYDistanceFactor(distance, angle);
             }
         } else {
-            if (isInBoundsOf(angle, 90, 270)) {
+            if (angleIsInBoundsOf(angle, 90, 270)) {
                 newPoint.x = point.x + getXDistanceFactor(distance, angle);
                 newPoint.y = point.y - getYDistanceFactor(distance, angle);
             } else /*if(isInBoundsOf(car.angle, 0, 90) || if(isInBoundsOf(car.angle, 270, 360))*/ {
