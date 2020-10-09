@@ -5,6 +5,6 @@ This is based on the <a href="https://github.com/ELK4N4/K300-RacingGame">K-300 C
 
 ## Contributors:
 
-<a href="https://github.com/Bon1bon"> Moshe</a>, <a href="https://github.com/yechielb2000"> Yedhiel</a>, <a href="https://github.com/henyair"> Hen</a>, <a href="https://github.com/naor531"> Naor</a>. 
+<a href="https://github.com/Bon1bon"> Moshe</a>, <a href="https://github.com/yechielb2000"> Yechiel</a>, <a href="https://github.com/henyair"> Hen</a>, <a href="https://github.com/naor531"> Naor</a>. 
 
 As well as <a href="https://github.com/ELK4N4"> Elkana </a> and <a href="https://github.com/Akiva-Grobman"> I </a> who are working on this version.
