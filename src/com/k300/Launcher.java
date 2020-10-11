@@ -2,14 +2,14 @@ package com.k300;
 
 import com.k300.display.Window;
 import com.k300.graphics.Assets;
-import com.k300.graphics.OpeningFadeState;
 import com.k300.io.MouseListener;
 import com.k300.states.GameState;
 import com.k300.states.StateManager;
-import com.k300.ui.OpenFadeListener;
+import com.k300.utils.math.Converter;
 
 import java.awt.*;
 import java.awt.event.KeyListener;
+import java.awt.image.BufferedImage;
 
 public class Launcher {
 
@@ -56,12 +56,15 @@ public class Launcher {
         mouseListener = new MouseListener();
         window.addMouseListener(mouseListener);
         setKeyListener(new com.k300.io.KeyListener());
-        StateManager.setCurrentState(
-                new OpeningFadeState(this,
-                    Assets.getImage(Assets.K_300_LOGO_KEY),
-                    new OpenFadeListener()
-                )
-        );
+//        StateManager.setCurrentState(
+//                new OpeningFadeState(this,
+//                    Assets.getImage(Assets.K_300_LOGO_KEY),
+//                    new OpenFadeListener()
+//                )
+//        );
+
+        //Testing
+        StateManager.setCurrentState(new GameState(this));
     }
 
     private void runGameLoop() {
@@ -105,13 +108,32 @@ public class Launcher {
     }
 
     private void render() {
-        Graphics graphics = window.getGraphics();
+        Graphics windowGraphics = window.getGraphics();
         window.clear();
         if(StateManager.getCurrentState() != null) {
-            StateManager.getCurrentState().render(graphics);
-            graphics.drawString("FPS: " + fps, 30, 60);
+            BufferedImage fullHdImage = getFullHdImage();
+            Graphics hdGraphics = fullHdImage.getGraphics();
+            StateManager.getCurrentState().render(hdGraphics);
+            drawImageRelativeToScreen(windowGraphics, fullHdImage);
+            windowGraphics.drawString("FPS: " + fps, 30, 60);
         }
         window.show();
+    }
+
+    private BufferedImage getFullHdImage() {
+        return new BufferedImage(Converter.DEFAULT_SCREEN_WIDTH, Converter.DEFAULT_SCREEN_HEIGHT, Assets.getImage(Assets.TRACK_KEY).getType());
+    }
+
+    private void drawImageRelativeToScreen(Graphics windowGraphics, BufferedImage fullHdImage) {
+        double relativeWidth = Converter.getProportionalNumber(Converter.DEFAULT_SCREEN_WIDTH);
+        double relativeHeight = Converter.getProportionalNumber(Converter.DEFAULT_SCREEN_HEIGHT);
+        double centeredY = getCenteredY(relativeHeight);
+        windowGraphics.drawImage(fullHdImage, 0, (int) centeredY, (int) relativeWidth, (int) relativeHeight, null);
+    }
+
+    private double getCenteredY(double relativeHeight) {
+        double fullOriginalHeight = Converter.SCREEN_HEIGHT;
+        return (fullOriginalHeight - relativeHeight) / 2;
     }
 
     public MouseListener getMouseListener() {

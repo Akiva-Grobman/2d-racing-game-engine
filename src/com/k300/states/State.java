@@ -1,6 +1,8 @@
 package com.k300.states;
 
 import com.k300.Launcher;
+import com.k300.utils.math.Converter;
+
 import java.awt.*;
 
 public abstract class State {
@@ -16,10 +18,10 @@ public abstract class State {
     public abstract void render(Graphics graphics);
 
     public int getWindowWidth() {
-        return launcher.getWindowWidth();
+        return Converter.DEFAULT_SCREEN_WIDTH;
     }
 
     public int getWindowHeight() {
-        return launcher.getWindowHeight();
+        return Converter.DEFAULT_SCREEN_HEIGHT;
     }
 }
