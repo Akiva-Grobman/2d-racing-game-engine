@@ -10,6 +10,8 @@ import java.awt.*;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
+import static com.k300.utils.math.AnalyticalMath.angleIsInBoundsOf;
+
 public class PlayerCar extends Car {
 
     private final PlayerCarMover mover;
@@ -17,13 +19,12 @@ public class PlayerCar extends Car {
     private final double SPEED_INCREMENT;
     private final double SPEED_DECREMENT;
     private final double COLLISION_SPEED_DECREMENT;
-
     private final PlayerKeyListener keyListener;
     private final Collisions collisions;
+    private int roundCount;
     private int keyReleased;
     private boolean frontalCollision;
     private boolean rearCollision;
-
 
     public PlayerCar(String carColor, Point startingPosition, Collisions collisions) {
         super(carColor, startingPosition);
@@ -31,10 +32,10 @@ public class PlayerCar extends Car {
         SPEED_INCREMENT = 0.2;
         SPEED_DECREMENT = 0.3;
         COLLISION_SPEED_DECREMENT = 1;
+        roundCount = 1;
         keyListener = new PlayerKeyListener();
         mover = new PlayerCarMover(this);
         playerCarCorners = new PlayerCarCorners(this);
-
     }
 
     @Override
@@ -50,6 +51,11 @@ public class PlayerCar extends Car {
             if(isOffTrack()) {
                 mover.driveBackwards();
                 frontalCollision = true;
+            }
+            if((angleIsInBoundsOf(angle, 270,360) || angleIsInBoundsOf(angle, 0, 90))
+                    && isOnStartingLine()) {
+                //todo fix low speed more than one round added
+                roundCount++;
             }
             keyReleased = PlayerKeyListener.UP_ARROW;
         } else if (keyListener.getKeyIsPressed(PlayerKeyListener.DOWN_ARROW)) {
@@ -76,7 +82,6 @@ public class PlayerCar extends Car {
                 mover.driveForwards();
             }
         }
-
         if(keyListener.getKeyIsPressed(PlayerKeyListener.RIGHT_ARROW)) {
             mover.turnRight();
             if(isOffTrack()) {
@@ -89,6 +94,14 @@ public class PlayerCar extends Car {
                 mover.turnRight();
             }
         }
+    }
+
+    public int getRoundCount() {
+        return roundCount;
+    }
+
+    private boolean isOnStartingLine() {
+        return collisions.isOnStartingLine(position);
     }
 
     private boolean isOffTrack() {

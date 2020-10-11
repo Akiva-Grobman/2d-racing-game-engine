@@ -24,6 +24,4 @@ public class Utils {
         return newImage;
     }
 
-
-
 }

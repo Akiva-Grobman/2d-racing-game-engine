@@ -1,22 +1,23 @@
 package com.k300.tracks;
 
+import com.k300.graphics.Assets;
 import com.k300.utils.Point;
 import com.k300.utils.math.Converter;
 
+import java.awt.*;
 import java.awt.geom.Point2D;
 
 public class Margins {
 
-    private double smallA;
-    private double bigA;
-    private double smallB;
-    private double bigB;
-    private double positiveSmallC;
-    private double negativeSmallC;
-    private double positiveBigC;
-    private double negativeBigC;
-
-
+    private final double smallA;
+    private final double bigA;
+    private final double smallB;
+    private final double bigB;
+    private final double positiveSmallC;
+    private final double negativeSmallC;
+    private final double positiveBigC;
+    private final double negativeBigC;
+    private final Rectangle startingLineBounds;
 
     public Margins(double a, double b) {
         smallA = a / 2;
@@ -29,6 +30,25 @@ public class Margins {
 
         positiveBigC = getPositiveC(bigA, bigB);
         negativeBigC = getNegativeC(bigA, bigB);
+
+
+        int width = Assets.getImage(Assets.BLUE_CAR_KEY).getHeight() / 5 * 4;
+        int height = getNegativeBigB() - getNegativeSmallB();
+        int x = Converter.DEFAULT_SCREEN_WIDTH / 2 - width / 2;
+        int y = getNegativeSmallB();
+        startingLineBounds = new Rectangle(x, y, width, height);
+    }
+
+    public Rectangle getStartingLineBounds() {
+        return startingLineBounds;
+    }
+
+    private int getNegativeSmallB() {
+        return (int) Converter.getFrameY(-smallB);
+    }
+
+    private int getNegativeBigB() {
+        return (int) Converter.getFrameY(-bigB);
     }
 
     private double getDistance(double x1, double y1, double x2,  double y2) {

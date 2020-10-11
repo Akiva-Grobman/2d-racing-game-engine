@@ -28,14 +28,31 @@ public class Track {
         a = 750*1.19;
         b = 410*1.15;
         Margins margins = new Margins(a, b);
+        // add obstacles
         Collisions collisions = new Collisions(margins, obstacleManager);
         obstacleManager.addObstacle(new Obstacle(900, 800, 200));
         obstacleManager.addObstacle(new Obstacle(900, 250, 100));
+        // add start line
+        addStartLine(margins);
         //set cars
         cars = new Car[1];
         // testing this should be information given from the server
         cars[0] = new PlayerCar(Assets.BLUE_CAR_KEY, new Point(500, 700), collisions);
         ((GameState)gameState).setKeyListener(((PlayerCar)cars[0]).getKeyListener());
+    }
+
+    private void addStartLine(Margins margins) {
+        Graphics trackGraphics = Assets.getImage(Assets.TRACK_KEY).getGraphics();
+        Rectangle startingLineBounds = margins.getStartingLineBounds();
+        int width = startingLineBounds.width;
+        int height = startingLineBounds.height;
+        int type = BufferedImage.TYPE_3BYTE_BGR;//todo get from assets
+        BufferedImage startingLineImage = new BufferedImage(width, height, type);
+        Graphics startingLineImageGraphics = startingLineImage.getGraphics();
+        //todo draw staring line image here
+        trackGraphics.drawImage(startingLineImage, startingLineBounds.x, startingLineBounds.y, null);
+        startingLineImageGraphics.dispose();
+        trackGraphics.dispose();
     }
 
     public void tick() {
@@ -51,9 +68,9 @@ public class Track {
         for (Car car: cars) {
             car.render((Graphics2D) graphics);
         }
-    //Testing
-        double xLocation = width/2;
-        double yLocation = height/2;
+        //Testing
+        double xLocation = width / 2;
+        double yLocation = height / 2;
         double bigA = a * 1.98;
         double bigB = b * 1.97;
 

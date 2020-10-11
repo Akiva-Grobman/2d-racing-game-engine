@@ -1,5 +1,6 @@
 package com.k300.cars;
 
+import com.k300.cars.player_car.PlayerCar;
 import com.k300.cars.player_car.PlayerCarCorners;
 import com.k300.graphics.Assets;
 import com.k300.utils.Point;
@@ -7,6 +8,7 @@ import com.k300.utils.Point;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
+import java.lang.management.PlatformLoggingMXBean;
 
 public abstract class Car {
 
@@ -44,6 +46,11 @@ public abstract class Car {
         graphics.drawString("Y: " + position.y, 600, 550);
 
         //Testing
+        if(this instanceof PlayerCar) {
+            int rounds = ((PlayerCar) this).getRoundCount();
+            graphics.drawString("Round: " + rounds, 90, 90);
+        }
+
         graphics.fillOval((int)(position.x-25/2) , (int)(position.y-25/2), 25, 25);
 
         Point TopRightCorner = playerCarCorners.getFrontLeftCorner();
