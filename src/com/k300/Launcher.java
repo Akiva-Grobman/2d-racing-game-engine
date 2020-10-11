@@ -2,11 +2,9 @@ package com.k300;
 
 import com.k300.display.Window;
 import com.k300.graphics.Assets;
-import com.k300.graphics.OpeningFadeState;
 import com.k300.io.MouseListener;
 import com.k300.states.GameState;
 import com.k300.states.StateManager;
-import com.k300.ui.OpenFadeListener;
 import com.k300.utils.math.Converter;
 
 import java.awt.*;
@@ -127,7 +125,15 @@ public class Launcher {
     }
 
     private void drawImageRelativeToScreen(Graphics windowGraphics, BufferedImage fullHdImage) {
-        windowGraphics.drawImage(fullHdImage, 0, 0, (int) Converter.getProportionalNumber(Converter.DEFAULT_SCREEN_WIDTH), (int) Converter.getProportionalNumber(Converter.DEFAULT_SCREEN_HEIGHT), null);
+        double relativeWidth = Converter.getProportionalNumber(Converter.DEFAULT_SCREEN_WIDTH);
+        double relativeHeight = Converter.getProportionalNumber(Converter.DEFAULT_SCREEN_HEIGHT);
+        double centeredY = getCenteredY(relativeHeight);
+        windowGraphics.drawImage(fullHdImage, 0, (int) centeredY, (int) relativeWidth, (int) relativeHeight, null);
+    }
+
+    private double getCenteredY(double relativeHeight) {
+        double fullOriginalHeight = Converter.SCREEN_HEIGHT;
+        return (fullOriginalHeight - relativeHeight) / 2;
     }
 
     public MouseListener getMouseListener() {
