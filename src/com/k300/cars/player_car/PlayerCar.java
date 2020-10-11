@@ -3,14 +3,17 @@ package com.k300.cars.player_car;
 import com.k300.cars.Car;
 import com.k300.io.PlayerKeyListener;
 import com.k300.tracks.Collisions;
+import com.k300.tracks.Obstacle;
 import com.k300.utils.Point;
 
 import java.awt.*;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
 
 public class PlayerCar extends Car {
 
     private final PlayerCarMover mover;
+    private final PlayerCarCorners playerCarCorners;
     private final double SPEED_INCREMENT;
     private final double SPEED_DECREMENT;
     private final double COLLISION_SPEED_DECREMENT;
@@ -30,6 +33,8 @@ public class PlayerCar extends Car {
         COLLISION_SPEED_DECREMENT = 1;
         keyListener = new PlayerKeyListener();
         mover = new PlayerCarMover(this);
+        playerCarCorners = new PlayerCarCorners(this);
+
     }
 
     @Override
@@ -74,14 +79,26 @@ public class PlayerCar extends Car {
 
         if(keyListener.getKeyIsPressed(PlayerKeyListener.RIGHT_ARROW)) {
             mover.turnRight();
+            if(isOffTrack()) {
+                mover.turnLeft();
+            }
         }
         if(keyListener.getKeyIsPressed(PlayerKeyListener.LEFT_ARROW)) {
             mover.turnLeft();
+            if(isOffTrack()) {
+                mover.turnRight();
+            }
         }
     }
 
     private boolean isOffTrack() {
-        return !collisions.onTheTrack(position);
+        ArrayList<Point> fourCarCorners = playerCarCorners.getFourCarCorners();
+        for (Point corner : fourCarCorners) {
+            if(!collisions.onTheTrack(corner)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private void resetSpeed() {

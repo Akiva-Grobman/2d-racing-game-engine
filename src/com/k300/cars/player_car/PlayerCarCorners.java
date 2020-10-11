@@ -4,7 +4,8 @@ package com.k300.cars.player_car;
 import com.k300.cars.Car;
 import com.k300.utils.Point;
 
-import static com.k300.utils.Utils.isInBoundsOf;
+import java.util.ArrayList;
+
 import static com.k300.utils.math.AnalyticalMath.*;
 
 public class PlayerCarCorners {
@@ -28,6 +29,15 @@ public class PlayerCarCorners {
         slant = Math.sqrt(widthFactor*widthFactor + heightFactor*heightFactor);
         slant = slant * 0.85;
         slantAngle = Math.toDegrees(Math.atan(heightFactor / widthFactor));
+    }
+
+    public ArrayList<Point> getFourCarCorners() {
+        ArrayList<Point> fourCarCorners = new ArrayList<>();
+        fourCarCorners.add(getFrontLeftCorner());
+        fourCarCorners.add(getFrontRightCorner());
+        fourCarCorners.add(getRearLeftCorner());
+        fourCarCorners.add(getRearRightCorner());
+        return fourCarCorners;
     }
     
     public Point getFrontLeftCorner() {
