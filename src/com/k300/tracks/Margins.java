@@ -19,9 +19,9 @@ public class Margins {
 
     public Margins(double a, double b) {
         smallA = a / 2;
-        bigA = (a * 1.85) / 2;
-        bigB = (b*1.7) / 2;
         smallB = b / 2;
+        bigA = (a * 1.98) / 2;
+        bigB = (b * 1.97) / 2;
 
         positiveSmallC = getPositiveC(smallA, smallB);
         negativeSmallC = getNegativeC(smallA, smallB);

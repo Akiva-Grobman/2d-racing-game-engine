@@ -67,7 +67,9 @@ public class Window {
     }
 
     public void clear() {
-        canvas.getBufferStrategy().getDrawGraphics().fillRect(0, 0, WIDTH, HEIGHT);
+        Graphics graphics = getGraphics();
+        graphics.setColor(Color.black);
+        graphics.fillRect(0, 0, WIDTH, HEIGHT);
     }
 
     public int getFrameHeight() {

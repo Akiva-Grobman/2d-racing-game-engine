@@ -6,6 +6,7 @@ import com.k300.graphics.Assets;
 import com.k300.states.GameState;
 import com.k300.states.State;
 import com.k300.utils.Point;
+import com.k300.utils.math.Converter;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -24,8 +25,8 @@ public class Track {
         this.gameState = gameState;
         ObstacleManager obstacleManager = new ObstacleManager();
         //set margins
-        a = 750;
-        b = 410;
+        a = 750*1.19;
+        b = 410*1.15;
         Margins margins = new Margins(a, b);
         Collisions collisions = new Collisions(margins, obstacleManager);
         obstacleManager.addObstacle(new Obstacle(900, 800, 200));
@@ -44,20 +45,20 @@ public class Track {
     }
 
     public void render(Graphics graphics) {
-        int width = gameState.getWindowWidth();
-        int height = gameState.getWindowHeight();
+        int width = Converter.DEFAULT_SCREEN_WIDTH;
+        int height = Converter.DEFAULT_SCREEN_HEIGHT;
         graphics.drawImage(Assets.getImage(Assets.TRACK_KEY), 0, 0, width, height, null);
         for (Car car: cars) {
             car.render((Graphics2D) graphics);
         }
-        //Testing
-//        double xLocation = SCREEN_WIDTH/2;
-//        double yLocation = SCREEN_HEIGHT/2;
-//        double bigA = a * 1.85;
-//        double bigB = b * 1.7;
-//
-//        graphics.drawOval((int)(xLocation-a/2), (int)(yLocation-b/2), (int) a, (int) b);
-//        graphics.drawOval((int)(xLocation-bigA/2), (int)(yLocation-bigB/2), (int) bigA, (int) bigB);
+    //Testing
+        double xLocation = width/2;
+        double yLocation = height/2;
+        double bigA = a * 1.98;
+        double bigB = b * 1.97;
+
+        graphics.drawOval((int)(xLocation-a/2), (int)(yLocation-b/2), (int) a, (int) b);
+        graphics.drawOval((int)(xLocation-bigA/2), (int)(yLocation-bigB/2), (int) bigA, (int) bigB);
     }
 
 }

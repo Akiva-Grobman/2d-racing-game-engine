@@ -4,29 +4,32 @@ import java.awt.*;
 
 public class Converter {
 
+    public static final int DEFAULT_SCREEN_WIDTH = 1920;
+    public static final int DEFAULT_SCREEN_HEIGHT = 1080;
+
     private static final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-    private static final double SCREEN_WIDTH = screenSize.getWidth();
-    private static final double SCREEN_HEIGHT = screenSize.getHeight();
+    public static final double SCREEN_WIDTH = screenSize.getWidth();
+    public static final double SCREEN_HEIGHT = screenSize.getHeight();
 
 
     public static double getProportionalNumber(double number) {
-        return number * (1920 / SCREEN_WIDTH);
+        return number * (SCREEN_WIDTH / DEFAULT_SCREEN_WIDTH);
     }
 
     public static double getAxisX(double x){
-        return x - (SCREEN_WIDTH / 2.0);
+        return x - (DEFAULT_SCREEN_WIDTH / 2.0);
     }
 
     public static double getAxisY(double y){
-        return  - (y - (SCREEN_HEIGHT / 2.0));
+        return  - (y - (DEFAULT_SCREEN_HEIGHT / 2.0));
     }
 
     public static double getFrameX(double x) {
-        return (SCREEN_WIDTH / 2.0) + x;
+        return (DEFAULT_SCREEN_WIDTH / 2.0) + x;
     }
 
     public static double getFrameY(double y) {
-        return (SCREEN_HEIGHT / 2.0) - y;
+        return (DEFAULT_SCREEN_HEIGHT / 2.0) - y;
     }
 
     public static double getDistance(int x1, int y1, int x2, int y2) {
