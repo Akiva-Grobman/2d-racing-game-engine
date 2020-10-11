@@ -1,5 +1,6 @@
 package com.k300.tracks;
 
+import com.k300.utils.Point;
 import com.k300.utils.math.Converter;
 
 import java.awt.geom.Point2D;
@@ -42,7 +43,7 @@ public class Margins {
         return -( Math.sqrt( (Math.pow(a, 2) - Math.pow(b, 2)) ) );
     }
 
-    public boolean onTheTrack(double carX, double carY) {
+    public boolean onTheTrack(Point position) {
         double axisX;
         double axisY;
         double smallDistance1;
@@ -50,8 +51,8 @@ public class Margins {
         double bigDistance1;
         double bigDistance2;
 
-        axisX = Converter.getAxisX(carX);
-        axisY = Converter.getAxisY(carY);
+        axisX = Converter.getAxisX(position.x);
+        axisY = Converter.getAxisY(position.y);
 
         smallDistance1 = getDistance(positiveSmallC, 0, axisX, axisY);
         smallDistance2 = getDistance(negativeSmallC, 0, axisX, axisY);
