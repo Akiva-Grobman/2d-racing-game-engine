@@ -7,9 +7,11 @@ import com.k300.io.MouseListener;
 import com.k300.states.GameState;
 import com.k300.states.StateManager;
 import com.k300.ui.OpenFadeListener;
+import com.k300.utils.math.Converter;
 
 import java.awt.*;
 import java.awt.event.KeyListener;
+import java.awt.image.BufferedImage;
 
 public class Launcher {
 
@@ -56,12 +58,15 @@ public class Launcher {
         mouseListener = new MouseListener();
         window.addMouseListener(mouseListener);
         setKeyListener(new com.k300.io.KeyListener());
-        StateManager.setCurrentState(
-                new OpeningFadeState(this,
-                    Assets.getImage(Assets.K_300_LOGO_KEY),
-                    new OpenFadeListener()
-                )
-        );
+//        StateManager.setCurrentState(
+//                new OpeningFadeState(this,
+//                    Assets.getImage(Assets.K_300_LOGO_KEY),
+//                    new OpenFadeListener()
+//                )
+//        );
+
+        //Testing
+        StateManager.setCurrentState(new GameState(this));
     }
 
     private void runGameLoop() {
@@ -108,7 +113,10 @@ public class Launcher {
         Graphics graphics = window.getGraphics();
         window.clear();
         if(StateManager.getCurrentState() != null) {
-            StateManager.getCurrentState().render(graphics);
+            BufferedImage originalImage = new BufferedImage(Converter.DEFAULT_SCREEN_WIDTH, Converter.DEFAULT_SCREEN_HEIGHT, Assets.getImage(Assets.TRACK_KEY).getType());
+            Graphics originalGraphics = originalImage.getGraphics();
+            StateManager.getCurrentState().render(originalGraphics);
+            graphics.drawImage(originalImage, 0, 0, (int) Converter.SCREEN_WIDTH, (int) Converter.getProportionalNumber(Converter.DEFAULT_SCREEN_HEIGHT), null);
             graphics.drawString("FPS: " + fps, 30, 60);
         }
         window.show();
