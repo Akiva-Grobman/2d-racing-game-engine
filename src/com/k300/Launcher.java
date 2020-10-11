@@ -116,7 +116,7 @@ public class Launcher {
             BufferedImage originalImage = new BufferedImage(Converter.DEFAULT_SCREEN_WIDTH, Converter.DEFAULT_SCREEN_HEIGHT, Assets.getImage(Assets.TRACK_KEY).getType());
             Graphics originalGraphics = originalImage.getGraphics();
             StateManager.getCurrentState().render(originalGraphics);
-            graphics.drawImage(originalImage, 0, 0, (int) Converter.SCREEN_WIDTH, (int) Converter.getProportionalNumber(Converter.DEFAULT_SCREEN_HEIGHT), null);
+            graphics.drawImage(originalImage, 0, 0, (int) Converter.getProportionalNumber(Converter.DEFAULT_SCREEN_WIDTH), (int) Converter.getProportionalNumber(Converter.DEFAULT_SCREEN_HEIGHT), null);
             graphics.drawString("FPS: " + fps, 30, 60);
         }
         window.show();
