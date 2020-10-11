@@ -110,16 +110,24 @@ public class Launcher {
     }
 
     private void render() {
-        Graphics graphics = window.getGraphics();
+        Graphics windowGraphics = window.getGraphics();
         window.clear();
         if(StateManager.getCurrentState() != null) {
-            BufferedImage originalImage = new BufferedImage(Converter.DEFAULT_SCREEN_WIDTH, Converter.DEFAULT_SCREEN_HEIGHT, Assets.getImage(Assets.TRACK_KEY).getType());
-            Graphics originalGraphics = originalImage.getGraphics();
-            StateManager.getCurrentState().render(originalGraphics);
-            graphics.drawImage(originalImage, 0, 0, (int) Converter.getProportionalNumber(Converter.DEFAULT_SCREEN_WIDTH), (int) Converter.getProportionalNumber(Converter.DEFAULT_SCREEN_HEIGHT), null);
-            graphics.drawString("FPS: " + fps, 30, 60);
+            BufferedImage fullHdImage = getFullHdImage();
+            Graphics hdGraphics = fullHdImage.getGraphics();
+            StateManager.getCurrentState().render(hdGraphics);
+            drawImageRelativeToScreen(windowGraphics, fullHdImage);
+            windowGraphics.drawString("FPS: " + fps, 30, 60);
         }
         window.show();
+    }
+
+    private BufferedImage getFullHdImage() {
+        return new BufferedImage(Converter.DEFAULT_SCREEN_WIDTH, Converter.DEFAULT_SCREEN_HEIGHT, Assets.getImage(Assets.TRACK_KEY).getType());
+    }
+
+    private void drawImageRelativeToScreen(Graphics windowGraphics, BufferedImage fullHdImage) {
+        windowGraphics.drawImage(fullHdImage, 0, 0, (int) Converter.getProportionalNumber(Converter.DEFAULT_SCREEN_WIDTH), (int) Converter.getProportionalNumber(Converter.DEFAULT_SCREEN_HEIGHT), null);
     }
 
     public MouseListener getMouseListener() {
