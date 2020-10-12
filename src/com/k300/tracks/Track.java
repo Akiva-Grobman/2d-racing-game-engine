@@ -25,8 +25,11 @@ public class Track {
 
         Margins margins = new Margins();
         Collisions collisions = new Collisions(margins, obstacleManager);
-        obstacleManager.addObstacle(new Obstacle(900, 800, 300));
-        obstacleManager.addObstacle(new Obstacle(900, 250, 100));
+        obstacleManager.addObstacle(new Obstacle(1300, 550, 500));
+        obstacleManager.addObstacle(new Obstacle(1070, -150, 700));
+        obstacleManager.addObstacle(new Obstacle(-350, 550, 1100));
+        obstacleManager.addObstacle(new Obstacle(650, 480, 500));
+        obstacleManager.addObstacle(new Obstacle(300, 1250, 900));
         //set cars
         cars = new Car[1];
         // testing this should be information given from the server
