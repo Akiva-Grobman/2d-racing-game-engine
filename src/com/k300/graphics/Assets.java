@@ -56,12 +56,17 @@ public class Assets {
     private void addTrackImages() {
         final BufferedImage track = loadImage(TRACK_DIR + TRACK_KEY, TYPE_JPG);
         Graphics trackGraphics = track.getGraphics();
-        trackGraphics.drawImage(getTrackLayer("Road"), 0, 0, track.getWidth(), track.getHeight(), null);
-        trackGraphics.drawImage(getTrackLayer("InsideMargin"), 0, 0, track.getWidth(), track.getHeight(), null);
+
+        BufferedImage road = getTrackLayer("Road");
+        trackGraphics.drawImage(road, (1920 - road.getWidth()) / 2, (1080 - road.getHeight()) / 2, road.getWidth(), road.getHeight(), null);
+
+        BufferedImage trackMiddle = getTrackLayer("InsideMargin");
+        trackGraphics.drawImage(trackMiddle, (1920 - trackMiddle.getWidth()) / 2, (1080 - trackMiddle.getHeight()) / 2, trackMiddle.getWidth(), trackMiddle.getHeight(), null);
+
         images.put(INIT_IMAGE_KEY, loadImage(TRACK_DIR + INIT_IMAGE_KEY, TYPE_JPG));
         images.put(TRACK_KEY, track);
-        images.put(ROAD_KEY, loadImage(TRACK_DIR + ROAD_KEY, TYPE_PNG));
-        images.put(TRACK_MIDDLE_KEY, loadImage(TRACK_DIR + TRACK_MIDDLE_KEY, TYPE_PNG));
+        images.put(ROAD_KEY, road);
+        images.put(TRACK_MIDDLE_KEY, trackMiddle);
         images.put(TRACK_MIDDLE_FILL_KEY, loadImage(TRACK_DIR + TRACK_MIDDLE_FILL_KEY, TYPE_PNG));
         images.put(TRACK_OUTSIDE_KEY, loadImage(TRACK_DIR + TRACK_OUTSIDE_KEY, TYPE_PNG));
     }

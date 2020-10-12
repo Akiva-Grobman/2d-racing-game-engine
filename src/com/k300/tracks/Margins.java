@@ -20,15 +20,15 @@ public class Margins {
 
 
     public Margins() {
-        double a = Assets.getImage(Assets.TRACK_MIDDLE_KEY).getWidth();
-        double b = Assets.getImage(Assets.TRACK_MIDDLE_KEY).getHeight();
+        double middleWidth = Assets.getImage(Assets.TRACK_MIDDLE_KEY).getWidth();
+        double middleHeight = Assets.getImage(Assets.TRACK_MIDDLE_KEY).getHeight();
+        double roadWidth = Assets.getImage(Assets.ROAD_KEY).getWidth();
+        double roadHeight = Assets.getImage(Assets.ROAD_KEY).getHeight();
 
-
-
-        smallA = a / 2;
-        smallB = b / 2;
-        bigA = (a * 1.98) / 2;
-        bigB = (b * 1.97) / 2;
+        smallA = middleWidth / 2;
+        smallB = middleHeight / 2;
+        bigA = roadWidth / 2;
+        bigB = roadHeight / 2;
 
         positiveSmallC = getPositiveC(smallA, smallB);
         negativeSmallC = getNegativeC(smallA, smallB);

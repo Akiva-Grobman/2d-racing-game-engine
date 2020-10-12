@@ -18,15 +18,11 @@ public class Track {
     private static final double SCREEN_HEIGHT = screenSize.getHeight();
     private final Car[] cars;
     private final State gameState;
-    private final double a;
-    private final double b;
 
     public Track(State gameState) {
         this.gameState = gameState;
         ObstacleManager obstacleManager = new ObstacleManager();
-        //set margins
-        a = 750*1.19;
-        b = 410*1.15;
+
         Margins margins = new Margins();
         Collisions collisions = new Collisions(margins, obstacleManager);
         obstacleManager.addObstacle(new Obstacle(900, 800, 300));
@@ -54,11 +50,13 @@ public class Track {
     //Testing
         double xLocation = width/2;
         double yLocation = height/2;
-        double bigA = a * 1.98;
-        double bigB = b * 1.97;
+        double middleWidth = Assets.getImage(Assets.TRACK_MIDDLE_KEY).getWidth();
+        double middleHeight = Assets.getImage(Assets.TRACK_MIDDLE_KEY).getHeight();
+        double roadWidth = Assets.getImage(Assets.ROAD_KEY).getWidth();
+        double roadHeight = Assets.getImage(Assets.ROAD_KEY).getHeight();
 
-        graphics.drawOval((int)(xLocation-a/2), (int)(yLocation-b/2), (int) a, (int) b);
-        graphics.drawOval((int)(xLocation-bigA/2), (int)(yLocation-bigB/2), (int) bigA, (int) bigB);
+        graphics.drawOval((int)(xLocation-middleWidth/2), (int)(yLocation-middleHeight/2), (int) middleWidth, (int) middleHeight);
+        graphics.drawOval((int)(xLocation-roadWidth/2), (int)(yLocation-roadHeight/2), (int) roadWidth, (int) roadHeight);
     }
 
 }
