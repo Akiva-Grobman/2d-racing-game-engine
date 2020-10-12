@@ -1,5 +1,6 @@
 package com.k300.tracks;
 
+import com.k300.graphics.Assets;
 import com.k300.utils.Point;
 import com.k300.utils.math.Converter;
 
@@ -18,11 +19,16 @@ public class Margins {
 
 
 
-    public Margins(double a, double b) {
-        smallA = a / 2;
-        smallB = b / 2;
-        bigA = (a * 1.98) / 2;
-        bigB = (b * 1.97) / 2;
+    public Margins() {
+        double middleWidth = Assets.getImage(Assets.TRACK_MIDDLE_KEY).getWidth();
+        double middleHeight = Assets.getImage(Assets.TRACK_MIDDLE_KEY).getHeight();
+        double roadWidth = Assets.getImage(Assets.ROAD_KEY).getWidth();
+        double roadHeight = Assets.getImage(Assets.ROAD_KEY).getHeight();
+
+        smallA = middleWidth / 2;
+        smallB = middleHeight / 2;
+        bigA = roadWidth / 2;
+        bigB = roadHeight / 2;
 
         positiveSmallC = getPositiveC(smallA, smallB);
         negativeSmallC = getNegativeC(smallA, smallB);
