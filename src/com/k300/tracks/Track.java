@@ -33,7 +33,7 @@ public class Track {
         //set cars
         cars = new Car[1];
         // testing this should be information given from the server
-        cars[0] = new PlayerCar(Assets.BLUE_CAR_KEY, new Point(500, 700), collisions);
+        cars[0] = new PlayerCar(Assets.BLUE_CAR_KEY, new Point(800, 880), collisions);
         ((GameState)gameState).setKeyListener(((PlayerCar)cars[0]).getKeyListener());
     }
 
