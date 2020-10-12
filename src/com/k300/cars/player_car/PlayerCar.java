@@ -3,10 +3,8 @@ package com.k300.cars.player_car;
 import com.k300.cars.Car;
 import com.k300.io.PlayerKeyListener;
 import com.k300.tracks.Collisions;
-import com.k300.tracks.Obstacle;
 import com.k300.utils.Point;
 
-import java.awt.*;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
@@ -25,6 +23,14 @@ public class PlayerCar extends Car {
     private int keyReleased;
     private boolean frontalCollision;
     private boolean rearCollision;
+    private boolean isLegalRound;
+
+    //todo remove testing
+    public boolean isLegalRound() {
+        return isLegalRound;
+    }
+
+    // todo end of testing
 
     public PlayerCar(String carColor, Point startingPosition, Collisions collisions) {
         super(carColor, startingPosition);
@@ -33,6 +39,7 @@ public class PlayerCar extends Car {
         SPEED_DECREMENT = 0.3;
         COLLISION_SPEED_DECREMENT = 1;
         roundCount = 1;
+        isLegalRound = true;
         keyListener = new PlayerKeyListener();
         mover = new PlayerCarMover(this);
         playerCarCorners = new PlayerCarCorners(this);
@@ -40,6 +47,7 @@ public class PlayerCar extends Car {
 
     @Override
     public void tick() {
+        resetIsLegalRound();
         if(frontalCollision || rearCollision) {
             collisionEffect();
         } else if (keyListener.getKeyIsPressed(PlayerKeyListener.UP_ARROW)) {
@@ -52,10 +60,11 @@ public class PlayerCar extends Car {
                 mover.driveBackwards();
                 frontalCollision = true;
             }
-            if((angleIsInBoundsOf(angle, 270,360) || angleIsInBoundsOf(angle, 0, 90))
-                    && isOnStartingLine()) {
-                //todo fix low speed more than one round added
-                roundCount++;
+            if(isLegalRound && (angleIsInBoundsOf(angle, 270,360) || angleIsInBoundsOf(angle, 0, 90))) {
+                if (isOnStartingLine()) {
+                    isLegalRound = false;
+                    roundCount++;
+                }
             }
             keyReleased = PlayerKeyListener.UP_ARROW;
         } else if (keyListener.getKeyIsPressed(PlayerKeyListener.DOWN_ARROW)) {
@@ -96,12 +105,20 @@ public class PlayerCar extends Car {
         }
     }
 
+    private void resetIsLegalRound() {
+        if(isOnStartingLine()) {
+            // if wrong side of moving backwards this will equal false
+            isLegalRound = !angleIsInBoundsOf(angle, 90, 270) &&
+                    !keyListener.getKeyIsPressed(PlayerKeyListener.DOWN_ARROW);
+        }
+    }
+
     public int getRoundCount() {
         return roundCount;
     }
 
     private boolean isOnStartingLine() {
-        return collisions.isOnStartingLine(position);
+        return collisions.isOnStartingLine(playerCarCorners);
     }
 
     private boolean isOffTrack() {

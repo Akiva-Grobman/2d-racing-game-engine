@@ -30,8 +30,8 @@ public class Track {
         Margins margins = new Margins(a, b);
         // add obstacles
         Collisions collisions = new Collisions(margins, obstacleManager);
-        obstacleManager.addObstacle(new Obstacle(900, 800, 200));
-        obstacleManager.addObstacle(new Obstacle(900, 250, 100));
+//        obstacleManager.addObstacle(new Obstacle(900, 800, 200));
+//        obstacleManager.addObstacle(new Obstacle(900, 250, 100));
         // add start line
         addStartLine(margins);
         //set cars
