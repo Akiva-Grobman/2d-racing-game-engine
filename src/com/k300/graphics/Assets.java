@@ -9,9 +9,11 @@ import static com.k300.utils.Utils.resizeImage;
 public class Assets {
 
     public static final String K_300_LOGO_KEY = "background";
+    public static final String INIT_IMAGE_KEY = "InitImage";
     public static final String TRACK_KEY = "Track";
     public static final String ROAD_KEY = "Road";
-    public static final String TRACK_MIDDLE_KEY = "InsideMarginFill";
+    public static final String TRACK_MIDDLE_KEY = "InsideMargin";
+    public static final String TRACK_MIDDLE_FILL_KEY = "InsideMarginFill";
     public static final String TRACK_OUTSIDE_KEY = "OutsideMargin";
     public static final String OBSTACLE_KEY = "obstacle";
     public static final String RED_CAR_KEY = "car_red";
@@ -39,6 +41,7 @@ public class Assets {
     private Assets() {
         images = new Hashtable<>();
         images.put(K_300_LOGO_KEY, loadImage(K_300_LOGO_KEY, TYPE_JPG));
+        images.put(INIT_IMAGE_KEY, loadImage(K_300_LOGO_KEY, TYPE_JPG));
         images.put(OBSTACLE_KEY, loadImage(TRACK_DIR + OBSTACLE_KEY, TYPE_PNG));
         addTrackImages();
         addCarImage(RED_CAR_KEY);
@@ -55,10 +58,11 @@ public class Assets {
         Graphics trackGraphics = track.getGraphics();
         trackGraphics.drawImage(getTrackLayer("Road"), 0, 0, track.getWidth(), track.getHeight(), null);
         trackGraphics.drawImage(getTrackLayer("InsideMargin"), 0, 0, track.getWidth(), track.getHeight(), null);
-        trackGraphics.drawImage(getTrackLayer("OutsideMargin"), 0, 0, track.getWidth(), track.getHeight(), null);
+        images.put(INIT_IMAGE_KEY, loadImage(TRACK_DIR + INIT_IMAGE_KEY, TYPE_JPG));
         images.put(TRACK_KEY, track);
         images.put(ROAD_KEY, loadImage(TRACK_DIR + ROAD_KEY, TYPE_PNG));
         images.put(TRACK_MIDDLE_KEY, loadImage(TRACK_DIR + TRACK_MIDDLE_KEY, TYPE_PNG));
+        images.put(TRACK_MIDDLE_FILL_KEY, loadImage(TRACK_DIR + TRACK_MIDDLE_FILL_KEY, TYPE_PNG));
         images.put(TRACK_OUTSIDE_KEY, loadImage(TRACK_DIR + TRACK_OUTSIDE_KEY, TYPE_PNG));
     }
 

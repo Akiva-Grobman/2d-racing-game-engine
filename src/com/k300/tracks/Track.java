@@ -27,9 +27,9 @@ public class Track {
         //set margins
         a = 750*1.19;
         b = 410*1.15;
-        Margins margins = new Margins(a, b);
+        Margins margins = new Margins();
         Collisions collisions = new Collisions(margins, obstacleManager);
-        obstacleManager.addObstacle(new Obstacle(900, 800, 200));
+        obstacleManager.addObstacle(new Obstacle(900, 800, 300));
         obstacleManager.addObstacle(new Obstacle(900, 250, 100));
         //set cars
         cars = new Car[1];
