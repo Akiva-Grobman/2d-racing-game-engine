@@ -39,9 +39,9 @@ public abstract class Car {
         graphics.drawImage(carImage, carAngle, null);
 
         graphics.setFont(new Font("TimesRoman", Font.BOLD, 60));
-        graphics.drawString("Angle: " + angle, 600, 350);
-        graphics.drawString("X: " + position.x, 600, 450);
-        graphics.drawString("Y: " + position.y, 600, 550);
+        graphics.drawString("Angle: " + angle, 800, 450);
+        graphics.drawString("X: " + position.x, 800, 550);
+        graphics.drawString("Y: " + position.y, 800, 650);
 
         //Testing
         graphics.fillOval((int)(position.x-25/2) , (int)(position.y-25/2), 25, 25);

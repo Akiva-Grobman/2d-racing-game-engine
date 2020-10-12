@@ -51,15 +51,15 @@ public class Track {
             car.render((Graphics2D) graphics);
         }
     //Testing
-        double xLocation = width/2;
-        double yLocation = height/2;
-        double middleWidth = Assets.getImage(Assets.TRACK_MIDDLE_KEY).getWidth();
-        double middleHeight = Assets.getImage(Assets.TRACK_MIDDLE_KEY).getHeight();
-        double roadWidth = Assets.getImage(Assets.ROAD_KEY).getWidth();
-        double roadHeight = Assets.getImage(Assets.ROAD_KEY).getHeight();
-
-        graphics.drawOval((int)(xLocation-middleWidth/2), (int)(yLocation-middleHeight/2), (int) middleWidth, (int) middleHeight);
-        graphics.drawOval((int)(xLocation-roadWidth/2), (int)(yLocation-roadHeight/2), (int) roadWidth, (int) roadHeight);
+//        double xLocation = width/2;
+//        double yLocation = height/2;
+//        double middleWidth = Assets.getImage(Assets.TRACK_MIDDLE_KEY).getWidth();
+//        double middleHeight = Assets.getImage(Assets.TRACK_MIDDLE_KEY).getHeight();
+//        double roadWidth = Assets.getImage(Assets.ROAD_KEY).getWidth();
+//        double roadHeight = Assets.getImage(Assets.ROAD_KEY).getHeight();
+//
+//        graphics.drawOval((int)(xLocation-middleWidth/2), (int)(yLocation-middleHeight/2), (int) middleWidth, (int) middleHeight);
+//        graphics.drawOval((int)(xLocation-roadWidth/2), (int)(yLocation-roadHeight/2), (int) roadWidth, (int) roadHeight);
     }
 
 }
