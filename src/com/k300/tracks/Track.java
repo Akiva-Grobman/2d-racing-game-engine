@@ -24,6 +24,7 @@ public class Track {
         ObstacleManager obstacleManager = new ObstacleManager();
 
         Margins margins = new Margins();
+        StartLine startLine = new StartLine(margins.getFrameBigBPoint(), margins.getFrameSmallBPoint());
         Collisions collisions = new Collisions(margins, obstacleManager);
         obstacleManager.addObstacle(new Obstacle(1300, 550, 500));
         obstacleManager.addObstacle(new Obstacle(1070, -150, 700));
@@ -33,7 +34,7 @@ public class Track {
         //set cars
         cars = new Car[1];
         // testing this should be information given from the server
-        cars[0] = new PlayerCar(Assets.BLUE_CAR_KEY, new Point(800, 880), collisions);
+        cars[0] = new PlayerCar(Assets.BLUE_CAR_KEY, new Point(800, 880), collisions, startLine);
         ((GameState)gameState).setKeyListener(((PlayerCar)cars[0]).getKeyListener());
     }
 
@@ -50,7 +51,7 @@ public class Track {
         for (Car car: cars) {
             car.render((Graphics2D) graphics);
         }
-    //Testing
+        //Testing
 //        double xLocation = width/2;
 //        double yLocation = height/2;
 //        double middleWidth = Assets.getImage(Assets.TRACK_MIDDLE_KEY).getWidth();

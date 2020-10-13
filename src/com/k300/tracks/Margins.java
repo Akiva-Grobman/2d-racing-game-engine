@@ -17,8 +17,6 @@ public class Margins {
     private double positiveBigC;
     private double negativeBigC;
 
-
-
     public Margins() {
         double middleWidth = Assets.getImage(Assets.TRACK_MIDDLE_KEY).getWidth();
         double middleHeight = Assets.getImage(Assets.TRACK_MIDDLE_KEY).getHeight();
@@ -69,5 +67,17 @@ public class Margins {
         double smallDistance = smallDistance1 + smallDistance2;
         double bigDistance = bigDistance1 + bigDistance2;
         return (smallDistance > (2 * smallA) && bigDistance < (2 * bigA));
+    }
+
+    public Point getFrameSmallBPoint() {
+        double x = Converter.getFrameX(0);
+        double y = Converter.getFrameY(-smallB); //need negative B because the start line is on the lower part of the screen
+        return new Point(x, y);
+    }
+
+    public Point getFrameBigBPoint() {
+        double x = Converter.getFrameX(0);
+        double y = Converter.getFrameY(-bigB); //need negative B because the start line is on the lower part of the screen
+        return new Point(x, y);
     }
 }

@@ -1,5 +1,6 @@
 package com.k300.cars;
 
+import com.k300.cars.player_car.PlayerCar;
 import com.k300.cars.player_car.PlayerCarCorners;
 import com.k300.graphics.Assets;
 import com.k300.utils.Point;
@@ -14,6 +15,7 @@ public abstract class Car {
     public double speed;
     public Point position;
     public double angle;
+    public int rounds;
     public BufferedImage carImage;
 
     private final PlayerCarCorners playerCarCorners;
@@ -42,6 +44,10 @@ public abstract class Car {
         graphics.drawString("Angle: " + angle, 800, 450);
         graphics.drawString("X: " + position.x, 800, 550);
         graphics.drawString("Y: " + position.y, 800, 650);
+
+        graphics.drawString("Rounds: " + this.rounds, 200, 200);
+
+        graphics.fillRect(960,0, 10, 2000);
 
         //Testing
         graphics.fillOval((int)(position.x-25/2) , (int)(position.y-25/2), 25, 25);
