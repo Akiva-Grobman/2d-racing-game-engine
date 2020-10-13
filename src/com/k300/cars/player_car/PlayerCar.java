@@ -4,6 +4,7 @@ import com.k300.cars.Car;
 import com.k300.io.PlayerKeyListener;
 import com.k300.tracks.Collisions;
 import com.k300.tracks.Obstacle;
+import com.k300.tracks.StartLine;
 import com.k300.utils.Point;
 
 import java.awt.*;
@@ -12,29 +13,34 @@ import java.util.ArrayList;
 
 public class PlayerCar extends Car {
 
+    public final PlayerCarCorners playerCarCorners;
     private final PlayerCarMover mover;
-    private final PlayerCarCorners playerCarCorners;
     private final double SPEED_INCREMENT;
     private final double SPEED_DECREMENT;
     private final double COLLISION_SPEED_DECREMENT;
+    private final int FORWARDS;
+    private final int BACKWARDS;
 
     private final PlayerKeyListener keyListener;
     private final Collisions collisions;
     private int keyReleased;
     private boolean frontalCollision;
     private boolean rearCollision;
+    public StartLine startLine;
 
 
-    public PlayerCar(String carColor, Point startingPosition, Collisions collisions) {
+    public PlayerCar(String carColor, Point startingPosition, Collisions collisions, StartLine startLine) {
         super(carColor, startingPosition);
         this.collisions = collisions;
         SPEED_INCREMENT = 0.2;
         SPEED_DECREMENT = 0.3;
         COLLISION_SPEED_DECREMENT = 1;
+        FORWARDS = 1;
+        BACKWARDS = -1;
         keyListener = new PlayerKeyListener();
         mover = new PlayerCarMover(this);
         playerCarCorners = new PlayerCarCorners(this);
-
+        this.startLine = startLine;
     }
 
     @Override
@@ -51,6 +57,11 @@ public class PlayerCar extends Car {
                 mover.driveBackwards();
                 frontalCollision = true;
             }
+
+            if (startLine.hasLegalCrossStartLine(this, FORWARDS)) {
+                this.rounds++;
+            }
+
             keyReleased = PlayerKeyListener.UP_ARROW;
         } else if (keyListener.getKeyIsPressed(PlayerKeyListener.DOWN_ARROW)) {
             if(hasChangedDriveDirection(PlayerKeyListener.DOWN_ARROW)) {
@@ -62,6 +73,11 @@ public class PlayerCar extends Car {
                 mover.driveForwards();
                 rearCollision = true;
             }
+
+            if (startLine.hasLegalCrossStartLine(this, BACKWARDS)) {
+                this.rounds++;
+            }
+
             keyReleased = PlayerKeyListener.DOWN_ARROW;
         } else if (keyReleased == PlayerKeyListener.UP_ARROW){
             decreaseSpeed(SPEED_DECREMENT);

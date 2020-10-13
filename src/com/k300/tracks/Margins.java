@@ -1,5 +1,6 @@
 package com.k300.tracks;
 
+import com.k300.graphics.Assets;
 import com.k300.utils.Point;
 import com.k300.utils.math.Converter;
 
@@ -16,13 +17,16 @@ public class Margins {
     private double positiveBigC;
     private double negativeBigC;
 
+    public Margins() {
+        double middleWidth = Assets.getImage(Assets.TRACK_MIDDLE_KEY).getWidth();
+        double middleHeight = Assets.getImage(Assets.TRACK_MIDDLE_KEY).getHeight();
+        double roadWidth = Assets.getImage(Assets.ROAD_KEY).getWidth();
+        double roadHeight = Assets.getImage(Assets.ROAD_KEY).getHeight();
 
-
-    public Margins(double a, double b) {
-        smallA = a / 2;
-        smallB = b / 2;
-        bigA = (a * 1.98) / 2;
-        bigB = (b * 1.97) / 2;
+        smallA = middleWidth / 2;
+        smallB = middleHeight / 2;
+        bigA = roadWidth / 2;
+        bigB = roadHeight / 2;
 
         positiveSmallC = getPositiveC(smallA, smallB);
         negativeSmallC = getNegativeC(smallA, smallB);
@@ -63,5 +67,17 @@ public class Margins {
         double smallDistance = smallDistance1 + smallDistance2;
         double bigDistance = bigDistance1 + bigDistance2;
         return (smallDistance > (2 * smallA) && bigDistance < (2 * bigA));
+    }
+
+    public Point getFrameSmallBPoint() {
+        double x = Converter.getFrameX(0);
+        double y = Converter.getFrameY(-smallB); //need negative B because the start line is on the lower part of the screen
+        return new Point(x, y);
+    }
+
+    public Point getFrameBigBPoint() {
+        double x = Converter.getFrameX(0);
+        double y = Converter.getFrameY(-bigB); //need negative B because the start line is on the lower part of the screen
+        return new Point(x, y);
     }
 }

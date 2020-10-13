@@ -18,23 +18,23 @@ public class Track {
     private static final double SCREEN_HEIGHT = screenSize.getHeight();
     private final Car[] cars;
     private final State gameState;
-    private final double a;
-    private final double b;
 
     public Track(State gameState) {
         this.gameState = gameState;
         ObstacleManager obstacleManager = new ObstacleManager();
-        //set margins
-        a = 750*1.19;
-        b = 410*1.15;
-        Margins margins = new Margins(a, b);
+
+        Margins margins = new Margins();
+        StartLine startLine = new StartLine(margins.getFrameBigBPoint(), margins.getFrameSmallBPoint());
         Collisions collisions = new Collisions(margins, obstacleManager);
-        obstacleManager.addObstacle(new Obstacle(900, 800, 200));
-        obstacleManager.addObstacle(new Obstacle(900, 250, 100));
+        obstacleManager.addObstacle(new Obstacle(1300, 550, 500));
+        obstacleManager.addObstacle(new Obstacle(1070, -150, 700));
+        obstacleManager.addObstacle(new Obstacle(-350, 550, 1100));
+        obstacleManager.addObstacle(new Obstacle(650, 480, 500));
+        obstacleManager.addObstacle(new Obstacle(300, 1250, 900));
         //set cars
         cars = new Car[1];
         // testing this should be information given from the server
-        cars[0] = new PlayerCar(Assets.BLUE_CAR_KEY, new Point(500, 700), collisions);
+        cars[0] = new PlayerCar(Assets.BLUE_CAR_KEY, new Point(800, 880), collisions, startLine);
         ((GameState)gameState).setKeyListener(((PlayerCar)cars[0]).getKeyListener());
     }
 
@@ -52,13 +52,15 @@ public class Track {
             car.render((Graphics2D) graphics);
         }
     //Testing
-        double xLocation = width/2;
-        double yLocation = height/2;
-        double bigA = a * 1.98;
-        double bigB = b * 1.97;
-
-        graphics.drawOval((int)(xLocation-a/2), (int)(yLocation-b/2), (int) a, (int) b);
-        graphics.drawOval((int)(xLocation-bigA/2), (int)(yLocation-bigB/2), (int) bigA, (int) bigB);
+//        double xLocation = width/2;
+//        double yLocation = height/2;
+//        double middleWidth = Assets.getImage(Assets.TRACK_MIDDLE_KEY).getWidth();
+//        double middleHeight = Assets.getImage(Assets.TRACK_MIDDLE_KEY).getHeight();
+//        double roadWidth = Assets.getImage(Assets.ROAD_KEY).getWidth();
+//        double roadHeight = Assets.getImage(Assets.ROAD_KEY).getHeight();
+//
+//        graphics.drawOval((int)(xLocation-middleWidth/2), (int)(yLocation-middleHeight/2), (int) middleWidth, (int) middleHeight);
+//        graphics.drawOval((int)(xLocation-roadWidth/2), (int)(yLocation-roadHeight/2), (int) roadWidth, (int) roadHeight);
     }
 
 }
