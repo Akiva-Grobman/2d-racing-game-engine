@@ -50,9 +50,7 @@ public abstract class Car {
             graphics.setColor(Color.blue);
             final PlayerCar playerCar = (PlayerCar) this;
             int rounds = playerCar.getRoundCount();
-            boolean isLegalRound = playerCar.isLegalRound();
             graphics.drawString("Round: " + rounds, 90, 90);
-            graphics.drawString("Is Legal Round: " + isLegalRound, 90, 150);
             graphics.setColor(Color.red);
         }
 

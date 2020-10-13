@@ -17,7 +17,11 @@ public class Collisions {
         return margins.onTheTrack(position) && !obstacleManager.isCollidingWithObstacle(position);
     }
 
-    public boolean isOnStartingLine(PlayerCarCorners playerCarCorners) {
-        return margins.isOnStartingLine(playerCarCorners);
+    public boolean isOnStartingLine(Point rightCorner, Point leftCorner) {
+        return margins.isOnStartingLine(rightCorner, leftCorner);
+    }
+
+    public boolean isOnStartingLine(Point position) {
+        return margins.isOnStartingLine(position);
     }
 }

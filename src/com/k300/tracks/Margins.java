@@ -96,14 +96,21 @@ public class Margins {
         return -( Math.sqrt( (Math.pow(a, 2) - Math.pow(b, 2)) ) );
     }
 
-    public boolean isOnStartingLine(PlayerCarCorners playerCarCorners) {
-        Point rightCorner = playerCarCorners.getFrontRightCorner();
-        Point leftCorner = playerCarCorners.getFrontLeftCorner();
+    public boolean isOnStartingLine(Point rightCorner, Point leftCorner) {
         AtomicBoolean isOnStartingLine = new AtomicBoolean(false);
         // if one is then they all are
         if(yIsOnStartingLine(leftCorner.y)) {
             // one of the front corners is on the line
             isOnStartingLine.set(xIsOnStartingLine(leftCorner.x) || xIsOnStartingLine(rightCorner.x));
+        }
+        return isOnStartingLine.get();
+    }
+
+    public boolean isOnStartingLine(Point position) {
+        AtomicBoolean isOnStartingLine = new AtomicBoolean(false);
+        if(yIsOnStartingLine(position.y)) {
+            // one of the front corners is on the line
+            isOnStartingLine.set(xIsOnStartingLine(position.x));
         }
         return isOnStartingLine.get();
     }

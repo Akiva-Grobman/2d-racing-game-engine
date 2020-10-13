@@ -24,13 +24,7 @@ public class PlayerCar extends Car {
     private boolean frontalCollision;
     private boolean rearCollision;
     private boolean isLegalRound;
-
-    //todo remove testing
-    public boolean isLegalRound() {
-        return isLegalRound;
-    }
-
-    // todo end of testing
+    private boolean wasOnStartingLine;
 
     public PlayerCar(String carColor, Point startingPosition, Collisions collisions) {
         super(carColor, startingPosition);
@@ -40,6 +34,7 @@ public class PlayerCar extends Car {
         COLLISION_SPEED_DECREMENT = 1;
         roundCount = 1;
         isLegalRound = true;
+        wasOnStartingLine = false;
         keyListener = new PlayerKeyListener();
         mover = new PlayerCarMover(this);
         playerCarCorners = new PlayerCarCorners(this);
@@ -61,9 +56,14 @@ public class PlayerCar extends Car {
                 frontalCollision = true;
             }
             if(isLegalRound && (angleIsInBoundsOf(angle, 270,360) || angleIsInBoundsOf(angle, 0, 90))) {
-                if (isOnStartingLine()) {
+                if (!wasOnStartingLine && isOnStartingLine(playerCarCorners.getFrontRightCorner(), playerCarCorners.getFrontLeftCorner())) {
                     isLegalRound = false;
+                    wasOnStartingLine = true;
                     roundCount++;
+                } else if(wasOnStartingLine) {
+                    if(!isOnStartingLine(playerCarCorners.getRearRightCorner(), playerCarCorners.getRearLeftCorner())) {
+                        wasOnStartingLine = isOnStartingLine(position);
+                    }
                 }
             }
             keyReleased = PlayerKeyListener.UP_ARROW;
@@ -106,7 +106,7 @@ public class PlayerCar extends Car {
     }
 
     private void resetIsLegalRound() {
-        if(isOnStartingLine()) {
+        if(isOnStartingLine(playerCarCorners.getFrontRightCorner(), playerCarCorners.getFrontLeftCorner())) {
             // if wrong side of moving backwards this will equal false
             isLegalRound = !angleIsInBoundsOf(angle, 90, 270) &&
                     !keyListener.getKeyIsPressed(PlayerKeyListener.DOWN_ARROW);
@@ -117,8 +117,12 @@ public class PlayerCar extends Car {
         return roundCount;
     }
 
-    private boolean isOnStartingLine() {
-        return collisions.isOnStartingLine(playerCarCorners);
+    private boolean isOnStartingLine(Point position) {
+        return collisions.isOnStartingLine(position);
+    }
+
+    private boolean isOnStartingLine(Point rightCorner, Point leftCorner) {
+        return collisions.isOnStartingLine(rightCorner, leftCorner);
     }
 
     private boolean isOffTrack() {
