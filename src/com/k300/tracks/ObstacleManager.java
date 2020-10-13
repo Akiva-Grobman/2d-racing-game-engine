@@ -37,7 +37,7 @@ public class ObstacleManager {
     private void resetTrackBackground() {
         BufferedImage track = Assets.getImage(Assets.TRACK_KEY);
         Graphics trackGraphics = track.getGraphics();
-        trackGraphics.drawImage(Assets.getImage(Assets.TRACK_MIDDLE_KEY), 0, 0, track.getWidth(), track.getHeight(), null);
+        trackGraphics.drawImage(Assets.getImage(Assets.TRACK_MIDDLE_FILL_KEY), 0, 0, track.getWidth(), track.getHeight(), null);
         trackGraphics.drawImage(Assets.getImage(Assets.TRACK_OUTSIDE_KEY), 0, 0, track.getWidth(), track.getHeight(), null);
     }
 

@@ -37,18 +37,18 @@ public class Converter {
     }
 
     public static double getFrameXPoint(int xPosition) {
-        return 1920 / 2f + xPosition;
+        return 1920/2 + xPosition;
     }
 
     public static double getFrameYPoint(int yPosition) {
-        return 1080 / 2f - yPosition;
+        return 1080/2 - yPosition;
     }
 
     public static double getAxisXPoint(int xPosition) {
-        return xPosition - 1920 / 2f;
+        return xPosition - 1920/2;
     }
 
     public static double getAxisYPoint(int yPosition) {
-        return -(yPosition - 1080 / 2f);
+        return -(yPosition - 1080/2);
     }
 }

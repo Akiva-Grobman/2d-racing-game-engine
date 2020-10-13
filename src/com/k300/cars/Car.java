@@ -8,7 +8,6 @@ import com.k300.utils.Point;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
-import java.lang.management.PlatformLoggingMXBean;
 
 public abstract class Car {
 
@@ -16,6 +15,7 @@ public abstract class Car {
     public double speed;
     public Point position;
     public double angle;
+    public int rounds;
     public BufferedImage carImage;
 
     private final PlayerCarCorners playerCarCorners;
@@ -41,19 +41,15 @@ public abstract class Car {
         graphics.drawImage(carImage, carAngle, null);
 
         graphics.setFont(new Font("TimesRoman", Font.BOLD, 60));
-        graphics.drawString("Angle: " + angle, 600, 350);
-        graphics.drawString("X: " + position.x, 600, 450);
-        graphics.drawString("Y: " + position.y, 600, 550);
+        graphics.drawString("Angle: " + angle, 800, 450);
+        graphics.drawString("X: " + position.x, 800, 550);
+        graphics.drawString("Y: " + position.y, 800, 650);
+
+        graphics.drawString("Rounds: " + this.rounds, 200, 200);
+
+        graphics.fillRect(960,0, 10, 2000);
 
         //Testing
-        if(this instanceof PlayerCar) {
-            graphics.setColor(Color.blue);
-            final PlayerCar playerCar = (PlayerCar) this;
-            int rounds = playerCar.getRoundCount();
-            graphics.drawString("Round: " + rounds, 90, 90);
-            graphics.setColor(Color.red);
-        }
-
         graphics.fillOval((int)(position.x-25/2) , (int)(position.y-25/2), 25, 25);
 
         Point TopRightCorner = playerCarCorners.getFrontLeftCorner();

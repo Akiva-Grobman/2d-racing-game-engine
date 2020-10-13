@@ -1,53 +1,50 @@
 package com.k300.tracks;
 
-import com.k300.cars.player_car.PlayerCarCorners;
 import com.k300.graphics.Assets;
 import com.k300.utils.Point;
 import com.k300.utils.math.Converter;
 
-import java.awt.*;
 import java.awt.geom.Point2D;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Margins {
 
-    private final double smallA;
-    private final double bigA;
-    private final double smallB;
-    private final double bigB;
-    private final double positiveSmallC;
-    private final double negativeSmallC;
-    private final double positiveBigC;
-    private final double negativeBigC;
-    private final Rectangle startingLineBounds;
+    private double smallA;
+    private double bigA;
+    private double smallB;
+    private double bigB;
+    private double positiveSmallC;
+    private double negativeSmallC;
+    private double positiveBigC;
+    private double negativeBigC;
 
-    public Margins(double a, double b) {
-        smallA = a / 2;
-        smallB = b / 2;
-        bigA = (a * 1.98) / 2;
-        bigB = (b * 1.97) / 2;
+    public Margins() {
+        double middleWidth = Assets.getImage(Assets.TRACK_MIDDLE_KEY).getWidth();
+        double middleHeight = Assets.getImage(Assets.TRACK_MIDDLE_KEY).getHeight();
+        double roadWidth = Assets.getImage(Assets.ROAD_KEY).getWidth();
+        double roadHeight = Assets.getImage(Assets.ROAD_KEY).getHeight();
+
+        smallA = middleWidth / 2;
+        smallB = middleHeight / 2;
+        bigA = roadWidth / 2;
+        bigB = roadHeight / 2;
 
         positiveSmallC = getPositiveC(smallA, smallB);
         negativeSmallC = getNegativeC(smallA, smallB);
 
         positiveBigC = getPositiveC(bigA, bigB);
         negativeBigC = getNegativeC(bigA, bigB);
-
-
-        int width = Assets.getImage(Assets.BLUE_CAR_KEY).getHeight() / 5 * 4;
-        int height = getNegativeBigB() - getNegativeSmallB();
-        int x = Converter.DEFAULT_SCREEN_WIDTH / 2 - width / 2;
-        int y = getNegativeSmallB();
-        startingLineBounds = new Rectangle(x, y, width, height);
     }
 
-    public boolean xIsOnStartingLine(double x) {
-        return x < startingLineBounds.x + startingLineBounds.width &&
-                x > startingLineBounds.x;
+    private double getDistance(double x1, double y1, double x2,  double y2) {
+        return Point2D.distance(x1, y1, x2, y2);
     }
 
-    public boolean yIsOnStartingLine(double y) {
-        return y > getNegativeSmallB() && y < getNegativeBigB();
+    private double getPositiveC(double a, double b) {
+        return Math.sqrt( (Math.pow(a, 2) - Math.pow(b, 2)) );
+    }
+
+    private double getNegativeC(double a, double b) {
+        return -( Math.sqrt( (Math.pow(a, 2) - Math.pow(b, 2)) ) );
     }
 
     public boolean onTheTrack(Point position) {
@@ -72,46 +69,15 @@ public class Margins {
         return (smallDistance > (2 * smallA) && bigDistance < (2 * bigA));
     }
 
-    public Rectangle getStartingLineBounds() {
-        return startingLineBounds;
+    public Point getFrameSmallBPoint() {
+        double x = Converter.getFrameX(0);
+        double y = Converter.getFrameY(-smallB); //need negative B because the start line is on the lower part of the screen
+        return new Point(x, y);
     }
 
-    private int getNegativeSmallB() {
-        return (int) Converter.getFrameY(-smallB);
-    }
-
-    private int getNegativeBigB() {
-        return (int) Converter.getFrameY(-bigB);
-    }
-
-    private double getDistance(double x1, @SuppressWarnings("SameParameterValue") double y1, double x2, double y2) {
-        return Point2D.distance(x1, y1, x2, y2);
-    }
-
-    private double getPositiveC(double a, double b) {
-        return Math.sqrt( (Math.pow(a, 2) - Math.pow(b, 2)) );
-    }
-
-    private double getNegativeC(double a, double b) {
-        return -( Math.sqrt( (Math.pow(a, 2) - Math.pow(b, 2)) ) );
-    }
-
-    public boolean isOnStartingLine(Point rightCorner, Point leftCorner) {
-        AtomicBoolean isOnStartingLine = new AtomicBoolean(false);
-        // if one is then they all are
-        if(yIsOnStartingLine(leftCorner.y)) {
-            // one of the front corners is on the line
-            isOnStartingLine.set(xIsOnStartingLine(leftCorner.x) || xIsOnStartingLine(rightCorner.x));
-        }
-        return isOnStartingLine.get();
-    }
-
-    public boolean isOnStartingLine(Point position) {
-        AtomicBoolean isOnStartingLine = new AtomicBoolean(false);
-        if(yIsOnStartingLine(position.y)) {
-            // one of the front corners is on the line
-            isOnStartingLine.set(xIsOnStartingLine(position.x));
-        }
-        return isOnStartingLine.get();
+    public Point getFrameBigBPoint() {
+        double x = Converter.getFrameX(0);
+        double y = Converter.getFrameY(-bigB); //need negative B because the start line is on the lower part of the screen
+        return new Point(x, y);
     }
 }
