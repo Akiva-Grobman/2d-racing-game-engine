@@ -2,9 +2,11 @@ package com.k300;
 
 import com.k300.display.Window;
 import com.k300.graphics.Assets;
+import com.k300.graphics.OpeningFadeState;
 import com.k300.io.MouseListener;
 import com.k300.states.GameState;
 import com.k300.states.StateManager;
+import com.k300.ui.OpenFadeListener;
 import com.k300.utils.math.Converter;
 
 import java.awt.*;
