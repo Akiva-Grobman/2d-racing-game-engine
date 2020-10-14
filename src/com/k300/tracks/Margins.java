@@ -18,8 +18,8 @@ public class Margins {
     private double negativeBigC;
 
     public Margins() {
-        double middleWidth = Assets.getImage(Assets.TRACK_MIDDLE_KEY).getWidth();
-        double middleHeight = Assets.getImage(Assets.TRACK_MIDDLE_KEY).getHeight();
+        double middleWidth = Assets.getImage(Assets.TRACK_MIDDLE_STROKE_KEY).getWidth();
+        double middleHeight = Assets.getImage(Assets.TRACK_MIDDLE_STROKE_KEY).getHeight();
         double roadWidth = Assets.getImage(Assets.ROAD_KEY).getWidth();
         double roadHeight = Assets.getImage(Assets.ROAD_KEY).getHeight();
 
