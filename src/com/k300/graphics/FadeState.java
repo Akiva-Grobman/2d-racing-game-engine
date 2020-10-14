@@ -32,7 +32,7 @@ public class FadeState extends State {
             fadeStarted();
         }
         long difference = System.currentTimeMillis() - startTime;
-        int duration = SECONDS * 1000;
+        int duration = SECONDS * 1500;
         alpha = difference / (float) duration;
         if(alpha > 1) {
             alpha = 1;
@@ -46,7 +46,7 @@ public class FadeState extends State {
     public void render(Graphics graphics) {
         Graphics2D graphics2D = (Graphics2D) graphics.create();
         graphics2D.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha));
-        graphics2D.drawImage(image, 0, 0, Converter.FHD_SCREEN_WIDTH, Converter.FHD_SCREEN_HEIGHT, null);
+        graphics2D.drawImage(image, 0, 0, Converter.FHD_SCREEN_WIDTH , Converter.FHD_SCREEN_HEIGHT, null);
     }
 
     public void setIsFadingIn(boolean isFadingIn) {

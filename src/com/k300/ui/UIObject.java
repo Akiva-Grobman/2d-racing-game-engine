@@ -1,5 +1,7 @@
 package com.k300.ui;
 
+import com.k300.utils.math.Converter;
+
 import java.awt.*;
 import java.awt.event.MouseEvent;
 
@@ -18,7 +20,11 @@ public abstract class UIObject {
         this.width = width;
         this.height = height;
         isHovering = false;
-        bounds = new Rectangle((int)x, (int)y, width, height);
+
+        // The images drawn relative to FHD screen,
+        // so we need to convert the bounds of the mouse hovering to be relative to the current screen size
+        bounds = new Rectangle((int) Converter.getProportionalNumber(x), (int)Converter.getProportionalNumber(y),
+                (int)Converter.getProportionalNumber(width), (int)Converter.getProportionalNumber(height));
     }
 
     public abstract void tick();
