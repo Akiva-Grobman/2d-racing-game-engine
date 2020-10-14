@@ -6,6 +6,7 @@ import java.awt.*;
 
 import com.k300.graphics.MenuBackground;
 import com.k300.ui.*;
+import com.k300.utils.math.Converter;
 
 public class MenuState extends State {
 
@@ -24,20 +25,20 @@ public class MenuState extends State {
 
     private UIPlayButtonButton getPlayButton(Launcher launcher) {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        int width = screenSize.width / 2;
-        int height = screenSize.height / 4;
-        int x = (screenSize.width - width) / 2;
-        int y = (screenSize.height - height) / 2;
+        int width = Converter.FHD_SCREEN_WIDTH / 2;
+        int height = Converter.FHD_SCREEN_HEIGHT / 4;
+        int x = (Converter.FHD_SCREEN_WIDTH - width) / 2;
+        int y = (Converter.FHD_SCREEN_HEIGHT) / 2;
         ClickListener listener = launcher::startGame;
         return new UIPlayButtonButton(x, y, width, height, listener);
     }
 
     private UIObject getExitButton(UIObject playButton) {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        int width = screenSize.width / 5;
-        int height = (int) ((screenSize.height - (playButton.getY() + playButton.getHeight())) / 3);
-        int x = (screenSize.width - width) / 2;
-        int y = (int) ((screenSize.height + playButton.getHeight() + playButton.getY() - height) / 2);
+        int width = Converter.FHD_SCREEN_WIDTH / 5;
+        int height = (int) ((Converter.FHD_SCREEN_HEIGHT - (playButton.getY() + playButton.getHeight())) / 3);
+        int x = (Converter.FHD_SCREEN_WIDTH - width) / 2;
+        int y = (int) ((Converter.FHD_SCREEN_HEIGHT + playButton.getHeight() + playButton.getY() - height) / 2);
         return new UIExitButton(x, y, width, height);
     }
 

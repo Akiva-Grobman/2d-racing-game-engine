@@ -1,13 +1,13 @@
 package com.k300.graphics;
 
+import com.k300.utils.math.Converter;
+
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.util.function.BooleanSupplier;
 
 public class MenuBackground {
 
-    private static final int SCREEN_WIDTH = Toolkit.getDefaultToolkit().getScreenSize().width;
-    private static final int SCREEN_HEIGHT = Toolkit.getDefaultToolkit().getScreenSize().height;
     private static final int UP_ANGLE = 90;
     private static final int DOWN_ANGLE = 270;
     private final Point redCarPosition;
@@ -16,11 +16,11 @@ public class MenuBackground {
     private int yellowAngle;
 
     public MenuBackground() {
-        final int blueCarY = SCREEN_HEIGHT / 7 * 5;
-        final int redCarY = SCREEN_HEIGHT / 5;
-        final int yellowCarX = SCREEN_WIDTH / 5 * 4;
-        blueCarPosition = new Point(SCREEN_WIDTH - Assets.getImage(Assets.BLUE_CAR_KEY).getWidth(), blueCarY);
-        redCarPosition = new Point(SCREEN_WIDTH / 20, redCarY);
+        final int blueCarY = Converter.FHD_SCREEN_WIDTH / 7 * 5;
+        final int redCarY = Converter.FHD_SCREEN_HEIGHT / 5;
+        final int yellowCarX = Converter.FHD_SCREEN_WIDTH / 5 * 4;
+        blueCarPosition = new Point(Converter.FHD_SCREEN_WIDTH - Assets.getImage(Assets.BLUE_CAR_KEY).getWidth(), blueCarY);
+        redCarPosition = new Point(Converter.FHD_SCREEN_WIDTH / 20, redCarY);
         yellowCarPosition = new Point(yellowCarX, -Assets.getImage(Assets.YELLOW_CAR_KEY).getHeight());
         yellowAngle = 270;
     }
@@ -29,13 +29,13 @@ public class MenuBackground {
         final int speed = 5;
         blueCarPosition.x -= speed;
         blueCarPosition.x = clamp(blueCarPosition.x,
-                SCREEN_WIDTH - Assets.getImage(Assets.BLUE_CAR_KEY).getWidth(),
+                Converter.FHD_SCREEN_WIDTH - Assets.getImage(Assets.BLUE_CAR_KEY).getWidth(),
                 () -> blueCarPosition.x <= -Assets.getImage(Assets.BLUE_CAR_KEY).getWidth()
         );
         redCarPosition.x += speed;
         redCarPosition.x = clamp(redCarPosition.x,
-                SCREEN_WIDTH / 20,
-                () -> redCarPosition.x >= SCREEN_WIDTH);
+                Converter.FHD_SCREEN_WIDTH / 20,
+                () -> redCarPosition.x >= Converter.FHD_SCREEN_WIDTH);
         resetYellowPosition();
         yellowCarPosition.y += getYellowMultiplier() * speed;
     }
@@ -43,10 +43,10 @@ public class MenuBackground {
     private void resetYellowPosition() {
         if(yellowAngle == UP_ANGLE && yellowCarPosition.y <= 0){
             yellowAngle = DOWN_ANGLE;
-            yellowCarPosition.x = SCREEN_WIDTH / 5 * 4;
-        } else if(yellowAngle == DOWN_ANGLE && yellowCarPosition.y >= SCREEN_HEIGHT) {
+            yellowCarPosition.x = Converter.FHD_SCREEN_WIDTH / 5 * 4;
+        } else if(yellowAngle == DOWN_ANGLE && yellowCarPosition.y >= Converter.FHD_SCREEN_WIDTH) {
             yellowAngle = UP_ANGLE;
-            yellowCarPosition.x = SCREEN_WIDTH / 5;
+            yellowCarPosition.x = Converter.FHD_SCREEN_WIDTH / 5;
         }
     }
 
@@ -64,11 +64,11 @@ public class MenuBackground {
 
     public void render(Graphics graphics) {
         // background image
-        graphics.drawImage(Assets.getImage(Assets.TRACK_KEY), 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, null);
+        graphics.drawImage(Assets.getImage(Assets.TRACK_KEY), 0, 0, Converter.FHD_SCREEN_WIDTH, Converter.FHD_SCREEN_HEIGHT, null);
         // draw בס"ד
         graphics.setColor(new Color(93,188,210));
-        graphics.setFont(new Font("Italic", Font.ITALIC, SCREEN_WIDTH / 90));
-        graphics.drawString("בס\"ד", SCREEN_WIDTH / 20 * 19, SCREEN_HEIGHT / 15);
+        graphics.setFont(new Font("Italic", Font.ITALIC, Converter.FHD_SCREEN_WIDTH / 90));
+        graphics.drawString("בס\"ד", Converter.FHD_SCREEN_WIDTH / 20 * 19, Converter.FHD_SCREEN_HEIGHT / 15);
         // draw red car
         graphics.drawImage(Assets.getImage(Assets.RED_CAR_KEY), redCarPosition.x, redCarPosition.y, null);
         // draw blue car
