@@ -1,7 +1,6 @@
 package com.k300.cars;
 
 import com.k300.cars.player_car.PlayerCar;
-import com.k300.cars.player_car.PlayerCarCorners;
 import com.k300.graphics.Assets;
 import com.k300.utils.Point;
 
@@ -11,22 +10,15 @@ import java.awt.image.BufferedImage;
 
 public abstract class Car {
 
-    public double maxSpeed = 15;
-    public double speed;
     public Point position;
     public double angle;
     public int rounds;
     public BufferedImage carImage;
 
-    private final PlayerCarCorners playerCarCorners;
-
     public Car(String carColor, Point startingPosition) {
         carImage = Assets.getImage(carColor);
         position = startingPosition;
         angle = 0;
-        speed = 0;
-
-        playerCarCorners = new PlayerCarCorners(this);
     }
 
     public abstract void tick();
@@ -39,14 +31,15 @@ public abstract class Car {
         carAngle.rotate(Math.toRadians(-angle), carImage.getWidth() / 2f, carImage.getHeight() / 2f); //need Minus because Java is multiplier minus
         graphics.setColor(Color.red);
         graphics.drawImage(carImage, carAngle, null);
+        if(this instanceof PlayerCar) {
 
-        graphics.setFont(new Font("TimesRoman", Font.BOLD, 60));
-        graphics.drawString("Rounds: " + this.rounds, 800, 400);
-        graphics.drawString("Angle: " + angle, 800, 500);
-        graphics.drawString("X: " + position.x, 800, 600);
-        graphics.drawString("Y: " + position.y, 800, 700);
+            graphics.setFont(new Font("TimesRoman", Font.BOLD, 60));
+            graphics.drawString("Rounds: " + rounds, 800, 400);
+            graphics.drawString("Angle: " + angle, 800, 500);
+            graphics.drawString("X: " + position.x, 800, 600);
+            graphics.drawString("Y: " + position.y, 800, 700);
 
-        //Testing
+            //Testing
 
 //        graphics.fillRect(960,0, 10, 2000); //start line
 
@@ -62,6 +55,7 @@ public abstract class Car {
 //        graphics.fillOval((int)(TopLeftCorner.x-10/2) , (int)(TopLeftCorner.y-10/2), 10, 10);
 //        graphics.fillOval((int)(BottomLeftCorner.x-10/2) , (int)(BottomLeftCorner.y-10/2), 10, 10);
 
+        }
     }
 
     public double getX() {
@@ -74,6 +68,10 @@ public abstract class Car {
 
     public double getAngle() {
         return angle;
+    }
+
+    public double getRound() {
+        return rounds;
     }
 
 }

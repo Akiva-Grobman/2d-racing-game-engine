@@ -8,14 +8,14 @@ import java.awt.geom.Point2D;
 
 public class Margins {
 
-    private double smallA;
-    private double bigA;
-    private double smallB;
-    private double bigB;
-    private double positiveSmallC;
-    private double negativeSmallC;
-    private double positiveBigC;
-    private double negativeBigC;
+    private final double smallA;
+    private final double bigA;
+    private final double smallB;
+    private final double bigB;
+    private final double positiveSmallC;
+    private final double negativeSmallC;
+    private final double positiveBigC;
+    private final double negativeBigC;
 
     public Margins() {
         double middleWidth = Assets.getImage(Assets.TRACK_MIDDLE_STROKE_KEY).getWidth();
@@ -35,7 +35,7 @@ public class Margins {
         negativeBigC = getNegativeC(bigA, bigB);
     }
 
-    private double getDistance(double x1, double y1, double x2,  double y2) {
+    private double getDistance(double x1, @SuppressWarnings("SameParameterValue") double y1, double x2, double y2) {
         return Point2D.distance(x1, y1, x2, y2);
     }
 

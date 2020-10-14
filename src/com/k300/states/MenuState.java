@@ -6,6 +6,7 @@ import java.awt.*;
 
 import com.k300.graphics.MenuBackground;
 import com.k300.ui.*;
+import com.k300.utils.math.Converter;
 
 public class MenuState extends State {
 
@@ -17,27 +18,35 @@ public class MenuState extends State {
         uiManager = new UIManager();
         background = new MenuBackground();
         launcher.getMouseListener().setUiManager(uiManager);
-        UIPlayButtonButton playButton = getPlayButton(launcher);
+        UIPlayButton playButton = getPlayButton(launcher);
+        UISettingsButton settingsButton = getSettingsButton(playButton);
         uiManager.addUIObject(playButton);
-        uiManager.addUIObject(getExitButton(playButton));
+        uiManager.addUIObject(settingsButton);
+        uiManager.addUIObject(getExitButton(settingsButton));
     }
 
-    private UIPlayButtonButton getPlayButton(Launcher launcher) {
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        int width = screenSize.width / 2;
-        int height = screenSize.height / 4;
-        int x = (screenSize.width - width) / 2;
-        int y = (screenSize.height - height) / 2;
+    private UIPlayButton getPlayButton(Launcher launcher) {
+        int width = Converter.FHD_SCREEN_WIDTH / 2;
+        int height = Converter.FHD_SCREEN_HEIGHT / 4;
+        int x = (Converter.FHD_SCREEN_WIDTH - width) / 2;
+        int y = (Converter.FHD_SCREEN_HEIGHT) / 8;
         ClickListener listener = launcher::startGame;
-        return new UIPlayButtonButton(x, y, width, height, listener);
+        return new UIPlayButton(x, y, width, height, listener);
     }
 
-    private UIObject getExitButton(UIObject playButton) {
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        int width = screenSize.width / 5;
-        int height = (int) ((screenSize.height - (playButton.getY() + playButton.getHeight())) / 3);
-        int x = (screenSize.width - width) / 2;
-        int y = (int) ((screenSize.height + playButton.getHeight() + playButton.getY() - height) / 2);
+    private UISettingsButton getSettingsButton(UIObject playButton) {
+        int width = Converter.FHD_SCREEN_WIDTH / 2;
+        int height = Converter.FHD_SCREEN_HEIGHT / 4;
+        int x = (Converter.FHD_SCREEN_WIDTH - width) / 2;
+        int y = (int) (playButton.getY() + (Converter.FHD_SCREEN_HEIGHT) / 3.5);
+        return new UISettingsButton(x, y, width, height);
+    }
+
+    private UIObject getExitButton(UIObject settingsButton) {
+        int width = Converter.FHD_SCREEN_WIDTH / 2;
+        int height = Converter.FHD_SCREEN_HEIGHT / 4;
+        int x = (Converter.FHD_SCREEN_WIDTH - width) / 2;
+        int y = (int) (settingsButton.getY() + (Converter.FHD_SCREEN_HEIGHT) / 3.5);
         return new UIExitButton(x, y, width, height);
     }
 

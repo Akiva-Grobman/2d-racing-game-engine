@@ -6,7 +6,6 @@ public class Converter {
 
     public static final int FHD_SCREEN_WIDTH = 1920;
     public static final int FHD_SCREEN_HEIGHT = 1080;
-
     private static final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     public static final double SCREEN_WIDTH = screenSize.getWidth();
     public static final double SCREEN_HEIGHT = screenSize.getHeight();

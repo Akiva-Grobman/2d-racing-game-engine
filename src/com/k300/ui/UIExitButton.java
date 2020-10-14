@@ -25,8 +25,7 @@ public class UIExitButton extends UIObject {
         } else {
             image = Assets.getImage(Assets.EXIT_BUTTON_KEY);
         }
-        //todo not real width and height
-        graphics.drawImage(image, (int)x, (int)y, width, height, null);
+        graphics.drawImage(image, (int) x, (int) y, width, height, null);
     }
 
     @Override

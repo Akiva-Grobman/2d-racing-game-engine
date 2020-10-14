@@ -1,10 +1,13 @@
 package com.k300.display;
 
+import com.k300.graphics.Assets;
 import com.k300.io.MouseListener;
+import com.k300.utils.math.Converter;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyListener;
+import java.awt.image.BufferedImage;
 
 public class Window {
 
@@ -13,6 +16,7 @@ public class Window {
     private final String title;
     private JFrame frame;
     private Canvas canvas;
+    private BufferedImage fullHDImage;
 
     public Window(String title) {
         this(title, Toolkit.getDefaultToolkit().getScreenSize().width, Toolkit.getDefaultToolkit().getScreenSize().height);
@@ -54,7 +58,8 @@ public class Window {
     }
 
     public Graphics getGraphics() {
-        return canvas.getBufferStrategy().getDrawGraphics();
+        fullHDImage = getFDHImage();
+        return fullHDImage.getGraphics();
     }
 
     public void setVisible() {
@@ -62,22 +67,31 @@ public class Window {
     }
 
     public void show() {
+        drawImageRelativeToScreen(fullHDImage);
         canvas.getBufferStrategy().show();
         canvas.getBufferStrategy().getDrawGraphics().dispose();
     }
 
+    private BufferedImage getFDHImage() {
+        return new BufferedImage(Converter.FHD_SCREEN_WIDTH, Converter.FHD_SCREEN_HEIGHT, Assets.getImage(Assets.TRACK_KEY).getType());
+    }
+
+    private void drawImageRelativeToScreen(BufferedImage fullHdImage) {
+        double relativeWidth = Converter.getProportionalNumber(Converter.FHD_SCREEN_WIDTH);
+        double relativeHeight = Converter.getProportionalNumber(Converter.FHD_SCREEN_HEIGHT);
+        double centeredY = getCenteredY(relativeHeight);
+        canvas.getBufferStrategy().getDrawGraphics().drawImage(fullHdImage, 0, (int) centeredY, (int) relativeWidth, (int) relativeHeight, null);
+    }
+
+    private double getCenteredY(double relativeHeight) {
+        double fullOriginalHeight = Converter.SCREEN_HEIGHT;
+        return (fullOriginalHeight - relativeHeight) / 2;
+    }
+
     public void clear() {
-        Graphics graphics = getGraphics();
+        Graphics graphics = canvas.getBufferStrategy().getDrawGraphics();
         graphics.setColor(Color.black);
         graphics.fillRect(0, 0, WIDTH, HEIGHT);
-    }
-
-    public int getFrameHeight() {
-        return frame.getHeight();
-    }
-
-    public int getFrameWidth() {
-        return frame.getWidth();
     }
 
     public void addMouseListener(MouseListener mouseListener) {

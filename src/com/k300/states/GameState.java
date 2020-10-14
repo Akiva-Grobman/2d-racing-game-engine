@@ -13,7 +13,6 @@ public class GameState extends State {
     public GameState(Launcher launcher) {
         super(launcher);
         track = new Track(this);
-        //launcher.game.setTrack(track);
     }
 
     @Override

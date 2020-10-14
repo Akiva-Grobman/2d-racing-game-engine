@@ -12,16 +12,10 @@ import java.awt.*;
 
 public class Track {
 
-    private static final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-    private static final double SCREEN_WIDTH = screenSize.getWidth();
-    private static final double SCREEN_HEIGHT = screenSize.getHeight();
     private final Car[] cars;
-    private final State gameState;
 
     public Track(State gameState) {
-        this.gameState = gameState;
         ObstacleManager obstacleManager = new ObstacleManager();
-
         Margins margins = new Margins();
         StartLine startLine = new StartLine(margins.getFrameBigBPoint(), margins.getFrameSmallBPoint());
         Collisions collisions = new Collisions(margins, obstacleManager);
@@ -50,16 +44,6 @@ public class Track {
         for (Car car: cars) {
             car.render((Graphics2D) graphics);
         }
-        //Testing
-//        double xLocation = width/2;
-//        double yLocation = height/2;
-//        double middleWidth = Assets.getImage(Assets.TRACK_MIDDLE_KEY).getWidth();
-//        double middleHeight = Assets.getImage(Assets.TRACK_MIDDLE_KEY).getHeight();
-//        double roadWidth = Assets.getImage(Assets.ROAD_KEY).getWidth();
-//        double roadHeight = Assets.getImage(Assets.ROAD_KEY).getHeight();
-//
-//        graphics.drawOval((int)(xLocation-middleWidth/2), (int)(yLocation-middleHeight/2), (int) middleWidth, (int) middleHeight);
-//        graphics.drawOval((int)(xLocation-roadWidth/2), (int)(yLocation-roadHeight/2), (int) roadWidth, (int) roadHeight);
     }
 
 }

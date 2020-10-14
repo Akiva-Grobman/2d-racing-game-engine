@@ -1,7 +1,5 @@
 package com.k300.graphics;
 
-import com.k300.utils.math.Converter;
-
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.Hashtable;
@@ -11,6 +9,7 @@ import static com.k300.utils.Utils.resizeImage;
 public class Assets {
 
     public static final String K_300_LOGO_KEY = "background";
+    public static final String K_300_INTRO_KEY = "intro";
     public static final String FILTER_KEY = "filter";
     public static final String INIT_IMAGE_KEY = "InitImage";
     public static final String TRACK_KEY = "Track";
@@ -25,8 +24,11 @@ public class Assets {
     public static final String YELLOW_CAR_KEY = "car_yellow";
     public static final String PLAY_BUTTON_KEY = "PlayButton";
     public static final String PLAY_BUTTON_HOVER_KEY = "PlayButtonHover";
+    public static final String SETTINGS_BUTTON_KEY = "SettingsButton";
+    public static final String SETTINGS_BUTTON_HOVER_KEY = "SettingsButtonHover";
     public static final String EXIT_BUTTON_KEY = "ExitButton";
     public static final String EXIT_BUTTON_HOVER_KEY = "ExitButtonHover";
+
     private static final String CAR_DIR = "cars/";
     private static final String BUTTON_DIR = "button-images/";
     private static final String TRACK_DIR = "track-images/";
@@ -45,6 +47,7 @@ public class Assets {
     private Assets() {
         images = new Hashtable<>();
         images.put(K_300_LOGO_KEY, loadImage(K_300_LOGO_KEY, TYPE_JPG));
+        images.put(K_300_INTRO_KEY, loadImage(K_300_INTRO_KEY, TYPE_JPG));
         images.put(FILTER_KEY, loadImage(FILTER_KEY, TYPE_PNG));
         images.put(INIT_IMAGE_KEY, loadImage(K_300_LOGO_KEY, TYPE_JPG));
         images.put(OBSTACLE_KEY, loadImage(TRACK_DIR + OBSTACLE_KEY, TYPE_PNG));
@@ -54,6 +57,8 @@ public class Assets {
         addCarImage(YELLOW_CAR_KEY);
         addButtonImage(PLAY_BUTTON_KEY);
         addButtonImage(PLAY_BUTTON_HOVER_KEY);
+        addButtonImage(SETTINGS_BUTTON_KEY);
+        addButtonImage(SETTINGS_BUTTON_HOVER_KEY);
         addButtonImage(EXIT_BUTTON_KEY);
         addButtonImage(EXIT_BUTTON_HOVER_KEY);
     }
