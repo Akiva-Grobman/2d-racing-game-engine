@@ -1,15 +1,20 @@
-package com.k300.ui;
+package com.k300.ui.buttons;
 
 import com.k300.Launcher;
 import com.k300.graphics.Assets;
+import com.k300.states.SettingsState;
+import com.k300.states.StateManager;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class UISettingsButton extends UIObject {
+public class UISettingsButton extends UIButton {
 
-    public UISettingsButton(float x, float y, int width, int height) {
+    private final Launcher launcher;
+
+    public UISettingsButton(float x, float y, int width, int height, Launcher launcher) {
         super(x, y, width, height);
+        this.launcher = launcher;
     }
 
     @Override
@@ -30,7 +35,7 @@ public class UISettingsButton extends UIObject {
 
     @Override
     public void onClick() {
-        Launcher.stop();
+        StateManager.setCurrentState(new SettingsState(launcher));
     }
 
 }

@@ -6,6 +6,11 @@ import java.awt.*;
 
 import com.k300.graphics.MenuBackground;
 import com.k300.ui.*;
+import com.k300.ui.buttons.UIExitButton;
+import com.k300.ui.buttons.UIButton;
+import com.k300.ui.buttons.UIPlayButton;
+import com.k300.ui.buttons.UISettingsButton;
+import com.k300.ui.listeners.ClickListener;
 import com.k300.utils.math.Converter;
 
 public class MenuState extends State {
@@ -34,15 +39,15 @@ public class MenuState extends State {
         return new UIPlayButton(x, y, width, height, listener);
     }
 
-    private UISettingsButton getSettingsButton(UIObject playButton) {
+    private UISettingsButton getSettingsButton(UIButton playButton) {
         int width = Converter.FHD_SCREEN_WIDTH / 2;
         int height = Converter.FHD_SCREEN_HEIGHT / 4;
         int x = (Converter.FHD_SCREEN_WIDTH - width) / 2;
         int y = (int) (playButton.getY() + (Converter.FHD_SCREEN_HEIGHT) / 3.5);
-        return new UISettingsButton(x, y, width, height);
+        return new UISettingsButton(x, y, width, height, launcher);
     }
 
-    private UIObject getExitButton(UIObject settingsButton) {
+    private UIButton getExitButton(UIButton settingsButton) {
         int width = Converter.FHD_SCREEN_WIDTH / 2;
         int height = Converter.FHD_SCREEN_HEIGHT / 4;
         int x = (Converter.FHD_SCREEN_WIDTH - width) / 2;

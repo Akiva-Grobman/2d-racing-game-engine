@@ -1,4 +1,4 @@
-package com.k300.ui;
+package com.k300.ui.listeners;
 
 public interface ClickListener {
 

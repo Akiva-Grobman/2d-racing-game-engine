@@ -2,7 +2,7 @@ package com.k300.graphics;
 
 import com.k300.Launcher;
 import com.k300.states.State;
-import com.k300.ui.FadeListener;
+import com.k300.ui.listeners.FadeListener;
 import com.k300.utils.math.Converter;
 
 import java.awt.*;

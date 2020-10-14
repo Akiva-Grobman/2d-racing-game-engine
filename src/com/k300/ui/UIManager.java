@@ -1,5 +1,7 @@
 package com.k300.ui;
 
+import com.k300.ui.buttons.UIButton;
+
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -7,42 +9,42 @@ import java.util.List;
 
 public class UIManager {
 
-    private final List<UIObject> uiObjects;
+    private final List<UIButton> uiButtons;
 
     public UIManager() {
-        uiObjects = new ArrayList<>();
+        uiButtons = new ArrayList<>();
     }
 
     public void tick() {
-        for (UIObject uiObject: uiObjects) {
-            uiObject.tick();
+        for (UIButton uiButton : uiButtons) {
+            uiButton.tick();
         }
     }
 
     public void render(Graphics graphics) {
-        for (UIObject uiObject: uiObjects) {
-            uiObject.render(graphics);
+        for (UIButton uiButton : uiButtons) {
+            uiButton.render(graphics);
         }
     }
 
     public void onMouseMove(MouseEvent e) {
-        for (UIObject uiObject: uiObjects) {
-            uiObject.onMouseMove(e);
+        for (UIButton uiButton : uiButtons) {
+            uiButton.onMouseMove(e);
         }
     }
 
     public void onMouseRelease() {
-        for (UIObject uiObject: uiObjects) {
-            uiObject.onMouseRelease();
+        for (UIButton uiButton : uiButtons) {
+            uiButton.onMouseRelease();
         }
     }
 
-    public void addUIObject(UIObject object) {
-        uiObjects.add(object);
+    public void addUIObject(UIButton object) {
+        uiButtons.add(object);
     }
 
-    public void removeUIObject(UIObject object){
-        uiObjects.remove(object);
+    public void removeUIObject(UIButton object){
+        uiButtons.remove(object);
     }
 
 }

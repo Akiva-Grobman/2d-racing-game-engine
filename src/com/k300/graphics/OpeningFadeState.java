@@ -1,7 +1,7 @@
 package com.k300.graphics;
 
 import com.k300.Launcher;
-import com.k300.ui.FadeListener;
+import com.k300.ui.listeners.FadeListener;
 
 import java.awt.image.BufferedImage;
 

@@ -1,4 +1,4 @@
-package com.k300.ui;
+package com.k300.ui.buttons;
 
 import com.k300.Launcher;
 import com.k300.graphics.Assets;
@@ -6,7 +6,7 @@ import com.k300.graphics.Assets;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class UIExitButton extends UIObject {
+public class UIExitButton extends UIButton {
 
     public UIExitButton(float x, float y, int width, int height) {
         super(x, y, width, height);
