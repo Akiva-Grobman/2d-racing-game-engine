@@ -3,6 +3,7 @@ package com.k300.graphics;
 import com.k300.Launcher;
 import com.k300.states.State;
 import com.k300.ui.FadeListener;
+import com.k300.utils.math.Converter;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -45,7 +46,7 @@ public class FadeState extends State {
     public void render(Graphics graphics) {
         Graphics2D graphics2D = (Graphics2D) graphics.create();
         graphics2D.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha));
-        graphics2D.drawImage(image, 0, 0, getWindowWidth(), getWindowHeight(), null);
+        graphics2D.drawImage(image, 0, 0, Converter.FHD_SCREEN_WIDTH, Converter.FHD_SCREEN_HEIGHT, null);
     }
 
     public void setIsFadingIn(boolean isFadingIn) {
