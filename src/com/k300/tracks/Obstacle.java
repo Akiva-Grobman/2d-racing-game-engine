@@ -26,10 +26,6 @@ public class Obstacle {
     }
 
     public void render(Graphics graphics) {
-        Color green = new Color(100, 155, 54); // Color green
-        graphics.setColor(green);
-        graphics.fillOval((int) (a - r), (int) (b - r), (int) r * 2, (int) r * 2);
-
         graphics.drawImage(Assets.getImage(Assets.OBSTACLE_KEY), (int) (a - r), (int) (b - r), (int) r * 2, (int) r * 2, null);
     }
 }
