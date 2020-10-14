@@ -21,15 +21,13 @@ public class SettingsListElement extends UIButton {
         if(isChecked) {
             graphics.setColor(Color.green);
             graphics.fillRect((int) x, (int) y, width, height);
-        } else {
-            graphics.setColor(Color.white);
-            graphics.drawRect((int) x, (int) y, width, height);
         }
         if(isHovering) {
-            graphics.setColor(Color.yellow);
+            graphics.setColor(Color.red);
         } else {
             graphics.setColor(Color.white);
         }
+        graphics.drawRect((int) x, (int) y, width, height);
         graphics.drawString(elementsType.getMessage(), (int) (x + width * 1.5), (int) (y + height - graphics.getFontMetrics().getAscent()));
         graphics.setColor(original);
     }
