@@ -33,7 +33,7 @@ public class MouseListener implements java.awt.event.MouseListener, MouseMotionL
     @Override
     public void mouseReleased(MouseEvent e) {
         if(uiManager != null) {
-            uiManager.onMouseRelease(e);
+            uiManager.onMouseRelease();
         }
     }
 

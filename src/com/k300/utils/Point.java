@@ -1,10 +1,12 @@
 package com.k300.utils;
 
 public class Point {
+
     public double x;
     public double y;
 
     public Point() {
+
     }
 
     public Point(double x, double y) {

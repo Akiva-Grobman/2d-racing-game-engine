@@ -1,7 +1,5 @@
 package com.k300.graphics;
 
-import com.k300.utils.math.Converter;
-
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.Hashtable;
@@ -27,6 +25,7 @@ public class Assets {
     public static final String PLAY_BUTTON_HOVER_KEY = "PlayButtonHover";
     public static final String EXIT_BUTTON_KEY = "ExitButton";
     public static final String EXIT_BUTTON_HOVER_KEY = "ExitButtonHover";
+
     private static final String CAR_DIR = "cars/";
     private static final String BUTTON_DIR = "button-images/";
     private static final String TRACK_DIR = "track-images/";

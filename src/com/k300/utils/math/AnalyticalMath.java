@@ -1,17 +1,16 @@
 package com.k300.utils.math;
 
 import com.k300.utils.Point;
-
 import static java.lang.Math.*;
 
 public class AnalyticalMath {
+
     public static boolean angleIsInBoundsOf(double angle, int lowerBound, int upperBound) {
         return angle >= lowerBound && angle <= upperBound;
     }
 
     public static Point getNewPointByDistanceAndAngle(Point point, double distance, double angle, boolean is2DForward) {
         Point newPoint = new Point();
-
         if(is2DForward) {
             if (angleIsInBoundsOf(angle, 90, 270)) {
                 newPoint.x = point.x - getXDistanceFactor(distance, angle);

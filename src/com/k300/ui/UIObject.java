@@ -31,7 +31,7 @@ public abstract class UIObject {
         isHovering = bounds.contains(e.getX(), e.getY());
     }
 
-    public void onMouseRelease(MouseEvent e) {
+    public void onMouseRelease() {
         if(isHovering) {
             onClick();
         }

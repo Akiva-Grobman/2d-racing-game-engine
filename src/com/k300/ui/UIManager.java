@@ -31,9 +31,9 @@ public class UIManager {
         }
     }
 
-    public void onMouseRelease(MouseEvent e) {
+    public void onMouseRelease() {
         for (UIObject uiObject: uiObjects) {
-            uiObject.onMouseRelease(e);
+            uiObject.onMouseRelease();
         }
     }
 

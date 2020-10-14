@@ -27,8 +27,7 @@ public class UIPlayButtonButton extends UIObject {
         } else {
             image = Assets.getImage(Assets.PLAY_BUTTON_KEY);
         }
-        //todo not real width and height
-        graphics.drawImage(image, (int)x, (int)y, width, height, null);
+        graphics.drawImage(image, (int) x, (int) y, width, height, null);
     }
 
     @Override

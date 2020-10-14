@@ -6,6 +6,7 @@ import java.awt.*;
 import java.awt.geom.Point2D;
 
 public class Obstacle {
+
     private final double a;
     private final double b;
     private final double r;
