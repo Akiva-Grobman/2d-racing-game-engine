@@ -116,6 +116,7 @@ public class Launcher {
             BufferedImage fullHdImage = getFullHdImage();
             Graphics hdGraphics = fullHdImage.getGraphics();
             StateManager.getCurrentState().render(hdGraphics);
+            hdGraphics.drawImage(Assets.getImage(Assets.FILTER_KEY), 0, 0, Converter.DEFAULT_SCREEN_WIDTH, Converter.DEFAULT_SCREEN_HEIGHT, null);
             drawImageRelativeToScreen(windowGraphics, fullHdImage);
             windowGraphics.drawString("FPS: " + fps, 30, 60);
         }
