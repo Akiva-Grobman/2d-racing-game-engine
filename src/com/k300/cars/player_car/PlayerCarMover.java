@@ -1,54 +1,52 @@
 package com.k300.cars.player_car;
 
 import com.k300.utils.Point;
+import com.k300.utils.ROTATION;
 
 import static com.k300.utils.math.AnalyticalMath.*;
 
 public class PlayerCarMover {
 
     private final double CAR_TURNING_ANGLE;
-    private final int RIGHT_ROTATION;
-    private final int LEFT_ROTATION;
-
     private final PlayerCar car;
 
     public PlayerCarMover(PlayerCar car) {
         this.car = car;
-
         CAR_TURNING_ANGLE = 4;
-        RIGHT_ROTATION = -1;
-        LEFT_ROTATION = 1;
     }
 
     public void driveForwards() {
-        Point newPoint = getNewPointByDistanceAndAngle(car.position, car.speed, car.angle, true);
-        setNewPosition(newPoint.x, newPoint.y);
+        drive(DIRECTION.FORWARDS);
     }
 
     public void driveBackwards() {
-        Point newPoint = getNewPointByDistanceAndAngle(car.position, car.speed, car.angle, false);
-        setNewPosition(newPoint.x, newPoint.y);
+        drive(DIRECTION.BACKWARDS);
     }
 
-    private void setNewPosition(double newX, double newY) {
+    private void drive(DIRECTION drivingDirection) {
+        Point newPosition = getNewPointByDistanceAndAngle(car.position, car.speed, car.angle, drivingDirection);
+        setNewPosition(newPosition);
+    }
+
+    private void setNewPosition(Point position) {
         // rounding is for display prepossess
         // 5 numbers after the decimal point
-        car.position.x = Math.round(newX * 10000) / 10000.0;
-        car.position.y = Math.round(newY * 10000) / 10000.0;
+        car.position.x = Math.round(position.x * 10000) / 10000.0;
+        car.position.y = Math.round(position.y * 10000) / 10000.0;
     }
 
     public void turnRight() {
-        turn(RIGHT_ROTATION);
+        turn(ROTATION.RIGHT);
     }
 
     public void turnLeft() {
-        turn(LEFT_ROTATION);
+        turn(ROTATION.LEFT);
     }
 
-    private void turn(int multiplier) {
-        car.angle += CAR_TURNING_ANGLE * multiplier;
+    private void turn(ROTATION direction) {
+        car.angle += CAR_TURNING_ANGLE * direction.getValue();
         if(car.angle == 90) {
-            car.angle += CAR_TURNING_ANGLE * multiplier;
+            car.angle += CAR_TURNING_ANGLE * direction.getValue();
         }
         resetAngle();
     }
