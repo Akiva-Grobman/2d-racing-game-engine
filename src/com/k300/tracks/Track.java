@@ -9,7 +9,6 @@ import com.k300.utils.Point;
 import com.k300.utils.math.Converter;
 
 import java.awt.*;
-import java.awt.image.BufferedImage;
 
 public class Track {
 
@@ -45,8 +44,8 @@ public class Track {
     }
 
     public void render(Graphics graphics) {
-        int width = Converter.DEFAULT_SCREEN_WIDTH;
-        int height = Converter.DEFAULT_SCREEN_HEIGHT;
+        int width = Converter.FHD_SCREEN_WIDTH;
+        int height = Converter.FHD_SCREEN_HEIGHT;
         graphics.drawImage(Assets.getImage(Assets.TRACK_KEY), 0, 0, width, height, null);
         for (Car car: cars) {
             car.render((Graphics2D) graphics);

@@ -1,5 +1,7 @@
 package com.k300.graphics;
 
+import com.k300.utils.math.Converter;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.Hashtable;
@@ -9,10 +11,12 @@ import static com.k300.utils.Utils.resizeImage;
 public class Assets {
 
     public static final String K_300_LOGO_KEY = "background";
+    public static final String FILTER_KEY = "filter";
     public static final String INIT_IMAGE_KEY = "InitImage";
     public static final String TRACK_KEY = "Track";
     public static final String ROAD_KEY = "Road";
     public static final String TRACK_MIDDLE_KEY = "InsideMargin";
+    public static final String TRACK_MIDDLE_STROKE_KEY = "InsideMarginStroke";
     public static final String TRACK_MIDDLE_FILL_KEY = "InsideMarginFill";
     public static final String TRACK_OUTSIDE_KEY = "OutsideMargin";
     public static final String OBSTACLE_KEY = "obstacle";
@@ -41,6 +45,7 @@ public class Assets {
     private Assets() {
         images = new Hashtable<>();
         images.put(K_300_LOGO_KEY, loadImage(K_300_LOGO_KEY, TYPE_JPG));
+        images.put(FILTER_KEY, loadImage(FILTER_KEY, TYPE_PNG));
         images.put(INIT_IMAGE_KEY, loadImage(K_300_LOGO_KEY, TYPE_JPG));
         images.put(OBSTACLE_KEY, loadImage(TRACK_DIR + OBSTACLE_KEY, TYPE_PNG));
         addTrackImages();
@@ -63,11 +68,14 @@ public class Assets {
         BufferedImage trackMiddle = getTrackLayer("InsideMargin");
         trackGraphics.drawImage(trackMiddle, (1920 - trackMiddle.getWidth()) / 2, (1080 - trackMiddle.getHeight()) / 2, trackMiddle.getWidth(), trackMiddle.getHeight(), null);
 
+
+
         images.put(INIT_IMAGE_KEY, loadImage(TRACK_DIR + INIT_IMAGE_KEY, TYPE_JPG));
         images.put(TRACK_KEY, track);
         images.put(ROAD_KEY, road);
         images.put(TRACK_MIDDLE_KEY, trackMiddle);
         images.put(TRACK_MIDDLE_FILL_KEY, loadImage(TRACK_DIR + TRACK_MIDDLE_FILL_KEY, TYPE_PNG));
+        images.put(TRACK_MIDDLE_STROKE_KEY, loadImage(TRACK_DIR + TRACK_MIDDLE_STROKE_KEY, TYPE_PNG));
         images.put(TRACK_OUTSIDE_KEY, loadImage(TRACK_DIR + TRACK_OUTSIDE_KEY, TYPE_PNG));
     }
 

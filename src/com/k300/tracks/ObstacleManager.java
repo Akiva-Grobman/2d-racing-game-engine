@@ -2,6 +2,7 @@ package com.k300.tracks;
 
 import com.k300.graphics.Assets;
 import com.k300.utils.Point;
+import com.k300.utils.math.Converter;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -37,8 +38,14 @@ public class ObstacleManager {
     private void resetTrackBackground() {
         BufferedImage track = Assets.getImage(Assets.TRACK_KEY);
         Graphics trackGraphics = track.getGraphics();
-        trackGraphics.drawImage(Assets.getImage(Assets.TRACK_MIDDLE_FILL_KEY), 0, 0, track.getWidth(), track.getHeight(), null);
+
+        BufferedImage trackMiddle = Assets.getImage(Assets.TRACK_MIDDLE_KEY);
+        trackGraphics.drawImage(trackMiddle, (1920 - trackMiddle.getWidth()) / 2, (1080 - trackMiddle.getHeight()) / 2, trackMiddle.getWidth(), trackMiddle.getHeight(), null);
+
         trackGraphics.drawImage(Assets.getImage(Assets.TRACK_OUTSIDE_KEY), 0, 0, track.getWidth(), track.getHeight(), null);
+
+        trackGraphics.drawImage(Assets.getImage(Assets.FILTER_KEY), 0, 0, Converter.FHD_SCREEN_WIDTH, Converter.FHD_SCREEN_HEIGHT, null);
+
     }
 
     public void addObstacleToTrackImage(Obstacle obstacle) {
