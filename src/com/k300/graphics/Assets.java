@@ -9,6 +9,7 @@ import static com.k300.utils.Utils.resizeImage;
 public class Assets {
 
     public static final String K_300_LOGO_KEY = "background";
+    public static final String K_300_INTRO_KEY = "intro";
     public static final String FILTER_KEY = "filter";
     public static final String INIT_IMAGE_KEY = "InitImage";
     public static final String TRACK_KEY = "Track";
@@ -44,6 +45,7 @@ public class Assets {
     private Assets() {
         images = new Hashtable<>();
         images.put(K_300_LOGO_KEY, loadImage(K_300_LOGO_KEY, TYPE_JPG));
+        images.put(K_300_INTRO_KEY, loadImage(K_300_INTRO_KEY, TYPE_JPG));
         images.put(FILTER_KEY, loadImage(FILTER_KEY, TYPE_PNG));
         images.put(INIT_IMAGE_KEY, loadImage(K_300_LOGO_KEY, TYPE_JPG));
         images.put(OBSTACLE_KEY, loadImage(TRACK_DIR + OBSTACLE_KEY, TYPE_PNG));

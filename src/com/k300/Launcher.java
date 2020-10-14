@@ -49,7 +49,7 @@ public class Launcher {
         setKeyListener(new com.k300.io.KeyListener());
         StateManager.setCurrentState(
                 new OpeningFadeState(this,
-                    Assets.getImage(Assets.K_300_LOGO_KEY),
+                    Assets.getImage(Assets.K_300_INTRO_KEY),
                     new OpenFadeListener()
                 )
         );
