@@ -16,14 +16,14 @@ public class PlayerCarMover {
     }
 
     public void driveForwards() {
-        drive(DIRECTION.FORWARDS);
+        drive(MOVEMENT_DIRECTION.FORWARDS);
     }
 
     public void driveBackwards() {
-        drive(DIRECTION.BACKWARDS);
+        drive(MOVEMENT_DIRECTION.BACKWARDS);
     }
 
-    private void drive(DIRECTION drivingDirection) {
+    private void drive(MOVEMENT_DIRECTION drivingDirection) {
         Point newPosition = getNewPointByDistanceAndAngle(car.position, car.speed, car.angle, drivingDirection);
         setNewPosition(newPosition);
     }

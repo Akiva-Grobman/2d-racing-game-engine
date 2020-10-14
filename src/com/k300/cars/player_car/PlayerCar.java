@@ -45,36 +45,30 @@ public class PlayerCar extends Car {
         if(frontalCollision || rearCollision) {
             collisionEffect();
         } else if (keyListener.getKeyIsPressed(PlayerKeyListener.UP_ARROW)) {
-            drive(DIRECTION.getDriveDirectionFrom(PlayerKeyListener.UP_ARROW));
+            drive(MOVEMENT_DIRECTION.getDriveDirectionFrom(PlayerKeyListener.UP_ARROW));
         } else if (keyListener.getKeyIsPressed(PlayerKeyListener.DOWN_ARROW)) {
-            drive(DIRECTION.getDriveDirectionFrom(PlayerKeyListener.DOWN_ARROW));
+            drive(MOVEMENT_DIRECTION.getDriveDirectionFrom(PlayerKeyListener.DOWN_ARROW));
         } else if (keyReleased == PlayerKeyListener.UP_ARROW){
-            slowDown(DIRECTION.getDriveDirectionFrom(PlayerKeyListener.UP_ARROW));
+            slowDown(MOVEMENT_DIRECTION.getDriveDirectionFrom(PlayerKeyListener.UP_ARROW));
         } else if (keyReleased == PlayerKeyListener.DOWN_ARROW){
-            slowDown(DIRECTION.getDriveDirectionFrom(PlayerKeyListener.DOWN_ARROW));
+            slowDown(MOVEMENT_DIRECTION.getDriveDirectionFrom(PlayerKeyListener.DOWN_ARROW));
         }
 
         if(keyListener.getKeyIsPressed(PlayerKeyListener.RIGHT_ARROW)) {
-            mover.turnRight();
-            if(isOffTrack()) {
-                mover.turnLeft();
-            }
+            turn(TURNING_DIRECTION.getDirectionFromValue(PlayerKeyListener.RIGHT_ARROW));
         }
         if(keyListener.getKeyIsPressed(PlayerKeyListener.LEFT_ARROW)) {
-            mover.turnLeft();
-            if(isOffTrack()) {
-                mover.turnRight();
-            }
+            turn(TURNING_DIRECTION.getDirectionFromValue(PlayerKeyListener.LEFT_ARROW));
         }
     }
 
-    private void drive(DIRECTION drivingDirection) {
+    private void drive(MOVEMENT_DIRECTION drivingDirection) {
         resetSpeed(drivingDirection.getValue());
         drivingDirection.getDrivingDirection(mover).run();
         increaseSpeed(SPEED_INCREMENT);
         if(isOffTrack()) {
             drivingDirection.getReverseDirection(mover).run();
-            if(drivingDirection == DIRECTION.FORWARDS) {
+            if(drivingDirection == MOVEMENT_DIRECTION.FORWARDS) {
                 frontalCollision = true;
             } else {
                 rearCollision = true;
@@ -86,11 +80,18 @@ public class PlayerCar extends Car {
         keyReleased = drivingDirection.getValue();
     }
 
-    private void slowDown(DIRECTION drivingDirection) {
+    private void slowDown(MOVEMENT_DIRECTION drivingDirection) {
         decreaseSpeed(SPEED_DECREMENT);
         drivingDirection.getDrivingDirection(mover).run();
         if(isOffTrack()) {
             drivingDirection.getReverseDirection(mover).run();
+        }
+    }
+
+    private void turn(TURNING_DIRECTION direction) {
+        direction.getTurningDirection(mover).run();
+        if(isOffTrack()) {
+            direction.getReversTurningDirection(mover).run();
         }
     }
 

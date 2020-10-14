@@ -31,22 +31,22 @@ public class PlayerCarCorners {
     }
 
     public Point getFrontLeftCorner() {
-        return getCorner(SLANT_ANGLE.POSITIVE.getValue(), DIRECTION.FORWARDS);
+        return getCorner(SLANT_ANGLE.POSITIVE.getValue(), MOVEMENT_DIRECTION.FORWARDS);
     }
 
     public Point getFrontRightCorner() {
-        return getCorner(SLANT_ANGLE.NEGATIVE.getValue(), DIRECTION.FORWARDS);
+        return getCorner(SLANT_ANGLE.NEGATIVE.getValue(), MOVEMENT_DIRECTION.FORWARDS);
     }
 
     public Point getRearLeftCorner() {
-        return getCorner(SLANT_ANGLE.NEGATIVE.getValue(), DIRECTION.BACKWARDS);
+        return getCorner(SLANT_ANGLE.NEGATIVE.getValue(), MOVEMENT_DIRECTION.BACKWARDS);
     }
 
     public Point getRearRightCorner() {
-        return getCorner(SLANT_ANGLE.POSITIVE.getValue(), DIRECTION.BACKWARDS);
+        return getCorner(SLANT_ANGLE.POSITIVE.getValue(), MOVEMENT_DIRECTION.BACKWARDS);
     }
 
-    private Point getCorner(int slantDirection, DIRECTION direction) {
+    private Point getCorner(int slantDirection, MOVEMENT_DIRECTION direction) {
         double rotatedSlantAngle = car.angle + (slantDirection * slantAngle);
         return getNewPointByDistanceAndAngle(car.position, slant, rotatedSlantAngle, direction);
     }

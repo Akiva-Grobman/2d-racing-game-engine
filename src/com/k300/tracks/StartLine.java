@@ -1,7 +1,7 @@
 package com.k300.tracks;
 
 import com.k300.cars.player_car.PlayerCar;
-import com.k300.cars.player_car.DIRECTION;
+import com.k300.cars.player_car.MOVEMENT_DIRECTION;
 import com.k300.utils.Point;
 
 public class StartLine {
@@ -18,7 +18,7 @@ public class StartLine {
         this.readyToNewRound = false;
     }
 
-    public boolean hasLegalCrossStartLine(PlayerCar car, DIRECTION driveDirection) {
+    public boolean hasLegalCrossStartLine(PlayerCar car, MOVEMENT_DIRECTION driveDirection) {
         boolean hasLegalCrossStartLine = false;
         if (carIsOnStartLineLegally(car, driveDirection)) {
             if (isLegalRound && readyToNewRound) {
@@ -73,24 +73,24 @@ public class StartLine {
         return y < upperStartLinePoint.y && y > lowerStartLinePoint.y;
     }
 
-    private boolean carIsOnStartLineLegally(PlayerCar car, DIRECTION direction) {
-        if(direction == DIRECTION.FORWARDS) {
+    private boolean carIsOnStartLineLegally(PlayerCar car, MOVEMENT_DIRECTION direction) {
+        if(direction == MOVEMENT_DIRECTION.FORWARDS) {
             return frontOfTheCarIsAfterStartLine(car) && rearOfTheCarIsBeforeStartLine(car);
         } else {
             return frontOfTheCarIsBeforeStartLine(car) && rearOfTheCarIsAfterStartLine(car);
         }
     }
 
-    private boolean carIsOnStartLineIllegally(PlayerCar car, DIRECTION direction) {
-        if(direction == DIRECTION.BACKWARDS) {
+    private boolean carIsOnStartLineIllegally(PlayerCar car, MOVEMENT_DIRECTION direction) {
+        if(direction == MOVEMENT_DIRECTION.BACKWARDS) {
             return frontOfTheCarIsAfterStartLine(car) && rearOfTheCarIsBeforeStartLine(car);
         } else {
             return frontOfTheCarIsBeforeStartLine(car) && rearOfTheCarIsAfterStartLine(car);
         }
     }
 
-    private boolean wholeCarIsPassedTheStartLine(PlayerCar car, DIRECTION direction) {
-        if(direction == DIRECTION.FORWARDS) {
+    private boolean wholeCarIsPassedTheStartLine(PlayerCar car, MOVEMENT_DIRECTION direction) {
+        if(direction == MOVEMENT_DIRECTION.FORWARDS) {
             return frontOfTheCarIsAfterStartLine(car) && rearOfTheCarIsAfterStartLine(car);
         } else {
             return frontOfTheCarIsBeforeStartLine(car) && rearOfTheCarIsBeforeStartLine(car);

@@ -2,14 +2,14 @@ package com.k300.cars.player_car;
 
 import com.k300.io.PlayerKeyListener;
 
-public enum DIRECTION {
+public enum MOVEMENT_DIRECTION {
 
     FORWARDS(PlayerKeyListener.UP_ARROW),
     BACKWARDS(PlayerKeyListener.DOWN_ARROW);
 
     private final int value;
 
-    DIRECTION(int value) {
+    MOVEMENT_DIRECTION(int value) {
         this.value = value;
     }
 
@@ -29,7 +29,7 @@ public enum DIRECTION {
         }
     }
 
-    public static DIRECTION getDriveDirectionFrom(int value) {
+    public static MOVEMENT_DIRECTION getDriveDirectionFrom(int value) {
         if(value == FORWARDS.value) {
             return FORWARDS;
         } else {
