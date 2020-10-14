@@ -18,10 +18,10 @@ public abstract class State {
     public abstract void render(Graphics graphics);
 
     public int getWindowWidth() {
-        return Converter.DEFAULT_SCREEN_WIDTH;
+        return Converter.FHD_SCREEN_WIDTH;
     }
 
     public int getWindowHeight() {
-        return Converter.DEFAULT_SCREEN_HEIGHT;
+        return Converter.FHD_SCREEN_HEIGHT;
     }
 }
