@@ -20,12 +20,14 @@ public class PlayerCar extends Car {
     private final double COLLISION_SPEED_DECREMENT;
     private final int FORWARDS;
     private final int BACKWARDS;
-
+    private final int MAX_SPEED;
     private final PlayerKeyListener keyListener;
     private final Collisions collisions;
     private int keyReleased;
     private boolean frontalCollision;
     private boolean rearCollision;
+    double speed;
+    int rounds;
     public StartLine startLine;
 
 
@@ -37,6 +39,9 @@ public class PlayerCar extends Car {
         COLLISION_SPEED_DECREMENT = 1;
         FORWARDS = 1;
         BACKWARDS = -1;
+        MAX_SPEED = 15;
+        speed = 0;
+        rounds = 0;
         keyListener = new PlayerKeyListener();
         mover = new PlayerCarMover(this);
         playerCarCorners = new PlayerCarCorners(this);
@@ -122,10 +127,10 @@ public class PlayerCar extends Car {
     }
 
     private void increaseSpeed(double increment) {
-        if(speed < maxSpeed) {
+        if(speed < MAX_SPEED) {
             speed = speed + increment;
         } else {
-            speed = maxSpeed;
+            speed = MAX_SPEED;
         }
     }
 

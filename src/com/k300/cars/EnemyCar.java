@@ -7,7 +7,7 @@ import java.awt.*;
 
 public class EnemyCar extends Car {
 
-    private EnemyInput input;
+    private final EnemyInput input;
 
     public EnemyCar(String carColor, Point startingPosition) {
         super(carColor, startingPosition);
