@@ -1,5 +1,7 @@
 package com.k300.graphics;
 
+import com.k300.utils.math.Converter;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.Hashtable;
