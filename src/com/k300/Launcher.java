@@ -5,8 +5,9 @@ import com.k300.graphics.Assets;
 import com.k300.graphics.OpeningFadeState;
 import com.k300.io.MouseListener;
 import com.k300.states.GameState;
+import com.k300.states.SettingsState;
 import com.k300.states.StateManager;
-import com.k300.ui.OpenFadeListener;
+import com.k300.ui.listeners.OpenFadeListener;
 import java.awt.Graphics;
 import java.awt.event.KeyListener;
 
@@ -47,12 +48,14 @@ public class Launcher {
         mouseListener = new MouseListener();
         window.addMouseListener(mouseListener);
         setKeyListener(new com.k300.io.KeyListener());
-        StateManager.setCurrentState(
-                new OpeningFadeState(this,
-                    Assets.getImage(Assets.K_300_INTRO_KEY),
-                    new OpenFadeListener()
-                )
-        );
+        // testing
+        StateManager.setCurrentState(new SettingsState(this));
+//        StateManager.setCurrentState(
+//                new OpeningFadeState(this,
+//                    Assets.getImage(Assets.K_300_INTRO_KEY),
+//                    new OpenFadeListener()
+//                )
+//        );
     }
 
     private void runGameLoop() {

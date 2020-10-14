@@ -66,15 +66,11 @@ public class Assets {
     private void addTrackImages() {
         final BufferedImage track = loadImage(TRACK_DIR + TRACK_KEY, TYPE_JPG);
         Graphics trackGraphics = track.getGraphics();
-
-        BufferedImage road = getTrackLayer("Road");
+        BufferedImage road = getTrackLayer(ROAD_KEY);
         trackGraphics.drawImage(road, (1920 - road.getWidth()) / 2, (1080 - road.getHeight()) / 2, road.getWidth(), road.getHeight(), null);
-
-        BufferedImage trackMiddle = getTrackLayer("InsideMargin");
+        BufferedImage trackMiddle = getTrackLayer(TRACK_MIDDLE_KEY);
         trackGraphics.drawImage(trackMiddle, (1920 - trackMiddle.getWidth()) / 2, (1080 - trackMiddle.getHeight()) / 2, trackMiddle.getWidth(), trackMiddle.getHeight(), null);
-
-
-
+        trackGraphics.dispose();
         images.put(INIT_IMAGE_KEY, loadImage(TRACK_DIR + INIT_IMAGE_KEY, TYPE_JPG));
         images.put(TRACK_KEY, track);
         images.put(ROAD_KEY, road);
