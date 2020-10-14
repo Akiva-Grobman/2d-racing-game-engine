@@ -100,7 +100,7 @@ public class Launcher {
         window.clear();
         if(StateManager.getCurrentState() != null) {
             StateManager.getCurrentState().render(windowGraphics);
-            windowGraphics.drawString("FPS: " + fps, 30, 60);
+            //windowGraphics.drawString("FPS: " + fps, 30, 60);
         }
         window.show();
     }

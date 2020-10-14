@@ -29,15 +29,15 @@ public abstract class Car {
         }
         AffineTransform carAngle = AffineTransform.getTranslateInstance(position.x - carImage.getWidth() / 2f, position.y -  carImage.getHeight() / 2f);
         carAngle.rotate(Math.toRadians(-angle), carImage.getWidth() / 2f, carImage.getHeight() / 2f); //need Minus because Java is multiplier minus
-        graphics.setColor(Color.red);
         graphics.drawImage(carImage, carAngle, null);
         if(this instanceof PlayerCar) {
 
-            graphics.setFont(new Font("TimesRoman", Font.BOLD, 60));
-            graphics.drawString("Rounds: " + rounds, 800, 400);
-            graphics.drawString("Angle: " + angle, 800, 500);
-            graphics.drawString("X: " + position.x, 800, 600);
-            graphics.drawString("Y: " + position.y, 800, 700);
+            graphics.setColor(Color.white);
+            graphics.setFont(new Font("TimesRoman", Font.BOLD, 120));
+            graphics.drawString("ROUNDS: " + rounds, 625, 570);
+//            graphics.drawString("Angle: " + angle, 800, 500);
+//            graphics.drawString("X: " + position.x, 800, 600);
+//            graphics.drawString("Y: " + position.y, 800, 700);
 
             //Testing
 
