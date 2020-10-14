@@ -5,11 +5,11 @@ import com.k300.graphics.Assets;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class UIPlayButtonButton extends UIObject {
+public class UIPlayButton extends UIObject {
 
     private final ClickListener clickListener;
 
-    public UIPlayButtonButton(float x, float y, int width, int height, ClickListener clickListener) {
+    public UIPlayButton(float x, float y, int width, int height, ClickListener clickListener) {
         super(x, y, width, height);
         this.clickListener = clickListener;
     }
