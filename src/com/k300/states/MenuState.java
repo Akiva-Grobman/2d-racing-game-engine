@@ -58,7 +58,6 @@ public class MenuState extends State {
     @Override
     public void tick() {
         background.tick();
-        uiManager.tick();
     }
 
     @Override

@@ -16,11 +16,6 @@ public class SettingsListElement extends UIButton {
     }
 
     @Override
-    public void tick() {
-
-    }
-
-    @Override
     public void render(Graphics graphics) {
         Color original = graphics.getColor();
         if(isChecked) {

@@ -10,10 +10,10 @@ import java.awt.image.BufferedImage;
 
 public abstract class Car {
 
-    public Point position;
+    public final Point position;
     public double angle;
     public int rounds;
-    public BufferedImage carImage;
+    public final BufferedImage carImage;
 
     public Car(String carColor, Point startingPosition) {
         carImage = Assets.getImage(carColor);

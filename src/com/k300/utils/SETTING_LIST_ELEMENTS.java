@@ -12,7 +12,7 @@ public enum SETTING_LIST_ELEMENTS {
 
     private final String message;
 
-    private SETTING_LIST_ELEMENTS(String message) {
+    SETTING_LIST_ELEMENTS(String message) {
         this.message = message;
     }
 

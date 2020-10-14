@@ -15,12 +15,6 @@ public class UIManager {
         uiButtons = new ArrayList<>();
     }
 
-    public void tick() {
-        for (UIButton uiButton : uiButtons) {
-            uiButton.tick();
-        }
-    }
-
     public void render(Graphics graphics) {
         for (UIButton uiButton : uiButtons) {
             uiButton.render(graphics);

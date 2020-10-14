@@ -21,7 +21,7 @@ public class PlayerCar extends Car {
     private int keyReleased;
     private boolean frontalCollision;
     private boolean rearCollision;
-    public StartLine startLine;
+    public final StartLine startLine;
     double speed;
 
     public PlayerCar(String carColor, Point startingPosition, Collisions collisions, StartLine startLine) {

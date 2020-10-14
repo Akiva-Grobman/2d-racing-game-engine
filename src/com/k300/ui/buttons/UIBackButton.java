@@ -15,11 +15,6 @@ public class UIBackButton extends UIButton {
     }
 
     @Override
-    public void tick() {
-
-    }
-
-    @Override
     public void render(Graphics graphics) {
         Color originalColor = graphics.getColor();
         if(isHovering) {

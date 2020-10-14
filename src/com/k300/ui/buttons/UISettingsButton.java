@@ -18,11 +18,6 @@ public class UISettingsButton extends UIButton {
     }
 
     @Override
-    public void tick() {
-
-    }
-
-    @Override
     public void render(Graphics graphics) {
         BufferedImage image;
         if(isHovering) {

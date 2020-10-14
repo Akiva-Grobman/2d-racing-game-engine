@@ -7,10 +7,10 @@ import java.awt.event.MouseEvent;
 
 public abstract class UIButton {
 
-    protected float x;
-    protected float y;
-    protected int width;
-    protected int height;
+    protected final float x;
+    protected final float y;
+    protected final int width;
+    protected final int height;
     protected boolean isHovering;
     private final Rectangle bounds;
 
@@ -25,8 +25,6 @@ public abstract class UIButton {
         bounds = new Rectangle((int) Converter.getProportionalNumber(x), (int)Converter.getProportionalNumber(y),
                 (int)Converter.getProportionalNumber(width), (int)Converter.getProportionalNumber(height));
     }
-
-    public abstract void tick();
 
     public abstract void render(Graphics graphics);
 

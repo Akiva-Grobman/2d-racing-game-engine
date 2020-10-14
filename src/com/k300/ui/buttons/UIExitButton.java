@@ -13,11 +13,6 @@ public class UIExitButton extends UIButton {
     }
 
     @Override
-    public void tick() {
-
-    }
-
-    @Override
     public void render(Graphics graphics) {
         BufferedImage image;
         if(isHovering) {
