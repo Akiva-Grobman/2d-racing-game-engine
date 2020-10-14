@@ -41,26 +41,26 @@ public abstract class Car {
         graphics.drawImage(carImage, carAngle, null);
 
         graphics.setFont(new Font("TimesRoman", Font.BOLD, 60));
-        graphics.drawString("Angle: " + angle, 800, 450);
-        graphics.drawString("X: " + position.x, 800, 550);
-        graphics.drawString("Y: " + position.y, 800, 650);
-
-        graphics.drawString("Rounds: " + this.rounds, 200, 200);
-
-        graphics.fillRect(960,0, 10, 2000);
+        graphics.drawString("Rounds: " + this.rounds, 800, 400);
+        graphics.drawString("Angle: " + angle, 800, 500);
+        graphics.drawString("X: " + position.x, 800, 600);
+        graphics.drawString("Y: " + position.y, 800, 700);
 
         //Testing
-        graphics.fillOval((int)(position.x-25/2) , (int)(position.y-25/2), 25, 25);
 
-        Point TopRightCorner = playerCarCorners.getFrontLeftCorner();
-        Point BottomRightCorner = playerCarCorners.getFrontRightCorner();
-        Point TopLeftCorner = playerCarCorners.getRearLeftCorner();
-        Point BottomLeftCorner = playerCarCorners.getRearRightCorner();
+//        graphics.fillRect(960,0, 10, 2000); //start line
 
-        graphics.fillOval((int)(TopRightCorner.x-10/2) , (int)(TopRightCorner.y-10/2), 10, 10);
-        graphics.fillOval((int)(BottomRightCorner.x-10/2) , (int)(BottomRightCorner.y-10/2), 10, 10);
-        graphics.fillOval((int)(TopLeftCorner.x-10/2) , (int)(TopLeftCorner.y-10/2), 10, 10);
-        graphics.fillOval((int)(BottomLeftCorner.x-10/2) , (int)(BottomLeftCorner.y-10/2), 10, 10);
+//        graphics.fillOval((int)(position.x-25/2) , (int)(position.y-25/2), 25, 25);
+//
+//        Point TopRightCorner = playerCarCorners.getFrontLeftCorner();
+//        Point BottomRightCorner = playerCarCorners.getFrontRightCorner();
+//        Point TopLeftCorner = playerCarCorners.getRearLeftCorner();
+//        Point BottomLeftCorner = playerCarCorners.getRearRightCorner();
+//
+//        graphics.fillOval((int)(TopRightCorner.x-10/2) , (int)(TopRightCorner.y-10/2), 10, 10);
+//        graphics.fillOval((int)(BottomRightCorner.x-10/2) , (int)(BottomRightCorner.y-10/2), 10, 10);
+//        graphics.fillOval((int)(TopLeftCorner.x-10/2) , (int)(TopLeftCorner.y-10/2), 10, 10);
+//        graphics.fillOval((int)(BottomLeftCorner.x-10/2) , (int)(BottomLeftCorner.y-10/2), 10, 10);
 
     }
 
