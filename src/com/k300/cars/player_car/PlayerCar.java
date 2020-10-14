@@ -21,7 +21,6 @@ public class PlayerCar extends Car {
     private int keyReleased;
     private boolean frontalCollision;
     private boolean rearCollision;
-    public int rounds;
     public StartLine startLine;
     double speed;
 
@@ -42,8 +41,10 @@ public class PlayerCar extends Car {
 
     @Override
     public void tick() {
+        //COLLISIONS
         if(frontalCollision || rearCollision) {
             collisionEffect();
+        //DRIVING
         } else if (keyListener.getKeyIsPressed(PlayerKeyListener.UP_ARROW)) {
             drive(MOVEMENT_DIRECTION.getDriveDirectionFrom(PlayerKeyListener.UP_ARROW));
         } else if (keyListener.getKeyIsPressed(PlayerKeyListener.DOWN_ARROW)) {
@@ -53,7 +54,7 @@ public class PlayerCar extends Car {
         } else if (keyReleased == PlayerKeyListener.DOWN_ARROW){
             slowDown(MOVEMENT_DIRECTION.getDriveDirectionFrom(PlayerKeyListener.DOWN_ARROW));
         }
-
+        // TURNING
         if(keyListener.getKeyIsPressed(PlayerKeyListener.RIGHT_ARROW)) {
             turn(TURNING_DIRECTION.getDirectionFromValue(PlayerKeyListener.RIGHT_ARROW));
         }
@@ -86,16 +87,19 @@ public class PlayerCar extends Car {
         if(isOffTrack()) {
             drivingDirection.getReverseDirection(mover).run();
         }
+        if(startLine.hasLegalCrossStartLine(this, drivingDirection)) {
+            rounds++;
+        }
     }
 
     private void turn(TURNING_DIRECTION direction) {
         direction.getTurningDirection(mover).run();
         if(isOffTrack()) {
-            direction.getReversTurningDirection(mover).run();
+            direction.getReverseTurningDirection(mover).run();
         }
     }
 
-    private void resetSpeed(int currentKey) {
+    private void resetSpeed(int currentKey) { //todo change the name
         if(hasChangedDriveDirection(currentKey)) {
             resetSpeed();
         }

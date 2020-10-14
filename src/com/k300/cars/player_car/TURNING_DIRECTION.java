@@ -30,7 +30,7 @@ public enum TURNING_DIRECTION {
         }
     }
 
-    public Runnable getReversTurningDirection(PlayerCarMover mover) {
+    public Runnable getReverseTurningDirection(PlayerCarMover mover) {
         if(this == RIGHT) {
             return mover::turnLeft;
         } else {

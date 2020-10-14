@@ -12,6 +12,7 @@ public abstract class Car {
 
     public Point position;
     public double angle;
+    public int rounds;
     public BufferedImage carImage;
 
     public Car(String carColor, Point startingPosition) {
@@ -33,7 +34,27 @@ public abstract class Car {
         if(this instanceof PlayerCar) {
 
             graphics.setFont(new Font("TimesRoman", Font.BOLD, 60));
-            graphics.drawString("Rounds: " + ((PlayerCar) this).rounds, 800, 400);
+            graphics.drawString("Rounds: " + rounds, 800, 400);
+            graphics.drawString("Angle: " + angle, 800, 500);
+            graphics.drawString("X: " + position.x, 800, 600);
+            graphics.drawString("Y: " + position.y, 800, 700);
+
+            //Testing
+
+//        graphics.fillRect(960,0, 10, 2000); //start line
+
+//        graphics.fillOval((int)(position.x-25/2) , (int)(position.y-25/2), 25, 25);
+//
+//        Point TopRightCorner = playerCarCorners.getFrontLeftCorner();
+//        Point BottomRightCorner = playerCarCorners.getFrontRightCorner();
+//        Point TopLeftCorner = playerCarCorners.getRearLeftCorner();
+//        Point BottomLeftCorner = playerCarCorners.getRearRightCorner();
+//
+//        graphics.fillOval((int)(TopRightCorner.x-10/2) , (int)(TopRightCorner.y-10/2), 10, 10);
+//        graphics.fillOval((int)(BottomRightCorner.x-10/2) , (int)(BottomRightCorner.y-10/2), 10, 10);
+//        graphics.fillOval((int)(TopLeftCorner.x-10/2) , (int)(TopLeftCorner.y-10/2), 10, 10);
+//        graphics.fillOval((int)(BottomLeftCorner.x-10/2) , (int)(BottomLeftCorner.y-10/2), 10, 10);
+
         }
     }
 
@@ -47,6 +68,10 @@ public abstract class Car {
 
     public double getAngle() {
         return angle;
+    }
+
+    public double getRound() {
+        return rounds;
     }
 
 }
