@@ -17,12 +17,18 @@ public class MenuState extends State {
 
     private final UIManager uiManager;
     private final MenuBackground background;
+    private final int buttonWidth;
+    private final int buttonHeight;
+    private final int buttonsX;
 
     public MenuState(Launcher launcher) {
         super(launcher);
         uiManager = new UIManager();
         background = new MenuBackground();
         launcher.getMouseListener().setUiManager(uiManager);
+        buttonWidth = Converter.FHD_SCREEN_WIDTH / 3;
+        buttonHeight = Converter.FHD_SCREEN_HEIGHT / 4;
+        buttonsX = (Converter.FHD_SCREEN_WIDTH -  buttonWidth) / 2;
         UIPlayButton playButton = getPlayButton(launcher);
         UISettingsButton settingsButton = getSettingsButton(playButton);
         uiManager.addUIObject(playButton);
@@ -31,28 +37,19 @@ public class MenuState extends State {
     }
 
     private UIPlayButton getPlayButton(Launcher launcher) {
-        int width = Converter.FHD_SCREEN_WIDTH / 2;
-        int height = Converter.FHD_SCREEN_HEIGHT / 4;
-        int x = (Converter.FHD_SCREEN_WIDTH - width) / 2;
         int y = (Converter.FHD_SCREEN_HEIGHT) / 8;
         ClickListener listener = launcher::startGame;
-        return new UIPlayButton(x, y, width, height, listener);
+        return new UIPlayButton(buttonsX, y, buttonWidth, buttonHeight, listener);
     }
 
     private UISettingsButton getSettingsButton(UIButton playButton) {
-        int width = Converter.FHD_SCREEN_WIDTH / 2;
-        int height = Converter.FHD_SCREEN_HEIGHT / 4;
-        int x = (Converter.FHD_SCREEN_WIDTH - width) / 2;
         int y = (int) (playButton.getY() + (Converter.FHD_SCREEN_HEIGHT) / 3.5);
-        return new UISettingsButton(x, y, width, height, launcher);
+        return new UISettingsButton(buttonsX, y, buttonWidth, buttonHeight, launcher);
     }
 
     private UIButton getExitButton(UIButton settingsButton) {
-        int width = Converter.FHD_SCREEN_WIDTH / 2;
-        int height = Converter.FHD_SCREEN_HEIGHT / 4;
-        int x = (Converter.FHD_SCREEN_WIDTH - width) / 2;
         int y = (int) (settingsButton.getY() + (Converter.FHD_SCREEN_HEIGHT) / 3.5);
-        return new UIExitButton(x, y, width, height);
+        return new UIExitButton(buttonsX, y, buttonWidth, buttonHeight);
     }
 
     @Override
