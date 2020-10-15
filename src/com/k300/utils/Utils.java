@@ -38,4 +38,16 @@ public class Utils {
         }
     }
 
+    public static void drawStringInCenter(int x, int y, int width, int height, Graphics graphics, String string) {
+        int stringWidth = graphics.getFontMetrics().stringWidth(string);
+        int stringHeight = graphics.getFontMetrics().getDescent();
+        if(stringWidth > width || stringHeight > height) {
+            graphics.drawString(string, x, y);
+            return;
+        }
+        int startingX = width / 2 - stringWidth / 2;
+        int startingY = height / 2 + stringHeight;
+        graphics.drawString(string, startingX, startingY);
+    }
+
 }

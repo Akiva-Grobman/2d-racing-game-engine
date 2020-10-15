@@ -3,7 +3,7 @@ package com.k300.tracks;
 import com.k300.cars.Car;
 import com.k300.cars.player_car.PlayerCar;
 import com.k300.graphics.Assets;
-import com.k300.graphics.Camera;
+import com.k300.graphics.ZoomInCamera;
 import com.k300.states.GameState;
 import com.k300.states.State;
 import com.k300.utils.Point;
@@ -57,7 +57,7 @@ public class Track {
     }
 
     private void renderWithZoom(Graphics graphics) {
-        Camera zoomInCamera = new Camera(graphics, cars);
+        ZoomInCamera zoomInCamera = new ZoomInCamera(graphics, cars);
         zoomInCamera.render();
     }
 

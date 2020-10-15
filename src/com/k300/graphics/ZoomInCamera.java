@@ -2,7 +2,6 @@ package com.k300.graphics;
 
 import com.k300.cars.Car;
 import com.k300.cars.player_car.PlayerCar;
-import com.k300.utils.Utils;
 import com.k300.utils.math.Converter;
 
 import java.awt.*;
@@ -10,30 +9,24 @@ import java.awt.image.BufferedImage;
 import java.util.Arrays;
 
 import static com.k300.utils.Utils.drawImageInCenter;
+import static com.k300.utils.Utils.drawStringInCenter;
 
-public class Camera {
+public class ZoomInCamera {
 
 
     public final static double WIDTH = Converter.FHD_SCREEN_WIDTH / 1.3;
     public final static double HEIGHT = Converter.FHD_SCREEN_HEIGHT / 1.3;
-    private double zoomX;
-    private double zoomY;
-
-    public static BufferedImage getZoomedView() {
-        return new BufferedImage(Converter.FHD_SCREEN_WIDTH, Converter.FHD_SCREEN_HEIGHT, Assets.getImage(Assets.TRACK_KEY).getType());
-    }
-
-    // this image is used to get the car dimensions. all cars have the same dimensions so color doesn't matter
-    private static final BufferedImage carImage = Assets.getImage(Assets.BLUE_CAR_KEY);
     private final Car[] cars;
-    private BufferedImage zoomWindow;
     private final Graphics2D zoomGraphics;
     private final AlphaComposite originalComposite;
     private final Graphics windowGraphics;
+    private double zoomX;
+    private double zoomY;
+    private BufferedImage zoomWindow;
     private int playerXPosition;
     private int playerYPosition;
 
-    public Camera(Graphics graphics, Car[] cars) {
+    public ZoomInCamera(Graphics graphics, Car[] cars) {
         windowGraphics = graphics;
         this.cars = cars;
         zoomWindow = new BufferedImage(Converter.FHD_SCREEN_WIDTH,
@@ -51,7 +44,6 @@ public class Camera {
     public void render() {
         drawTrackOnZoomWindow();
         drawZoomedView();
-        addRoundsOverZoomDisplay();
         drawImageInCenter(Converter.FHD_SCREEN_WIDTH / 10,
                 Converter.FHD_SCREEN_HEIGHT / 3 * 2,
                 zoomWindow.getWidth() / 4,
@@ -85,21 +77,16 @@ public class Camera {
         return Color.black;
     }
 
-    private void addRoundsOverZoomDisplay() {
-        windowGraphics.setColor(Color.white);
-        windowGraphics.setFont(new Font("TimesRoman", Font.BOLD, 120));
-        String roundsMsg = "ROUNDS: " + getPlayersCar().rounds;
-        int msgWidth = windowGraphics.getFontMetrics().stringWidth(roundsMsg);
-        int msgHeight = windowGraphics.getFontMetrics().getAscent();
-        windowGraphics.drawString(roundsMsg, Converter.FHD_SCREEN_WIDTH / 2 - msgWidth / 2, (Converter.FHD_SCREEN_HEIGHT - zoomWindow.getHeight()) / 2 - msgHeight);
-    }
-
     private void drawTrackOnZoomWindow() {
         drawFullTrack(zoomGraphics);
+        zoomGraphics.setColor(Color.white);
+        zoomGraphics.setFont(new Font("TimesRoman", Font.BOLD, 120));
+        String roundsMsg = "ROUNDS: " + getPlayersCar().rounds;
+        drawStringInCenter(0, 0, Converter.FHD_SCREEN_WIDTH, Converter.FHD_SCREEN_HEIGHT, zoomGraphics, roundsMsg);
     }
 
     private void drawZoomedView() {
-        zoomWindow = zoomWindow.getSubimage((int)zoomX, (int)zoomY, (int)Camera.WIDTH, (int)Camera.HEIGHT);
+        zoomWindow = zoomWindow.getSubimage((int) zoomX, (int) zoomY, (int) ZoomInCamera.WIDTH, (int) ZoomInCamera.HEIGHT);
         windowGraphics.drawImage(zoomWindow,
                 0,
                 0,
