@@ -42,7 +42,7 @@ public class Track {
     public void render(Graphics graphics) {
         int width = Converter.FHD_SCREEN_WIDTH;
         int height = Converter.FHD_SCREEN_HEIGHT;
-        if(Config.IsUsingZoom()) {
+        if(Config.isUsingZoom()) {
             renderWithZoom(graphics);
         } else {
             renderWithoutZoom(graphics, width, height);

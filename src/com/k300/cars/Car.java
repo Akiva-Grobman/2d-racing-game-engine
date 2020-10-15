@@ -34,11 +34,11 @@ public abstract class Car {
         AffineTransform carAngle = AffineTransform.getTranslateInstance(position.x - carImage.getWidth() / 2f, position.y -  carImage.getHeight() / 2f);
         carAngle.rotate(Math.toRadians(-angle), carImage.getWidth() / 2f, carImage.getHeight() / 2f); //need Minus because Java is multiplier minus
         graphics.drawImage(carImage, carAngle, null);
-        if(!Config.IsUsingZoom() && this instanceof PlayerCar) {
+        if(!Config.isUsingZoom() && this instanceof PlayerCar) {
             graphics.setColor(Color.white);
             graphics.setFont(new Font("TimesRoman", Font.BOLD, 120));
             graphics.drawString("ROUNDS: " + rounds, 625, 570);
-            if(Config.IsInDevMode()) {
+            if(Config.isInDevMode()) {
                 graphics.drawString("Angle: " + angle, 800, 500);
                 graphics.drawString("X: " + position.x, 800, 600);
                 graphics.drawString("Y: " + position.y, 800, 700);

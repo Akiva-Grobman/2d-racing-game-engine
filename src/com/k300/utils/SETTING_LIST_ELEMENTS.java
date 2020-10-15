@@ -22,17 +22,17 @@ public enum SETTING_LIST_ELEMENTS {
 
     public Consumer<Boolean> getVariableSetter() {
         if(this == ZOOM) {
-            return Config::setIsUsingZoom;
+            return Config::setUsingZoom;
         } else {
-            return Config::setIsInDevMode;
+            return Config::setInDevMode;
         }
     }
 
     public BooleanSupplier getVariableValue() {
         if(this == ZOOM)  {
-            return Config::IsUsingZoom;
+            return Config::isUsingZoom;
         } else {
-            return Config::IsInDevMode;
+            return Config::isInDevMode;
         }
     }
 }
