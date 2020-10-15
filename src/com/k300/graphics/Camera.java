@@ -2,11 +2,14 @@ package com.k300.graphics;
 
 import com.k300.cars.Car;
 import com.k300.cars.player_car.PlayerCar;
+import com.k300.utils.Utils;
 import com.k300.utils.math.Converter;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.Arrays;
+
+import static com.k300.utils.Utils.drawImageInCenter;
 
 public class Camera {
 
@@ -49,7 +52,37 @@ public class Camera {
         drawTrackOnZoomWindow();
         drawZoomedView();
         addRoundsOverZoomDisplay();
-        windowGraphics.drawImage(Assets.getImage(Assets.TRACK_KEY), 100, Converter.FHD_SCREEN_HEIGHT - 300, zoomWindow.getWidth()/4, zoomWindow.getHeight()/4, null);
+        drawImageInCenter(Converter.FHD_SCREEN_WIDTH / 10,
+                Converter.FHD_SCREEN_HEIGHT / 3 * 2,
+                zoomWindow.getWidth() / 4,
+                zoomWindow.getHeight() / 4,
+                windowGraphics,
+                getMiniTrack());
+    }
+
+    private BufferedImage getMiniTrack() {
+        BufferedImage track = Assets.getImage(Assets.TRACK_KEY);
+        BufferedImage miniTrack = new BufferedImage(track.getWidth(), track.getHeight(), track.getType());
+        Graphics miniGraphics = miniTrack.getGraphics();
+        miniTrack.getGraphics().drawImage(track, 0, 0, null);
+        for (Car car: cars) {
+            int x = (int) car.position.x;
+            int y = (int) car.position.y;
+            int r = car.carImage.getHeight() / 2;
+            Color color = getColor(car.carColor.split("_")[1]);
+            miniGraphics.setColor(color);
+            miniGraphics.fillOval(x, y, r * 2, r * 2);
+        }
+        miniGraphics.dispose();
+        return miniTrack;
+    }
+
+    private Color getColor(String name) {
+        if(name.equals("blue")) {
+            return Color.blue;
+        }
+        //todo
+        return Color.black;
     }
 
     private void addRoundsOverZoomDisplay() {

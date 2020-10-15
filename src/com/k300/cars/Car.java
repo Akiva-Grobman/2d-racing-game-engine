@@ -16,11 +16,13 @@ public abstract class Car {
     public double angle;
     public int rounds;
     public final BufferedImage carImage;
+    public final String carColor;
 
     public Car(String carColor, Point startingPosition) {
         carImage = Assets.getImage(carColor);
         position = startingPosition;
         angle = 0;
+        this.carColor = carColor;
     }
 
     public abstract void tick();
