@@ -24,6 +24,10 @@ public class Utils {
         return newImage;
     }
 
-
+    public static void drawImageInCenter(double x, double y, double width, double height, Graphics graphics, BufferedImage image) {
+        int newX = (int) ((x + width / 2) - image.getWidth() / 2);
+        int newY = (int) ((y + height / 2) - image.getHeight() / 2);
+        graphics.drawImage(image, newX, newY, null);
+    }
 
 }
