@@ -86,7 +86,15 @@ public class PlayerCar extends Car {
         drivingDirection.getDrivingDirection(mover).run();
         if(isOffTrack()) {
             drivingDirection.getReverseDirection(mover).run();
+            if(drivingDirection == MOVEMENT_DIRECTION.FORWARDS) {
+                frontalCollision = true;
+            } else {
+                rearCollision = true;
+            }
         }
+
+        decreaseSpeed(COLLISION_SPEED_DECREMENT);
+
         if(startLine.hasLegalCrossStartLine(this, drivingDirection)) {
             rounds++;
         }
@@ -143,21 +151,10 @@ public class PlayerCar extends Car {
 
     private void collisionEffect() {
         if (rearCollision) {
-            mover.driveForwards();
-            if(isOffTrack()) {
-                mover.driveBackwards();
-                rearCollision = false;
-                frontalCollision = true;
-            }
+            slowDown(MOVEMENT_DIRECTION.FORWARDS);
         } else if (frontalCollision) {
-            mover.driveBackwards();
-            if(isOffTrack()) {
-                mover.driveForwards();
-                rearCollision = true;
-                frontalCollision = false;
-            }
+            slowDown(MOVEMENT_DIRECTION.BACKWARDS);
         }
-        decreaseSpeed(COLLISION_SPEED_DECREMENT);
     }
 
     public KeyListener getKeyListener() {
