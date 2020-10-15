@@ -20,9 +20,12 @@ public abstract class UIButton {
         this.width = width;
         this.height = height;
         isHovering = false;
+        double relativeHeight = Converter.getProportionalNumber(Converter.FHD_SCREEN_HEIGHT);
+        double fullOriginalHeight = Converter.SCREEN_HEIGHT;
+        double centeredY = (fullOriginalHeight - relativeHeight) / 2;
         // The images drawn relative to FHD screen,
         // so we need to convert the bounds of the mouse hovering to be relative to the current screen size
-        bounds = new Rectangle((int) Converter.getProportionalNumber(x), (int)Converter.getProportionalNumber(y),
+        bounds = new Rectangle((int) Converter.getProportionalNumber(x), (int)(Converter.getProportionalNumber(y) + centeredY),
                 (int)Converter.getProportionalNumber(width), (int)Converter.getProportionalNumber(height));
     }
 
