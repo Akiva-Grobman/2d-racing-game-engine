@@ -149,12 +149,18 @@ public class PlayerCar extends Car {
                 rearCollision = false;
                 frontalCollision = true;
             }
+            if(startLine.hasLegalCrossStartLine(this, MOVEMENT_DIRECTION.FORWARDS)) {
+                rounds++;
+            }
         } else if (frontalCollision) {
             mover.driveBackwards();
             if(isOffTrack()) {
                 mover.driveForwards();
                 rearCollision = true;
                 frontalCollision = false;
+            }
+            if(startLine.hasLegalCrossStartLine(this, MOVEMENT_DIRECTION.BACKWARDS)) {
+                rounds++;
             }
         }
         decreaseSpeed(COLLISION_SPEED_DECREMENT);
