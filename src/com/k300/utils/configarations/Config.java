@@ -9,7 +9,7 @@ public class Config {
 
     private Config() {
         isUsingZoom = true;
-        isInDevMode = false;
+        isInDevMode = true;
     }
 
     public static void setIsInDevMode(boolean isInDevMode) {

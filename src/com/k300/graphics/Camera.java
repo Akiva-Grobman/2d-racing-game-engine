@@ -11,10 +11,10 @@ import java.util.Arrays;
 public class Camera {
 
 
-    public final static int WIDTH = Converter.FHD_SCREEN_WIDTH / 2;
-    public final static int HEIGHT = Converter.FHD_SCREEN_HEIGHT / 2;
-    private int zoomX;
-    private int zoomY;
+    public final static double WIDTH = Converter.FHD_SCREEN_WIDTH / 1.3;
+    public final static double HEIGHT = Converter.FHD_SCREEN_HEIGHT / 1.3;
+    private double zoomX;
+    private double zoomY;
 
     public static BufferedImage getZoomedView() {
         return new BufferedImage(Converter.FHD_SCREEN_WIDTH, Converter.FHD_SCREEN_HEIGHT, Assets.getImage(Assets.TRACK_KEY).getType());
@@ -39,17 +39,17 @@ public class Camera {
         zoomGraphics = zoomWindow.createGraphics();
         originalComposite = (AlphaComposite) zoomGraphics.getComposite();
         setCarCoordinates();
-        zoomX = (playerXPosition + carImage.getWidth() / 2) - (WIDTH / 2);
-        zoomY = (playerYPosition + carImage.getHeight() / 2) - (HEIGHT / 2);
+        zoomX = playerXPosition - (WIDTH / 2);
+        zoomY = playerYPosition - (HEIGHT / 2);
         zoomX = clamp(zoomX, WIDTH, Converter.FHD_SCREEN_WIDTH);
         zoomY = clamp(zoomY, HEIGHT, Converter.FHD_SCREEN_HEIGHT);
     }
 
     public void render() {
-        drawFullTrackInBackground();
         drawTrackOnZoomWindow();
         drawZoomedView();
         addRoundsOverZoomDisplay();
+        windowGraphics.drawImage(Assets.getImage(Assets.TRACK_KEY), 100, Converter.FHD_SCREEN_HEIGHT - 300, zoomWindow.getWidth()/4, zoomWindow.getHeight()/4, null);
     }
 
     private void addRoundsOverZoomDisplay() {
@@ -66,12 +66,12 @@ public class Camera {
     }
 
     private void drawZoomedView() {
-        zoomWindow = zoomWindow.getSubimage(zoomX, zoomY, Camera.WIDTH, Camera.HEIGHT);
+        zoomWindow = zoomWindow.getSubimage((int)zoomX, (int)zoomY, (int)Camera.WIDTH, (int)Camera.HEIGHT);
         windowGraphics.drawImage(zoomWindow,
-                (Converter.FHD_SCREEN_WIDTH - zoomWindow.getWidth()) / 2,
-                (Converter.FHD_SCREEN_HEIGHT - zoomWindow.getHeight()) / 2,
-                zoomWindow.getWidth(),
-                zoomWindow.getHeight(),
+                0,
+                0,
+                Converter.FHD_SCREEN_WIDTH,
+                Converter.FHD_SCREEN_HEIGHT,
                 null);
     }
 
@@ -108,7 +108,7 @@ public class Camera {
         ((Graphics2D) windowGraphics).setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha));
     }
 
-    private int clamp(int coordinate, int zoomDimension, int screenDimension) {
+    private double clamp(double coordinate, double zoomDimension, int screenDimension) {
         if(zoomDimension + coordinate >= screenDimension) {
             return screenDimension - zoomDimension;
         } else if(coordinate < 0){
