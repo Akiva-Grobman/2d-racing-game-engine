@@ -30,9 +30,9 @@ public enum SETTING_LIST_ELEMENTS {
 
     public BooleanSupplier getVariableValue() {
         if(this == ZOOM)  {
-            return Config::getIsUsingZoom;
+            return Config::IsUsingZoom;
         } else {
-            return Config::getIsInDevMode;
+            return Config::IsInDevMode;
         }
     }
 }

@@ -8,8 +8,8 @@ public class Config {
     private boolean isUsingZoom;
 
     private Config() {
-        isUsingZoom = false;
-        isInDevMode = true;
+        isUsingZoom = true;
+        isInDevMode = false;
     }
 
     public static void setIsInDevMode(boolean isInDevMode) {
@@ -22,13 +22,13 @@ public class Config {
         singletonConfig.isUsingZoom = isUsingZoom;
     }
 
-    public static boolean getIsUsingZoom() {
+    public static boolean IsUsingZoom() {
         handleInstance();
         return singletonConfig.isUsingZoom;
 
     }
 
-    public static boolean getIsInDevMode() {
+    public static boolean IsInDevMode() {
         handleInstance();
         return singletonConfig.isInDevMode;
     }
