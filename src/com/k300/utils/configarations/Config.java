@@ -8,7 +8,7 @@ public class Config {
     private boolean isUsingZoom;
 
     private Config() {
-        isUsingZoom = false;
+        isUsingZoom = true;
         isInDevMode = true;
     }
 

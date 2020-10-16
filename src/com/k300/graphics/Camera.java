@@ -24,7 +24,7 @@ public class Camera {
     private static final BufferedImage carImage = Assets.getImage(Assets.BLUE_CAR_KEY);
     private final Car[] cars;
     private BufferedImage zoomWindow;
-    private final Graphics2D zoomGraphics;
+    private Graphics2D zoomGraphics;
     private final AlphaComposite originalComposite;
     private final Graphics windowGraphics;
     private int playerXPosition;
@@ -33,25 +33,23 @@ public class Camera {
     public Camera(Graphics graphics, Car[] cars) {
         windowGraphics = graphics;
         this.cars = cars;
+
         BufferedImage grass = Assets.getImage(Assets.GRASS_KEY);
 
         zoomWindow = new BufferedImage(grass.getWidth(),
                 grass.getHeight(),
                 grass.getType());
+
         zoomGraphics = zoomWindow.createGraphics();
         originalComposite = (AlphaComposite) zoomGraphics.getComposite();
         setCarCoordinates();
-        statingZoomX = playerXPosition - (WIDTH / 2);
-        startingZoomY = playerYPosition - (HEIGHT / 2);
-        statingZoomX = clamp(statingZoomX, WIDTH, grass.getWidth(), zoomGraphics);
-        startingZoomY = clamp(startingZoomY, HEIGHT, grass.getHeight(), zoomGraphics);
     }
 
     public void render() {
-        drawTrackOnZoomWindow();
+        //drawTrackOnZoomWindow();
         drawZoomedView();
-        addRoundsOverZoomDisplay();
-        windowGraphics.drawImage(Assets.getImage(Assets.TRACK_KEY), 100, Converter.FHD_SCREEN_HEIGHT - 300, zoomWindow.getWidth()/4, zoomWindow.getHeight()/4, null);
+        //addRoundsOverZoomDisplay();
+        //windowGraphics.drawImage(Assets.getImage(Assets.TRACK_KEY), 100, Converter.FHD_SCREEN_HEIGHT - 300, zoomWindow.getWidth()/4, zoomWindow.getHeight()/4, null);
     }
 
     private void addRoundsOverZoomDisplay() {
@@ -68,7 +66,10 @@ public class Camera {
     }
 
     private void drawZoomedView() {
-        zoomWindow = zoomWindow.getSubimage((int) statingZoomX, (int) startingZoomY, (int)Camera.WIDTH, (int)Camera.HEIGHT);
+        BufferedImage grass = Assets.getImage(Assets.GRASS_KEY);
+        BufferedImage track = Assets.getImage(Assets.TRACK_KEY);
+
+        zoomWindow = Zoom.getZoomedImage(playerXPosition, playerYPosition, (int)Camera.WIDTH, (int)Camera.HEIGHT, track, grass);
         windowGraphics.drawImage(zoomWindow,
                 0,
                 0,
