@@ -1,6 +1,7 @@
 package com.k300.display;
 
 import com.k300.graphics.Assets;
+import com.k300.graphics.Zoom;
 import com.k300.io.MouseListener;
 import com.k300.utils.math.Converter;
 
@@ -67,6 +68,7 @@ public class Window {
     }
 
     public void show() {
+        fullHDImage = Zoom.getZoomedImage(Converter.FHD_SCREEN_WIDTH/2f, Converter.FHD_SCREEN_HEIGHT/2f, Converter.FHD_SCREEN_WIDTH/2f, Converter.FHD_SCREEN_HEIGHT/2f, fullHDImage);
         drawImageRelativeToScreen(fullHDImage);
         canvas.getBufferStrategy().show();
         canvas.getBufferStrategy().getDrawGraphics().dispose();

@@ -33,16 +33,18 @@ public class Camera {
     public Camera(Graphics graphics, Car[] cars) {
         windowGraphics = graphics;
         this.cars = cars;
-        zoomWindow = new BufferedImage(Converter.FHD_SCREEN_WIDTH,
-                Converter.FHD_SCREEN_HEIGHT,
-                Assets.getImage(Assets.TRACK_KEY).getType());
+        BufferedImage grass = Assets.getImage(Assets.GRASS_KEY);
+
+        zoomWindow = new BufferedImage(grass.getWidth(),
+                grass.getHeight(),
+                grass.getType());
         zoomGraphics = zoomWindow.createGraphics();
         originalComposite = (AlphaComposite) zoomGraphics.getComposite();
         setCarCoordinates();
         statingZoomX = playerXPosition - (WIDTH / 2);
         startingZoomY = playerYPosition - (HEIGHT / 2);
-        statingZoomX = clamp(statingZoomX, WIDTH, Converter.FHD_SCREEN_WIDTH);
-        startingZoomY = clamp(startingZoomY, HEIGHT, Converter.FHD_SCREEN_HEIGHT);
+        statingZoomX = clamp(statingZoomX, WIDTH, grass.getWidth(), zoomGraphics);
+        startingZoomY = clamp(startingZoomY, HEIGHT, grass.getHeight(), zoomGraphics);
     }
 
     public void render() {
@@ -97,7 +99,7 @@ public class Camera {
     }
 
     private void drawFullTrack(Graphics graphics) {
-        graphics.drawImage(Assets.getImage(Assets.TRACK_KEY), 0, 0, zoomWindow.getWidth(), zoomWindow.getHeight(), null);
+        graphics.drawImage(Assets.getImage(Assets.TRACK_KEY), 0, 0, Converter.FHD_SCREEN_WIDTH, Converter.FHD_SCREEN_HEIGHT, null);
         for (Car car: cars) {
             car.render((Graphics2D) graphics);
         }
@@ -108,7 +110,7 @@ public class Camera {
         ((Graphics2D) windowGraphics).setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha));
     }
 
-    private double clamp(double coordinate, double zoomDimension, int screenDimension) {
+    private double clamp(double coordinate, double zoomDimension, int screenDimension, Graphics zoomGraphics) {
         if(zoomDimension + coordinate >= screenDimension) {
             return screenDimension - zoomDimension;
         } else if(coordinate < 0){

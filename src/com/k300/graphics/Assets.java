@@ -9,6 +9,7 @@ import static com.k300.utils.Utils.resizeImage;
 public class Assets {
 
     public static final String K_300_LOGO_KEY = "background";
+    public static final String GRASS_KEY = "GrassBackground";
     public static final String K_300_INTRO_KEY = "intro";
     public static final String FILTER_KEY = "filter";
     public static final String INIT_IMAGE_KEY = "InitImage";
@@ -78,6 +79,7 @@ public class Assets {
         images.put(TRACK_MIDDLE_FILL_KEY, loadImage(TRACK_DIR + TRACK_MIDDLE_FILL_KEY, TYPE_PNG));
         images.put(TRACK_MIDDLE_STROKE_KEY, loadImage(TRACK_DIR + TRACK_MIDDLE_STROKE_KEY, TYPE_PNG));
         images.put(TRACK_OUTSIDE_KEY, loadImage(TRACK_DIR + TRACK_OUTSIDE_KEY, TYPE_PNG));
+        images.put(GRASS_KEY, loadImage(TRACK_DIR + GRASS_KEY, TYPE_JPG));
     }
 
     private BufferedImage getTrackLayer(String key){
