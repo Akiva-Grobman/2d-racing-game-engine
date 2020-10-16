@@ -13,8 +13,8 @@ public class Camera {
 
     public final static double WIDTH = Converter.FHD_SCREEN_WIDTH / 1.3;
     public final static double HEIGHT = Converter.FHD_SCREEN_HEIGHT / 1.3;
-    private double zoomX;
-    private double zoomY;
+    private double statingZoomX;
+    private double startingZoomY;
 
     public static BufferedImage getZoomedView() {
         return new BufferedImage(Converter.FHD_SCREEN_WIDTH, Converter.FHD_SCREEN_HEIGHT, Assets.getImage(Assets.TRACK_KEY).getType());
@@ -39,10 +39,10 @@ public class Camera {
         zoomGraphics = zoomWindow.createGraphics();
         originalComposite = (AlphaComposite) zoomGraphics.getComposite();
         setCarCoordinates();
-        zoomX = playerXPosition - (WIDTH / 2);
-        zoomY = playerYPosition - (HEIGHT / 2);
-        zoomX = clamp(zoomX, WIDTH, Converter.FHD_SCREEN_WIDTH);
-        zoomY = clamp(zoomY, HEIGHT, Converter.FHD_SCREEN_HEIGHT);
+        statingZoomX = playerXPosition - (WIDTH / 2);
+        startingZoomY = playerYPosition - (HEIGHT / 2);
+        statingZoomX = clamp(statingZoomX, WIDTH, Converter.FHD_SCREEN_WIDTH);
+        startingZoomY = clamp(startingZoomY, HEIGHT, Converter.FHD_SCREEN_HEIGHT);
     }
 
     public void render() {
@@ -66,7 +66,7 @@ public class Camera {
     }
 
     private void drawZoomedView() {
-        zoomWindow = zoomWindow.getSubimage((int)zoomX, (int)zoomY, (int)Camera.WIDTH, (int)Camera.HEIGHT);
+        zoomWindow = zoomWindow.getSubimage((int) statingZoomX, (int) startingZoomY, (int)Camera.WIDTH, (int)Camera.HEIGHT);
         windowGraphics.drawImage(zoomWindow,
                 0,
                 0,

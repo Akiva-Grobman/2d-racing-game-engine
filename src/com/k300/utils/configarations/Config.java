@@ -8,8 +8,8 @@ public class Config {
     private boolean isUsingZoom;
 
     private Config() {
-        isUsingZoom = true;
-        isInDevMode = true;
+        isUsingZoom = false;
+        isInDevMode = false;
     }
 
     public static void setIsInDevMode(boolean isInDevMode) {
