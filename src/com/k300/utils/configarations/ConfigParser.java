@@ -45,8 +45,7 @@ public class ConfigParser {
     }
 
     void setIsInDevMode(boolean isInDevMode) {
-        lines.set(infoIndex.get(DEV_MODE_STATUS), String.valueOf(isInDevMode));
-        update(infoIndex.get(DEV_MODE_STATUS));
+        update(infoIndex.get(DEV_MODE_STATUS), isInDevMode);
     }
 
     boolean isUsingZoom() {
@@ -54,17 +53,15 @@ public class ConfigParser {
     }
 
     void setIsUsingZoom(boolean isUsingZoom) {
-        lines.set(infoIndex.get(ZOOM_STATUS), String.valueOf(isUsingZoom));
-        update(infoIndex.get(ZOOM_STATUS));
+        update(infoIndex.get(ZOOM_STATUS), isUsingZoom);
     }
 
-    private void update(int lineIndex) {
+    private void update(int lineIndex, boolean value) {
+        lines.set(lineIndex, lines.get(lineIndex).split(":")[0] + ": " + value);
         try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_URL));
-            for (int i = 0; i < lineIndex; i++) {
-                writer.newLine();
-            }
-            writer.write(lines.get(lineIndex));
+            PrintStream writer = new PrintStream(getClass().getResource(FILE_URL).getPath());
+            lines.forEach(writer::println);
+            writer.close();
         } catch (IOException e) {
             throw new Error(e.getMessage());
         }
