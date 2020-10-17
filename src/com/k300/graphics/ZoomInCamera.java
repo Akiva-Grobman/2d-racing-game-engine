@@ -9,13 +9,14 @@ import java.awt.image.BufferedImage;
 import java.util.Arrays;
 
 import static com.k300.utils.Utils.drawImageInCenter;
-import static com.k300.utils.Utils.drawStringInCenter;
 
 public class ZoomInCamera {
 
 
-    public final static double WIDTH = Converter.FHD_SCREEN_WIDTH / 1.3;
-    public final static double HEIGHT = Converter.FHD_SCREEN_HEIGHT / 1.3;
+    // this image is used to get the car dimensions. all cars have the same dimensions so color doesn't matter
+    private static final BufferedImage carImage = Assets.getImage(Assets.BLUE_CAR_KEY);
+    public final static int WIDTH = Converter.FHD_SCREEN_WIDTH / 2;
+    public final static int HEIGHT = Converter.FHD_SCREEN_HEIGHT / 2;
     private final Car[] cars;
     private final Graphics2D zoomGraphics;
     private final AlphaComposite originalComposite;
@@ -35,63 +36,45 @@ public class ZoomInCamera {
         zoomGraphics = zoomWindow.createGraphics();
         originalComposite = (AlphaComposite) zoomGraphics.getComposite();
         setCarCoordinates();
-        zoomX = playerXPosition - (WIDTH / 2);
-        zoomY = playerYPosition - (HEIGHT / 2);
+        zoomX = playerXPosition - (WIDTH / 2f);
+        zoomY = playerYPosition - (HEIGHT / 2f);
         zoomX = clamp(zoomX, WIDTH, Converter.FHD_SCREEN_WIDTH);
         zoomY = clamp(zoomY, HEIGHT, Converter.FHD_SCREEN_HEIGHT);
     }
 
     public void render() {
+        drawFullTrackInBackground();
         drawTrackOnZoomWindow();
         drawZoomedView();
-        drawImageInCenter(Converter.FHD_SCREEN_WIDTH / 10,
-                Converter.FHD_SCREEN_HEIGHT / 3 * 2,
-                zoomWindow.getWidth() / 4,
-                zoomWindow.getHeight() / 4,
-                windowGraphics,
-                getMiniTrack());
+        drawRoundsOverZoomWindow();
+//        drawImageInCenter(Converter.FHD_SCREEN_WIDTH / 10,
+//                Converter.FHD_SCREEN_HEIGHT / 3 * 2,
+//                zoomWindow.getWidth() / 4,
+//                zoomWindow.getHeight() / 4,
+//                windowGraphics,
+//                getMiniTrack());
     }
 
-    private BufferedImage getMiniTrack() {
-        BufferedImage track = Assets.getImage(Assets.TRACK_KEY);
-        BufferedImage miniTrack = new BufferedImage(track.getWidth(), track.getHeight(), track.getType());
-        Graphics miniGraphics = miniTrack.getGraphics();
-        miniTrack.getGraphics().drawImage(track, 0, 0, null);
-        for (Car car: cars) {
-            int x = (int) car.position.x;
-            int y = (int) car.position.y;
-            int r = car.carImage.getHeight() / 2;
-            Color color = getColor(car.carColor.split("_")[1]);
-            miniGraphics.setColor(color);
-            miniGraphics.fillOval(x, y, r * 2, r * 2);
-        }
-        miniGraphics.dispose();
-        return miniTrack;
-    }
-
-    private Color getColor(String name) {
-        if(name.equals("blue")) {
-            return Color.blue;
-        }
-        //todo
-        return Color.black;
+    private void drawRoundsOverZoomWindow() {
+        windowGraphics.setColor(Color.white);
+        windowGraphics.setFont(new Font("TimesRoman", Font.BOLD, 120));
+        String roundsMsg = "ROUNDS: " + getPlayersCar().rounds;
+        int msgWidth = windowGraphics.getFontMetrics().stringWidth(roundsMsg);
+        int msgHeight = windowGraphics.getFontMetrics().getAscent();
+        windowGraphics.drawString(roundsMsg, Converter.FHD_SCREEN_WIDTH / 2 - msgWidth / 2, (Converter.FHD_SCREEN_HEIGHT - zoomWindow.getHeight()) / 2 - msgHeight);
     }
 
     private void drawTrackOnZoomWindow() {
-        drawFullTrack(zoomGraphics);
-        zoomGraphics.setColor(Color.white);
-        zoomGraphics.setFont(new Font("TimesRoman", Font.BOLD, 120));
-        String roundsMsg = "ROUNDS: " + getPlayersCar().rounds;
-        drawStringInCenter(0, 0, Converter.FHD_SCREEN_WIDTH, Converter.FHD_SCREEN_HEIGHT, zoomGraphics, roundsMsg);
+        drawFullTrackInZoomWindowSize(zoomGraphics);
     }
 
     private void drawZoomedView() {
-        zoomWindow = zoomWindow.getSubimage((int) zoomX, (int) zoomY, (int) ZoomInCamera.WIDTH, (int) ZoomInCamera.HEIGHT);
+        zoomWindow = zoomWindow.getSubimage((int) zoomX, (int) zoomY, ZoomInCamera.WIDTH, ZoomInCamera.HEIGHT);
         windowGraphics.drawImage(zoomWindow,
-                0,
-                0,
-                Converter.FHD_SCREEN_WIDTH,
-                Converter.FHD_SCREEN_HEIGHT,
+                (Converter.FHD_SCREEN_WIDTH - zoomWindow.getWidth()) / 2,
+                (Converter.FHD_SCREEN_HEIGHT - zoomWindow.getHeight()) / 2,
+                zoomWindow.getWidth(),
+                zoomWindow.getHeight(),
                 null);
     }
 
@@ -112,11 +95,11 @@ public class ZoomInCamera {
 
     private void drawFullTrackInBackground() {
         changeImageAlpha();
-        drawFullTrack(windowGraphics);
+        drawFullTrackInZoomWindowSize(windowGraphics);
         ((Graphics2D) windowGraphics).setComposite(originalComposite);
     }
 
-    private void drawFullTrack(Graphics graphics) {
+    private void drawFullTrackInZoomWindowSize(Graphics graphics) {
         graphics.drawImage(Assets.getImage(Assets.TRACK_KEY), 0, 0, zoomWindow.getWidth(), zoomWindow.getHeight(), null);
         for (Car car: cars) {
             car.render((Graphics2D) graphics);
