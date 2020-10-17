@@ -6,11 +6,12 @@ import com.k300.graphics.OpeningFadeState;
 import com.k300.io.MouseListener;
 import com.k300.states.GameState;
 import com.k300.states.MenuState;
+import com.k300.states.SettingsState;
 import com.k300.states.StateManager;
 import com.k300.ui.listeners.OpenFadeListener;
 import com.k300.utils.configarations.Config;
 
-import java.awt.Graphics;
+import java.awt.*;
 import java.awt.event.KeyListener;
 
 public class Launcher {
@@ -50,7 +51,7 @@ public class Launcher {
         mouseListener = new MouseListener();
         window.addMouseListener(mouseListener);
         setKeyListener(new com.k300.io.KeyListener());
-        if(!Config.getIsInDevMode()) {
+        if(!Config.isInDevMode()) {
             StateManager.setCurrentState(
                     new OpeningFadeState(this,
                             Assets.getImage(Assets.K_300_INTRO_KEY),
@@ -58,7 +59,7 @@ public class Launcher {
                     )
             );
         }/*enter testing code here and change in config to true*/ else {
-            StateManager.setCurrentState(new MenuState(this));
+            StateManager.setCurrentState(new SettingsState(this));
         }
     }
 
@@ -107,9 +108,9 @@ public class Launcher {
         window.clear();
         if(StateManager.getCurrentState() != null) {
             StateManager.getCurrentState().render(windowGraphics);
-            if(Config.getIsInDevMode()) {
-                windowGraphics.drawString("FPS: " + fps, 30, 60);
-            }
+            windowGraphics.setColor(Color.white);
+            windowGraphics.setFont(new Font("TimesRoman", Font.BOLD, 40));
+            windowGraphics.drawString("FPS: " + fps, 30, 60);
         }
         window.show();
     }

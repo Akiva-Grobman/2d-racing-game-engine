@@ -24,6 +24,30 @@ public class Utils {
         return newImage;
     }
 
+    public static void drawImageInCenter(double x, double y, double width, double height, Graphics graphics, BufferedImage image) {
+        drawImageInCenter((int)x, (int)y, (int)width, (int)height, graphics, image);
+    }
 
+    public static void drawImageInCenter(int x, int y, int width, int height, Graphics graphics, BufferedImage image) {
+        if(image.getWidth() > width || image.getHeight() > height) {
+            graphics.drawImage(image, x, y, width, height, null);
+        } else {
+            int newX = (x + width / 2) - image.getWidth() / 2;
+            int newY = (y + height / 2) - image.getHeight() / 2;
+            graphics.drawImage(image, newX, newY, null);
+        }
+    }
+
+    public static void drawStringInCenter(int x, int y, int width, int height, Graphics graphics, String string) {
+        int stringWidth = graphics.getFontMetrics().stringWidth(string);
+        int stringHeight = graphics.getFontMetrics().getDescent();
+        if(stringWidth > width || stringHeight > height) {
+            graphics.drawString(string, x, y);
+            return;
+        }
+        int startingX = width / 2 - stringWidth / 2;
+        int startingY = height / 2 + stringHeight;
+        graphics.drawString(string, startingX, startingY);
+    }
 
 }

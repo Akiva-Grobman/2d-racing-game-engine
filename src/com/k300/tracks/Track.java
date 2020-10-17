@@ -3,9 +3,11 @@ package com.k300.tracks;
 import com.k300.cars.Car;
 import com.k300.cars.player_car.PlayerCar;
 import com.k300.graphics.Assets;
+import com.k300.graphics.ZoomInCamera;
 import com.k300.states.GameState;
 import com.k300.states.State;
 import com.k300.utils.Point;
+import com.k300.utils.configarations.Config;
 import com.k300.utils.math.Converter;
 
 import java.awt.*;
@@ -40,10 +42,23 @@ public class Track {
     public void render(Graphics graphics) {
         int width = Converter.FHD_SCREEN_WIDTH;
         int height = Converter.FHD_SCREEN_HEIGHT;
+        if(Config.isUsingZoom()) {
+            renderWithZoom(graphics);
+        } else {
+            renderWithoutZoom(graphics, width, height);
+        }
+    }
+
+    private void renderWithoutZoom(Graphics graphics, int width, int height) {
         graphics.drawImage(Assets.getImage(Assets.TRACK_KEY), 0, 0, width, height, null);
-        for (Car car: cars) {
+        for (Car car : cars) {
             car.render((Graphics2D) graphics);
         }
+    }
+
+    private void renderWithZoom(Graphics graphics) {
+        ZoomInCamera zoomInCamera = new ZoomInCamera(graphics, cars);
+        zoomInCamera.render();
     }
 
 }
