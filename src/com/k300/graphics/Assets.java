@@ -25,8 +25,8 @@ public class Assets {
 
     public static final String PLAY_BUTTON_KEY = "PlayButton";
     public static final String PLAY_BUTTON_HOVER_KEY = "PlayButtonHover";
-    public static final String MULTIPLAYER_BUTTON_KEY = "MultiplayerButton";
-    public static final String MULTIPLAYER_BUTTON_HOVER_KEY = "MultiplayerButtonHover";
+    public static final String ONLINE_BUTTON_KEY = "OnlineButton";
+    public static final String ONLINE_BUTTON_HOVER_KEY = "OnlineButtonHover";
     public static final String SETTINGS_BUTTON_KEY = "SettingsButton";
     public static final String SETTINGS_BUTTON_HOVER_KEY = "SettingsButtonHover";
 
@@ -70,8 +70,8 @@ public class Assets {
         addCarImage(YELLOW_CAR_KEY);
         addButtonImage(PLAY_BUTTON_KEY);
         addButtonImage(PLAY_BUTTON_HOVER_KEY);
-        addButtonImage(MULTIPLAYER_BUTTON_KEY);
-        addButtonImage(MULTIPLAYER_BUTTON_HOVER_KEY);
+        addButtonImage(ONLINE_BUTTON_KEY);
+        addButtonImage(ONLINE_BUTTON_HOVER_KEY);
         addButtonImage(SETTINGS_BUTTON_KEY);
         addButtonImage(SETTINGS_BUTTON_HOVER_KEY);
 
