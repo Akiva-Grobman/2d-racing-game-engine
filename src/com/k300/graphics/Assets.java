@@ -22,10 +22,23 @@ public class Assets {
     public static final String RED_CAR_KEY = "car_red";
     public static final String BLUE_CAR_KEY = "car_blue";
     public static final String YELLOW_CAR_KEY = "car_yellow";
+
     public static final String PLAY_BUTTON_KEY = "PlayButton";
     public static final String PLAY_BUTTON_HOVER_KEY = "PlayButtonHover";
+    public static final String MULTIPLAYER_BUTTON_KEY = "MultiplayerButton";
+    public static final String MULTIPLAYER_BUTTON_HOVER_KEY = "MultiplayerButtonHover";
     public static final String SETTINGS_BUTTON_KEY = "SettingsButton";
     public static final String SETTINGS_BUTTON_HOVER_KEY = "SettingsButtonHover";
+
+    public static final String TWO_PLAYERS_BUTTON_KEY = "2playersButton";
+    public static final String TWO_PLAYERS_BUTTON_HOVER_KEY = "2playersButtonHover";
+    public static final String THREE_PLAYERS_BUTTON_KEY = "3playersButton";
+    public static final String THREE_PLAYERS_BUTTON_HOVER_KEY = "3playersButtonHover";
+    public static final String FOUR_PLAYERS_BUTTON_KEY = "4playersButton";
+    public static final String FOUR_PLAYERS_BUTTON_HOVER_KEY = "4playersButtonHover";
+
+    public static final String BACK_BUTTON_KEY = "BackButton";
+    public static final String BACK_BUTTON_HOVER_KEY = "BackButtonHover";
     public static final String EXIT_BUTTON_KEY = "ExitButton";
     public static final String EXIT_BUTTON_HOVER_KEY = "ExitButtonHover";
 
@@ -57,8 +70,20 @@ public class Assets {
         addCarImage(YELLOW_CAR_KEY);
         addButtonImage(PLAY_BUTTON_KEY);
         addButtonImage(PLAY_BUTTON_HOVER_KEY);
+        addButtonImage(MULTIPLAYER_BUTTON_KEY);
+        addButtonImage(MULTIPLAYER_BUTTON_HOVER_KEY);
         addButtonImage(SETTINGS_BUTTON_KEY);
         addButtonImage(SETTINGS_BUTTON_HOVER_KEY);
+
+        addButtonImage(TWO_PLAYERS_BUTTON_KEY);
+        addButtonImage(TWO_PLAYERS_BUTTON_HOVER_KEY);
+        addButtonImage(THREE_PLAYERS_BUTTON_KEY);
+        addButtonImage(THREE_PLAYERS_BUTTON_HOVER_KEY);
+        addButtonImage(FOUR_PLAYERS_BUTTON_KEY);
+        addButtonImage(FOUR_PLAYERS_BUTTON_HOVER_KEY);
+
+        addButtonImage(BACK_BUTTON_KEY);
+        addButtonImage(BACK_BUTTON_HOVER_KEY);
         addButtonImage(EXIT_BUTTON_KEY);
         addButtonImage(EXIT_BUTTON_HOVER_KEY);
     }
