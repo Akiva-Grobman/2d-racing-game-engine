@@ -10,7 +10,7 @@ import com.k300.ui.buttons.*;
 import com.k300.ui.listeners.ClickListener;
 import com.k300.utils.math.Converter;
 
-public class MultiplayerState extends State {
+public class OnlineState extends State {
 
     private final UIManager uiManager;
     private final MenuBackground background;
@@ -23,7 +23,7 @@ public class MultiplayerState extends State {
     private final int buttonsYUp;
     private final int buttonsYDown;
 
-    public MultiplayerState(Launcher launcher) {
+    public OnlineState(Launcher launcher) {
         super(launcher);
         uiManager = new UIManager();
         background = new MenuBackground();
