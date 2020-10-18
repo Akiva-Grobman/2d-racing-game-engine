@@ -10,7 +10,7 @@ import com.k300.ui.buttons.*;
 import com.k300.ui.listeners.ClickListener;
 import com.k300.utils.math.Converter;
 
-public class MultiplayerState extends State {
+public class OnlineState extends State {
 
     private final UIManager uiManager;
     private final MenuBackground background;
@@ -23,7 +23,7 @@ public class MultiplayerState extends State {
     private final int buttonsYUp;
     private final int buttonsYDown;
 
-    public MultiplayerState(Launcher launcher) {
+    public OnlineState(Launcher launcher) {
         super(launcher);
         uiManager = new UIManager();
         background = new MenuBackground();
@@ -47,15 +47,18 @@ public class MultiplayerState extends State {
     }
 
     private UITwoPlayersButton get2PlayersButton(Launcher launcher) {
-        return new UITwoPlayersButton(buttonsXLeft, buttonsYUp, buttonWidth, buttonHeight, launcher);
+        ClickListener listener = () -> launcher.startOnlineGame(2);
+        return new UITwoPlayersButton(buttonsXLeft, buttonsYUp, buttonWidth, buttonHeight, listener);
     }
 
     private UIThreePlayersButton get3PlayersButton(Launcher launcher) {
-        return new UIThreePlayersButton(buttonsXRight, buttonsYUp, buttonWidth, buttonHeight, launcher);
+        ClickListener listener = () -> launcher.startOnlineGame(3);
+        return new UIThreePlayersButton(buttonsXRight, buttonsYUp, buttonWidth, buttonHeight, listener);
     }
 
     private UIFourPlayersButton get4PlayersButton(Launcher launcher) {
-        return new UIFourPlayersButton(buttonsXLeft, buttonsYDown, buttonWidth, buttonHeight, launcher);
+        ClickListener listener = () -> launcher.startOnlineGame(4);
+        return new UIFourPlayersButton(buttonsXLeft, buttonsYDown, buttonWidth, buttonHeight, listener);
     }
 
     private UIBackButton getBackButton(Launcher launcher) {

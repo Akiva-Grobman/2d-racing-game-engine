@@ -27,7 +27,7 @@ public class MenuState extends State {
         buttonHeight = Converter.FHD_SCREEN_HEIGHT / 4;
         buttonsX = (Converter.FHD_SCREEN_WIDTH -  buttonWidth) / 2;
         UIPlayButton playButton = getPlayButton(launcher);
-        UIMultiplayerButton multiplayerButton = getMultiplayerButton(launcher, playButton);
+        UIOnlineButton multiplayerButton = getOnlineButton(launcher, playButton);
         UISettingsButton settingsButton = getSettingsButton(playButton);
         uiManager.addUIObject(playButton);
         uiManager.addUIObject(multiplayerButton);
@@ -41,9 +41,9 @@ public class MenuState extends State {
         return new UIPlayButton(buttonsX, y, buttonWidth, buttonHeight, listener);
     }
 
-    private UIMultiplayerButton getMultiplayerButton(Launcher launcher, UIButton playButton) {
+    private UIOnlineButton getOnlineButton(Launcher launcher, UIButton playButton) {
         int y = (int) (playButton.getY() + (Converter.FHD_SCREEN_HEIGHT) / 3.5);
-        return new UIMultiplayerButton(buttonsX, y, buttonWidth, buttonHeight, launcher);
+        return new UIOnlineButton(buttonsX, y, buttonWidth, buttonHeight, launcher);
     }
 
     private UISettingsButton getSettingsButton(UIButton multiplayerButton) {
