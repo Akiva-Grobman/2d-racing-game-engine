@@ -8,11 +8,11 @@ import com.k300.states.StateManager;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class UIMultiplayerButton extends UIButton {
+public class UIOnlineButton extends UIButton {
 
     private final Launcher launcher;
 
-    public UIMultiplayerButton(float x, float y, int width, int height, Launcher launcher) {
+    public UIOnlineButton(float x, float y, int width, int height, Launcher launcher) {
         super(x, y, width, height);
         this.launcher = launcher;
     }

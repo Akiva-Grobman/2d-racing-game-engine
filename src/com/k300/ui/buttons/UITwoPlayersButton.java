@@ -4,17 +4,18 @@ import com.k300.Launcher;
 import com.k300.graphics.Assets;
 import com.k300.states.SettingsState;
 import com.k300.states.StateManager;
+import com.k300.ui.listeners.ClickListener;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class UITwoPlayersButton extends UIButton {
 
-    private final Launcher launcher;
+    private final ClickListener clickListener;
 
-    public UITwoPlayersButton(float x, float y, int width, int height, Launcher launcher) {
+    public UITwoPlayersButton(float x, float y, int width, int height, ClickListener clickListener) {
         super(x, y, width, height);
-        this.launcher = launcher;
+        this.clickListener = clickListener;
     }
 
     @Override
@@ -30,7 +31,7 @@ public class UITwoPlayersButton extends UIButton {
 
     @Override
     public void onClick() {
-        StateManager.setCurrentState(new SettingsState(launcher));
+        clickListener.onClick();
     }
 
 }
