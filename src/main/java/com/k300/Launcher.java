@@ -4,10 +4,10 @@ import com.k300.display.Window;
 import com.k300.graphics.Assets;
 import com.k300.graphics.OpeningFadeState;
 import com.k300.io.MouseListener;
-import com.k300.states.GameState;
-import com.k300.states.MenuState;
-import com.k300.states.SettingsState;
+import com.k300.states.OnlineState;
 import com.k300.states.StateManager;
+import com.k300.states.gameStates.OfflineGame;
+import com.k300.states.gameStates.OnlineGame;
 import com.k300.ui.listeners.OpenFadeListener;
 import com.k300.utils.configarations.Config;
 
@@ -59,7 +59,7 @@ public class Launcher {
                     )
             );
         }/*enter testing code here and change in config to true*/ else {
-            StateManager.setCurrentState(new SettingsState(this));
+            StateManager.setCurrentState(new OnlineState(this));
         }
     }
 
@@ -121,12 +121,12 @@ public class Launcher {
 
     public void startGame() {
         mouseListener.setUiManager(null);
-        StateManager.setCurrentState(new GameState(this));
+        StateManager.setCurrentState(new OfflineGame(this));
     }
 
     public void startOnlineGame(int players) {
         mouseListener.setUiManager(null);
-        StateManager.setCurrentState(new GameState(this));
+        StateManager.setCurrentState(new OnlineGame(this, players));
     }
 
 }
