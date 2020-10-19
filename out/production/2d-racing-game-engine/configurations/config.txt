@@ -1,3 +1,0 @@
-zooom: true
-dev mode: true
-https://k300.herokuapp.com/api/quick-match/4
