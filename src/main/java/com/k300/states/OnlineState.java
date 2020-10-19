@@ -1,14 +1,16 @@
 package com.k300.states;
 
 import com.k300.Launcher;
-
-import java.awt.*;
-
 import com.k300.graphics.MenuBackground;
-import com.k300.ui.*;
-import com.k300.ui.buttons.*;
+import com.k300.ui.UIManager;
+import com.k300.ui.buttons.UIBackButton;
+import com.k300.ui.buttons.UIFourPlayersButton;
+import com.k300.ui.buttons.UIThreePlayersButton;
+import com.k300.ui.buttons.UITwoPlayersButton;
 import com.k300.ui.listeners.ClickListener;
 import com.k300.utils.math.Converter;
+
+import java.awt.*;
 
 public class OnlineState extends State {
 

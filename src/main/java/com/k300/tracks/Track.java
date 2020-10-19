@@ -12,7 +12,7 @@ import java.awt.*;
 
 public class Track {
 
-    private final Car[] cars;
+    public final Car[] cars;
 
     public Track(State gameState) {
         ObstacleManager obstacleManager = new ObstacleManager();

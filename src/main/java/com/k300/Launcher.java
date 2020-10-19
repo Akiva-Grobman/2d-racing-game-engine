@@ -126,7 +126,8 @@ public class Launcher {
 
     public void startOnlineGame(int players) {
         mouseListener.setUiManager(null);
-        StateManager.setCurrentState(new OnlineGame(this, players));
+        OnlineGame.player = players;
+        StateManager.setCurrentState(new OnlineGame(this));
     }
 
 }

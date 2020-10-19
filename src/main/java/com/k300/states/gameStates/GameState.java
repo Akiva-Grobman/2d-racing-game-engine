@@ -15,7 +15,7 @@ import java.awt.event.KeyListener;
 public abstract class GameState extends State {
 
     private static final com.k300.utils.Point startingPosition = new Point(800, 800);
-    private final Track track;
+    protected final Track track;
 
     public GameState(Launcher launcher) {
         super(launcher);
