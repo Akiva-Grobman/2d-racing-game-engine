@@ -2,7 +2,6 @@ package com.k300.states;
 
 import com.k300.Launcher;
 import com.k300.tracks.Track;
-import com.k300.utils.configarations.Config;
 
 import java.awt.*;
 import java.awt.event.KeyListener;

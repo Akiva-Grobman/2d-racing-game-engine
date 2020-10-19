@@ -46,6 +46,8 @@ com/k300/utils/SETTING_LIST_ELEMENTS.java
  com.k300.utils.SETTING_LIST_ELEMENTS
 com/k300/ui/listeners/ClickListener.java
  com.k300.ui.listeners.ClickListener
+com/k300/states/gameStates/OnlineGame.java
+ com.k300.states.gameStates.OnlineGame
 com/k300/states/MenuState.java
  com.k300.states.MenuState
 com/k300/graphics/FadeState.java
@@ -80,6 +82,8 @@ com/k300/graphics/Zoom.java
  com.k300.graphics.Zoom
 com/k300/tracks/Obstacle.java
  com.k300.tracks.Obstacle
+com/k300/states/gameStates/OfflineGame.java
+ com.k300.states.gameStates.OfflineGame
 com/k300/ui/UIManager.java
  com.k300.ui.UIManager
 com/k300/utils/Utils.java
