@@ -1,5 +1,6 @@
 package com.k300.io.api.models;
 
+@SuppressWarnings("unused")
 public class GameStartingInfo {
 
     private Room room;

@@ -2,8 +2,10 @@ package com.k300.states.gameStates;
 
 import com.k300.Launcher;
 import com.k300.cars.Car;
+import com.k300.cars.EnemyCar;
 import com.k300.cars.player_car.PlayerCar;
 import com.k300.io.api.WebInteractor;
+import com.k300.io.api.models.Player;
 import com.k300.tracks.Collisions;
 import com.k300.tracks.StartLine;
 import com.k300.utils.math.Converter;
@@ -19,11 +21,15 @@ public class OnlineGame extends GameState {
 
     public OnlineGame(Launcher launcher, int sumOfPlayers) {
         super(launcher);
-        webInteractor = new WebInteractor(track);
+        webInteractor = new WebInteractor(this);
         this.sumOfPlayers = sumOfPlayers;
         dots = "";
         timeFromLastUpdate = 0;
-        track.setCars();
+        new Thread(track::setCars).start();
+    }
+
+    public void updateCars(Player[] enemyPlayers) {
+        track.updateCars(enemyPlayers);
     }
 
     @Override
@@ -31,9 +37,11 @@ public class OnlineGame extends GameState {
         if(webInteractor.gameIsStarted()) {
             super.tick();
         }
-        PlayerCar playerCar = (PlayerCar) track.cars[0];
-        if (playerCar != null) {
-            webInteractor.update(playerCar);
+        if(track.getCars() != null) {
+            PlayerCar playerCar = (PlayerCar) track.getCars()[0];
+            if (playerCar != null) {
+                webInteractor.updatePlayerPositions(playerCar);
+            }
         }
     }
 
@@ -52,6 +60,19 @@ public class OnlineGame extends GameState {
         }
     }
 
+    @Override
+    public Car[] getCars(Collisions playerCollisionLogic, StartLine startLine, int sumOfCars) {
+        webInteractor.startMatch(sumOfCars);
+        Car[] cars = new Car[sumOfCars];
+        cars[0] = webInteractor.getPlayerCar(playerCollisionLogic, startLine);
+        assert cars[0] != null;
+        launcher.setKeyListener(((PlayerCar) cars[0]).getKeyListener());
+        for (int i = 1; i < cars.length; i++) {
+            cars[i] = new EnemyCar();
+        }
+        return cars;
+    }
+
     private void updateDots() {
         timeFromLastUpdate++;
         if (timeFromLastUpdate >= 30) {
@@ -62,16 +83,6 @@ public class OnlineGame extends GameState {
                 dots += ".";
             }
         }
-    }
-
-    @Override
-    public Car[] getCars(Collisions playerCollisionLogic, StartLine startLine, int sumOfCars) {
-        webInteractor.startMatch(sumOfCars);
-        Car[] cars = new Car[sumOfCars];
-        cars[0] = webInteractor.getPlayerCar(playerCollisionLogic, startLine);
-        assert cars[0] != null;
-        launcher.setKeyListener(((PlayerCar) cars[0]).getKeyListener());
-        return cars;
     }
 
 }

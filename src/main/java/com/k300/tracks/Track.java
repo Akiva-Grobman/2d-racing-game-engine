@@ -1,8 +1,10 @@
 package com.k300.tracks;
 
 import com.k300.cars.Car;
+import com.k300.cars.EnemyCar;
 import com.k300.graphics.Assets;
 import com.k300.graphics.ZoomInCamera;
+import com.k300.io.api.models.Player;
 import com.k300.states.State;
 import com.k300.states.gameStates.GameState;
 import com.k300.states.gameStates.OfflineGame;
@@ -16,7 +18,7 @@ public class Track {
 
     private final ObstacleManager obstacleManager;
     private final GameState gameState;
-    public volatile Car[] cars;
+    private volatile Car[] cars;
 
     public Track(State gameState) {
         this.gameState = (GameState) gameState;
@@ -51,13 +53,24 @@ public class Track {
         cars = gameState.getCars(collisions, startLine, getSumOfPlayers());
     }
 
-    public synchronized void updateCars(Car[] newCars) {
+    public Car[] getCars() {
+        return cars; //todo change from reference to clone
+    }
+
+    public void updateCars(Player[] newCars) {
         assert newCars.length + 1 == cars.length;
         int index = 1;
-        for (Car updatedCar: newCars) {
-            cars[index] = updatedCar;
+        for (Player updatedCar: newCars) {
+            updateLocalCar(index, updatedCar);
             index++;
         }
+    }
+
+    private void updateLocalCar(int index, Player updatedCar) {
+        cars[index].carColor = updatedCar.getColor();
+        cars[index].position.x = updatedCar.getX();
+        cars[index].position.y = updatedCar.getY();
+        cars[index].angle = updatedCar.getAngle();
     }
 
     private int getSumOfPlayers() {

@@ -13,10 +13,10 @@ import java.awt.image.BufferedImage;
 public abstract class Car {
 
     public final Point position;
+    public BufferedImage carImage;
+    public String carColor;
     public double angle;
     public int rounds;
-    public final BufferedImage carImage;
-    public final String carColor;
 
     public Car(String carColor, Point startingPosition) {
         carImage = Assets.getImage(carColor);
@@ -29,6 +29,9 @@ public abstract class Car {
 
     public final void render(Graphics2D graphics) {
         if(carImage == null) {
+            if(carColor != null) {
+                carImage = Assets.getImage(carColor);
+            }
             return;
         }
         AffineTransform carAngle = AffineTransform.getTranslateInstance(position.x - carImage.getWidth() / 2f, position.y -  carImage.getHeight() / 2f);

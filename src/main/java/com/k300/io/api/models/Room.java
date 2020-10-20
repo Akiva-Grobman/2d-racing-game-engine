@@ -2,6 +2,7 @@ package com.k300.io.api.models;
 
 import java.util.Arrays;
 
+@SuppressWarnings("unused")
 public class Room {
 
     private String id;
