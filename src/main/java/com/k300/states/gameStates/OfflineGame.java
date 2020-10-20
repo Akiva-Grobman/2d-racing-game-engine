@@ -10,10 +10,11 @@ public class OfflineGame extends GameState {
 
     public OfflineGame(Launcher launcher) {
         super(launcher);
+        track.setCars();
     }
 
     @Override
-    public Car[] getCars(Collisions playerCollisionLogic, StartLine startLine) {
+    public Car[] getCars(Collisions playerCollisionLogic, StartLine startLine, int sumOfCars) {
         //todo add second car
         Car[] cars = new Car[1];
         cars[0] = getLocalPlayer(Assets.BLUE_CAR_KEY, playerCollisionLogic, startLine);

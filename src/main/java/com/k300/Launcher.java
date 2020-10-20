@@ -41,10 +41,6 @@ public class Launcher {
         System.exit(0);
     }
 
-    public void setKeyListener(KeyListener listener) {
-        window.setKeyListener(listener);
-    }
-
     private void initialize() {
         window = new Window("2d-racing-game-engine");
         window.setBufferStrategy(3);
@@ -119,6 +115,10 @@ public class Launcher {
         return mouseListener;
     }
 
+    public void setKeyListener(KeyListener listener) {
+        window.setKeyListener(listener);
+    }
+
     public void startGame() {
         mouseListener.setUiManager(null);
         StateManager.setCurrentState(new OfflineGame(this));
@@ -126,8 +126,7 @@ public class Launcher {
 
     public void startOnlineGame(int players) {
         mouseListener.setUiManager(null);
-        OnlineGame.player = players;
-        StateManager.setCurrentState(new OnlineGame(this));
+        StateManager.setCurrentState(new OnlineGame(this, players));
     }
 
 }

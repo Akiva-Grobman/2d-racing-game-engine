@@ -20,4 +20,7 @@ public class Config {
         parser.setIsUsingZoom(isUsingZoom);
     }
 
+    public static String getUrl() {
+        return parser.getServerUrl();
+    }
 }

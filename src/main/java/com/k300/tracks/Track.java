@@ -5,6 +5,8 @@ import com.k300.graphics.Assets;
 import com.k300.graphics.ZoomInCamera;
 import com.k300.states.State;
 import com.k300.states.gameStates.GameState;
+import com.k300.states.gameStates.OfflineGame;
+import com.k300.states.gameStates.OnlineGame;
 import com.k300.utils.configarations.Config;
 import com.k300.utils.math.Converter;
 
@@ -12,19 +14,18 @@ import java.awt.*;
 
 public class Track {
 
-    public final Car[] cars;
+    private final ObstacleManager obstacleManager;
+    private final GameState gameState;
+    public volatile Car[] cars;
 
     public Track(State gameState) {
-        ObstacleManager obstacleManager = new ObstacleManager();
-        Margins margins = new Margins();
-        StartLine startLine = new StartLine(margins.getFrameBigBPoint(), margins.getFrameSmallBPoint());
-        Collisions collisions = new Collisions(margins, obstacleManager);
+        this.gameState = (GameState) gameState;
+        obstacleManager = new ObstacleManager();
         obstacleManager.addObstacle(new Obstacle(1300, 550, 500));
         obstacleManager.addObstacle(new Obstacle(1070, -150, 700));
         obstacleManager.addObstacle(new Obstacle(-350, 550, 1100));
         obstacleManager.addObstacle(new Obstacle(650, 480, 500));
         obstacleManager.addObstacle(new Obstacle(300, 1250, 900));
-        cars = ((GameState) gameState).getCars(collisions, startLine);
     }
 
     public void tick() {
@@ -41,6 +42,29 @@ public class Track {
         } else {
             renderWithoutZoom(graphics, width, height);
         }
+    }
+
+    public void setCars() {
+        Margins margins = new Margins();
+        StartLine startLine = new StartLine(margins.getFrameBigBPoint(), margins.getFrameSmallBPoint());
+        Collisions collisions = new Collisions(margins, obstacleManager);
+        cars = gameState.getCars(collisions, startLine, getSumOfPlayers());
+    }
+
+    public synchronized void updateCars(Car[] newCars) {
+        assert newCars.length + 1 == cars.length;
+        int index = 1;
+        for (Car updatedCar: newCars) {
+            cars[index] = updatedCar;
+            index++;
+        }
+    }
+
+    private int getSumOfPlayers() {
+        if(gameState instanceof OfflineGame) {
+            return 1;
+        }
+        return ((OnlineGame) gameState).sumOfPlayers;
     }
 
     private void renderWithoutZoom(Graphics graphics, int width, int height) {

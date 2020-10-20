@@ -10,7 +10,6 @@ import com.k300.tracks.Track;
 import com.k300.utils.Point;
 
 import java.awt.*;
-import java.awt.event.KeyListener;
 
 public abstract class GameState extends State {
 
@@ -32,16 +31,12 @@ public abstract class GameState extends State {
         track.render(graphics);
     }
 
-    public void setKeyListener(KeyListener keyListener) {
-        launcher.setKeyListener(keyListener);
-    }
-
     public Car getLocalPlayer(String carColor, Collisions playerCollisionLogic, StartLine startLine) {
         PlayerCar localPlayer = new PlayerCar(carColor, startingPosition, playerCollisionLogic, startLine);
-        setKeyListener(localPlayer.getKeyListener());
+        launcher.setKeyListener(localPlayer.getKeyListener());
         return localPlayer;
     }
 
-    public abstract Car[] getCars(Collisions playerCollisionLogic, StartLine startLine);
+    public abstract Car[] getCars(Collisions playerCollisionLogic, StartLine startLine, int sumOfCars);
 
 }

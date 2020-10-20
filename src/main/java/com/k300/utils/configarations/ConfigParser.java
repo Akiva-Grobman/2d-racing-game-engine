@@ -10,7 +10,7 @@ public class ConfigParser {
     private static final String TRUE = String.valueOf(true);
     private static final String ZOOM_STATUS = "zoom";
     private static final String DEV_MODE_STATUS = "devMode";
-    private static final String SERVER_URL = "";
+    private static final String SERVER_URL = "url";
     private final Map<String, Integer> infoIndex;
     private final List<String> lines;
 
@@ -37,7 +37,7 @@ public class ConfigParser {
     }
 
     String getServerUrl() {
-        return lines.get(infoIndex.get(SERVER_URL));
+        return lines.get(infoIndex.get(SERVER_URL)).split(" ")[1];
     }
 
     boolean isInDevMode() {
