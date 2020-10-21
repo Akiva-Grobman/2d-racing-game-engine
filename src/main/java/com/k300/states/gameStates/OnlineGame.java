@@ -38,8 +38,8 @@ public class OnlineGame extends GameState {
             super.tick();
         }
         final Car[] cars = track.getCars();
-        if(cars != null) {
-            PlayerCar playerCar = (PlayerCar) cars[0];
+        if(cars != null && cars.length > 0) {
+            Car playerCar = cars[0];
             if (playerCar != null) {
                 webInteractor.updatePlayerPositions(playerCar);
             }

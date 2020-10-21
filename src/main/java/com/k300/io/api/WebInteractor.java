@@ -2,6 +2,7 @@ package com.k300.io.api;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.k300.cars.Car;
 import com.k300.cars.player_car.PlayerCar;
 import com.k300.graphics.Assets;
 import com.k300.io.api.handlers.InitialGetHandler;
@@ -42,13 +43,13 @@ public class WebInteractor {
     public void startMatch(int sumOfPlayers) {
         Call<GameStartingInfo> call = client.getCarColor(sumOfPlayers);
         if(Config.isInDevMode()) {
-            System.out.print("Initial Get Request\n>>\n" + sumOfPlayers);
+            System.out.println("Initial Get Request\n>>\n" + sumOfPlayers);
         }
         call.enqueue(initialCallBack);
 
     }
 
-    public void updatePlayerPositions(PlayerCar playerCar) {
+    public void updatePlayerPositions(Car playerCar) {
         player.setX(playerCar.position.x);
         player.setY(playerCar.position.y);
         player.setAngle(playerCar.angle);
@@ -57,7 +58,7 @@ public class WebInteractor {
         if(Config.isInDevMode()) {
             System.out.print("\n Sending Post Update \n>>\n");
             System.out.println("Room-id " + roomId);
-            System.out.println("Body >>\n" + postBody);
+            System.out.println("Body >>\n" + getPrettyGson().toJson(postBody));
         }
         Call<PostResponse> call = client.updateCarDate(roomId, postBody);
         call.enqueue(new PostRequestHandler(this));
@@ -104,7 +105,7 @@ public class WebInteractor {
         }
     }
 
-    private Gson getPrettyGson() {
+    public static Gson getPrettyGson() {
         GsonBuilder gsonBuilder = new GsonBuilder();
         gsonBuilder.setPrettyPrinting();
         return gsonBuilder.create();

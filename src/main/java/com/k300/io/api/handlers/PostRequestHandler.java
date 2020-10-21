@@ -21,7 +21,7 @@ public class PostRequestHandler implements Callback<PostResponse> {
         boolean isInDevMode = Config.isInDevMode();
         if(isInDevMode) {
             System.out.print("Update Response \n>>\n");
-            System.out.println(body);
+            System.out.println(WebInteractor.getPrettyGson().toJson(body));
         }
         webInteractor.setGameIsStarted(body.getRoom().isGameStarted());
         if(isInDevMode) {

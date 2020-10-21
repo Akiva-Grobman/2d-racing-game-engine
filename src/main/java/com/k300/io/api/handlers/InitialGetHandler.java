@@ -24,7 +24,7 @@ public class InitialGetHandler implements Callback<GameStartingInfo> {
         webInteractor.setRoomId(startingInfo.getRoom().getId());
         if(Config.isInDevMode()) {
             System.out.print("Initial Get Request response\n>>\n");
-            System.out.println(startingInfo);
+            System.out.println(WebInteractor.getPrettyGson().toJson(startingInfo));
         }
     }
 
