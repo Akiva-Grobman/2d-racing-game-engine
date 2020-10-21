@@ -2,8 +2,10 @@ package com.k300.states;
 
 import com.k300.Launcher;
 //import com.k300.ui.SettingsList;
+import com.k300.ui.SettingsList;
 import com.k300.ui.UIManager;
 //import com.k300.ui.buttons.SettingsListElement;
+import com.k300.ui.buttons.SettingsListElement;
 import com.k300.ui.buttons.UIBackButton;
 import com.k300.utils.math.Converter;
 
@@ -23,10 +25,10 @@ public class SettingsState extends State {
                 (int) (Converter.FHD_SCREEN_HEIGHT / 5f),
                 launcher);
         uiManager.addUIObject(backButton);
-//        SettingsList settingsList = new SettingsList(Converter.FHD_SCREEN_WIDTH / 10, Converter.FHD_SCREEN_HEIGHT / 5);
-//        for (SettingsListElement element: settingsList.getElements()) {
-//            uiManager.addUIObject(element);
-//        }
+        SettingsList settingsList = new SettingsList(Converter.FHD_SCREEN_WIDTH / 10, Converter.FHD_SCREEN_HEIGHT / 5);
+        for (SettingsListElement element: settingsList.getElements()) {
+            uiManager.addUIObject(element);
+        }
     }
 
     @Override

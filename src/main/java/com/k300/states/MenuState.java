@@ -24,39 +24,39 @@ public class MenuState extends State {
         background = new MenuBackground();
         launcher.getMouseListener().setUiManager(uiManager);
         buttonWidth = Converter.FHD_SCREEN_WIDTH / 3;
-        buttonHeight = Converter.FHD_SCREEN_HEIGHT / 4;
+        buttonHeight = Converter.FHD_SCREEN_HEIGHT / 5;
         buttonsX = (Converter.FHD_SCREEN_WIDTH -  buttonWidth) / 2;
-        UIButton playButton = getPlayButton(launcher);
-        UIButton multiplayerButton = getOnlineButton(launcher, playButton);
-        UIButton settingsButton = getSettingsButton(playButton);
+        UIMenuButton playButton = getPlayButton(launcher);
+        UIMenuButton onlineButton = getOnlineButton(launcher, playButton);
+        UIMenuButton settingsButton = getSettingsButton(onlineButton);
         uiManager.addUIObject(playButton);
-        uiManager.addUIObject(multiplayerButton);
+        uiManager.addUIObject(onlineButton);
         uiManager.addUIObject(settingsButton);
         uiManager.addUIObject(getExitButton(settingsButton));
     }
 
-    private UIButton getPlayButton(Launcher launcher) {
+    private UIMenuButton getPlayButton(Launcher launcher) {
         int y = (Converter.FHD_SCREEN_HEIGHT) / 8;
         ClickListener listener = launcher::startGame;
-        return new UIButton(buttonsX, y, buttonWidth, buttonHeight, "PLAY", listener);
+        return new UIMenuButton(buttonsX, y, buttonWidth, buttonHeight, "PLAY", listener);
     }
 
-    private UIButton getOnlineButton(Launcher launcher, UIButton playButton) {
+    private UIMenuButton getOnlineButton(Launcher launcher, UIMenuButton playButton) {
         int y = (int) (playButton.getY() + (Converter.FHD_SCREEN_HEIGHT) / 3.5);
         ClickListener listener = () -> StateManager.setCurrentState(new OnlineState(launcher));
-        return new UIButton(buttonsX, y, buttonWidth, buttonHeight,"ONLINE", listener);
+        return new UIMenuButton(buttonsX, y, buttonWidth, buttonHeight,"ONLINE", listener);
     }
 
-    private UIButton getSettingsButton(UIButton multiplayerButton) {
+    private UIMenuButton getSettingsButton(UIMenuButton multiplayerButton) {
         int y = (int) (Converter.FHD_SCREEN_HEIGHT - (Converter.FHD_SCREEN_HEIGHT) / 3.5);
         ClickListener listener = () -> StateManager.setCurrentState(new SettingsState(launcher));
-        return new UIButton(buttonsX, y, buttonWidth, buttonHeight,"SETTINGS", listener);
+        return new UIMenuButton(buttonsX, y, buttonWidth/2, buttonHeight/2,"SETTINGS", 30, listener);
     }
 
-    private UIButton getExitButton(UIButton settingsButton) {
+    private UIMenuButton getExitButton(UIMenuButton settingsButton) {
         int y = (int) settingsButton.getY();
         ClickListener listener = Launcher::stop;
-        return new UIButton(buttonsX, y, buttonWidth, buttonHeight,"EXIT", listener);
+        return new UIMenuButton(buttonsX + buttonWidth/2f, y, buttonWidth/2, buttonHeight/2,"EXIT", 30, listener);
     }
 
     @Override

@@ -1,37 +1,29 @@
 package com.k300.ui.buttons;
 
-import com.k300.graphics.Assets;
-import com.k300.ui.listeners.ClickListener;
 import com.k300.utils.math.Converter;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
-import java.awt.image.BufferedImage;
 
-import static com.k300.utils.Utils.drawStringInCenter;
-
-public class UIButton {
+public abstract class UIButton {
 
     protected final float x;
     protected final float y;
     protected final int width;
     protected final int height;
     protected final String text;
-    protected final ClickListener clickListener;
+    protected final int fontSize;
     protected boolean isHovering;
     private final Rectangle bounds;
 
-
-    public UIButton(float x, float y, int width, int height, String text, ClickListener clickListener) {
+    public UIButton(float x, float y, int width, int height, String text, int fontSize) {
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
         this.text = text;
-        this.clickListener = clickListener;
+        this.fontSize = fontSize;
         isHovering = false;
-
-        //////BOUNDS//////
 
         // Because we are centering the final image to be in the center of the screen,
         // also we need to to do the opposite for the bounds and add to their y the centeredY
@@ -45,21 +37,9 @@ public class UIButton {
                 (int)Converter.getProportionalNumber(width), (int)Converter.getProportionalNumber(height));
     }
 
-    public void render(Graphics graphics) {
-        BufferedImage image;
-        if(isHovering) {
-            image = Assets.getImage(Assets.BUTTON_HOVER_KEY);
-        } else {
-            image = Assets.getImage(Assets.BUTTON_KEY);
-        }
-        graphics.drawImage(image, (int) x, (int) y, width, height, null);
+    public abstract void render(Graphics graphics);
 
-        drawStringInCenter(x, y, width, height, graphics, text);
-    }
-
-    public void onClick() {
-        clickListener.onClick();
-    }
+    public abstract void onClick();
 
     public void onMouseMove(MouseEvent e) {
         isHovering = bounds.contains(e.getX(), e.getY());

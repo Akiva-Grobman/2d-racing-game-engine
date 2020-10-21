@@ -3,7 +3,7 @@ package com.k300.states;
 import com.k300.Launcher;
 import com.k300.graphics.MenuBackground;
 import com.k300.ui.UIManager;
-import com.k300.ui.buttons.UIButton;
+import com.k300.ui.buttons.UIMenuButton;
 import com.k300.ui.listeners.ClickListener;
 import com.k300.utils.math.Converter;
 
@@ -35,34 +35,34 @@ public class OnlineState extends State {
         buttonsYUp = buttonHeight / 3;
         buttonsYDown = (Converter.FHD_SCREEN_HEIGHT -  buttonHeight) -  buttonHeight/2;
 
-        UIButton twoPlayersButton = get2PlayersButton(launcher);
-        UIButton threePlayersButton = get3PlayersButton(launcher);
-        UIButton fourPlayersButton = get4PlayersButton(launcher);
-        UIButton backButton = getBackButton(launcher);
+        UIMenuButton twoPlayersButton = get2PlayersButton(launcher);
+        UIMenuButton threePlayersButton = get3PlayersButton(launcher);
+        UIMenuButton fourPlayersButton = get4PlayersButton(launcher);
+        UIMenuButton backButton = getBackButton(launcher);
         uiManager.addUIObject(twoPlayersButton);
         uiManager.addUIObject(threePlayersButton);
         uiManager.addUIObject(fourPlayersButton);
         uiManager.addUIObject(backButton);
     }
 
-    private UIButton get2PlayersButton(Launcher launcher) {
+    private UIMenuButton get2PlayersButton(Launcher launcher) {
         ClickListener listener = () -> launcher.startOnlineGame(2);
-        return new UIButton(buttonsXLeft, buttonsYUp, buttonWidth, buttonHeight,"2 PLAYERS", listener);
+        return new UIMenuButton(buttonsXLeft, buttonsYUp, buttonWidth, buttonHeight,"2 PLAYERS", listener);
     }
 
-    private UIButton get3PlayersButton(Launcher launcher) {
+    private UIMenuButton get3PlayersButton(Launcher launcher) {
         ClickListener listener = () -> launcher.startOnlineGame(3);
-        return new UIButton(buttonsXRight, buttonsYUp, buttonWidth, buttonHeight, "3 PLAYERS", listener);
+        return new UIMenuButton(buttonsXRight, buttonsYUp, buttonWidth, buttonHeight, "3 PLAYERS", listener);
     }
 
-    private UIButton get4PlayersButton(Launcher launcher) {
+    private UIMenuButton get4PlayersButton(Launcher launcher) {
         ClickListener listener = () -> launcher.startOnlineGame(4);
-        return new UIButton(buttonsXLeft, buttonsYDown, buttonWidth, buttonHeight, "4 PLAYERS", listener);
+        return new UIMenuButton(buttonsXLeft, buttonsYDown, buttonWidth, buttonHeight, "4 PLAYERS", listener);
     }
 
-    private UIButton getBackButton(Launcher launcher) {
+    private UIMenuButton getBackButton(Launcher launcher) {
         ClickListener listener = () -> StateManager.setCurrentState(new MenuState(launcher));
-        return new UIButton(buttonsXRight, buttonsYDown, buttonWidth, buttonHeight, "BACK", listener);
+        return new UIMenuButton(buttonsXRight, buttonsYDown, buttonWidth, buttonHeight, "BACK", listener);
     }
 
     @Override

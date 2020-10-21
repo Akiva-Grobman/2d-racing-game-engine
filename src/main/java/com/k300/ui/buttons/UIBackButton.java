@@ -3,13 +3,11 @@ package com.k300.ui.buttons;
 import com.k300.Launcher;
 import com.k300.graphics.FontLoader;
 import com.k300.states.MenuState;
-import com.k300.states.OnlineState;
 import com.k300.states.StateManager;
-import com.k300.ui.listeners.ClickListener;
 
 import java.awt.*;
 
-public class UIBackButton extends UIButton {
+public class UIBackButton extends UIMenuButton {
 
     private final Launcher launcher;
 
