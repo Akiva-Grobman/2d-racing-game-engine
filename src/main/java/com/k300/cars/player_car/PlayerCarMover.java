@@ -1,7 +1,6 @@
 package com.k300.cars.player_car;
 
 import com.k300.utils.Point;
-import com.k300.utils.ROTATION;
 
 import static com.k300.utils.math.AnalyticalMath.*;
 
@@ -36,17 +35,17 @@ public class PlayerCarMover {
     }
 
     public void turnRight() {
-        turn(ROTATION.RIGHT);
+        turn(TURNING_DIRECTION.RIGHT);
     }
 
     public void turnLeft() {
-        turn(ROTATION.LEFT);
+        turn(TURNING_DIRECTION.LEFT);
     }
 
-    private void turn(ROTATION direction) {
-        car.angle += CAR_TURNING_ANGLE * direction.getValue();
+    private void turn(TURNING_DIRECTION direction) {
+        car.angle += CAR_TURNING_ANGLE * direction.getRotationMultiplier();
         if(car.angle == 90) {
-            car.angle += CAR_TURNING_ANGLE * direction.getValue();
+            car.angle += CAR_TURNING_ANGLE * direction.getRotationMultiplier();
         }
         resetAngle();
     }

@@ -4,13 +4,15 @@ import com.k300.io.PlayerKeyListener;
 
 public enum TURNING_DIRECTION {
 
-    RIGHT(PlayerKeyListener.RIGHT_ARROW),
-    LEFT(PlayerKeyListener.LEFT_ARROW);
+    RIGHT(PlayerKeyListener.RIGHT_ARROW, -1),
+    LEFT(PlayerKeyListener.LEFT_ARROW, 1);
 
     private final int keyValue;
+    private final int multiplier;
 
-    TURNING_DIRECTION(int keyValue) {
+    TURNING_DIRECTION(int keyValue, int multiplier) {
         this.keyValue = keyValue;
+        this.multiplier = multiplier;
     }
 
     public static TURNING_DIRECTION getDirectionFromValue(int keyValue) {
@@ -36,6 +38,10 @@ public enum TURNING_DIRECTION {
         } else {
             return mover::turnRight;
         }
+    }
+
+    public int getRotationMultiplier() {
+        return multiplier;
     }
 
 }
