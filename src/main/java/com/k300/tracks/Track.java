@@ -9,6 +9,7 @@ import com.k300.states.State;
 import com.k300.states.gameStates.GameState;
 import com.k300.states.gameStates.OfflineGame;
 import com.k300.states.gameStates.OnlineGame;
+import com.k300.utils.Point;
 import com.k300.utils.configarations.Config;
 import com.k300.utils.math.Converter;
 
@@ -54,7 +55,15 @@ public class Track {
     }
 
     public Car[] getCars() {
-        return cars; //todo change from reference to clone
+        Car[] cars = new Car[this.cars.length];
+        for (int i = 0; i < cars.length; i++) {
+            cars[i] = new EnemyCar();
+            cars[i].position.x = this.cars[i].position.x;
+            cars[i].position.y = this.cars[i].position.y;
+            cars[i].angle = this.cars[i].angle;
+            cars[i].carColor = this.cars[i].carColor;
+        }
+        return cars;
     }
 
     public void updateCars(Player[] newCars) {
