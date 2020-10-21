@@ -67,7 +67,7 @@ public class Track {
     }
 
     private void updateLocalCar(int index, Player updatedCar) {
-        cars[index].carColor = updatedCar.getColor();
+        cars[index].updateColor(updatedCar.getColor());
         cars[index].position.x = updatedCar.getX();
         cars[index].position.y = updatedCar.getY();
         cars[index].angle = updatedCar.getAngle();

@@ -30,7 +30,7 @@ public abstract class Car {
     public final void render(Graphics2D graphics) {
         if(carImage == null) {
             if(carColor != null) {
-                carImage = Assets.getImage(carColor);
+                updateColor(carColor);
             }
             return;
         }
@@ -60,6 +60,25 @@ public abstract class Car {
         }
     }
 
+    public void updateColor(String color) {
+        if(!color.contains("_")) {
+            carColor = getColor(color);
+        } else {
+            carColor = color;
+        }
+        carImage = Assets.getImage(carColor);
+    }
+
+    private String getColor(String color) {
+        color = color.toLowerCase();
+        if(color.contains("blue")) {
+            return Assets.BLUE_CAR_KEY;
+        } else if(color.contains("red")) {
+            return Assets.RED_CAR_KEY;
+        }
+        return Assets.YELLOW_CAR_KEY;
+    }
+
     public double getX() {
         return position.x;
     }
@@ -71,5 +90,4 @@ public abstract class Car {
     public double getAngle() {
         return angle;
     }
-
 }
