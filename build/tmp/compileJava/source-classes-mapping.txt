@@ -1,19 +1,17 @@
+com/k300/graphics/FontLoader.java
+ com.k300.graphics.FontLoader
 com/k300/utils/configarations/Config.java
  com.k300.utils.configarations.Config
 com/k300/display/Window.java
  com.k300.display.Window
 com/k300/graphics/ZoomInCamera.java
  com.k300.graphics.ZoomInCamera
-com/k300/ui/buttons/UIFourPlayersButton.java
- com.k300.ui.buttons.UIFourPlayersButton
 com/k300/io/EnemyOutput.java
  com.k300.io.EnemyOutput
 com/k300/utils/math/AnalyticalMath.java
  com.k300.utils.math.AnalyticalMath
 com/k300/Main.java
  com.k300.Main
-com/k300/ui/buttons/SettingsListElement.java
- com.k300.ui.buttons.SettingsListElement
 com/k300/utils/SLANT_ANGLE.java
  com.k300.utils.SLANT_ANGLE
 com/k300/cars/player_car/MOVEMENT_DIRECTION.java
@@ -32,8 +30,6 @@ com/k300/io/api/models/GameStartingInfo.java
  com.k300.io.api.models.GameStartingInfo
 com/k300/io/api/models/Player.java
  com.k300.io.api.models.Player
-com/k300/ui/buttons/UIPlayButton.java
- com.k300.ui.buttons.UIPlayButton
 com/k300/states/StateManager.java
  com.k300.states.StateManager
 com/k300/io/EnemyInput.java
@@ -64,8 +60,6 @@ com/k300/states/OnlineState.java
  com.k300.states.OnlineState
 com/k300/io/KeyListener.java
  com.k300.io.KeyListener
-com/k300/ui/buttons/UIThreePlayersButton.java
- com.k300.ui.buttons.UIThreePlayersButton
 com/k300/utils/configarations/ConfigParser.java
  com.k300.utils.configarations.ConfigParser
 com/k300/tracks/StartLine.java
@@ -78,8 +72,6 @@ com/k300/tracks/Track.java
  com.k300.tracks.Track
 com/k300/cars/EnemyCar.java
  com.k300.cars.EnemyCar
-com/k300/ui/SettingsList.java
- com.k300.ui.SettingsList
 com/k300/io/api/models/PostBody.java
  com.k300.io.api.models.PostBody
 com/k300/utils/ROTATION.java
@@ -104,12 +96,8 @@ com/k300/tracks/Margins.java
  com.k300.tracks.Margins
 com/k300/io/api/models/Room.java
  com.k300.io.api.models.Room
-com/k300/ui/buttons/UIOnlineButton.java
- com.k300.ui.buttons.UIOnlineButton
 com/k300/tracks/ObstacleManager.java
  com.k300.tracks.ObstacleManager
-com/k300/ui/buttons/UISettingsButton.java
- com.k300.ui.buttons.UISettingsButton
 com/k300/ui/buttons/UIButton.java
  com.k300.ui.buttons.UIButton
 com/k300/cars/player_car/PlayerCarCorners.java
@@ -120,15 +108,11 @@ com/k300/ui/listeners/OpenFadeListener.java
  com.k300.ui.listeners.OpenFadeListener
 com/k300/cars/player_car/TURNING_DIRECTION.java
  com.k300.cars.player_car.TURNING_DIRECTION
-com/k300/ui/buttons/UIExitButton.java
- com.k300.ui.buttons.UIExitButton
 com/k300/utils/math/Converter.java
  com.k300.utils.math.Converter
 com/k300/io/api/API.java
  com.k300.io.api.API
 com/k300/states/gameStates/GameState.java
  com.k300.states.gameStates.GameState
-com/k300/ui/buttons/UITwoPlayersButton.java
- com.k300.ui.buttons.UITwoPlayersButton
 com/k300/io/PlayerKeyListener.java
  com.k300.io.PlayerKeyListener

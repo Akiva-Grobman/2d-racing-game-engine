@@ -2,6 +2,7 @@ package com.k300;
 
 import com.k300.display.Window;
 import com.k300.graphics.Assets;
+import com.k300.graphics.FontLoader;
 import com.k300.graphics.OpeningFadeState;
 import com.k300.io.MouseListener;
 import com.k300.states.OnlineState;
@@ -101,11 +102,12 @@ public class Launcher {
 
     private void render() {
         Graphics windowGraphics = window.getGraphics();
+        Font minecraft = FontLoader.loadFont("Minecraft", 40);
         window.clear();
         if(StateManager.getCurrentState() != null) {
             StateManager.getCurrentState().render(windowGraphics);
             windowGraphics.setColor(Color.white);
-            windowGraphics.setFont(new Font("TimesRoman", Font.BOLD, 40));
+            windowGraphics.setFont(minecraft);
             windowGraphics.drawString("FPS: " + fps, 30, 60);
         }
         window.show();

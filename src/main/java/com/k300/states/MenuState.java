@@ -26,34 +26,37 @@ public class MenuState extends State {
         buttonWidth = Converter.FHD_SCREEN_WIDTH / 3;
         buttonHeight = Converter.FHD_SCREEN_HEIGHT / 4;
         buttonsX = (Converter.FHD_SCREEN_WIDTH -  buttonWidth) / 2;
-        UIPlayButton playButton = getPlayButton(launcher);
-        UIOnlineButton multiplayerButton = getOnlineButton(launcher, playButton);
-        UISettingsButton settingsButton = getSettingsButton(playButton);
+        UIButton playButton = getPlayButton(launcher);
+        UIButton multiplayerButton = getOnlineButton(launcher, playButton);
+        UIButton settingsButton = getSettingsButton(playButton);
         uiManager.addUIObject(playButton);
         uiManager.addUIObject(multiplayerButton);
         uiManager.addUIObject(settingsButton);
         uiManager.addUIObject(getExitButton(settingsButton));
     }
 
-    private UIPlayButton getPlayButton(Launcher launcher) {
+    private UIButton getPlayButton(Launcher launcher) {
         int y = (Converter.FHD_SCREEN_HEIGHT) / 8;
         ClickListener listener = launcher::startGame;
-        return new UIPlayButton(buttonsX, y, buttonWidth, buttonHeight, listener);
+        return new UIButton(buttonsX, y, buttonWidth, buttonHeight, "PLAY", listener);
     }
 
-    private UIOnlineButton getOnlineButton(Launcher launcher, UIButton playButton) {
+    private UIButton getOnlineButton(Launcher launcher, UIButton playButton) {
         int y = (int) (playButton.getY() + (Converter.FHD_SCREEN_HEIGHT) / 3.5);
-        return new UIOnlineButton(buttonsX, y, buttonWidth, buttonHeight, launcher);
+        ClickListener listener = () -> StateManager.setCurrentState(new OnlineState(launcher));
+        return new UIButton(buttonsX, y, buttonWidth, buttonHeight,"ONLINE", listener);
     }
 
-    private UISettingsButton getSettingsButton(UIButton multiplayerButton) {
+    private UIButton getSettingsButton(UIButton multiplayerButton) {
         int y = (int) (Converter.FHD_SCREEN_HEIGHT - (Converter.FHD_SCREEN_HEIGHT) / 3.5);
-        return new UISettingsButton(buttonsX, y, buttonWidth/2, buttonHeight/2, launcher);
+        ClickListener listener = () -> StateManager.setCurrentState(new SettingsState(launcher));
+        return new UIButton(buttonsX, y, buttonWidth, buttonHeight,"SETTINGS", listener);
     }
 
     private UIButton getExitButton(UIButton settingsButton) {
         int y = (int) settingsButton.getY();
-        return new UIExitButton(buttonsX + buttonWidth/2, y, buttonWidth/2, buttonHeight/2);
+        ClickListener listener = Launcher::stop;
+        return new UIButton(buttonsX, y, buttonWidth, buttonHeight,"EXIT", listener);
     }
 
     @Override
