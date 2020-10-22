@@ -11,14 +11,18 @@ public abstract class UIButton {
     protected final float y;
     protected final int width;
     protected final int height;
+    protected final String text;
+    protected final int fontSize;
     protected boolean isHovering;
     private final Rectangle bounds;
 
-    public UIButton(float x, float y, int width, int height) {
+    public UIButton(float x, float y, int width, int height, String text, int fontSize) {
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
+        this.text = text;
+        this.fontSize = fontSize;
         isHovering = false;
 
         // Because we are centering the final image to be in the center of the screen,

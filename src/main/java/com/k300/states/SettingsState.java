@@ -1,8 +1,10 @@
 package com.k300.states;
 
 import com.k300.Launcher;
+//import com.k300.ui.SettingsList;
 import com.k300.ui.SettingsList;
 import com.k300.ui.UIManager;
+//import com.k300.ui.buttons.SettingsListElement;
 import com.k300.ui.buttons.SettingsListElement;
 import com.k300.ui.buttons.UIBackButton;
 import com.k300.utils.math.Converter;
