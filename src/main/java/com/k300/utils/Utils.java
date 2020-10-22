@@ -46,7 +46,7 @@ public class Utils {
             return;
         }
         int startingX = (int) (width / 2 - stringWidth / 2 + x);
-        int startingY = (int) (height / 2 + stringHeight + y);
+        int startingY = (int) (height / 2 + stringHeight * 1.5 + y);
         graphics.drawString(string, startingX, startingY);
     }
 

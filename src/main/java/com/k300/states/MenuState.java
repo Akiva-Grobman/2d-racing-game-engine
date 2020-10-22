@@ -14,14 +14,18 @@ public class MenuState extends State {
 
     private final UIManager uiManager;
     private final MenuBackground background;
+
     private final double bigButtonWidth;
     private final double bigButtonHeight;
-    private final double buttonWidth;
-    private final double buttonHeight;
     private final double xBigButton;
     private final double startingYBigButton;
     private final double bigButtonMargin;
-    private final double buttonMargin;
+    private final int bigButtonFontSize;
+
+
+    private final double smallButtonWidth;
+    private final double smallButtonHeight;
+    private final double smallButtonMargin;
 
     public MenuState(Launcher launcher) {
         super(launcher);
@@ -36,9 +40,11 @@ public class MenuState extends State {
         startingYBigButton = (Converter.FHD_SCREEN_HEIGHT) / 9f;
         bigButtonMargin = bigButtonHeight * 1.4;
 
-        buttonMargin = 40;
-        buttonWidth = (bigButtonWidth - buttonMargin) / 2f;
-        buttonHeight = bigButtonHeight / 1.5;
+        bigButtonFontSize = 150;
+
+        smallButtonMargin = 40;
+        smallButtonWidth = (bigButtonWidth - smallButtonMargin) / 2f;
+        smallButtonHeight = bigButtonHeight / 1.5;
 
         UIMenuButton playButton = getPlayButton(launcher);
         UIMenuButton onlineButton = getOnlineButton(launcher, playButton);
@@ -51,23 +57,23 @@ public class MenuState extends State {
 
     private UIMenuButton getPlayButton(Launcher launcher) {
         ClickListener listener = launcher::startGame;
-        return new UIMenuButton((int) xBigButton, (int) startingYBigButton, (int) bigButtonWidth, (int) bigButtonHeight, "PLAY", listener);
+        return new UIMenuButton((int) xBigButton, (int) startingYBigButton, (int) bigButtonWidth, (int) bigButtonHeight, "PLAY", bigButtonFontSize, listener);
     }
 
     private UIMenuButton getOnlineButton(Launcher launcher, UIMenuButton playButton) {
         ClickListener listener = () -> StateManager.setCurrentState(new OnlineState(launcher));
-        return new UIMenuButton((int) xBigButton, (int) (playButton.getY() + bigButtonMargin), (int) bigButtonWidth, (int) bigButtonHeight,"ONLINE", listener);
+        return new UIMenuButton((int) xBigButton, (int) (playButton.getY() + bigButtonMargin), (int) bigButtonWidth, (int) bigButtonHeight,"ONLINE", bigButtonFontSize, listener);
     }
 
     private UIMenuButton getSettingsButton(UIMenuButton multiplayerButton) {
         ClickListener listener = () -> StateManager.setCurrentState(new SettingsState(launcher));
-        return new UIMenuButton((int) xBigButton, (int) (multiplayerButton.getY() + bigButtonMargin), (int) buttonWidth, (int) buttonHeight,"SETTINGS", 30, listener);
+        return new UIMenuButton((int) xBigButton, (int) (multiplayerButton.getY() + bigButtonMargin), (int) smallButtonWidth, (int) smallButtonHeight,"SETTINGS", 30, listener);
     }
 
     private UIMenuButton getExitButton(UIMenuButton settingsButton) {
         int y = (int) settingsButton.getY();
         ClickListener listener = Launcher::stop;
-        return new UIMenuButton((int) (xBigButton + buttonWidth + buttonMargin), y, (int) buttonWidth, (int) buttonHeight,"EXIT", 30, listener);
+        return new UIMenuButton((int) (xBigButton + smallButtonWidth + smallButtonMargin), y, (int) smallButtonWidth, (int) smallButtonHeight,"EXIT", 30, listener);
     }
 
     @Override
