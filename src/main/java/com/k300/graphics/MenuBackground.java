@@ -66,9 +66,10 @@ public class MenuBackground {
         // background image
         graphics.drawImage(Assets.getImage(Assets.TRACK_KEY), 0, 0, Converter.FHD_SCREEN_WIDTH, Converter.FHD_SCREEN_HEIGHT, null);
         // draw בס"ד
-        graphics.setColor(new Color(93,188,210));
-        graphics.setFont(new Font("Italic", Font.ITALIC, Converter.FHD_SCREEN_WIDTH / 90));
+
+        graphics.setFont(FontLoader.loadFont("StamAshkenaz", Converter.FHD_SCREEN_WIDTH / 90));
         graphics.drawString("בס\"ד", Converter.FHD_SCREEN_WIDTH / 20 * 19, Converter.FHD_SCREEN_HEIGHT / 15);
+        graphics.setFont(FontLoader.loadFont("Minecraft", Converter.FHD_SCREEN_WIDTH / 90));
         // draw red car
         graphics.drawImage(Assets.getImage(Assets.RED_CAR_KEY), redCarPosition.x, redCarPosition.y, null);
         // draw blue car

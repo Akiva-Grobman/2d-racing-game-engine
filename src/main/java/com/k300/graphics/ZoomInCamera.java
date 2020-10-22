@@ -57,11 +57,10 @@ public class ZoomInCamera {
 
     private void drawRoundsOverZoomWindow() {
         windowGraphics.setColor(Color.white);
-        windowGraphics.setFont(new Font("TimesRoman", Font.BOLD, 120));
         String roundsMsg = "ROUNDS: " + getPlayersCar().rounds;
         int msgWidth = windowGraphics.getFontMetrics().stringWidth(roundsMsg);
         int msgHeight = windowGraphics.getFontMetrics().getAscent();
-        windowGraphics.drawString(roundsMsg, Converter.FHD_SCREEN_WIDTH / 2 - msgWidth / 2, (Converter.FHD_SCREEN_HEIGHT - zoomWindow.getHeight()) / 2 - msgHeight);
+        windowGraphics.drawString(roundsMsg, (Converter.FHD_SCREEN_WIDTH - msgWidth) / 2, (Converter.FHD_SCREEN_HEIGHT - zoomWindow.getHeight()) / 2 - msgHeight);
     }
 
     private void drawTrackOnZoomWindow() {

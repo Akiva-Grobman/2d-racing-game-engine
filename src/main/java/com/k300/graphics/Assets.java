@@ -1,5 +1,7 @@
 package com.k300.graphics;
 
+import com.k300.utils.math.Converter;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.Hashtable;
@@ -22,6 +24,9 @@ public class Assets {
     public static final String RED_CAR_KEY = "car_red";
     public static final String BLUE_CAR_KEY = "car_blue";
     public static final String YELLOW_CAR_KEY = "car_yellow";
+
+    public static final String BUTTON_KEY = "Button";
+    public static final String BUTTON_HOVER_KEY = "ButtonHover";
 
     public static final String PLAY_BUTTON_KEY = "PlayButton";
     public static final String PLAY_BUTTON_HOVER_KEY = "PlayButtonHover";
@@ -68,6 +73,10 @@ public class Assets {
         addCarImage(RED_CAR_KEY);
         addCarImage(BLUE_CAR_KEY);
         addCarImage(YELLOW_CAR_KEY);
+
+        addButtonImage(BUTTON_KEY);
+        addButtonImage(BUTTON_HOVER_KEY);
+
         addButtonImage(PLAY_BUTTON_KEY);
         addButtonImage(PLAY_BUTTON_HOVER_KEY);
         addButtonImage(ONLINE_BUTTON_KEY);
@@ -93,9 +102,15 @@ public class Assets {
         Graphics trackGraphics = track.getGraphics();
         BufferedImage road = getTrackLayer(ROAD_KEY);
         trackGraphics.drawImage(road, (1920 - road.getWidth()) / 2, (1080 - road.getHeight()) / 2, road.getWidth(), road.getHeight(), null);
+
         BufferedImage trackMiddle = getTrackLayer(TRACK_MIDDLE_KEY);
         trackGraphics.drawImage(trackMiddle, (1920 - trackMiddle.getWidth()) / 2, (1080 - trackMiddle.getHeight()) / 2, trackMiddle.getWidth(), trackMiddle.getHeight(), null);
+
+        trackGraphics.drawImage(getTrackLayer(TRACK_OUTSIDE_KEY), 0, 0, track.getWidth(), track.getHeight(), null);
+
+        trackGraphics.drawImage(images.get(FILTER_KEY), 0, 0, Converter.FHD_SCREEN_WIDTH, Converter.FHD_SCREEN_HEIGHT, null);
         trackGraphics.dispose();
+
         images.put(INIT_IMAGE_KEY, loadImage(TRACK_DIR + INIT_IMAGE_KEY, TYPE_JPG));
         images.put(TRACK_KEY, track);
         images.put(ROAD_KEY, road);

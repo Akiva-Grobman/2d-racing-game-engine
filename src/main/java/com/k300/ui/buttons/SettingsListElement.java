@@ -1,8 +1,11 @@
 package com.k300.ui.buttons;
 
+import com.k300.graphics.FontLoader;
 import com.k300.utils.SETTING_LIST_ELEMENTS;
 
 import java.awt.*;
+
+import static com.k300.utils.Utils.drawStringInCenter;
 
 public class SettingsListElement extends UIButton {
 
@@ -10,7 +13,13 @@ public class SettingsListElement extends UIButton {
     private final SETTING_LIST_ELEMENTS elementsType;
 
     public SettingsListElement(float x, float y, int width, int height, SETTING_LIST_ELEMENTS elementsType) {
-        super(x, y, width, height);
+        super(x, y, width, height, elementsType.getMessage(), 50);
+        this.elementsType = elementsType;
+        isChecked = elementsType.getVariableValue().getAsBoolean();
+    }
+
+    public SettingsListElement(float x, float y, int width, int height, int fontSize, SETTING_LIST_ELEMENTS elementsType) {
+        super(x, y, width, height, elementsType.getMessage(), fontSize);
         this.elementsType = elementsType;
         isChecked = elementsType.getVariableValue().getAsBoolean();
     }
@@ -28,7 +37,10 @@ public class SettingsListElement extends UIButton {
             graphics.setColor(Color.white);
         }
         graphics.drawRect((int) x, (int) y, width, height);
-        graphics.drawString(elementsType.getMessage(), (int) (x + width * 1.5), (int) (y + height - graphics.getFontMetrics().getAscent()));
+
+        Font currentFont = graphics.getFont();
+        graphics.setFont(FontLoader.loadFont(currentFont.getFontName(), fontSize));
+        graphics.drawString(text, (int) (x + width * 1.5), (int) (y + height - graphics.getFontMetrics().getAscent()));
         graphics.setColor(original);
     }
 

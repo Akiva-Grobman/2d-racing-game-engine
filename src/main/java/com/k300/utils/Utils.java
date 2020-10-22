@@ -38,15 +38,15 @@ public class Utils {
         }
     }
 
-    public static void drawStringInCenter(int x, int y, int width, int height, Graphics graphics, String string) {
+    public static void drawStringInCenter(float x, float y, int width, int height, Graphics graphics, String string) {
         int stringWidth = graphics.getFontMetrics().stringWidth(string);
         int stringHeight = graphics.getFontMetrics().getDescent();
         if(stringWidth > width || stringHeight > height) {
-            graphics.drawString(string, x, y);
+            graphics.drawString(string, (int) x, (int) y);
             return;
         }
-        int startingX = width / 2 - stringWidth / 2;
-        int startingY = height / 2 + stringHeight;
+        int startingX = (int) (width / 2 - stringWidth / 2 + x);
+        int startingY = (int) (height / 2 + stringHeight * 1.5 + y);
         graphics.drawString(string, startingX, startingY);
     }
 

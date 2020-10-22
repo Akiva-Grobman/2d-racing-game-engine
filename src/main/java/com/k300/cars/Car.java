@@ -39,7 +39,7 @@ public abstract class Car {
         graphics.drawImage(carImage, carAngle, null);
         if(!Config.isUsingZoom() && this instanceof PlayerCar) {
             graphics.setColor(Color.white);
-            graphics.setFont(new Font("TimesRoman", Font.BOLD, 120));
+            graphics.setFont(new Font("Minecraft", Font.BOLD, 120));
             graphics.drawString("ROUNDS: " + rounds, 625, 570);
             if(Config.isInDevMode()) {
                 graphics.drawString("Angle: " + angle, 800, 500);
