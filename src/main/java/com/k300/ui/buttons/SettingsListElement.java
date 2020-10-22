@@ -18,6 +18,12 @@ public class SettingsListElement extends UIButton {
         isChecked = elementsType.getVariableValue().getAsBoolean();
     }
 
+    public SettingsListElement(float x, float y, int width, int height, int fontSize, SETTING_LIST_ELEMENTS elementsType) {
+        super(x, y, width, height, elementsType.getMessage(), fontSize);
+        this.elementsType = elementsType;
+        isChecked = elementsType.getVariableValue().getAsBoolean();
+    }
+
     @Override
     public void render(Graphics graphics) {
         Color original = graphics.getColor();

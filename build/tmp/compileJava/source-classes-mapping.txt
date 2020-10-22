@@ -96,12 +96,12 @@ com/k300/Launcher.java
  com.k300.Launcher
 com/k300/ui/listeners/FadeListener.java
  com.k300.ui.listeners.FadeListener
-com/k300/ui/listeners/OpenFadeListener.java
- com.k300.ui.listeners.OpenFadeListener
+com/k300/states/SettingsState.java
+ com.k300.states.SettingsState
 com/k300/states/gameStates/OnlineGame.java
  com.k300.states.gameStates.OnlineGame
-com/k300/states/MenuState.java
- com.k300.states.MenuState
+com/k300/states/StateManager.java
+ com.k300.states.StateManager
 com/k300/states/gameStates/OfflineGame.java
  com.k300.states.gameStates.OfflineGame
 com/k300/ui/UIManager.java
@@ -110,15 +110,15 @@ com/k300/graphics/FadeState.java
  com.k300.graphics.FadeState
 com/k300/states/State.java
  com.k300.states.State
-com/k300/states/OnlineState.java
- com.k300.states.OnlineState
-com/k300/ui/buttons/UIBackButton.java
- com.k300.ui.buttons.UIBackButton
-com/k300/states/StateManager.java
- com.k300.states.StateManager
-com/k300/ui/SettingsList.java
- com.k300.ui.SettingsList
-com/k300/states/SettingsState.java
- com.k300.states.SettingsState
 com/k300/ui/buttons/SettingsListElement.java
  com.k300.ui.buttons.SettingsListElement
+com/k300/ui/SettingsList.java
+ com.k300.ui.SettingsList
+com/k300/states/OnlineState.java
+ com.k300.states.OnlineState
+com/k300/ui/listeners/OpenFadeListener.java
+ com.k300.ui.listeners.OpenFadeListener
+com/k300/ui/buttons/UIBackButton.java
+ com.k300.ui.buttons.UIBackButton
+com/k300/states/MenuState.java
+ com.k300.states.MenuState
