@@ -20,12 +20,15 @@ public class MenuState extends State {
     private final double xBigButton;
     private final double startingYBigButton;
     private final double bigButtonMargin;
-    private final int bigButtonFontSize;
 
 
     private final double smallButtonWidth;
     private final double smallButtonHeight;
     private final double smallButtonMargin;
+
+    private final int bigButtonFontSize;
+    private final int smallButtonFontSize;
+
 
     public MenuState(Launcher launcher) {
         super(launcher);
@@ -37,14 +40,16 @@ public class MenuState extends State {
         bigButtonHeight = Converter.FHD_SCREEN_HEIGHT / 4.5f;
 
         xBigButton = (Converter.FHD_SCREEN_WIDTH - bigButtonWidth) / 2;
-        startingYBigButton = (Converter.FHD_SCREEN_HEIGHT) / 9f;
+        startingYBigButton = (Converter.FHD_SCREEN_HEIGHT) / 8.5f;
         bigButtonMargin = bigButtonHeight * 1.4;
-
-        bigButtonFontSize = 150;
 
         smallButtonMargin = 40;
         smallButtonWidth = (bigButtonWidth - smallButtonMargin) / 2f;
-        smallButtonHeight = bigButtonHeight / 1.5;
+        smallButtonHeight = bigButtonHeight / 1.8;
+
+        bigButtonFontSize = 100;
+        smallButtonFontSize = 40;
+
 
         UIMenuButton playButton = getPlayButton(launcher);
         UIMenuButton onlineButton = getOnlineButton(launcher, playButton);
@@ -67,13 +72,13 @@ public class MenuState extends State {
 
     private UIMenuButton getSettingsButton(UIMenuButton multiplayerButton) {
         ClickListener listener = () -> StateManager.setCurrentState(new SettingsState(launcher));
-        return new UIMenuButton((int) xBigButton, (int) (multiplayerButton.getY() + bigButtonMargin), (int) smallButtonWidth, (int) smallButtonHeight,"SETTINGS", 30, listener);
+        return new UIMenuButton((int) xBigButton, (int) (multiplayerButton.getY() + bigButtonMargin), (int) smallButtonWidth, (int) smallButtonHeight,"SETTINGS", smallButtonFontSize, listener);
     }
 
     private UIMenuButton getExitButton(UIMenuButton settingsButton) {
         int y = (int) settingsButton.getY();
         ClickListener listener = Launcher::stop;
-        return new UIMenuButton((int) (xBigButton + smallButtonWidth + smallButtonMargin), y, (int) smallButtonWidth, (int) smallButtonHeight,"EXIT", 30, listener);
+        return new UIMenuButton((int) (xBigButton + smallButtonWidth + smallButtonMargin), y, (int) smallButtonWidth, (int) smallButtonHeight,"EXIT", smallButtonFontSize, listener);
     }
 
     @Override
