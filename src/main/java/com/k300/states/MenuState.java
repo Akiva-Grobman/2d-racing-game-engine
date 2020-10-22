@@ -50,7 +50,6 @@ public class MenuState extends State {
         bigButtonFontSize = 100;
         smallButtonFontSize = 40;
 
-
         UIMenuButton playButton = getPlayButton(launcher);
         UIMenuButton onlineButton = getOnlineButton(launcher, playButton);
         UIMenuButton settingsButton = getSettingsButton(onlineButton);
@@ -76,9 +75,8 @@ public class MenuState extends State {
     }
 
     private UIMenuButton getExitButton(UIMenuButton settingsButton) {
-        int y = (int) settingsButton.getY();
         ClickListener listener = Launcher::stop;
-        return new UIMenuButton((int) (xBigButton + smallButtonWidth + smallButtonMargin), y, (int) smallButtonWidth, (int) smallButtonHeight,"EXIT", smallButtonFontSize, listener);
+        return new UIMenuButton((int) (xBigButton + smallButtonWidth + smallButtonMargin), (int) settingsButton.getY(), (int) smallButtonWidth, (int) smallButtonHeight,"EXIT", smallButtonFontSize, listener);
     }
 
     @Override
