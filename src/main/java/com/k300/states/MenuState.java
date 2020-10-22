@@ -4,7 +4,7 @@ import com.k300.Launcher;
 
 import java.awt.*;
 
-import com.k300.graphics.MenuBackground;
+import com.k300.display.MenuBackground;
 import com.k300.ui.*;
 import com.k300.ui.buttons.*;
 import com.k300.ui.listeners.ClickListener;

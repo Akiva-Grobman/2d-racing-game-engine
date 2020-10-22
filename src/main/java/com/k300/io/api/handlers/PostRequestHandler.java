@@ -7,18 +7,16 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class PostRequestHandler implements Callback<PostResponse> {
-
-    private final WebInteractor webInteractor;
+public class PostRequestHandler extends MyCallBack<PostResponse> {
 
     public PostRequestHandler(WebInteractor webInteractor) {
-        this.webInteractor = webInteractor;
+        super(webInteractor);
     }
 
     @Override
     public void onResponse(Call<PostResponse> call, Response<PostResponse> response) {
+        super.onResponse(call, response);
         final PostResponse body = response.body();
-        boolean isInDevMode = Config.isInDevMode();
         if(isInDevMode) {
             System.out.print("Update Response \n>>\n");
             System.out.println(WebInteractor.getPrettyGson().toJson(body));
@@ -28,12 +26,6 @@ public class PostRequestHandler implements Callback<PostResponse> {
             System.out.println("Updating cars...");
         }
         webInteractor.updateCars(body.getPlayers());
-    }
-
-    @Override
-    public void onFailure(Call<PostResponse> call, Throwable t) {
-        System.out.println(t.getMessage());
-        System.exit(1);
     }
 
 }

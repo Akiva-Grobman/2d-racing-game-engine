@@ -2,7 +2,7 @@ package com.k300.ui.listeners;
 
 import com.k300.Launcher;
 import com.k300.graphics.FadeState;
-import com.k300.graphics.OpeningFadeState;
+import com.k300.display.OpeningFadeState;
 import com.k300.states.MenuState;
 import com.k300.states.StateManager;
 

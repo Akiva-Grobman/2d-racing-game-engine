@@ -20,6 +20,8 @@ import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import java.util.SplittableRandom;
+
 public class WebInteractor {
 
     private final OnlineGame game;
@@ -138,4 +140,7 @@ public class WebInteractor {
         return enemies;
     }
 
+    public void connectionError(String errorMessage) {
+        game.connectionError(errorMessage);
+    }
 }

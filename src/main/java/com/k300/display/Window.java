@@ -101,4 +101,7 @@ public class Window {
         canvas.addMouseMotionListener(mouseListener);
     }
 
+    public JComponent getJComponent() {
+        return (JComponent) frame.getComponents()[0];
+    }
 }

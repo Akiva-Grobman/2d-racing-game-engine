@@ -3,7 +3,7 @@ package com.k300;
 import com.k300.display.Window;
 import com.k300.graphics.Assets;
 import com.k300.graphics.FontLoader;
-import com.k300.graphics.OpeningFadeState;
+import com.k300.display.OpeningFadeState;
 import com.k300.io.MouseListener;
 import com.k300.states.OnlineState;
 import com.k300.states.StateManager;
@@ -12,6 +12,7 @@ import com.k300.states.gameStates.OnlineGame;
 import com.k300.ui.listeners.OpenFadeListener;
 import com.k300.utils.configarations.Config;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyListener;
 
@@ -131,4 +132,7 @@ public class Launcher {
         StateManager.setCurrentState(new OnlineGame(this, players));
     }
 
+    public JComponent getWindowJComponent() {
+        return window.getJComponent();
+    }
 }

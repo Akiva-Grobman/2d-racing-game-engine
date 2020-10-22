@@ -4,8 +4,11 @@ import com.k300.Launcher;
 import com.k300.cars.Car;
 import com.k300.cars.EnemyCar;
 import com.k300.cars.player_car.PlayerCar;
+import com.k300.display.ToastMessage;
 import com.k300.io.api.WebInteractor;
 import com.k300.io.api.models.Player;
+import com.k300.states.MenuState;
+import com.k300.states.StateManager;
 import com.k300.tracks.Collisions;
 import com.k300.tracks.StartLine;
 import com.k300.utils.math.Converter;
@@ -86,4 +89,8 @@ public class OnlineGame extends GameState {
         }
     }
 
+    public void connectionError(String errorMessage) {
+        ToastMessage toastMessage = new ToastMessage(launcher.getWindowJComponent(), errorMessage);
+        StateManager.setCurrentState(new MenuState(launcher));
+    }
 }

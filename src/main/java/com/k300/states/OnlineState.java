@@ -1,7 +1,7 @@
 package com.k300.states;
 
 import com.k300.Launcher;
-import com.k300.graphics.MenuBackground;
+import com.k300.display.MenuBackground;
 import com.k300.ui.UIManager;
 import com.k300.ui.buttons.UIMenuButton;
 import com.k300.ui.listeners.ClickListener;
