@@ -37,6 +37,6 @@ public abstract class GameState extends State {
         return localPlayer;
     }
 
-    public abstract Car[] getCars(Collisions playerCollisionLogic, StartLine startLine, int sumOfCars);
+    public abstract Car[] getInitCars(Collisions playerCollisionLogic, StartLine startLine, int sumOfCars);
 
 }

@@ -65,7 +65,7 @@ public class OnlineGame extends GameState {
     }
 
     @Override
-    public Car[] getCars(Collisions playerCollisionLogic, StartLine startLine, int sumOfCars) {
+    public Car[] getInitCars(Collisions playerCollisionLogic, StartLine startLine, int sumOfCars) {
         webInteractor.startMatch(sumOfCars);
         Car[] cars = new Car[sumOfCars];
         cars[0] = webInteractor.getPlayerCar(playerCollisionLogic, startLine);

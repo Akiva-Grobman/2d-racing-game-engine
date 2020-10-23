@@ -14,7 +14,7 @@ public class OfflineGame extends GameState {
     }
 
     @Override
-    public Car[] getCars(Collisions playerCollisionLogic, StartLine startLine, int sumOfCars) {
+    public Car[] getInitCars(Collisions playerCollisionLogic, StartLine startLine, int sumOfCars) {
         //todo add second car
         Car[] cars = new Car[1];
         cars[0] = getLocalPlayer(Assets.BLUE_CAR_KEY, playerCollisionLogic, startLine);

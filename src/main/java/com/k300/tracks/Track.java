@@ -50,7 +50,7 @@ public class Track {
         Margins margins = new Margins();
         StartLine startLine = new StartLine(margins.getFrameBigBPoint(), margins.getFrameSmallBPoint());
         Collisions collisions = new Collisions(margins, obstacleManager);
-        cars = gameState.getCars(collisions, startLine, getSumOfPlayers());
+        cars = gameState.getInitCars(collisions, startLine, getSumOfPlayers());
     }
 
     public Car[] getCars() {
@@ -85,6 +85,8 @@ public class Track {
     }
 
     private int getSumOfPlayers() {
+        System.out.println(cars.length);
+
         if(gameState instanceof OfflineGame) {
             return 1;
         }
