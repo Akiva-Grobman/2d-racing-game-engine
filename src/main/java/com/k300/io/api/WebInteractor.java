@@ -11,16 +11,13 @@ import com.k300.io.api.models.GameStartingInfo;
 import com.k300.io.api.models.Player;
 import com.k300.io.api.models.PostBody;
 import com.k300.io.api.models.PostResponse;
+import com.k300.states.gameStates.GameState;
 import com.k300.states.gameStates.OnlineGame;
-import com.k300.tracks.Collisions;
-import com.k300.tracks.StartLine;
 import com.k300.utils.Point;
 import com.k300.utils.configarations.Config;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-
-import java.util.SplittableRandom;
 
 public class WebInteractor {
 
@@ -48,7 +45,6 @@ public class WebInteractor {
             System.out.println("Initial Get Request\n>>\n" + sumOfPlayers);
         }
         call.enqueue(initialCallBack);
-
     }
 
     public void updatePlayerPositions(Car playerCar) {
@@ -85,23 +81,13 @@ public class WebInteractor {
     }
 
     public PlayerCar getPlayerCar() {
-        waitUntilPlayerHasBeenInitialized();
         Point carStartingPosition;
         if(Config.isInDevMode()) {
-            carStartingPosition = new Point(800, 800);
+            carStartingPosition = GameState.startingPosition;
         } else {
             carStartingPosition = new Point(player.getX(), player.getY());
         }
         return new PlayerCar(getCarColor(player.getColor()), carStartingPosition);
-    }
-
-    private void waitUntilPlayerHasBeenInitialized() {
-        while (!initialCallBack.wasInitialized()) {
-            try {
-                //noinspection BusyWait
-                Thread.sleep(5);
-            } catch (InterruptedException ignored) {}
-        }
     }
 
     public static Gson getPrettyGson() {
@@ -140,4 +126,9 @@ public class WebInteractor {
     public void connectionError(String errorMessage) {
         game.connectionError(errorMessage);
     }
+
+    public void finishGameStateSetup() {
+        game.finishSetup();
+    }
+
 }

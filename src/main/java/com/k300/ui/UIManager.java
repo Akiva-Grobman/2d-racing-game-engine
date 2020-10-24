@@ -37,8 +37,4 @@ public class UIManager {
         uiButtons.add(object);
     }
 
-    public void removeUIObject(UIButton object){
-        uiButtons.remove(object);
-    }
-
 }

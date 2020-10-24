@@ -24,10 +24,7 @@ public class InitialGetHandler extends MyCallBack<GameStartingInfo> {
             System.out.print("Initial Get Request response\n>>\n");
             System.out.println(WebInteractor.getPrettyGson().toJson(startingInfo));
         }
-    }
-
-    public boolean wasInitialized() {
-        return startingInfo != null;
+        webInteractor.finishGameStateSetup();
     }
 
 }

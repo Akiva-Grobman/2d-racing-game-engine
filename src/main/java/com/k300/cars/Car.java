@@ -87,7 +87,4 @@ public abstract class Car {
         return position.y;
     }
 
-    public double getAngle() {
-        return angle;
-    }
 }

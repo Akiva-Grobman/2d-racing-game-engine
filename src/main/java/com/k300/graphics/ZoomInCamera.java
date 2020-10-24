@@ -8,13 +8,9 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.Arrays;
 
-import static com.k300.utils.Utils.drawImageInCenter;
-
 public class ZoomInCamera {
 
 
-    // this image is used to get the car dimensions. all cars have the same dimensions so color doesn't matter
-    private static final BufferedImage carImage = Assets.getImage(Assets.BLUE_CAR_KEY);
     public final static int WIDTH = Converter.FHD_SCREEN_WIDTH / 2;
     public final static int HEIGHT = Converter.FHD_SCREEN_HEIGHT / 2;
     private final Car[] cars;
@@ -47,12 +43,6 @@ public class ZoomInCamera {
         drawTrackOnZoomWindow();
         drawZoomedView();
         drawRoundsOverZoomWindow();
-//        drawImageInCenter(Converter.FHD_SCREEN_WIDTH / 10,
-//                Converter.FHD_SCREEN_HEIGHT / 3 * 2,
-//                zoomWindow.getWidth() / 4,
-//                zoomWindow.getHeight() / 4,
-//                windowGraphics,
-//                getMiniTrack());
     }
 
     private void drawRoundsOverZoomWindow() {

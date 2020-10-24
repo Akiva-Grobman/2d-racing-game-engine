@@ -16,9 +16,6 @@ public class OnlineState extends State {
     private final double buttonWidth;
     private final double buttonHeight;
 
-    private final double buttonHeightMargin;
-    private final double buttonWidthMargin;
-
     private final double buttonsXLeft;
     private final double buttonsXRight;
 
@@ -31,16 +28,16 @@ public class OnlineState extends State {
         background = new MenuBackground();
         launcher.getMouseListener().setUiManager(uiManager);
 
-        buttonHeightMargin = 150;
-        buttonWidthMargin = 250;
+        double buttonHeightMargin = 150;
+        double buttonWidthMargin = 250;
 
         buttonWidth = Converter.FHD_SCREEN_WIDTH / 3f;
         buttonHeight = Converter.FHD_SCREEN_HEIGHT / 4f;
 
         buttonsXLeft = buttonWidthMargin;
-        buttonsXRight = (Converter.FHD_SCREEN_WIDTH -  buttonWidth) -  buttonWidthMargin;
+        buttonsXRight = (Converter.FHD_SCREEN_WIDTH -  buttonWidth) - buttonWidthMargin;
         buttonsYUp = buttonHeightMargin;
-        buttonsYDown = (Converter.FHD_SCREEN_HEIGHT -  buttonHeight) -  buttonHeightMargin;
+        buttonsYDown = (Converter.FHD_SCREEN_HEIGHT -  buttonHeight) - buttonHeightMargin;
 
         UIMenuButton twoPlayersButton = get2PlayersButton(launcher);
         UIMenuButton threePlayersButton = get3PlayersButton(launcher);

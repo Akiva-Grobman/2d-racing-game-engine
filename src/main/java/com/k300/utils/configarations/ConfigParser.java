@@ -2,7 +2,6 @@ package com.k300.utils.configarations;
 
 import java.io.*;
 import java.util.*;
-import java.util.List;
 
 public class ConfigParser {
 

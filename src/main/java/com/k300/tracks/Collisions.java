@@ -1,5 +1,6 @@
 package com.k300.tracks;
 
+import com.k300.obstacles.ObstacleManager;
 import com.k300.utils.Point;
 
 public class Collisions {
@@ -13,7 +14,6 @@ public class Collisions {
     }
 
     public boolean onTheTrack(Point position) {
-
         return margins.onTheTrack(position) && !obstacleManager.isCollidingWithObstacle(position);
     }
 

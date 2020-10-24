@@ -2,6 +2,7 @@ package com.k300.io.api.models;
 
 import java.util.Objects;
 
+@SuppressWarnings("unused")
 public class Player {
 
     private String id;

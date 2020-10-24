@@ -5,8 +5,6 @@ import com.k300.utils.SETTING_LIST_ELEMENTS;
 
 import java.awt.*;
 
-import static com.k300.utils.Utils.drawStringInCenter;
-
 public class SettingsListElement extends UIButton {
 
     private boolean isChecked;
@@ -14,12 +12,6 @@ public class SettingsListElement extends UIButton {
 
     public SettingsListElement(float x, float y, int width, int height, SETTING_LIST_ELEMENTS elementsType) {
         super(x, y, width, height, elementsType.getMessage(), 50);
-        this.elementsType = elementsType;
-        isChecked = elementsType.getVariableValue().getAsBoolean();
-    }
-
-    public SettingsListElement(float x, float y, int width, int height, int fontSize, SETTING_LIST_ELEMENTS elementsType) {
-        super(x, y, width, height, elementsType.getMessage(), fontSize);
         this.elementsType = elementsType;
         isChecked = elementsType.getVariableValue().getAsBoolean();
     }
