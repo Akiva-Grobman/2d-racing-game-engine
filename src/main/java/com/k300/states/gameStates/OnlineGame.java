@@ -68,8 +68,12 @@ public class OnlineGame extends GameState {
     public Car[] getInitCars(Collisions playerCollisionLogic, StartLine startLine, int sumOfCars) {
         webInteractor.startMatch(sumOfCars);
         Car[] cars = new Car[sumOfCars];
-        cars[0] = webInteractor.getPlayerCar(playerCollisionLogic, startLine);
+        cars[0] = webInteractor.getPlayerCar();
         assert cars[0] != null;
+
+        ((PlayerCar) cars[0]).setCollisions(playerCollisionLogic);
+        ((PlayerCar) cars[0]).setStartLine(startLine);
+
         launcher.setKeyListener(((PlayerCar) cars[0]).getKeyListener());
         for (int i = 1; i < cars.length; i++) {
             cars[i] = new EnemyCar();

@@ -84,7 +84,7 @@ public class WebInteractor {
         this.roomId = roomId;
     }
 
-    public PlayerCar getPlayerCar(Collisions playersCollisionLogic, StartLine startLine) {
+    public PlayerCar getPlayerCar() {
         waitUntilPlayerHasBeenInitialized();
         Point carStartingPosition;
         if(Config.isInDevMode()) {
@@ -92,10 +92,7 @@ public class WebInteractor {
         } else {
             carStartingPosition = new Point(player.getX(), player.getY());
         }
-        return new PlayerCar(getCarColor(player.getColor()),
-                carStartingPosition,
-                playersCollisionLogic,
-                startLine);
+        return new PlayerCar(getCarColor(player.getColor()), carStartingPosition);
     }
 
     private void waitUntilPlayerHasBeenInitialized() {

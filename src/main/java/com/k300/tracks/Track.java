@@ -20,7 +20,7 @@ public class Track {
     private final GameState gameState;
     private volatile Car[] cars;
 
-    public Track(State gameState) {
+    public Track(State gameState) { //todo State need to be GameState
         this.gameState = (GameState) gameState;
         obstacleManager = new ObstacleManager();
         obstacleManager.addObstacle(new Obstacle(1300, 550, 500));
@@ -68,7 +68,7 @@ public class Track {
         return cars;
     }
 
-    public void updateCars(Player[] newCars) {
+    public void updateCars(Player[] newCars) {  //update only enemy cars
         assert newCars.length + 1 == cars.length;
         int index = 1;
         for (Player updatedCar: newCars) {
@@ -85,8 +85,6 @@ public class Track {
     }
 
     private int getSumOfPlayers() {
-        System.out.println(cars.length);
-
         if(gameState instanceof OfflineGame) {
             return 1;
         }

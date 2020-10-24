@@ -17,16 +17,15 @@ public class PlayerCar extends Car {
     private final double COLLISION_SPEED_DECREMENT;
     private final int MAX_SPEED;
     private final PlayerKeyListener keyListener;
-    private final Collisions collisions;
+    private Collisions collisions;
     private int keyReleased;
     private boolean frontalCollision;
     private boolean rearCollision;
-    public final StartLine startLine;
+    public StartLine startLine;
     double speed;
 
-    public PlayerCar(String carColor, Point startingPosition, Collisions collisions, StartLine startLine) {
+    public PlayerCar(String carColor, Point startingPosition) {
         super(carColor, startingPosition);
-        this.collisions = collisions;
         SPEED_INCREMENT = 0.2;
         SPEED_DECREMENT = 0.3;
         COLLISION_SPEED_DECREMENT = 1;
@@ -36,7 +35,6 @@ public class PlayerCar extends Car {
         keyListener = new PlayerKeyListener();
         mover = new PlayerCarMover(this);
         playerCarCorners = new PlayerCarCorners(this);
-        this.startLine = startLine;
     }
 
     @Override
@@ -61,6 +59,14 @@ public class PlayerCar extends Car {
         if(keyListener.getKeyIsPressed(PlayerKeyListener.LEFT_ARROW)) {
             turn(TURNING_DIRECTION.getDirectionFromValue(PlayerKeyListener.LEFT_ARROW));
         }
+    }
+
+    public void setCollisions(Collisions collisions) {
+        this.collisions = collisions;
+    }
+
+    public void setStartLine(StartLine startLine) {
+        this.startLine = startLine;
     }
 
     private void drive(MOVEMENT_DIRECTION drivingDirection) {

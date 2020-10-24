@@ -32,7 +32,9 @@ public abstract class GameState extends State {
     }
 
     public Car getLocalPlayer(String carColor, Collisions playerCollisionLogic, StartLine startLine) {
-        PlayerCar localPlayer = new PlayerCar(carColor, startingPosition, playerCollisionLogic, startLine);
+        PlayerCar localPlayer = new PlayerCar(carColor, startingPosition);
+        localPlayer.setCollisions(playerCollisionLogic);
+        localPlayer.setStartLine(startLine);
         launcher.setKeyListener(localPlayer.getKeyListener());
         return localPlayer;
     }
