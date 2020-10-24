@@ -5,6 +5,8 @@ import com.k300.utils.SETTING_LIST_ELEMENTS;
 
 import java.awt.*;
 
+import static com.k300.utils.Utils.drawStringInCenter;
+
 public class SettingsListElement extends UIButton {
 
     private boolean isChecked;

@@ -57,7 +57,7 @@ public class Launcher {
                     )
             );
         }/*enter testing code here and change in config to true*/ else {
-            StateManager.setCurrentState(new OnlineState(this));
+            StateManager.setCurrentState(new OfflineGame(this));
         }
     }
 
