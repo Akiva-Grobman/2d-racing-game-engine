@@ -7,8 +7,6 @@ import com.k300.graphics.ZoomInCamera;
 import com.k300.obstacles.Obstacle;
 import com.k300.obstacles.ObstacleManager;
 import com.k300.states.gameStates.GameState;
-import com.k300.states.gameStates.OfflineGame;
-import com.k300.states.gameStates.OnlineGame;
 import com.k300.utils.configarations.Config;
 import com.k300.utils.math.Converter;
 
