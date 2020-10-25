@@ -3,7 +3,7 @@ package com.k300.states.gameStates;
 import com.k300.Launcher;
 import com.k300.cars.Car;
 import com.k300.cars.EnemyCar;
-import com.k300.display.ToastMessage;
+import com.k300.display.Toast;
 import com.k300.io.api.WebInteractor;
 import com.k300.io.api.models.Player;
 import com.k300.states.MenuState;
@@ -71,7 +71,7 @@ public class OnlineGame extends GameState {
     }
 
     public void connectionError(String errorMessage) {
-        ToastMessage.makeToast(launcher.getWindowJComponent(), errorMessage, ToastMessage.LONG);
+        Toast.makeToast(launcher.getWindowJComponent(), errorMessage, Toast.LONG);
         StateManager.setCurrentState(new MenuState(launcher));
     }
 

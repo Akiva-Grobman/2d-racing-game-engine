@@ -40,6 +40,10 @@ public class PlayerKeyListener implements java.awt.event.KeyListener {
         return keyMovementType.getKeyCodeFromMovementDirection(direction);
     }
 
+    public String getKeysAsString() {
+        return keyMovementType.getKeyValuesInString();
+    }
+
     @Override
     public void keyTyped(KeyEvent ignored) {
 

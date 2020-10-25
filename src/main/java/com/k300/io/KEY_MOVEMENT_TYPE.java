@@ -91,7 +91,7 @@ public enum KEY_MOVEMENT_TYPE {
         }
     }
 
-    private String getKeyValuesInString() {
+    public String getKeyValuesInString() {
         String keys;
         if(this == ARROWS) {
             keys = "Arrow keys";

@@ -4,25 +4,26 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.RoundRectangle2D;
 
-public class ToastMessage extends JDialog {
+public class Toast extends JDialog {
 
     public static final int SHORT = 1500;
     public static final int LONG = 3000;
+    public static final int VERY_LONG = LONG * 2;
     private static final long serialVersionUID = 1L;
     private static boolean spamProtect = false;
 
     // will only be initialized from the makeToast method
-    private ToastMessage(){}
+    private Toast(){}
 
     public static void makeToast(JComponent caller, String toastString, int toastDuration) {
-        final ToastMessage toastMessage = new ToastMessage();
+        final Toast toast = new Toast();
         if(spamProtect) {
             return;
         }
-        toastMessage.setUndecorated(true);
-        toastMessage.setAlwaysOnTop(true);
-        toastMessage.setFocusableWindowState(false);
-        toastMessage.setLayout(new GridBagLayout());
+        toast.setUndecorated(true);
+        toast.setAlwaysOnTop(true);
+        toast.setFocusableWindowState(false);
+        toast.setLayout(new GridBagLayout());
 
         JPanel panel = new JPanel();
         panel.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
@@ -30,21 +31,21 @@ public class ToastMessage extends JDialog {
         JLabel toastLabel = new JLabel(toastString);
         toastLabel.setForeground(Color.WHITE);
         panel.add(toastLabel);
-        toastMessage.add(panel);
-        toastMessage.pack();
+        toast.add(panel);
+        toast.pack();
 
         java.awt.Window window = SwingUtilities.getWindowAncestor(caller);
-        int xCoordinate = window.getLocationOnScreen().x + window.getWidth() / 2 - toastMessage.getWidth() / 2;
-        int yCoordinate = window.getLocationOnScreen().y + (int)((double)window.getHeight() * 0.75) - toastMessage.getHeight() / 2;
-        toastMessage.setLocation(xCoordinate, yCoordinate);
-        toastMessage.setShape(new RoundRectangle2D.Double(0, 0, toastMessage.getWidth(), toastMessage.getHeight(), 30, 30));
-        toastMessage.setVisible(true);
+        int xCoordinate = window.getLocationOnScreen().x + window.getWidth() / 2 - toast.getWidth() / 2;
+        int yCoordinate = window.getLocationOnScreen().y + (int)((double)window.getHeight() * 0.75) - toast.getHeight() / 2;
+        toast.setLocation(xCoordinate, yCoordinate);
+        toast.setShape(new RoundRectangle2D.Double(0, 0, toast.getWidth(), toast.getHeight(), 30, 30));
+        toast.setVisible(true);
 
         new Thread(() -> {
             try {
                 spamProtect = true;
                 Thread.sleep(toastDuration);
-                toastMessage.dispose();
+                toast.dispose();
                 spamProtect = false;
             } catch (InterruptedException e) {
                 e.printStackTrace();
