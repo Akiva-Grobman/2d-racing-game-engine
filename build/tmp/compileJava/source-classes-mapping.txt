@@ -50,8 +50,8 @@ com/k300/ui/buttons/UIMenuButton.java
  com.k300.ui.buttons.UIMenuButton
 com/k300/states/SettingsState.java
  com.k300.states.SettingsState
-com/k300/io/api/handlers/PostRequestHandler.java
- com.k300.io.api.handlers.PostRequestHandler
+com/k300/Launcher.java
+ com.k300.Launcher
 com/k300/utils/SETTING_LIST_ELEMENTS.java
  com.k300.utils.SETTING_LIST_ELEMENTS
 com/k300/ui/listeners/ClickListener.java
@@ -92,8 +92,8 @@ com/k300/graphics/Zoom.java
  com.k300.graphics.Zoom
 com/k300/io/api/models/PostResponse.java
  com.k300.io.api.models.PostResponse
-com/k300/io/PlayerKeyListener.java
- com.k300.io.PlayerKeyListener
+com/k300/states/gameStates/OfflineGame.java
+ com.k300.states.gameStates.OfflineGame
 com/k300/ui/UIManager.java
  com.k300.ui.UIManager
 com/k300/utils/Utils.java
@@ -124,7 +124,7 @@ com/k300/io/api/API.java
  com.k300.io.api.API
 com/k300/states/gameStates/GameState.java
  com.k300.states.gameStates.GameState
-com/k300/Launcher.java
- com.k300.Launcher
-com/k300/states/gameStates/OfflineGame.java
- com.k300.states.gameStates.OfflineGame
+com/k300/io/PlayerKeyListener.java
+ com.k300.io.PlayerKeyListener
+com/k300/io/api/handlers/PostRequestHandler.java
+ com.k300.io.api.handlers.PostRequestHandler

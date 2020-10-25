@@ -24,7 +24,7 @@ public class OfflineGame extends GameState {
                 startingPosition,
                 new PlayerKeyListener(KEY_MOVEMENT_TYPE.ARROWS));
         cars[1] = new PlayerCar(Assets.RED_CAR_KEY,
-                new Point(startingPosition.x - 50, startingPosition.y + 40),
+                new Point(startingPosition.x, startingPosition.y),
                 new PlayerKeyListener(KEY_MOVEMENT_TYPE.A_S_W_D));
         return cars;
     }
