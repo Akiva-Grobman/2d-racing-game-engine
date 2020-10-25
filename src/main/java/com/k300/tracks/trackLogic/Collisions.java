@@ -1,4 +1,4 @@
-package com.k300.tracks;
+package com.k300.tracks.trackLogic;
 
 import com.k300.obstacles.ObstacleManager;
 import com.k300.utils.Point;

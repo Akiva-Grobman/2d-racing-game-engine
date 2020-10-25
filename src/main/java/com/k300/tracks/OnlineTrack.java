@@ -6,6 +6,8 @@ import com.k300.graphics.ZoomInCamera;
 import com.k300.io.api.models.Player;
 import com.k300.obstacles.StartLine;
 import com.k300.states.gameStates.GameState;
+import com.k300.tracks.trackLogic.Collisions;
+import com.k300.tracks.trackLogic.Margins;
 
 import java.awt.*;
 
