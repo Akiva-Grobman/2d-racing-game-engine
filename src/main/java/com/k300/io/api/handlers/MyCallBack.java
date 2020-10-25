@@ -28,6 +28,9 @@ public abstract class MyCallBack<T> implements Callback<T> {
         System.out.println(errorMessage);
         if(t instanceof ConnectException) {
             webInteractor.connectionError(errorMessage);
+        } else {
+            System.out.println(errorMessage);
+            System.exit(1);
         }
     }
 

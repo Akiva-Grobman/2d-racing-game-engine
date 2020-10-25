@@ -1,6 +1,7 @@
 package com.k300.cars.player_car;
 
 import com.k300.cars.Car;
+import com.k300.io.KEY_MOVEMENT_TYPE;
 import com.k300.io.PlayerKeyListener;
 import com.k300.tracks.Collisions;
 import com.k300.obstacles.StartLine;
@@ -25,6 +26,10 @@ public class PlayerCar extends Car {
     double speed;
 
     public PlayerCar(String carColor, Point startingPosition) {
+        this(carColor, startingPosition, new PlayerKeyListener(KEY_MOVEMENT_TYPE.ARROWS));
+    }
+
+    public PlayerCar(String carColor, Point startingPosition, PlayerKeyListener listener) {
         super(carColor, startingPosition);
         SPEED_INCREMENT = 0.2;
         SPEED_DECREMENT = 0.3;
@@ -32,7 +37,7 @@ public class PlayerCar extends Car {
         MAX_SPEED = 15;
         speed = 0;
         rounds = 0;
-        keyListener = new PlayerKeyListener();
+        keyListener = listener;
         mover = new PlayerCarMover(this);
         playerCarCorners = new PlayerCarCorners(this);
     }
@@ -44,21 +49,21 @@ public class PlayerCar extends Car {
         if(frontalCollision || rearCollision) {
             collisionEffect();
         //DRIVING
-        } else if (keyListener.getKeyIsPressed(PlayerKeyListener.UP_ARROW)) {
-            drive(MOVEMENT_DIRECTION.getDriveDirectionFrom(PlayerKeyListener.UP_ARROW));
-        } else if (keyListener.getKeyIsPressed(PlayerKeyListener.DOWN_ARROW)) {
-            drive(MOVEMENT_DIRECTION.getDriveDirectionFrom(PlayerKeyListener.DOWN_ARROW));
-        } else if (keyReleased == PlayerKeyListener.UP_ARROW){
-            slowDown(MOVEMENT_DIRECTION.getDriveDirectionFrom(PlayerKeyListener.UP_ARROW));
-        } else if (keyReleased == PlayerKeyListener.DOWN_ARROW){
-            slowDown(MOVEMENT_DIRECTION.getDriveDirectionFrom(PlayerKeyListener.DOWN_ARROW));
+        } else if (keyListener.getKeyIsPressed(keyListener.getForwardsMovementKey())) {
+            drive(MOVEMENT_DIRECTION.FORWARDS);
+        } else if (keyListener.getKeyIsPressed(keyListener.getBackwardsMovementKey())) {
+            drive(MOVEMENT_DIRECTION.BACKWARDS);
+        } else if (keyReleased == keyListener.getForwardsMovementKey()){
+            slowDown(MOVEMENT_DIRECTION.FORWARDS);
+        } else if (keyReleased == keyListener.getBackwardsMovementKey()){
+            slowDown(MOVEMENT_DIRECTION.BACKWARDS);
         }
         // TURNING
-        if(keyListener.getKeyIsPressed(PlayerKeyListener.RIGHT_ARROW)) {
-            turn(TURNING_DIRECTION.getDirectionFromValue(PlayerKeyListener.RIGHT_ARROW));
+        if(keyListener.getKeyIsPressed(keyListener.getRightMovementKey())) {
+            turn(TURNING_DIRECTION.RIGHT);
         }
-        if(keyListener.getKeyIsPressed(PlayerKeyListener.LEFT_ARROW)) {
-            turn(TURNING_DIRECTION.getDirectionFromValue(PlayerKeyListener.LEFT_ARROW));
+        if(keyListener.getKeyIsPressed(keyListener.getLeftMovementKey())) {
+            turn(TURNING_DIRECTION.LEFT);
         }
     }
 
@@ -71,7 +76,7 @@ public class PlayerCar extends Car {
     }
 
     private void drive(MOVEMENT_DIRECTION drivingDirection) {
-        resetSpeed(drivingDirection.getValue());
+        resetSpeed(keyListener.getKeyCodeByDirection(drivingDirection));
         drivingDirection.getDrivingDirection(mover).run();
         increaseSpeed(SPEED_INCREMENT);
         if(isOffTrack()) {
@@ -85,7 +90,7 @@ public class PlayerCar extends Car {
         if(startLine.hasLegalCrossStartLine(this, drivingDirection)) {
             rounds++;
         }
-        keyReleased = drivingDirection.getValue();
+        keyReleased = keyListener.getKeyCodeByDirection(drivingDirection);
     }
 
     private void slowDown(MOVEMENT_DIRECTION drivingDirection) {

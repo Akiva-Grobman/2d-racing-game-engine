@@ -29,7 +29,7 @@ public abstract class Car {
 
     public final void render(Graphics2D graphics) {
         if(carImage == null) {
-            if(carColor != null) {
+            if(!carColor.isEmpty()) {
                 updateColor(carColor);
             }
             return;

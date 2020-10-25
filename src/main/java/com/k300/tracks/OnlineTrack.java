@@ -15,10 +15,14 @@ public class OnlineTrack extends Track {
         Margins margins = new Margins();
         StartLine startLine = new StartLine(margins.getFrameBigBPoint(), margins.getFrameSmallBPoint());
         Collisions collisions = new Collisions(margins, obstacleManager);
-        cars[LOCAL_PLAYER_INDEX] = getLocalPlayer(collisions, startLine);
+        cars[LOCAL_PLAYER_INDEX] = initLocalCar(collisions, startLine);
     }
 
-    private Car getLocalPlayer(Collisions playerCollisionLogic, StartLine startLine) {
+    public Car getLocalCar() {
+        return cars[LOCAL_PLAYER_INDEX];
+    }
+
+    private Car initLocalCar(Collisions playerCollisionLogic, StartLine startLine) {
         assert cars[LOCAL_PLAYER_INDEX] instanceof PlayerCar;
         PlayerCar localPlayer = (PlayerCar) cars[LOCAL_PLAYER_INDEX];
         localPlayer.setCollisions(playerCollisionLogic);
@@ -27,7 +31,8 @@ public class OnlineTrack extends Track {
         return localPlayer;
     }
 
-    public void updateCars(Player[] newCars) {  //update only enemy cars
+    public void updateEnemyCars(Player[] newCars) {
+        //update only enemy cars
         assert newCars.length + 1 == cars.length;
         int index = 1;
         for (Player updatedCar: newCars) {
@@ -42,6 +47,5 @@ public class OnlineTrack extends Track {
         cars[index].position.y = updatedCar.getY();
         cars[index].angle = updatedCar.getAngle();
     }
-
 
 }

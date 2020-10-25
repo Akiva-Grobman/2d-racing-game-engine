@@ -45,21 +45,6 @@ public abstract class Track {
         }
     }
 
-    public Car[] getCars() {
-        if(this.cars == null) {
-            return new Car[0];
-        }
-        Car[] cars = new Car[this.cars.length];
-        for (int i = 0; i < cars.length; i++) {
-            cars[i] = new EnemyCar();
-            cars[i].position.x = this.cars[i].position.x;
-            cars[i].position.y = this.cars[i].position.y;
-            cars[i].angle = this.cars[i].angle;
-            cars[i].carColor = this.cars[i].carColor;
-        }
-        return cars;
-    }
-
     private void renderWithoutZoom(Graphics graphics, int width, int height) {
         graphics.drawImage(Assets.getImage(Assets.TRACK_KEY), 0, 0, width, height, null);
         for (Car car : cars) {

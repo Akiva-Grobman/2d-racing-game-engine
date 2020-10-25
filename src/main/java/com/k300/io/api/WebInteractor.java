@@ -25,12 +25,10 @@ public class WebInteractor {
     private volatile Player player;
     private volatile String roomId;
     private final API client;
-    private final InitialGetHandler initialCallBack;
     private volatile boolean gameIsStarted;
 
     public WebInteractor(OnlineGame game) {
         this.game = game;
-        initialCallBack = new InitialGetHandler(this);
         Retrofit.Builder builder = new Retrofit.Builder()
                 .baseUrl(Config.getUrl())
                 .addConverterFactory(GsonConverterFactory.create(getPrettyGson()));
@@ -40,11 +38,11 @@ public class WebInteractor {
     }
 
     public void startMatch(int sumOfPlayers) {
-        Call<GameStartingInfo> call = client.getCarColor(sumOfPlayers);
+        Call<GameStartingInfo> call = client.getCarLocalColor(sumOfPlayers);
         if(Config.isInDevMode()) {
             System.out.println("Initial Get Request\n>>\n" + sumOfPlayers);
         }
-        call.enqueue(initialCallBack);
+        call.enqueue(new InitialGetHandler(this));
     }
 
     public void updatePlayerPositions(Car playerCar) {
@@ -58,7 +56,7 @@ public class WebInteractor {
             System.out.println("Room-id " + roomId);
             System.out.println("Body >>\n" + getPrettyGson().toJson(postBody));
         }
-        Call<PostResponse> call = client.updateCarDate(roomId, postBody);
+        Call<PostResponse> call = client.updateCarData(roomId, postBody);
         call.enqueue(new PostRequestHandler(this));
     }
 
@@ -107,7 +105,7 @@ public class WebInteractor {
     }
 
     public synchronized void updateCars(Player[] playersFromServer) {
-        game.updateCars(getEnemies(playersFromServer));
+        game.updateEnemyCars(getEnemies(playersFromServer));
     }
 
     private Player[] getEnemies(Player[] playersFromServer) {

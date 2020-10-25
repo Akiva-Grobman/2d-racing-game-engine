@@ -1,23 +1,43 @@
 package com.k300.io;
 
 import com.k300.Launcher;
+import com.k300.cars.player_car.MOVEMENT_DIRECTION;
 
 import java.awt.event.KeyEvent;
 
 public class PlayerKeyListener implements java.awt.event.KeyListener {
 
-    public static final int LEFT_ARROW = KeyEvent.VK_LEFT;
-    public static final int UP_ARROW = KeyEvent.VK_UP;
-    public static final int RIGHT_ARROW = KeyEvent.VK_RIGHT;
-    public static final int DOWN_ARROW = KeyEvent.VK_DOWN;
-    private final boolean[] arrowKeys;
 
-    public PlayerKeyListener() {
-        arrowKeys = new boolean[4];
+    private final KEY_MOVEMENT_TYPE keyMovementType;
+    private final boolean[] directionKeys;
+
+    public PlayerKeyListener(KEY_MOVEMENT_TYPE keyMovementType) {
+        this.keyMovementType = keyMovementType;
+        directionKeys = new boolean[4];
     }
 
     public boolean getKeyIsPressed(int keyCode) {
-        return arrowKeys[keyCode - LEFT_ARROW];
+        return directionKeys[keyMovementType.getIndexForKeysPressedArray(keyCode)];
+    }
+
+    public int getForwardsMovementKey() {
+        return keyMovementType.getForwardsMovement();
+    }
+
+    public int getBackwardsMovementKey() {
+        return keyMovementType.getBackwardsMovement();
+    }
+
+    public int getRightMovementKey() {
+        return keyMovementType.getRightMovement();
+    }
+
+    public int getLeftMovementKey() {
+        return keyMovementType.getLeftMovement();
+    }
+
+    public int getKeyCodeByDirection(MOVEMENT_DIRECTION direction) {
+        return keyMovementType.getKeyCodeFromMovementDirection(direction);
     }
 
     @Override
@@ -39,8 +59,8 @@ public class PlayerKeyListener implements java.awt.event.KeyListener {
     }
 
     private void keyPressed(int keyCode, boolean isPressed) {
-        if(keyCode >= LEFT_ARROW && keyCode <= DOWN_ARROW) {
-            arrowKeys[keyCode - LEFT_ARROW] = isPressed;
+        if(keyMovementType.isLegalKey(keyCode)) {
+            directionKeys[keyMovementType.getIndexForKeysPressedArray(keyCode)] = isPressed;
         }
     }
 
