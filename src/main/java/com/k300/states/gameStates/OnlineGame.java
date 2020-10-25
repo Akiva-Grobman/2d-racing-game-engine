@@ -71,7 +71,7 @@ public class OnlineGame extends GameState {
     }
 
     public void connectionError(String errorMessage) {
-        new ToastMessage(launcher.getWindowJComponent(), errorMessage);
+        ToastMessage.makeToast(launcher.getWindowJComponent(), errorMessage, ToastMessage.LONG);
         StateManager.setCurrentState(new MenuState(launcher));
     }
 
