@@ -1,7 +1,6 @@
 package com.k300.display;
 
 import com.k300.graphics.Assets;
-import com.k300.graphics.ZoomInCamera;
 import com.k300.utils.math.Converter;
 
 import java.awt.*;
@@ -36,8 +35,6 @@ public class ZoomExample {
         drawImageInCenter(0, heightClamp, track.getWidth(), track.getHeight() - heightClamp, trackGraphics, car);
         BufferedImage zoomExample = getZoomedImage(track.getWidth() / 2f,
                 (track.getHeight() + heightClamp) / 2f,
-                ZoomInCamera.WIDTH,
-                ZoomInCamera.HEIGHT,
                 track);
         return resizeImage(zoomExample, Converter.FHD_SCREEN_WIDTH / 2, Converter.FHD_SCREEN_HEIGHT / 2);
     }

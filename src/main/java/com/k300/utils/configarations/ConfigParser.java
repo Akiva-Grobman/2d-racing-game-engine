@@ -1,5 +1,7 @@
 package com.k300.utils.configarations;
 
+import com.k300.utils.math.Converter;
+
 import java.io.*;
 import java.util.*;
 
@@ -21,6 +23,11 @@ public class ConfigParser {
          infoIndex.put(SERVER_URL, 2);
          infoIndex.put(ZOOM_FACTOR, 3);
          lines = getConfigAsLines();
+         setDefaultZoomDimensions();
+    }
+
+    private void setDefaultZoomDimensions() {
+        setZoomInFactor(Converter.FHD_SCREEN_WIDTH / 2f, Converter.FHD_SCREEN_HEIGHT / 2f);
     }
 
     private List<String> getConfigAsLines() {
