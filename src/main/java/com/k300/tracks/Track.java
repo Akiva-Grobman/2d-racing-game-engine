@@ -1,7 +1,6 @@
 package com.k300.tracks;
 
 import com.k300.cars.Car;
-import com.k300.cars.EnemyCar;
 import com.k300.graphics.Assets;
 import com.k300.graphics.ZoomInCamera;
 import com.k300.obstacles.Obstacle;
