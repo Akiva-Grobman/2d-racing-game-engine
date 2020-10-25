@@ -2,9 +2,12 @@ package com.k300.tracks;
 
 import com.k300.cars.Car;
 import com.k300.cars.player_car.PlayerCar;
+import com.k300.graphics.ZoomInCamera;
 import com.k300.io.api.models.Player;
 import com.k300.obstacles.StartLine;
 import com.k300.states.gameStates.GameState;
+
+import java.awt.*;
 
 public class OnlineTrack extends Track {
 
@@ -16,6 +19,11 @@ public class OnlineTrack extends Track {
         StartLine startLine = new StartLine(margins.getFrameBigBPoint(), margins.getFrameSmallBPoint());
         Collisions collisions = new Collisions(margins, obstacleManager);
         cars[LOCAL_PLAYER_INDEX] = initLocalCar(collisions, startLine);
+    }
+
+    void renderWithZoom(Graphics graphics) {
+        ZoomInCamera zoomInCamera = new ZoomInCamera(graphics, cars);
+        zoomInCamera.render();
     }
 
     public Car getLocalCar() {

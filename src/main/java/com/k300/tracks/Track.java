@@ -2,7 +2,6 @@ package com.k300.tracks;
 
 import com.k300.cars.Car;
 import com.k300.graphics.Assets;
-import com.k300.graphics.ZoomInCamera;
 import com.k300.obstacles.Obstacle;
 import com.k300.obstacles.ObstacleManager;
 import com.k300.states.gameStates.GameState;
@@ -39,22 +38,17 @@ public abstract class Track {
         int height = Converter.FHD_SCREEN_HEIGHT;
         // won't allow zoom with local player
         if(this instanceof OnlineTrack && Config.isUsingZoom()) {
-            renderWithZoom(graphics);
+            ((OnlineTrack) this).renderWithZoom(graphics);
         } else {
-            renderWithoutZoom(graphics, width, height);
+            render(graphics, width, height);
         }
     }
 
-    private void renderWithoutZoom(Graphics graphics, int width, int height) {
+    private void render(Graphics graphics, int width, int height) {
         graphics.drawImage(Assets.getImage(Assets.TRACK_KEY), 0, 0, width, height, null);
         for (Car car : cars) {
             car.render((Graphics2D) graphics);
         }
-    }
-
-    private void renderWithZoom(Graphics graphics) {
-        ZoomInCamera zoomInCamera = new ZoomInCamera(graphics, cars);
-        zoomInCamera.render();
     }
 
 }
