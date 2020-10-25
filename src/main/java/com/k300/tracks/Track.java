@@ -1,7 +1,6 @@
 package com.k300.tracks;
 
 import com.k300.cars.Car;
-import com.k300.cars.EnemyCar;
 import com.k300.graphics.Assets;
 import com.k300.graphics.ZoomInCamera;
 import com.k300.obstacles.Obstacle;
@@ -43,21 +42,6 @@ public abstract class Track {
         } else {
             renderWithoutZoom(graphics, width, height);
         }
-    }
-
-    public Car[] getCars() {
-        if(this.cars == null) {
-            return new Car[0];
-        }
-        Car[] cars = new Car[this.cars.length];
-        for (int i = 0; i < cars.length; i++) {
-            cars[i] = new EnemyCar();
-            cars[i].position.x = this.cars[i].position.x;
-            cars[i].position.y = this.cars[i].position.y;
-            cars[i].angle = this.cars[i].angle;
-            cars[i].carColor = this.cars[i].carColor;
-        }
-        return cars;
     }
 
     private void renderWithoutZoom(Graphics graphics, int width, int height) {

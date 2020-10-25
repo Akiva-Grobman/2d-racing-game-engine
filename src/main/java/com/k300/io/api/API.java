@@ -12,9 +12,9 @@ import retrofit2.http.Path;
 public interface API {
 
     @GET("/api/quick-match/{sumOfPlayers}")
-    Call<GameStartingInfo> getCarColor(@Path("sumOfPlayers")  int sunOfPlayers);
+    Call<GameStartingInfo> getCarLocalColor(@Path("sumOfPlayers")  int sumOfPlayers);
 
     @POST("/api/room/{roomId}")
-    Call<PostResponse> updateCarDate(@Path("roomId") String roomId, @Body PostBody postBody);
+    Call<PostResponse> updateCarData(@Path("roomId") String roomId, @Body PostBody postBody);
 
 }

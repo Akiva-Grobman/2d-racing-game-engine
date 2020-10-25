@@ -29,8 +29,8 @@ public class OnlineGame extends GameState {
         webInteractor.startMatch(sumOfPlayers);
     }
 
-    public void updateCars(Player[] enemyPlayers) {
-        ((OnlineTrack) track).updateCars(enemyPlayers);
+    public void updateEnemyCars(Player[] enemyPlayers) {
+        ((OnlineTrack) track).updateEnemyCars(enemyPlayers);
     }
 
     @Override
@@ -39,7 +39,7 @@ public class OnlineGame extends GameState {
             super.tick();
         }
         if(track != null) {
-            webInteractor.updatePlayerPositions(track.getCars()[OnlineTrack.LOCAL_PLAYER_INDEX]);
+            webInteractor.updatePlayerPositions(((OnlineTrack) track).getLocalCar());
         }
     }
 
@@ -88,4 +88,5 @@ public class OnlineGame extends GameState {
         }
         return cars;
     }
+
 }

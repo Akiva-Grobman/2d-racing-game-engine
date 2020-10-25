@@ -1,3 +1,3 @@
 zoom: false
-dev mode: false
-url: http://localhost:3000/
+dev mode: true
+url: http://25.99.76.50:3000/
