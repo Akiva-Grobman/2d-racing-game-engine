@@ -1,3 +1,3 @@
-zoom: false
+zoom: true
 dev mode: true
 url: http://25.99.76.50:3000/

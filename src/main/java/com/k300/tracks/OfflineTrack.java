@@ -38,7 +38,7 @@ public class OfflineTrack extends Track {
             toastMessage.append(getCarKeyListener(i));
             toastMessage.append("   ");
         }
-        Toast.makeToast(gameState.getLauncher().getWindowJComponent(), toastMessage.toString(), Toast.VERY_LONG);
+//        Toast.makeToast(gameState.getLauncher().getWindowJComponent(), toastMessage.toString(), Toast.VERY_LONG);
     }
 
     private String getCarColor(int carIndex) {

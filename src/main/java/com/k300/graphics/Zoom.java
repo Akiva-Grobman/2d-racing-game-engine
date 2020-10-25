@@ -6,15 +6,13 @@ import java.awt.image.BufferedImage;
 
 public class Zoom {
 
-    public static BufferedImage getZoomedImage(double x, double y, double width, double height ,BufferedImage image) {
-        double statingZoomX = x - (width / 2);
-        double startingZoomY = y - (height / 2);
-        statingZoomX = clamp(statingZoomX, width, image.getWidth());
-        startingZoomY = clamp(startingZoomY, height, image.getHeight());
-
-        BufferedImage croppedImage = image.getSubimage((int) statingZoomX, (int) startingZoomY, (int)width, (int)height);
-
-        return Utils.resizeImage(croppedImage, image.getWidth(), image.getHeight());
+    public static BufferedImage getZoomedImage(double x, double y, double widthFactor, double heightFactor ,BufferedImage image) {
+        double statingZoomX = x - (widthFactor / 2);
+        double startingZoomY = y - (heightFactor / 2);
+        statingZoomX = clamp(statingZoomX, widthFactor, image.getWidth());
+        startingZoomY = clamp(startingZoomY, heightFactor, image.getHeight());
+        BufferedImage croppedImage = image.getSubimage((int) statingZoomX, (int) startingZoomY, (int)widthFactor, (int)heightFactor);
+        return Utils.resizeImage(croppedImage, croppedImage.getWidth(), croppedImage.getHeight());
     }
 
     private static double clamp(double coordinate, double zoomDimension, int screenDimension) {
