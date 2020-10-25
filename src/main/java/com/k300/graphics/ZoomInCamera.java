@@ -20,9 +20,7 @@ public class ZoomInCamera {
     private final Graphics2D zoomGraphics;
     private final AlphaComposite originalComposite;
     private final Graphics windowGraphics;
-    private double zoomX;
-    private double zoomY;
-    private BufferedImage zoomWindow;
+    private final BufferedImage zoomWindow;
     private int playerXPosition;
     private int playerYPosition;
 
@@ -35,10 +33,6 @@ public class ZoomInCamera {
         zoomGraphics = zoomWindow.createGraphics();
         originalComposite = (AlphaComposite) zoomGraphics.getComposite();
         setCarCoordinates();
-        zoomX = playerXPosition - (WIDTH / 2f);
-        zoomY = playerYPosition - (HEIGHT / 2f);
-        zoomX = clamp(zoomX, WIDTH, Converter.FHD_SCREEN_WIDTH);
-        zoomY = clamp(zoomY, HEIGHT, Converter.FHD_SCREEN_HEIGHT);
     }
 
     public void render() {
@@ -96,15 +90,6 @@ public class ZoomInCamera {
     private void changeImageAlpha() {
         float alpha = 0.2f;
         ((Graphics2D) windowGraphics).setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha));
-    }
-
-    private double clamp(double coordinate, double zoomDimension, int screenDimension) {
-        if(zoomDimension + coordinate >= screenDimension) {
-            return screenDimension - zoomDimension;
-        } else if(coordinate < 0){
-            return 0;
-        }
-        return coordinate;
     }
 
 }
