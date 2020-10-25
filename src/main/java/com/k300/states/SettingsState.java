@@ -1,18 +1,15 @@
 package com.k300.states;
 
 import com.k300.Launcher;
-//import com.k300.ui.SettingsList;
 import com.k300.display.ZoomExample;
 import com.k300.ui.SettingsList;
 import com.k300.ui.UIManager;
-//import com.k300.ui.buttons.SettingsListElement;
 import com.k300.ui.buttons.SettingsListElement;
 import com.k300.ui.buttons.UIBackButton;
 import com.k300.ui.buttons.ZoomCustomizerButton;
 import com.k300.utils.SETTING_LIST_ELEMENTS;
 import com.k300.utils.configarations.Config;
 import com.k300.utils.math.Converter;
-
 import java.awt.*;
 
 public class SettingsState extends State {
@@ -41,7 +38,20 @@ public class SettingsState extends State {
                 devModeElement = element;
             }
         }
-
+        int bottomOfSettingsList = settingsList.getBottomY();
+        int zoomCustomizerWidth = Converter.FHD_SCREEN_WIDTH / 8;
+        //noinspection SuspiciousNameCombination
+        plus = new ZoomCustomizerButton(zoomCustomizerWidth,
+                bottomOfSettingsList + SettingsList.PADDING,
+                zoomCustomizerWidth,
+                zoomCustomizerWidth,
+                "+");
+        //noinspection SuspiciousNameCombination
+        minus = new ZoomCustomizerButton(zoomCustomizerWidth * 2,
+                bottomOfSettingsList + SettingsList.PADDING,
+                zoomCustomizerWidth,
+                zoomCustomizerWidth,
+                "-");
     }
 
     @Override
