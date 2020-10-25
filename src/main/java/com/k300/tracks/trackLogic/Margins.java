@@ -80,4 +80,5 @@ public class Margins {
         double y = Converter.getFrameY(-bigB); //need negative B because the start line is on the lower part of the screen
         return new Point(x, y);
     }
+
 }

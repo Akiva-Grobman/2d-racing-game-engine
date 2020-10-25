@@ -8,6 +8,7 @@ import com.k300.obstacles.StartLine;
 import com.k300.states.gameStates.GameState;
 import com.k300.tracks.trackLogic.Collisions;
 import com.k300.tracks.trackLogic.Margins;
+import com.k300.utils.configarations.Config;
 
 public class OfflineTrack extends Track {
 
@@ -19,7 +20,9 @@ public class OfflineTrack extends Track {
         for (int i = 0; i < cars.length; i++) {
             cars[i] = getLocalPlayer(collisions, startLine, i);
         }
-        toastToUserKeyMessage();
+        if(!Config.isInDevMode()) {
+            toastToUserKeyMessage();
+        }
     }
 
     private Car getLocalPlayer(Collisions playerCollisionLogic, StartLine startLine, int carIndex) {
