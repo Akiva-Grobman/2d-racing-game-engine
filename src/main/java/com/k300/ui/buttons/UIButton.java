@@ -55,4 +55,11 @@ public abstract class UIButton {
         return y;
     }
 
+    public float getX() {
+        return x;
+    }
+
+    public int getWidth() {
+        return width;
+    }
 }

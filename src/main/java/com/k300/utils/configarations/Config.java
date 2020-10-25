@@ -23,4 +23,17 @@ public class Config {
     public static String getUrl() {
         return parser.getServerUrl();
     }
+
+    public static double getZoomInWidthFactor() {
+        return parser.getZoomInWidthFactor();
+    }
+
+    public static double getZoomInHeightFactor() {
+        return parser.getZoomInHeightFactor();
+    }
+
+    public static void setZoomInFactor(double widthFactor, double heightFactor) {
+        parser.setZoomInFactor(widthFactor, heightFactor);
+    }
+
 }

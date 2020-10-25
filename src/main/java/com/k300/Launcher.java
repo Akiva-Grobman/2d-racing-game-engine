@@ -6,6 +6,8 @@ import com.k300.graphics.FontLoader;
 import com.k300.display.OpeningFadeState;
 import com.k300.io.MouseListener;
 import com.k300.states.MenuState;
+import com.k300.states.OnlineState;
+import com.k300.states.SettingsState;
 import com.k300.states.StateManager;
 import com.k300.states.gameStates.OfflineGame;
 import com.k300.states.gameStates.OnlineGame;
@@ -57,7 +59,7 @@ public class Launcher {
                     )
             );
         }/*enter testing code here and change in config to true*/ else {
-            StateManager.setCurrentState(new MenuState(this));
+            StateManager.setCurrentState(new SettingsState(this));
         }
     }
 

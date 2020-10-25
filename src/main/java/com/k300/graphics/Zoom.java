@@ -1,17 +1,20 @@
 package com.k300.graphics;
 
 import com.k300.utils.Utils;
+import com.k300.utils.configarations.Config;
 
 import java.awt.image.BufferedImage;
 
 public class Zoom {
 
     public static BufferedImage getZoomedImage(double x, double y, double widthFactor, double heightFactor ,BufferedImage image) {
-        double statingZoomX = x - (widthFactor / 2);
-        double startingZoomY = y - (heightFactor / 2);
-        statingZoomX = clamp(statingZoomX, widthFactor, image.getWidth());
-        startingZoomY = clamp(startingZoomY, heightFactor, image.getHeight());
-        BufferedImage croppedImage = image.getSubimage((int) statingZoomX, (int) startingZoomY, (int)widthFactor, (int)heightFactor);
+        double widthFactorFromConfig = widthFactor + Config.getZoomInWidthFactor();
+        double heightFactorFromConfig = heightFactor + Config.getZoomInHeightFactor();
+        double statingZoomX = x - (widthFactorFromConfig / 2);
+        double startingZoomY = y - (heightFactorFromConfig / 2);
+        statingZoomX = clamp(statingZoomX, widthFactorFromConfig, image.getWidth());
+        startingZoomY = clamp(startingZoomY, heightFactorFromConfig, image.getHeight());
+        BufferedImage croppedImage = image.getSubimage((int) statingZoomX, (int) startingZoomY, (int) widthFactor, (int) heightFactor);
         return Utils.resizeImage(croppedImage, croppedImage.getWidth(), croppedImage.getHeight());
     }
 

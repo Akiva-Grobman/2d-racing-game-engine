@@ -36,6 +36,10 @@ public class SettingsListElement extends UIButton {
         graphics.setColor(original);
     }
 
+    public String getMessage() {
+        return elementsType.getMessage();
+    }
+
     @Override
     public void onClick() {
         isChecked = !isChecked;

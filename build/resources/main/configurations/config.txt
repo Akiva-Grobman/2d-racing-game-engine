@@ -1,3 +1,4 @@
-zoom: true
+zoom: false
 dev mode: true
-url: http://25.99.76.50:3000/
+url: http://localhost:3000
+zoom factor: 1,1

@@ -10,6 +10,7 @@ public class ConfigParser {
     private static final String ZOOM_STATUS = "zoom";
     private static final String DEV_MODE_STATUS = "devMode";
     private static final String SERVER_URL = "url";
+    private static final String ZOOM_FACTOR = "zoomFactor";
     private final Map<String, Integer> infoIndex;
     private final List<String> lines;
 
@@ -18,6 +19,7 @@ public class ConfigParser {
          infoIndex.put(ZOOM_STATUS, 0);
          infoIndex.put(DEV_MODE_STATUS, 1);
          infoIndex.put(SERVER_URL, 2);
+         infoIndex.put(ZOOM_FACTOR, 3);
          lines = getConfigAsLines();
     }
 
@@ -44,7 +46,7 @@ public class ConfigParser {
     }
 
     void setIsInDevMode(boolean isInDevMode) {
-        update(infoIndex.get(DEV_MODE_STATUS), isInDevMode);
+        updateBoolean(infoIndex.get(DEV_MODE_STATUS), isInDevMode);
     }
 
     boolean isUsingZoom() {
@@ -52,11 +54,39 @@ public class ConfigParser {
     }
 
     void setIsUsingZoom(boolean isUsingZoom) {
-        update(infoIndex.get(ZOOM_STATUS), isUsingZoom);
+        updateBoolean(infoIndex.get(ZOOM_STATUS), isUsingZoom);
     }
 
-    private void update(int lineIndex, boolean value) {
+    double getZoomInWidthFactor() {
+        return getZoomFactor(0);
+    }
+
+    double getZoomInHeightFactor() {
+        return getZoomFactor(1);
+    }
+
+    void setZoomInFactor(double widthFactor, double heightFactor) {
+        String[] coordinates = lines.get(infoIndex.get(ZOOM_FACTOR)).split(":")[1].split(",");
+        coordinates[0] = String.valueOf(widthFactor);
+        coordinates[1] = String.valueOf(heightFactor);
+        updateString(infoIndex.get(ZOOM_FACTOR),
+                coordinates[0] + "," + coordinates[1]);
+    }
+
+    private double getZoomFactor(int indexInString) {
+        return Double.parseDouble(lines.get(infoIndex.get(ZOOM_FACTOR)).split(":")[1].split(",")[indexInString]);
+    }
+
+    private void updateBoolean(int lineIndex, boolean value) {
+        updateString(lineIndex, String.valueOf(value));
+    }
+
+    private void updateString(int lineIndex, String value) {
         lines.set(lineIndex, lines.get(lineIndex).split(":")[0] + ": " + value);
+        updateFile();
+    }
+
+    private void updateFile() {
         try {
             PrintStream writer = new PrintStream(getClass().getResource(FILE_URL).getPath());
             lines.forEach(writer::println);
@@ -65,5 +95,4 @@ public class ConfigParser {
             throw new Error(e.getMessage());
         }
     }
-
 }
