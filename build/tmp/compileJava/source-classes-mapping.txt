@@ -46,8 +46,8 @@ com/k300/io/api/WebInteractor.java
  com.k300.io.api.WebInteractor
 com/k300/ui/buttons/UIMenuButton.java
  com.k300.ui.buttons.UIMenuButton
-com/k300/states/SettingsState.java
- com.k300.states.SettingsState
+com/k300/io/api/handlers/PostRequestHandler.java
+ com.k300.io.api.handlers.PostRequestHandler
 com/k300/Launcher.java
  com.k300.Launcher
 com/k300/utils/SETTING_LIST_ELEMENTS.java
@@ -106,9 +106,8 @@ com/k300/ui/buttons/UIButton.java
  com.k300.ui.buttons.UIButton
 com/k300/obstacles/StartLine.java
  com.k300.obstacles.StartLine
-com/k300/ui/buttons/ZoomCustomizerButton.java
- com.k300.ui.buttons.ZoomCustomizerButton
- com.k300.ui.buttons.ZoomCustomizerButton$BUTTON_TYPE
+com/k300/io/PlayerKeyListener.java
+ com.k300.io.PlayerKeyListener
 com/k300/tracks/trackLogic/Collisions.java
  com.k300.tracks.trackLogic.Collisions
 com/k300/cars/player_car/PlayerCarCorners.java
@@ -129,7 +128,8 @@ com/k300/io/api/API.java
  com.k300.io.api.API
 com/k300/states/gameStates/GameState.java
  com.k300.states.gameStates.GameState
-com/k300/io/PlayerKeyListener.java
- com.k300.io.PlayerKeyListener
-com/k300/io/api/handlers/PostRequestHandler.java
- com.k300.io.api.handlers.PostRequestHandler
+com/k300/states/SettingsState.java
+ com.k300.states.SettingsState
+com/k300/ui/buttons/ZoomCustomizerButton.java
+ com.k300.ui.buttons.ZoomCustomizerButton
+ com.k300.ui.buttons.ZoomCustomizerButton$BUTTON_TYPE

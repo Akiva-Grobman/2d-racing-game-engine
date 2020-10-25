@@ -23,9 +23,9 @@ public class ZoomCustomizerButton extends UIButton {
 
         public double getOnClickChange() {
             if(this == PLUS) {
-                return -20;
+                return 0.8;
             } else {
-                return 20;
+                return 1.2;
             }
         }
     }
@@ -51,8 +51,8 @@ public class ZoomCustomizerButton extends UIButton {
     public void onClick() {
         double originalWidthFactor = Config.getZoomInWidthFactor();
         double originalHeightFactor = Config.getZoomInHeightFactor();
-        double newWidthFactor = originalWidthFactor + buttonType.getOnClickChange();
-        double newHeightFactor = originalHeightFactor + buttonType.getOnClickChange();
+        double newWidthFactor = originalWidthFactor * buttonType.getOnClickChange();
+        double newHeightFactor = originalHeightFactor * buttonType.getOnClickChange();
         Config.setZoomInFactor(newWidthFactor, newHeightFactor);
     }
 
