@@ -4,7 +4,6 @@ import com.k300.cars.Car;
 import com.k300.cars.player_car.PlayerCar;
 import com.k300.display.Toast;
 import com.k300.io.PlayerKeyListener;
-import com.k300.io.api.models.Player;
 import com.k300.obstacles.StartLine;
 import com.k300.states.gameStates.GameState;
 
