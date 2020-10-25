@@ -37,7 +37,8 @@ public abstract class Track {
     public void render(Graphics graphics) {
         int width = Converter.FHD_SCREEN_WIDTH;
         int height = Converter.FHD_SCREEN_HEIGHT;
-        if(Config.isUsingZoom()) {
+        // won't allow zoom with local player
+        if(this instanceof OnlineTrack && Config.isUsingZoom()) {
             renderWithZoom(graphics);
         } else {
             renderWithoutZoom(graphics, width, height);
