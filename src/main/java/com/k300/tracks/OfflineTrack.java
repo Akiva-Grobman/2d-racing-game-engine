@@ -33,8 +33,9 @@ public class OfflineTrack extends Track {
     private void toastToUserKeyMessage() {
         StringBuilder toastMessage = new StringBuilder();
         for (int i = 0; i < cars.length; i++) {
+            toastMessage.append("The ");
             toastMessage.append(getCarColor(i));
-            toastMessage.append(" Will be moved by ");
+            toastMessage.append(" Car will be moved by ");
             toastMessage.append(getCarKeyListener(i));
             toastMessage.append("   ");
         }
