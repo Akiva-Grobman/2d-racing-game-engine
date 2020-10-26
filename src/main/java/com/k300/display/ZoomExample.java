@@ -33,7 +33,12 @@ public class ZoomExample {
         BufferedImage track = clone(Assets.getImage(Assets.TRACK_KEY));
         BufferedImage car = clone(Assets.getImage(Assets.BLUE_CAR_KEY));
         Graphics trackGraphics = track.getGraphics();
-        trackGraphics.drawImage(car, (int) GameState.startingPosition.x, (int) GameState.startingPosition.y, null);
+        trackGraphics.drawImage(
+                car,
+                (int) (GameState.startingPosition.x - car.getWidth() / 2f),
+                (int) (GameState.startingPosition.y - car.getHeight() / 2f),
+                null
+        );
         BufferedImage zoomExample = getZoomedImage(
                 GameState.startingPosition.x,
                 GameState.startingPosition.y,

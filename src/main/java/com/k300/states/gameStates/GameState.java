@@ -10,7 +10,7 @@ import java.awt.*;
 
 public abstract class GameState extends State {
 
-    public static final Point startingPosition = new Point(760, 850);
+    public static final Point startingPosition = new Point(800, 880);
     protected volatile Track track;
 
     public GameState(Launcher launcher) {
