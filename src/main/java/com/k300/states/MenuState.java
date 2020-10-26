@@ -4,7 +4,7 @@ import com.k300.Launcher;
 
 import java.awt.*;
 
-import com.k300.graphics.MenuBackground;
+import com.k300.display.MenuBackground;
 import com.k300.ui.*;
 import com.k300.ui.buttons.*;
 import com.k300.ui.listeners.ClickListener;
@@ -14,46 +14,69 @@ public class MenuState extends State {
 
     private final UIManager uiManager;
     private final MenuBackground background;
-    private final int buttonWidth;
-    private final int buttonHeight;
-    private final int buttonsX;
+
+    private final double bigButtonWidth;
+    private final double bigButtonHeight;
+    private final double xBigButton;
+    private final double startingYBigButton;
+    private final double bigButtonMargin;
+
+
+    private final double smallButtonWidth;
+    private final double smallButtonHeight;
+    private final double smallButtonMargin;
+
+    private final int bigButtonFontSize;
+    private final int smallButtonFontSize;
+
 
     public MenuState(Launcher launcher) {
         super(launcher);
         uiManager = new UIManager();
         background = new MenuBackground();
         launcher.getMouseListener().setUiManager(uiManager);
-        buttonWidth = Converter.FHD_SCREEN_WIDTH / 3;
-        buttonHeight = Converter.FHD_SCREEN_HEIGHT / 4;
-        buttonsX = (Converter.FHD_SCREEN_WIDTH -  buttonWidth) / 2;
-        UIPlayButton playButton = getPlayButton(launcher);
-        UIOnlineButton multiplayerButton = getOnlineButton(launcher, playButton);
-        UISettingsButton settingsButton = getSettingsButton(playButton);
+
+        bigButtonWidth = Converter.FHD_SCREEN_WIDTH / 2.5f;
+        bigButtonHeight = Converter.FHD_SCREEN_HEIGHT / 4.5f;
+
+        xBigButton = (Converter.FHD_SCREEN_WIDTH - bigButtonWidth) / 2;
+        startingYBigButton = (Converter.FHD_SCREEN_HEIGHT) / 8.5f;
+        bigButtonMargin = bigButtonHeight * 1.4;
+
+        smallButtonMargin = 40;
+        smallButtonWidth = (bigButtonWidth - smallButtonMargin) / 2f;
+        smallButtonHeight = bigButtonHeight / 1.8;
+
+        bigButtonFontSize = 100;
+        smallButtonFontSize = 40;
+
+        UIMenuButton playButton = getPlayButton(launcher);
+        UIMenuButton onlineButton = getOnlineButton(launcher, playButton);
+        UIMenuButton settingsButton = getSettingsButton(onlineButton);
         uiManager.addUIObject(playButton);
-        uiManager.addUIObject(multiplayerButton);
+        uiManager.addUIObject(onlineButton);
         uiManager.addUIObject(settingsButton);
         uiManager.addUIObject(getExitButton(settingsButton));
     }
 
-    private UIPlayButton getPlayButton(Launcher launcher) {
-        int y = (Converter.FHD_SCREEN_HEIGHT) / 8;
+    private UIMenuButton getPlayButton(Launcher launcher) {
         ClickListener listener = launcher::startGame;
-        return new UIPlayButton(buttonsX, y, buttonWidth, buttonHeight, listener);
+        return new UIMenuButton((int) xBigButton, (int) startingYBigButton, (int) bigButtonWidth, (int) bigButtonHeight, "PLAY", bigButtonFontSize, listener);
     }
 
-    private UIOnlineButton getOnlineButton(Launcher launcher, UIButton playButton) {
-        int y = (int) (playButton.getY() + (Converter.FHD_SCREEN_HEIGHT) / 3.5);
-        return new UIOnlineButton(buttonsX, y, buttonWidth, buttonHeight, launcher);
+    private UIMenuButton getOnlineButton(Launcher launcher, UIMenuButton playButton) {
+        ClickListener listener = () -> StateManager.setCurrentState(new OnlineState(launcher));
+        return new UIMenuButton((int) xBigButton, (int) (playButton.getY() + bigButtonMargin), (int) bigButtonWidth, (int) bigButtonHeight,"ONLINE", bigButtonFontSize, listener);
     }
 
-    private UISettingsButton getSettingsButton(UIButton multiplayerButton) {
-        int y = (int) (Converter.FHD_SCREEN_HEIGHT - (Converter.FHD_SCREEN_HEIGHT) / 3.5);
-        return new UISettingsButton(buttonsX, y, buttonWidth/2, buttonHeight/2, launcher);
+    private UIMenuButton getSettingsButton(UIMenuButton multiplayerButton) {
+        ClickListener listener = () -> StateManager.setCurrentState(new SettingsState(launcher));
+        return new UIMenuButton((int) xBigButton, (int) (multiplayerButton.getY() + bigButtonMargin), (int) smallButtonWidth, (int) smallButtonHeight,"SETTINGS", smallButtonFontSize, listener);
     }
 
-    private UIButton getExitButton(UIButton settingsButton) {
-        int y = (int) settingsButton.getY();
-        return new UIExitButton(buttonsX + buttonWidth/2, y, buttonWidth/2, buttonHeight/2);
+    private UIMenuButton getExitButton(UIMenuButton settingsButton) {
+        ClickListener listener = Launcher::stop;
+        return new UIMenuButton((int) (xBigButton + smallButtonWidth + smallButtonMargin), (int) settingsButton.getY(), (int) smallButtonWidth, (int) smallButtonHeight,"EXIT", smallButtonFontSize, listener);
     }
 
     @Override

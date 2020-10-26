@@ -5,7 +5,7 @@ plugins {
     id 'org.springframework.boot' version '2.3.4.RELEASE'
 }
 
-group 'com.k300'
+group 'com.akivaGrobman'
 version '1.0-SNAPSHOT'
 
 repositories {
@@ -13,5 +13,6 @@ repositories {
 }
 
 dependencies {
-
+    compile 'com.squareup.retrofit2:retrofit:2.2.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.2.0'
 }

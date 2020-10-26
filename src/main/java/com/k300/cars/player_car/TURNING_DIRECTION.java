@@ -1,25 +1,14 @@
 package com.k300.cars.player_car;
 
-import com.k300.io.PlayerKeyListener;
-
 public enum TURNING_DIRECTION {
 
-    RIGHT(PlayerKeyListener.RIGHT_ARROW),
-    LEFT(PlayerKeyListener.LEFT_ARROW);
+    RIGHT(-1),
+    LEFT(1);
 
-    private final int keyValue;
+    private final int multiplier;
 
-    TURNING_DIRECTION(int keyValue) {
-        this.keyValue = keyValue;
-    }
-
-    public static TURNING_DIRECTION getDirectionFromValue(int keyValue) {
-        if(keyValue == RIGHT.keyValue) {
-            return RIGHT;
-        } else if(keyValue == LEFT.keyValue) {
-            return LEFT;
-        }
-        throw new Error(keyValue + " is not a valid turing value");
+    TURNING_DIRECTION(int multiplier) {
+        this.multiplier = multiplier;
     }
 
     public Runnable getTurningDirection(PlayerCarMover mover) {
@@ -36,6 +25,10 @@ public enum TURNING_DIRECTION {
         } else {
             return mover::turnRight;
         }
+    }
+
+    public int getRotationMultiplier() {
+        return multiplier;
     }
 
 }

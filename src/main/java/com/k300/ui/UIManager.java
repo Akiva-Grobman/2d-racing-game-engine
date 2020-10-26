@@ -1,6 +1,7 @@
 package com.k300.ui;
 
 import com.k300.ui.buttons.UIButton;
+import com.k300.ui.buttons.ZoomCustomizerButton;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -37,8 +38,8 @@ public class UIManager {
         uiButtons.add(object);
     }
 
-    public void removeUIObject(UIButton object){
-        uiButtons.remove(object);
+    public void remove(UIButton uiButton) {
+        uiButtons.remove(uiButton);
     }
 
 }

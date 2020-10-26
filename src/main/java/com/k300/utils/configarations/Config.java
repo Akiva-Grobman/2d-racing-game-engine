@@ -20,4 +20,16 @@ public class Config {
         parser.setIsUsingZoom(isUsingZoom);
     }
 
+    public static String getUrl() {
+        return parser.getServerUrl();
+    }
+
+    public static double getZoomInFactor() {
+        return parser.getZoomInFactor();
+    }
+
+    public static void setZoomInFactor(double zoomFactor) {
+        parser.setZoomInFactor(zoomFactor);
+    }
+
 }

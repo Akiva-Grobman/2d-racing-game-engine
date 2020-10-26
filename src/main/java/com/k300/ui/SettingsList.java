@@ -9,15 +9,23 @@ public class SettingsList {
 
     private final static int WIDTH = 200;
     private final static int HEIGHT = 100;
+    public static final int PADDING  = HEIGHT;
     private final List<SettingsListElement> elements;
+    private final int bottomY;
 
     public SettingsList(int x, int y) {
         elements = new ArrayList<>();
+        bottomY = y + PADDING * 2;
         elements.add(new SettingsListElement(x, y, WIDTH, HEIGHT, SETTING_LIST_ELEMENTS.ZOOM));
-        elements.add(new SettingsListElement(x, y + HEIGHT * 2, WIDTH, HEIGHT, SETTING_LIST_ELEMENTS.DEV_MODE));
+        elements.add(new SettingsListElement(x, bottomY, WIDTH, HEIGHT, SETTING_LIST_ELEMENTS.DEV_MODE));
     }
 
     public List<SettingsListElement> getElements() {
         return elements;
     }
+
+    public int getBottomY() {
+        return elements.get(elements.size() - 1).getHeight() + bottomY;
+    }
+
 }

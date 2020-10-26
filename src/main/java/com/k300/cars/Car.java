@@ -13,10 +13,10 @@ import java.awt.image.BufferedImage;
 public abstract class Car {
 
     public final Point position;
+    public BufferedImage carImage;
+    public String carColor;
     public double angle;
     public int rounds;
-    public final BufferedImage carImage;
-    public final String carColor;
 
     public Car(String carColor, Point startingPosition) {
         carImage = Assets.getImage(carColor);
@@ -29,14 +29,19 @@ public abstract class Car {
 
     public final void render(Graphics2D graphics) {
         if(carImage == null) {
+            if(!carColor.isEmpty()) {
+                updateColor(carColor);
+            }
             return;
         }
+
         AffineTransform carAngle = AffineTransform.getTranslateInstance(position.x - carImage.getWidth() / 2f, position.y -  carImage.getHeight() / 2f);
         carAngle.rotate(Math.toRadians(-angle), carImage.getWidth() / 2f, carImage.getHeight() / 2f); //need Minus because Java is multiplier minus
         graphics.drawImage(carImage, carAngle, null);
+
         if(!Config.isUsingZoom() && this instanceof PlayerCar) {
             graphics.setColor(Color.white);
-            graphics.setFont(new Font("TimesRoman", Font.BOLD, 120));
+            graphics.setFont(new Font("Minecraft", Font.BOLD, 120));
             graphics.drawString("ROUNDS: " + rounds, 625, 570);
             if(Config.isInDevMode()) {
                 graphics.drawString("Angle: " + angle, 800, 500);
@@ -57,16 +62,31 @@ public abstract class Car {
         }
     }
 
+    public void updateColor(String color) {
+        if(!color.contains("_")) {
+            carColor = getColor(color);
+        } else {
+            carColor = color;
+        }
+        carImage = Assets.getImage(carColor);
+    }
+
+    private String getColor(String color) {
+        color = color.toLowerCase();
+        if(color.contains("blue")) {
+            return Assets.BLUE_CAR_KEY;
+        } else if(color.contains("red")) {
+            return Assets.RED_CAR_KEY;
+        }
+        return Assets.YELLOW_CAR_KEY;
+    }
+
     public double getX() {
         return position.x;
     }
 
     public double getY() {
         return position.y;
-    }
-
-    public double getAngle() {
-        return angle;
     }
 
 }
