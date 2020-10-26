@@ -60,7 +60,7 @@ public class MenuState extends State {
     }
 
     private UIMenuButton getPlayButton(Launcher launcher) {
-        ClickListener listener = launcher::startGame;
+        ClickListener listener = launcher::startOfflineGame;
         return new UIMenuButton((int) xBigButton, (int) startingYBigButton, (int) bigButtonWidth, (int) bigButtonHeight, "PLAY", bigButtonFontSize, listener);
     }
 
