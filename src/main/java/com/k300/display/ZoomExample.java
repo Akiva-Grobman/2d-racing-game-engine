@@ -33,9 +33,11 @@ public class ZoomExample {
         Graphics trackGraphics = track.getGraphics();
         int heightClamp = track.getHeight() / 4 * 3 + track.getHeight() / 20;
         drawImageInCenter(0, heightClamp, track.getWidth(), track.getHeight() - heightClamp, trackGraphics, car);
-        BufferedImage zoomExample = getZoomedImage(track.getWidth() / 2f,
+        BufferedImage zoomExample = getZoomedImage(
+                track.getWidth() / 2f,
                 (track.getHeight() + heightClamp) / 2f,
-                track);
+                track
+        );
         return resizeImage(zoomExample, Converter.FHD_SCREEN_WIDTH / 2, Converter.FHD_SCREEN_HEIGHT / 2);
     }
 

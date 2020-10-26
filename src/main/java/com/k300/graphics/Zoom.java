@@ -7,8 +7,8 @@ import static com.k300.utils.Utils.resizeImage;
 public class Zoom {
 
     public static BufferedImage getZoomedImage(double x, double y, BufferedImage image) {
-        double widthFactorAfterConfig = Config.getZoomInWidthFactor();
-        double heightFactorAfterConfig = Config.getZoomInHeightFactor();
+        double widthFactorAfterConfig = image.getWidth() * Config.getZoomInFactor();
+        double heightFactorAfterConfig = image.getHeight() * Config.getZoomInFactor();
         double statingZoomX = x - (widthFactorAfterConfig / 2);
         double startingZoomY = y - (heightFactorAfterConfig / 2);
         statingZoomX = clamp(statingZoomX, widthFactorAfterConfig, image.getWidth());

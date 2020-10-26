@@ -1,7 +1,5 @@
 package com.k300.utils.configarations;
 
-import com.k300.utils.math.Converter;
-
 import java.io.*;
 import java.util.*;
 
@@ -23,11 +21,11 @@ public class ConfigParser {
          infoIndex.put(SERVER_URL, 2);
          infoIndex.put(ZOOM_FACTOR, 3);
          lines = getConfigAsLines();
-         setDefaultZoomDimensions();
+         setDefaultZoomFactor();
     }
 
-    private void setDefaultZoomDimensions() {
-        setZoomInFactor(Converter.FHD_SCREEN_WIDTH / 2f, Converter.FHD_SCREEN_HEIGHT / 2f);
+    private void setDefaultZoomFactor() {
+        setZoomInFactor(1);
     }
 
     private List<String> getConfigAsLines() {
@@ -64,24 +62,21 @@ public class ConfigParser {
         updateBoolean(infoIndex.get(ZOOM_STATUS), isUsingZoom);
     }
 
-    double getZoomInWidthFactor() {
-        return getZoomFactor(0);
+    double getZoomInFactor() {
+        return getZoomFactor();
     }
 
-    double getZoomInHeightFactor() {
-        return getZoomFactor(1);
-    }
-
-    void setZoomInFactor(double widthFactor, double heightFactor) {
+    void setZoomInFactor(double zoomFactor) {
         String[] coordinates = lines.get(infoIndex.get(ZOOM_FACTOR)).split(":")[1].split(",");
-        coordinates[0] = String.valueOf(widthFactor);
-        coordinates[1] = String.valueOf(heightFactor);
-        updateString(infoIndex.get(ZOOM_FACTOR),
-                coordinates[0] + "," + coordinates[1]);
+        coordinates[0] = String.valueOf(zoomFactor);
+        updateString(
+                infoIndex.get(ZOOM_FACTOR),
+                coordinates[0]
+        );
     }
 
-    private double getZoomFactor(int indexInString) {
-        return Double.parseDouble(lines.get(infoIndex.get(ZOOM_FACTOR)).split(":")[1].split(",")[indexInString]);
+    private double getZoomFactor() {
+        return Double.parseDouble(lines.get(infoIndex.get(ZOOM_FACTOR)).split(":")[1]);
     }
 
     private void updateBoolean(int lineIndex, boolean value) {

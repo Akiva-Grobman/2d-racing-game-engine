@@ -49,11 +49,9 @@ public class ZoomCustomizerButton extends UIButton {
 
     @Override
     public void onClick() {
-        double originalWidthFactor = Config.getZoomInWidthFactor();
-        double originalHeightFactor = Config.getZoomInHeightFactor();
-        double newWidthFactor = originalWidthFactor * buttonType.getOnClickChange();
-        double newHeightFactor = originalHeightFactor * buttonType.getOnClickChange();
-        Config.setZoomInFactor(newWidthFactor, newHeightFactor);
+        double originalZoomFactor = Config.getZoomInFactor();
+        double newZoomFactor = originalZoomFactor * buttonType.getOnClickChange();
+        Config.setZoomInFactor(newZoomFactor);
     }
 
 }

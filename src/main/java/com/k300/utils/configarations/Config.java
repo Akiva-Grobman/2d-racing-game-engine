@@ -24,16 +24,12 @@ public class Config {
         return parser.getServerUrl();
     }
 
-    public static double getZoomInWidthFactor() {
-        return parser.getZoomInWidthFactor();
+    public static double getZoomInFactor() {
+        return parser.getZoomInFactor();
     }
 
-    public static double getZoomInHeightFactor() {
-        return parser.getZoomInHeightFactor();
-    }
-
-    public static void setZoomInFactor(double widthFactor, double heightFactor) {
-        parser.setZoomInFactor(widthFactor, heightFactor);
+    public static void setZoomInFactor(double zoomFactor) {
+        parser.setZoomInFactor(zoomFactor);
     }
 
 }
