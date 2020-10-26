@@ -2,6 +2,7 @@ package com.k300.graphics;
 
 import com.k300.cars.Car;
 import com.k300.cars.player_car.PlayerCar;
+import com.k300.utils.configarations.Config;
 import com.k300.utils.math.Converter;
 
 import java.awt.*;
@@ -53,9 +54,12 @@ public class ZoomInCamera {
 
     private void drawZoomedView() {
         drawFullTrackWithCars(zoomGraphics);
-        BufferedImage zoomedImage = getZoomedImage(playerXPosition,
+        BufferedImage zoomedImage = getZoomedImage(
+                playerXPosition,
                 playerYPosition,
-                zoomWindow);
+                Config.getZoomInFactor(),
+                zoomWindow
+        );
         drawImageInCenter(0, 0, Converter.FHD_SCREEN_WIDTH, Converter.FHD_SCREEN_HEIGHT, windowGraphics, zoomedImage);
     }
 

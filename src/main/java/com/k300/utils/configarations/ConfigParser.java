@@ -21,7 +21,7 @@ public class ConfigParser {
          infoIndex.put(SERVER_URL, 2);
          infoIndex.put(ZOOM_FACTOR, 3);
          lines = getConfigAsLines();
-         setDefaultZoomFactor();
+         //setDefaultZoomFactor();
     }
 
     private void setDefaultZoomFactor() {

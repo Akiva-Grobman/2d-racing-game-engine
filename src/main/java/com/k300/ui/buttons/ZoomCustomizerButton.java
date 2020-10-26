@@ -23,9 +23,9 @@ public class ZoomCustomizerButton extends UIButton {
 
         public double getOnClickChange() {
             if(this == PLUS) {
-                return 0.8;
-            } else {
                 return 1.2;
+            } else {
+                return 0.8;
             }
         }
     }
