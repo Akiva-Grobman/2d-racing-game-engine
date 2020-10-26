@@ -1,0 +1,4 @@
+zoom status: true
+dev mode: true
+url: http://localhost:3000
+zoom factor: 300,300

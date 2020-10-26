@@ -1,7 +1,8 @@
 com/k300/graphics/FontLoader.java
  com.k300.graphics.FontLoader
-com/k300/utils/configarations/Config.java
- com.k300.utils.configarations.Config
+com/k300/ui/buttons/ZoomCustomizerButton.java
+ com.k300.ui.buttons.ZoomCustomizerButton
+ com.k300.ui.buttons.ZoomCustomizerButton$BUTTON_TYPE
 com/k300/display/Window.java
  com.k300.display.Window
 com/k300/graphics/ZoomInCamera.java
@@ -66,8 +67,8 @@ com/k300/states/OnlineState.java
  com.k300.states.OnlineState
 com/k300/io/KeyListener.java
  com.k300.io.KeyListener
-com/k300/utils/configarations/ConfigParser.java
- com.k300.utils.configarations.ConfigParser
+com/k300/states/SettingsState.java
+ com.k300.states.SettingsState
 com/k300/cars/Car.java
  com.k300.cars.Car
 com/k300/io/MouseListener.java
@@ -128,8 +129,7 @@ com/k300/io/api/API.java
  com.k300.io.api.API
 com/k300/states/gameStates/GameState.java
  com.k300.states.gameStates.GameState
-com/k300/states/SettingsState.java
- com.k300.states.SettingsState
-com/k300/ui/buttons/ZoomCustomizerButton.java
- com.k300.ui.buttons.ZoomCustomizerButton
- com.k300.ui.buttons.ZoomCustomizerButton$BUTTON_TYPE
+com/k300/utils/configarations/Config.java
+ com.k300.utils.configarations.Config
+com/k300/utils/configarations/ConfigParser.java
+ com.k300.utils.configarations.ConfigParser

@@ -1,9 +1,7 @@
 package com.k300.utils.configarations;
 
-import com.k300.utils.math.Converter;
-
-import java.io.*;
 import java.util.*;
+import java.util.prefs.Preferences;
 
 public class ConfigParser {
 
@@ -13,55 +11,45 @@ public class ConfigParser {
     private static final String DEV_MODE_STATUS = "devMode";
     private static final String SERVER_URL = "url";
     private static final String ZOOM_FACTOR = "zoomFactor";
-    private final Map<String, Integer> infoIndex;
-    private final List<String> lines;
+    private final Preferences preferences;
+    private final Map<String, String> configData;
 
     ConfigParser() {
-         infoIndex = new HashMap<>();
-         infoIndex.put(ZOOM_STATUS, 0);
-         infoIndex.put(DEV_MODE_STATUS, 1);
-         infoIndex.put(SERVER_URL, 2);
-         infoIndex.put(ZOOM_FACTOR, 3);
-         lines = getConfigAsLines();
-         setDefaultZoomDimensions();
+        preferences = Preferences.userRoot().node(this.getClass().getName());
+        configData = getConfigAsMap();
     }
 
-    private void setDefaultZoomDimensions() {
-        setZoomInFactor(Converter.FHD_SCREEN_WIDTH / 2f, Converter.FHD_SCREEN_HEIGHT / 2f);
-    }
-
-    private List<String> getConfigAsLines() {
-        List<String> lines = new ArrayList<>();
-        try {
-            InputStream inputStream = getClass().getResource(FILE_URL).openStream();
-            Scanner reader = new Scanner(inputStream);
-            while (reader.hasNext()) {
-                lines.add(reader.nextLine());
-            }
-        } catch (IOException e) {
-            throw new Error(e.getMessage());
-        }
-        return lines;
+    private Map<String, String> getConfigAsMap() {
+        Map<String, String> map = new HashMap<>();
+        String defaultZoomStatus = "Zoom status: false";
+        map.put(ZOOM_STATUS, preferences.get(ZOOM_STATUS, defaultZoomStatus));
+        String defaultDevMode = "dev mode: false";
+        map.put(DEV_MODE_STATUS, preferences.get(DEV_MODE_STATUS, defaultDevMode));
+        String defaultUrl = "url: http://localhost:3000";
+        map.put(SERVER_URL, preferences.get(SERVER_URL, defaultUrl));
+        String defaultZoomFactor = "zoom factor: " + (4 * 11) + "," + (4 * 16);
+        map.put(ZOOM_FACTOR, preferences.get(ZOOM_FACTOR, defaultZoomFactor));
+        return map;
     }
 
     String getServerUrl() {
-        return lines.get(infoIndex.get(SERVER_URL)).split(" ")[1];
+        return configData.get(SERVER_URL).split(" ")[1];
     }
 
     boolean isInDevMode() {
-        return lines.get(infoIndex.get(DEV_MODE_STATUS)).contains(TRUE);
+        return configData.get(DEV_MODE_STATUS).contains(TRUE);
     }
 
     void setIsInDevMode(boolean isInDevMode) {
-        updateBoolean(infoIndex.get(DEV_MODE_STATUS), isInDevMode);
+        updateBoolean(DEV_MODE_STATUS, isInDevMode);
     }
 
     boolean isUsingZoom() {
-        return lines.get(infoIndex.get(ZOOM_STATUS)).contains(TRUE);
+        return configData.get(ZOOM_STATUS).contains(TRUE);
     }
 
     void setIsUsingZoom(boolean isUsingZoom) {
-        updateBoolean(infoIndex.get(ZOOM_STATUS), isUsingZoom);
+        updateBoolean(ZOOM_STATUS, isUsingZoom);
     }
 
     double getZoomInWidthFactor() {
@@ -73,33 +61,24 @@ public class ConfigParser {
     }
 
     void setZoomInFactor(double widthFactor, double heightFactor) {
-        String[] coordinates = lines.get(infoIndex.get(ZOOM_FACTOR)).split(":")[1].split(",");
+        String[] coordinates = configData.get(ZOOM_FACTOR).split(":")[1].split(",");
         coordinates[0] = String.valueOf(widthFactor);
         coordinates[1] = String.valueOf(heightFactor);
-        updateString(infoIndex.get(ZOOM_FACTOR),
+        updateString(ZOOM_FACTOR,
                 coordinates[0] + "," + coordinates[1]);
     }
 
     private double getZoomFactor(int indexInString) {
-        return Double.parseDouble(lines.get(infoIndex.get(ZOOM_FACTOR)).split(":")[1].split(",")[indexInString]);
+        return Double.parseDouble(configData.get(ZOOM_FACTOR).split(":")[1].split(",")[indexInString]);
     }
 
-    private void updateBoolean(int lineIndex, boolean value) {
-        updateString(lineIndex, String.valueOf(value));
+    private void updateBoolean(String key, boolean value) {
+        updateString(key, String.valueOf(value));
     }
 
-    private void updateString(int lineIndex, String value) {
-        lines.set(lineIndex, lines.get(lineIndex).split(":")[0] + ": " + value);
-        updateFile();
+    private void updateString(String  key, String value) {
+        String newValue = configData.get(key).split(":")[0] + ": " + value;
+        preferences.put(key, newValue);
     }
 
-    private void updateFile() {
-        try {
-            PrintStream writer = new PrintStream(getClass().getResource(FILE_URL).getPath());
-            lines.forEach(writer::println);
-            writer.close();
-        } catch (IOException e) {
-            throw new Error(e.getMessage());
-        }
-    }
 }
