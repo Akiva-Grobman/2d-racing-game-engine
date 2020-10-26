@@ -51,7 +51,7 @@ public class Launcher {
         mouseListener = new MouseListener();
         window.addMouseListener(mouseListener);
         setKeyListener(new com.k300.io.KeyListener());
-        if(!Config.isInDevMode()) {
+        if(Config.isInDevMode()) {
             StateManager.setCurrentState(
                     new OpeningFadeState(this,
                             Assets.getImage(Assets.K_300_INTRO_KEY),
