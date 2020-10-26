@@ -8,7 +8,6 @@ import static com.k300.utils.Utils.drawStringInCenter;
 
 public class ZoomCustomizerButton extends UIButton {
 
-
     private enum BUTTON_TYPE {
         PLUS,
         MINUS;
@@ -28,6 +27,7 @@ public class ZoomCustomizerButton extends UIButton {
                 return 0.8;
             }
         }
+
     }
 
     private final BUTTON_TYPE buttonType;
@@ -57,6 +57,9 @@ public class ZoomCustomizerButton extends UIButton {
             newZoomFactor = 6;
         }
         Config.setZoomInFactor(newZoomFactor);
+        if(Config.isInDevMode()) {
+            System.out.println("New zoom factor: " + newZoomFactor);
+        }
     }
 
 }

@@ -24,9 +24,8 @@ public class Zoom {
             );
             return resizeImage(croppedImage, croppedImage.getWidth(), croppedImage.getHeight());
         } catch (RasterFormatException err) {
-            System.out.println("Too much zoom factor");
+            System.out.println("Too much zoom factor " + zoomFactor);
         }
-
         return resizeImage(image, image.getWidth(), image.getHeight());
     }
 

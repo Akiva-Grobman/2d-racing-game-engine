@@ -16,8 +16,8 @@ public class SettingsState extends State {
 
     private final UIManager uiManager;
     private SettingsListElement devModeElement;
-    private ZoomCustomizerButton plus;
-    private ZoomCustomizerButton minus;
+    private final ZoomCustomizerButton plus;
+    private final ZoomCustomizerButton minus;
     private boolean addedZoomCustomizingButtons;
 
     public SettingsState(Launcher launcher) {
