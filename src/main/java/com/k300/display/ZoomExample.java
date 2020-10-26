@@ -33,7 +33,6 @@ public class ZoomExample {
         BufferedImage track = clone(Assets.getImage(Assets.TRACK_KEY));
         BufferedImage car = clone(Assets.getImage(Assets.BLUE_CAR_KEY));
         Graphics trackGraphics = track.getGraphics();
-        drawShadowOverTrackImage(track, trackGraphics);
         trackGraphics.drawImage(
                 car,
                 (int) (GameState.startingPosition.x - car.getWidth() / 2f),
@@ -47,19 +46,6 @@ public class ZoomExample {
                 track
         );
         return resizeImage(zoomExample, Converter.FHD_SCREEN_WIDTH / 2, Converter.FHD_SCREEN_HEIGHT / 2);
-    }
-
-    private void drawShadowOverTrackImage(BufferedImage track, Graphics trackGraphics) {
-        Composite originalComposite = ((Graphics2D) trackGraphics).getComposite();
-        float alpha = 0.5f;
-        ((Graphics2D) trackGraphics).setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha));
-        trackGraphics.drawImage(Assets.getImage(Assets.INIT_IMAGE_KEY),
-                0,
-                0,
-                track.getWidth(),
-                track.getHeight(),
-                null);
-        ((Graphics2D) trackGraphics).setComposite(originalComposite);
     }
 
     private BufferedImage clone(BufferedImage originalImage) {
