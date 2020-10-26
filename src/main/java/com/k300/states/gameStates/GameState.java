@@ -10,8 +10,7 @@ import java.awt.*;
 
 public abstract class GameState extends State {
 
-    public static final Point startingPosition = new Point(Converter.FHD_SCREEN_WIDTH / 2f,
-            Converter.FHD_SCREEN_HEIGHT / 4f * 3 + Converter.FHD_SCREEN_HEIGHT / 15f);
+    public static final Point startingPosition = new Point(760, 850);
     protected volatile Track track;
 
     public GameState(Launcher launcher) {

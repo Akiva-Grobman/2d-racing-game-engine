@@ -1,6 +1,7 @@
 package com.k300.display;
 
 import com.k300.graphics.Assets;
+import com.k300.states.gameStates.GameState;
 import com.k300.utils.configarations.Config;
 import com.k300.utils.math.Converter;
 
@@ -32,11 +33,10 @@ public class ZoomExample {
         BufferedImage track = clone(Assets.getImage(Assets.TRACK_KEY));
         BufferedImage car = clone(Assets.getImage(Assets.BLUE_CAR_KEY));
         Graphics trackGraphics = track.getGraphics();
-        int heightClamp = track.getHeight() / 4 * 3 + track.getHeight() / 20;
-        drawImageInCenter(0, heightClamp, track.getWidth(), track.getHeight() - heightClamp, trackGraphics, car);
+        trackGraphics.drawImage(car, (int) GameState.startingPosition.x, (int) GameState.startingPosition.y, null);
         BufferedImage zoomExample = getZoomedImage(
-                track.getWidth() / 2f,
-                (track.getHeight() + heightClamp) / 2f,
+                GameState.startingPosition.x,
+                GameState.startingPosition.y,
                 Config.getZoomInFactor(),
                 track
         );
