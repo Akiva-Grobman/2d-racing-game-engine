@@ -2,7 +2,7 @@
 
 # 2D Racing Game Engine
 This is based on the <a href="https://github.com/ELK4N4/K300-RacingGame">K-300 Capslock Hackathon entry</a>.
-<p>The server can be found <a herf="https://github.com/ELK4N4/2d-racing-game-server">here</a>.</p>
+The server can be found <a href="https://github.com/ELK4N4/2d-racing-game-server">here</a>.
 ## Contributors:
 
 <a href="https://github.com/Bon1bon"> Moshe</a>, <a href="https://github.com/yechielb2000"> Yechiel</a>, <a href="https://github.com/henyair"> Hen</a>, <a href="https://github.com/naor531"> Naor</a>. 
