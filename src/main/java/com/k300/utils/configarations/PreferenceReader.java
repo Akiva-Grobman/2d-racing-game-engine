@@ -3,7 +3,7 @@ package com.k300.utils.configarations;
 import java.util.*;
 import java.util.prefs.Preferences;
 
-public class ConfigParser {
+public class PreferenceReader {
 
     private static final String TRUE = String.valueOf(true);
     private static final String ZOOM_STATUS = "zoom";
@@ -13,7 +13,7 @@ public class ConfigParser {
     private final Preferences preferences;
     private final Map<String, String> configData;
 
-    ConfigParser() {
+    PreferenceReader() {
         preferences = Preferences.userRoot().node(this.getClass().getName());
         configData = getConfigAsMap();
     }

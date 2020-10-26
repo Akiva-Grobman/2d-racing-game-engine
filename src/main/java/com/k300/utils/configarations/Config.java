@@ -3,45 +3,45 @@ package com.k300.utils.configarations;
 public class Config {
 
     private static Config singletonInstance = null;
-    private final ConfigParser parser;
+    private final PreferenceReader preferenceReader;
 
     private Config() {
-        parser = new ConfigParser();
+        preferenceReader = new PreferenceReader();
     }
 
     public static boolean isInDevMode() {
         handleInstance();
-        return singletonInstance.parser.isInDevMode();
+        return singletonInstance.preferenceReader.isInDevMode();
     }
 
     public static void setInDevMode(boolean isInDevMode) {
         handleInstance();
-        singletonInstance.parser.setIsInDevMode(isInDevMode);
+        singletonInstance.preferenceReader.setIsInDevMode(isInDevMode);
     }
 
     public static boolean isUsingZoom() {
         handleInstance();
-        return singletonInstance.parser.isUsingZoom();
+        return singletonInstance.preferenceReader.isUsingZoom();
     }
 
     public static void setUsingZoom(boolean isUsingZoom) {
         handleInstance();
-        singletonInstance.parser.setIsUsingZoom(isUsingZoom);
+        singletonInstance.preferenceReader.setIsUsingZoom(isUsingZoom);
     }
 
     public static String getUrl() {
         handleInstance();
-        return singletonInstance.parser.getServerUrl();
+        return singletonInstance.preferenceReader.getServerUrl();
     }
 
     public static double getZoomInFactor() {
         handleInstance();
-        return singletonInstance.parser.getZoomInFactor();
+        return singletonInstance.preferenceReader.getZoomInFactor();
     }
 
     public static void setZoomInFactor(double zoomFactor) {
         handleInstance();
-        singletonInstance.parser.setZoomInFactor(zoomFactor);
+        singletonInstance.preferenceReader.setZoomInFactor(zoomFactor);
     }
 
     // this method most be called on the first line of all public static methods in this class
