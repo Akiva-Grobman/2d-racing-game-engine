@@ -9,6 +9,9 @@ import com.k300.states.gameStates.GameState;
 import com.k300.tracks.trackLogic.Collisions;
 import com.k300.tracks.trackLogic.Margins;
 import com.k300.utils.configarations.Config;
+import com.k300.utils.math.Converter;
+
+import java.awt.*;
 
 public class OfflineTrack extends Track {
 
@@ -55,6 +58,29 @@ public class OfflineTrack extends Track {
     private String getCarKeyListener(int carIndex) {
         assert cars[carIndex] instanceof PlayerCar;
         return ((PlayerKeyListener)((PlayerCar) cars[carIndex]).getKeyListener()).getKeysAsString();
+    }
+
+    @Override
+    protected void renderDevMonitor(Graphics graphics) {
+        graphics.setFont(new Font("Tahoma", Font.PLAIN, 40));
+
+        for (Car car : cars) {
+            assert car instanceof PlayerCar;
+            if (car.carColor.contains("blue")) {
+                graphics.setColor(Color.blue);
+
+                graphics.drawString("Angle: " + (int) car.angle, 50, Converter.FHD_SCREEN_HEIGHT - 50);
+                graphics.drawString("X: " + (int) car.position.x, 50, Converter.FHD_SCREEN_HEIGHT - 100);
+                graphics.drawString("Y: " + (int) car.position.y, 50, Converter.FHD_SCREEN_HEIGHT - 150);
+
+            } else if (car.carColor.contains("red")) {
+                graphics.setColor(Color.red);
+
+                graphics.drawString("Angle: " + (int) car.angle, Converter.FHD_SCREEN_WIDTH - 200, Converter.FHD_SCREEN_HEIGHT - 50);
+                graphics.drawString("X: " + (int) car.position.x, Converter.FHD_SCREEN_WIDTH - 200, Converter.FHD_SCREEN_HEIGHT - 100);
+                graphics.drawString("Y: " + (int) car.position.y, Converter.FHD_SCREEN_WIDTH - 200, Converter.FHD_SCREEN_HEIGHT - 150);
+            }
+        }
     }
 
 }

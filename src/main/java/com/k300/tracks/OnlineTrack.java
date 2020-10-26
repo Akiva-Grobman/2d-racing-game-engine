@@ -8,6 +8,8 @@ import com.k300.obstacles.StartLine;
 import com.k300.states.gameStates.GameState;
 import com.k300.tracks.trackLogic.Collisions;
 import com.k300.tracks.trackLogic.Margins;
+import com.k300.utils.configarations.Config;
+import com.k300.utils.math.Converter;
 
 import java.awt.*;
 
@@ -45,7 +47,7 @@ public class OnlineTrack extends Track {
         //update only enemy cars
         assert newCars.length + 1 == cars.length;
         int index = 1;
-        for (Player updatedCar: newCars) {
+        for (Player updatedCar : newCars) {
             updateLocalCar(index, updatedCar);
             index++;
         }
@@ -56,6 +58,20 @@ public class OnlineTrack extends Track {
         cars[index].position.x = updatedCar.getX();
         cars[index].position.y = updatedCar.getY();
         cars[index].angle = updatedCar.getAngle();
+    }
+
+    @Override
+    protected void renderDevMonitor(Graphics graphics) {
+
+        graphics.setFont(new Font("Tahoma", Font.PLAIN, 40));
+
+        assert cars[0] instanceof PlayerCar;
+
+        graphics.setColor(Color.white);
+
+        graphics.drawString("Angle: " + (int) cars[0].angle, 50, Converter.FHD_SCREEN_HEIGHT - 50);
+        graphics.drawString("X: " + (int) cars[0].position.x, 50, Converter.FHD_SCREEN_HEIGHT - 100);
+        graphics.drawString("Y: " + (int) cars[0].position.y, 50, Converter.FHD_SCREEN_HEIGHT - 150);
     }
 
 }

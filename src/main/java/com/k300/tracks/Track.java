@@ -36,11 +36,18 @@ public abstract class Track {
     public void render(Graphics graphics) {
         int width = Converter.FHD_SCREEN_WIDTH;
         int height = Converter.FHD_SCREEN_HEIGHT;
-        // won't allow zoom with local player
+
+
+
+        // won't allow zoom with local player (because there are 2 players)
         if(this instanceof OnlineTrack && Config.isUsingZoom()) {
             ((OnlineTrack) this).renderWithZoom(graphics);
         } else {
             render(graphics, width, height);
+        }
+
+        if(Config.isInDevMode()) {
+            renderDevMonitor(graphics);
         }
     }
 
@@ -50,5 +57,7 @@ public abstract class Track {
             car.render((Graphics2D) graphics);
         }
     }
+
+    protected abstract void renderDevMonitor(Graphics graphics);
 
 }
