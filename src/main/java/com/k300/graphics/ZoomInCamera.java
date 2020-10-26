@@ -16,7 +16,6 @@ public class ZoomInCamera {
 
     private final Car[] cars;
     private final Graphics2D zoomGraphics;
-    private final AlphaComposite originalComposite;
     private final Graphics windowGraphics;
     private final BufferedImage zoomWindow;
     private int playerXPosition;
@@ -29,7 +28,6 @@ public class ZoomInCamera {
                 Converter.FHD_SCREEN_HEIGHT,
                 Assets.getImage(Assets.TRACK_KEY).getType());
         zoomGraphics = zoomWindow.createGraphics();
-        originalComposite = (AlphaComposite) zoomGraphics.getComposite();
         setCarCoordinates();
     }
 
@@ -40,20 +38,41 @@ public class ZoomInCamera {
     }
 
     private void drawFullTrackInBackground() {
-        changeImageAlpha();
-        drawFullTrackWithCars(windowGraphics);
-        ((Graphics2D) windowGraphics).setComposite(originalComposite);
+        drawFullTrackWithCars(windowGraphics, getShadowedTrackImage());
     }
 
-    private void drawFullTrackWithCars(Graphics graphics) {
-        graphics.drawImage(Assets.getImage(Assets.TRACK_KEY), 0, 0,null);
+    private BufferedImage getShadowedTrackImage() {
+        BufferedImage originalTrack = Assets.getImage(Assets.TRACK_KEY);
+        BufferedImage trackCopy = new BufferedImage(originalTrack.getWidth(),
+                originalTrack.getHeight(),
+                originalTrack.getType());
+        Graphics2D trackGraphics = trackCopy.createGraphics();
+        trackGraphics.drawImage(originalTrack,
+                0,
+                0,
+                originalTrack.getWidth(),
+                originalTrack.getHeight(),
+                null);
+        float alpha = 0.8f;
+        trackGraphics.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha));
+        trackGraphics.drawImage(Assets.getImage(Assets.INIT_IMAGE_KEY),
+                0,
+                0,
+                trackCopy.getWidth(),
+                trackCopy.getHeight(),
+                null);
+        return trackCopy;
+    }
+
+    private void drawFullTrackWithCars(Graphics graphics, BufferedImage trackImage) {
+        graphics.drawImage(trackImage, 0, 0,null);
         for (Car car: cars) {
             car.render((Graphics2D) graphics);
         }
     }
 
     private void drawZoomedView() {
-        drawFullTrackWithCars(zoomGraphics);
+        drawFullTrackWithCars(zoomGraphics, Assets.getImage(Assets.TRACK_KEY));
         BufferedImage zoomedImage = getZoomedImage(
                 playerXPosition,
                 playerYPosition,
@@ -85,11 +104,6 @@ public class ZoomInCamera {
             }
         }
         throw new Error("No PlayerCar found in: " + Arrays.toString(cars));
-    }
-
-    private void changeImageAlpha() {
-        float alpha = 0.2f;
-        ((Graphics2D) windowGraphics).setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha));
     }
 
 }
