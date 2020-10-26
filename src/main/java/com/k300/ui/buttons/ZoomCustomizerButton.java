@@ -51,6 +51,11 @@ public class ZoomCustomizerButton extends UIButton {
     public void onClick() {
         double originalZoomFactor = Config.getZoomInFactor();
         double newZoomFactor = originalZoomFactor * buttonType.getOnClickChange();
+        if(newZoomFactor < 1 ) {
+            newZoomFactor = 1;
+        } else if(newZoomFactor > 6){
+            newZoomFactor = 6;
+        }
         Config.setZoomInFactor(newZoomFactor);
     }
 

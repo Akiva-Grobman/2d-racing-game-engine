@@ -1,6 +1,8 @@
 package com.k300.graphics;
 
 import java.awt.image.BufferedImage;
+import java.awt.image.RasterFormatException;
+
 import static com.k300.utils.Utils.resizeImage;
 
 public class Zoom {
@@ -13,14 +15,19 @@ public class Zoom {
         statingZoomX = clamp(statingZoomX, zoomedWidth, image.getWidth());
         startingZoomY = clamp(startingZoomY, zoomedHeight, image.getHeight());
 
-        BufferedImage croppedImage = image.getSubimage(
-                (int) statingZoomX,
-                (int) startingZoomY,
-                (int)zoomedWidth,
-                (int)zoomedHeight
-        );
+        try {
+            BufferedImage croppedImage = image.getSubimage(
+                    (int) statingZoomX,
+                    (int) startingZoomY,
+                    (int) zoomedWidth,
+                    (int) zoomedHeight
+            );
+            return resizeImage(croppedImage, croppedImage.getWidth(), croppedImage.getHeight());
+        } catch (RasterFormatException err) {
+            System.out.println("Too much zoom factor");
+        }
 
-        return resizeImage(croppedImage, croppedImage.getWidth(), croppedImage.getHeight());
+        return resizeImage(image, image.getWidth(), image.getHeight());
     }
 
     private static double clamp(double coordinate, double zoomDimension, int maxDimension) {

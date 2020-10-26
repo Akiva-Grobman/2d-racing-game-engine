@@ -1,5 +1,4 @@
 zoom: true
 dev mode: true
 url: http://localhost:3000
-zoom factor: 2
-``
+zoom factor: 1.0
