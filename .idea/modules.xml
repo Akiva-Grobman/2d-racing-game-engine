@@ -2,9 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/2d-racing-game-engine.iml" filepath="$PROJECT_DIR$/.idea/modules/2d-racing-game-engine.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/2d-racing-game-engine.main.iml" filepath="$PROJECT_DIR$/.idea/modules/2d-racing-game-engine.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/2d-racing-game-engine.test.iml" filepath="$PROJECT_DIR$/.idea/modules/2d-racing-game-engine.test.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/src/src_main.iml" filepath="$PROJECT_DIR$/.idea/modules/src/src_main.iml" group="2d-racing-game-engine/src" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/src/src_test.iml" filepath="$PROJECT_DIR$/.idea/modules/src/src_test.iml" group="2d-racing-game-engine/src" />
     </modules>
