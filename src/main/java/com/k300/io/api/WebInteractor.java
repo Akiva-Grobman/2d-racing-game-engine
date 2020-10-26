@@ -80,11 +80,17 @@ public class WebInteractor {
 
     public PlayerCar getPlayerCar() {
         Point carStartingPosition;
+
+        /*
         if(Config.isInDevMode()) {
             carStartingPosition = GameState.startingPosition;
         } else {
             carStartingPosition = new Point(player.getX(), player.getY());
         }
+         */
+
+        carStartingPosition = GameState.startingPosition;
+
         return new PlayerCar(getCarColor(player.getColor()), carStartingPosition);
     }
 
