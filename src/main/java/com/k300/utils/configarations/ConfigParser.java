@@ -21,19 +21,19 @@ public class ConfigParser {
 
     private Map<String, String> getConfigAsMap() {
         Map<String, String> map = new HashMap<>();
-        String defaultZoomStatus = "Zoom status: false";
+        String defaultZoomStatus = "false";
         map.put(ZOOM_STATUS, preferences.get(ZOOM_STATUS, defaultZoomStatus));
-        String defaultDevMode = "dev mode: false";
+        String defaultDevMode = "false";
         map.put(DEV_MODE_STATUS, preferences.get(DEV_MODE_STATUS, defaultDevMode));
-        String defaultUrl = "url: http://localhost:3000";
+        String defaultUrl = "http://localhost:3000";
         map.put(SERVER_URL, preferences.get(SERVER_URL, defaultUrl));
-        String defaultZoomFactor = "zoom factor: " + (4 * 11) + "," + (4 * 16);
+        String defaultZoomFactor = (7 * 11) + "," + (7 * 16);
         map.put(ZOOM_FACTOR, preferences.get(ZOOM_FACTOR, defaultZoomFactor));
         return map;
     }
 
     String getServerUrl() {
-        return configData.get(SERVER_URL).split(" ")[1];
+        return configData.get(SERVER_URL);
     }
 
     boolean isInDevMode() {
@@ -61,11 +61,8 @@ public class ConfigParser {
     }
 
     void setZoomInFactor(double widthFactor, double heightFactor) {
-        String[] coordinates = configData.get(ZOOM_FACTOR).split(":")[1].split(",");
-        coordinates[0] = String.valueOf(widthFactor);
-        coordinates[1] = String.valueOf(heightFactor);
         updateString(ZOOM_FACTOR,
-                coordinates[0] + "," + coordinates[1]);
+                widthFactor + "," + heightFactor);
     }
 
     private double getZoomFactor(int indexInString) {
@@ -77,8 +74,7 @@ public class ConfigParser {
     }
 
     private void updateString(String  key, String value) {
-        String newValue = configData.get(key).split(":")[0] + ": " + value;
-        preferences.put(key, newValue);
+        preferences.put(key, value);
     }
 
 }
