@@ -52,27 +52,10 @@ public abstract class Car {
         }
 
         if(Config.isInDevMode()) {
-
+            graphics.setColor(Color.white);
             graphics.setFont(new Font("Tahoma", Font.PLAIN, 40));
 
             if(this instanceof PlayerCar) {
-                if(StateManager.getCurrentState() instanceof OfflineGame) {
-                    if (this.carColor.contains("blue")) {
-                        graphics.setColor(Color.blue);
-
-                        graphics.drawString("Angle: " + (int) angle, 50, Converter.FHD_SCREEN_HEIGHT - 50);
-                        graphics.drawString("X: " + (int) position.x, 50, Converter.FHD_SCREEN_HEIGHT - 100);
-                        graphics.drawString("Y: " + (int) position.y, 50, Converter.FHD_SCREEN_HEIGHT - 150);
-
-                    } else if (this.carColor.contains("red")) {
-                        graphics.setColor(Color.red);
-
-                        graphics.drawString("Angle: " + (int) angle, Converter.FHD_SCREEN_WIDTH - 200, Converter.FHD_SCREEN_HEIGHT - 50);
-                        graphics.drawString("X: " + (int) position.x, Converter.FHD_SCREEN_WIDTH - 200, Converter.FHD_SCREEN_HEIGHT - 100);
-                        graphics.drawString("Y: " + (int) position.y, Converter.FHD_SCREEN_WIDTH - 200, Converter.FHD_SCREEN_HEIGHT - 150);
-                    }
-                }
-                graphics.setColor(Color.white);
                 final PlayerCarCorners corners = ((PlayerCar) this).playerCarCorners;
                 Point TopRightCorner = corners.getFrontLeftCorner();
                 Point BottomRightCorner = corners.getFrontRightCorner();
@@ -83,8 +66,6 @@ public abstract class Car {
                 graphics.fillOval((int) (TopLeftCorner.x - 10 / 2), (int) (TopLeftCorner.y - 10 / 2), 10, 10);
                 graphics.fillOval((int) (BottomLeftCorner.x - 10 / 2), (int) (BottomLeftCorner.y - 10 / 2), 10, 10);
             }
-
-            graphics.setColor(Color.white);
 
             graphics.fillRect(960, 0, 10, 2000); //start line
             graphics.fillOval((int) (position.x - 25 / 2), (int) (position.y - 25 / 2), 25, 25);
