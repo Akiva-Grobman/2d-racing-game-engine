@@ -2,34 +2,53 @@ package com.k300.utils.configarations;
 
 public class Config {
 
-    private static final ConfigParser parser = new ConfigParser();
+    private static Config singletonInstance = null;
+    private final ConfigParser parser;
+
+    private Config() {
+        parser = new ConfigParser();
+    }
 
     public static boolean isInDevMode() {
-        return parser.isInDevMode();
+        handleInstance();
+        return singletonInstance.parser.isInDevMode();
     }
 
     public static void setInDevMode(boolean isInDevMode) {
-        parser.setIsInDevMode(isInDevMode);
+        handleInstance();
+        singletonInstance.parser.setIsInDevMode(isInDevMode);
     }
 
     public static boolean isUsingZoom() {
-        return parser.isUsingZoom();
+        handleInstance();
+        return singletonInstance.parser.isUsingZoom();
     }
 
     public static void setUsingZoom(boolean isUsingZoom) {
-        parser.setIsUsingZoom(isUsingZoom);
+        handleInstance();
+        singletonInstance.parser.setIsUsingZoom(isUsingZoom);
     }
 
     public static String getUrl() {
-        return parser.getServerUrl();
+        handleInstance();
+        return singletonInstance.parser.getServerUrl();
     }
 
     public static double getZoomInFactor() {
-        return parser.getZoomInFactor();
+        handleInstance();
+        return singletonInstance.parser.getZoomInFactor();
     }
 
     public static void setZoomInFactor(double zoomFactor) {
-        parser.setZoomInFactor(zoomFactor);
+        handleInstance();
+        singletonInstance.parser.setZoomInFactor(zoomFactor);
+    }
+
+    // this method most be called on the first line of all public static methods in this class
+    private static void handleInstance() {
+        if(singletonInstance == null) {
+            singletonInstance = new Config();
+        }
     }
 
 }
