@@ -64,12 +64,12 @@ public class ZoomInCamera {
     }
 
     private void drawRoundsOverZoomWindow() {
-        windowGraphics.setFont(new Font("Minecraft", Font.BOLD, 50));
+        windowGraphics.setFont(new Font("Minecraft", Font.BOLD, 120));
         windowGraphics.setColor(Color.white);
         String roundsMsg = "ROUNDS: " + getPlayersCar().rounds;
         int msgWidth = windowGraphics.getFontMetrics().stringWidth(roundsMsg);
         int msgHeight = windowGraphics.getFontMetrics().getAscent();
-        windowGraphics.drawString(roundsMsg, (Converter.FHD_SCREEN_WIDTH - msgWidth) / 2, (Converter.FHD_SCREEN_HEIGHT - zoomWindow.getHeight()) / 2 - msgHeight);
+        windowGraphics.drawString(roundsMsg, (Converter.FHD_SCREEN_WIDTH - msgWidth) / 2, (Converter.FHD_SCREEN_HEIGHT - zoomWindow.getHeight() / 2) / 2 - msgHeight);
     }
 
     private void setCarCoordinates() {
