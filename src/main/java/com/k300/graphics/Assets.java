@@ -10,10 +10,10 @@ import static com.k300.utils.Utils.resizeImage;
 
 public class Assets {
 
-    public static final String K_300_LOGO_KEY = "background";
     public static final String K_300_INTRO_KEY = "intro";
     public static final String FILTER_KEY = "filter";
     public static final String INIT_IMAGE_KEY = "InitImage";
+
     public static final String TRACK_KEY = "Track";
     public static final String ROAD_KEY = "Road";
     public static final String TRACK_MIDDLE_KEY = "InsideMargin";
@@ -21,31 +21,13 @@ public class Assets {
     public static final String TRACK_MIDDLE_FILL_KEY = "InsideMarginFill";
     public static final String TRACK_OUTSIDE_KEY = "OutsideMargin";
     public static final String OBSTACLE_KEY = "obstacle";
+
     public static final String RED_CAR_KEY = "car_red";
     public static final String BLUE_CAR_KEY = "car_blue";
     public static final String YELLOW_CAR_KEY = "car_yellow";
 
     public static final String BUTTON_KEY = "Button";
     public static final String BUTTON_HOVER_KEY = "ButtonHover";
-
-    public static final String PLAY_BUTTON_KEY = "PlayButton";
-    public static final String PLAY_BUTTON_HOVER_KEY = "PlayButtonHover";
-    public static final String ONLINE_BUTTON_KEY = "OnlineButton";
-    public static final String ONLINE_BUTTON_HOVER_KEY = "OnlineButtonHover";
-    public static final String SETTINGS_BUTTON_KEY = "SettingsButton";
-    public static final String SETTINGS_BUTTON_HOVER_KEY = "SettingsButtonHover";
-
-    public static final String TWO_PLAYERS_BUTTON_KEY = "2playersButton";
-    public static final String TWO_PLAYERS_BUTTON_HOVER_KEY = "2playersButtonHover";
-    public static final String THREE_PLAYERS_BUTTON_KEY = "3playersButton";
-    public static final String THREE_PLAYERS_BUTTON_HOVER_KEY = "3playersButtonHover";
-    public static final String FOUR_PLAYERS_BUTTON_KEY = "4playersButton";
-    public static final String FOUR_PLAYERS_BUTTON_HOVER_KEY = "4playersButtonHover";
-
-    public static final String BACK_BUTTON_KEY = "BackButton";
-    public static final String BACK_BUTTON_HOVER_KEY = "BackButtonHover";
-    public static final String EXIT_BUTTON_KEY = "ExitButton";
-    public static final String EXIT_BUTTON_HOVER_KEY = "ExitButtonHover";
 
     private static final String CAR_DIR = "cars/";
     private static final String BUTTON_DIR = "button-images/";
@@ -64,10 +46,8 @@ public class Assets {
 
     private Assets() {
         images = new Hashtable<>();
-        images.put(K_300_LOGO_KEY, loadImage(K_300_LOGO_KEY, TYPE_JPG));
         images.put(K_300_INTRO_KEY, loadImage(K_300_INTRO_KEY, TYPE_JPG));
         images.put(FILTER_KEY, loadImage(FILTER_KEY, TYPE_PNG));
-        images.put(INIT_IMAGE_KEY, loadImage(K_300_LOGO_KEY, TYPE_JPG));
         images.put(OBSTACLE_KEY, loadImage(TRACK_DIR + OBSTACLE_KEY, TYPE_PNG));
         addTrackImages();
         addCarImage(RED_CAR_KEY);
@@ -76,25 +56,6 @@ public class Assets {
 
         addButtonImage(BUTTON_KEY);
         addButtonImage(BUTTON_HOVER_KEY);
-
-        addButtonImage(PLAY_BUTTON_KEY);
-        addButtonImage(PLAY_BUTTON_HOVER_KEY);
-        addButtonImage(ONLINE_BUTTON_KEY);
-        addButtonImage(ONLINE_BUTTON_HOVER_KEY);
-        addButtonImage(SETTINGS_BUTTON_KEY);
-        addButtonImage(SETTINGS_BUTTON_HOVER_KEY);
-
-        addButtonImage(TWO_PLAYERS_BUTTON_KEY);
-        addButtonImage(TWO_PLAYERS_BUTTON_HOVER_KEY);
-        addButtonImage(THREE_PLAYERS_BUTTON_KEY);
-        addButtonImage(THREE_PLAYERS_BUTTON_HOVER_KEY);
-        addButtonImage(FOUR_PLAYERS_BUTTON_KEY);
-        addButtonImage(FOUR_PLAYERS_BUTTON_HOVER_KEY);
-
-        addButtonImage(BACK_BUTTON_KEY);
-        addButtonImage(BACK_BUTTON_HOVER_KEY);
-        addButtonImage(EXIT_BUTTON_KEY);
-        addButtonImage(EXIT_BUTTON_HOVER_KEY);
     }
 
     private void addTrackImages() {

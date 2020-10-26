@@ -18,9 +18,9 @@ public class OfflineTrack extends Track {
     public OfflineTrack(GameState gameState, Car[] cars) {
         super(gameState, cars);
         Margins margins = new Margins();
-        StartLine startLine = new StartLine(margins.getFrameBigBPoint(), margins.getFrameSmallBPoint());
-        Collisions collisions = new Collisions(margins, obstacleManager);
         for (int i = 0; i < cars.length; i++) {
+            StartLine startLine = new StartLine(margins.getFrameBigBPoint(), margins.getFrameSmallBPoint());
+            Collisions collisions = new Collisions(margins, obstacleManager);
             cars[i] = getLocalPlayer(collisions, startLine, i);
         }
         if(!Config.isInDevMode()) {
