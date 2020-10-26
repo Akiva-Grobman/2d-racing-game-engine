@@ -3,15 +3,8 @@ package com.k300.cars;
 import com.k300.cars.player_car.PlayerCar;
 import com.k300.cars.player_car.PlayerCarCorners;
 import com.k300.graphics.Assets;
-import com.k300.graphics.FontLoader;
-import com.k300.states.OnlineState;
-import com.k300.states.State;
-import com.k300.states.StateManager;
-import com.k300.states.gameStates.OfflineGame;
-import com.k300.states.gameStates.OnlineGame;
 import com.k300.utils.Point;
 import com.k300.utils.configarations.Config;
-import com.k300.utils.math.Converter;
 
 import java.awt.*;
 import java.awt.geom.AffineTransform;

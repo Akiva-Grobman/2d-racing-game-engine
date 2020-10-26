@@ -8,11 +8,9 @@ import com.k300.obstacles.StartLine;
 import com.k300.states.gameStates.GameState;
 import com.k300.tracks.trackLogic.Collisions;
 import com.k300.tracks.trackLogic.Margins;
-import com.k300.utils.configarations.Config;
 import com.k300.utils.math.Converter;
 
 import java.awt.*;
-import java.util.Arrays;
 
 public class OnlineTrack extends Track {
 
