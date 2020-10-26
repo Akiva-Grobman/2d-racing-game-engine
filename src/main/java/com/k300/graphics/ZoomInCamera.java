@@ -64,6 +64,7 @@ public class ZoomInCamera {
     }
 
     private void drawRoundsOverZoomWindow() {
+        windowGraphics.setFont(new Font("Minecraft", Font.BOLD, 50));
         windowGraphics.setColor(Color.white);
         String roundsMsg = "ROUNDS: " + getPlayersCar().rounds;
         int msgWidth = windowGraphics.getFontMetrics().stringWidth(roundsMsg);
