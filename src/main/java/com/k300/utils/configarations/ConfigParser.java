@@ -26,7 +26,7 @@ public class ConfigParser {
         map.put(DEV_MODE_STATUS, preferences.get(DEV_MODE_STATUS, defaultDevMode));
         String defaultUrl = "http://localhost:3000";
         map.put(SERVER_URL, preferences.get(SERVER_URL, defaultUrl));
-        String defaultZoomFactor = (7 * 11) + "," + (7 * 16);
+        String defaultZoomFactor = "3";
         map.put(ZOOM_FACTOR, preferences.get(ZOOM_FACTOR, defaultZoomFactor));
         return map;
     }
@@ -65,6 +65,7 @@ public class ConfigParser {
     }
 
     private void updateString(String  key, String value) {
+        configData.put(key, value);
         preferences.put(key, value);
     }
 
