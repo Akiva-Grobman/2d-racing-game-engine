@@ -86,6 +86,8 @@ public class OnlineGame extends GameState {
 
         carAngle.rotate(Math.toRadians(-loadingAngle), loadingCar.getWidth() / 2f, loadingCar.getHeight() / 2f); //need Minus because Java is multiplier minus
         ((Graphics2D) graphics).drawImage(loadingCar, carAngle, null);
+
+        loadingAngle += 3;
     }
 
     public void connectionError(String errorMessage) {
