@@ -5,6 +5,7 @@ import com.k300.cars.Car;
 import com.k300.cars.EnemyCar;
 import com.k300.display.Toast;
 import com.k300.graphics.Assets;
+import com.k300.graphics.FontLoader;
 import com.k300.io.api.WebInteractor;
 import com.k300.io.api.models.Player;
 import com.k300.states.MenuState;
@@ -34,7 +35,7 @@ public class OnlineGame extends GameState {
         timeFromLastUpdate = 0;
 
         loadingAngle = 0;
-        loadingCar = resizeImage(Assets.getImage(Assets.LOADING_CAR_KEY), Assets.getImage(Assets.LOADING_CAR_KEY).getWidth() * 5, Assets.getImage(Assets.LOADING_CAR_KEY).getHeight() * 5);
+        loadingCar = resizeImage(Assets.getImage(Assets.LOADING_CAR_KEY), Assets.getImage(Assets.LOADING_CAR_KEY).getWidth() * 6, Assets.getImage(Assets.LOADING_CAR_KEY).getHeight() * 6);
 
         webInteractor.startMatch(sumOfPlayers);
     }
@@ -60,7 +61,8 @@ public class OnlineGame extends GameState {
         } else {
             loading(graphics);
             updateDots();
-            drawStringInCenter(graphics.getFontMetrics().stringWidth(dots),
+            graphics.setFont(FontLoader.loadFont("Minecraft", 40));
+            drawStringInCenter(graphics.getFontMetrics().stringWidth(dots) / 2f,
                     0,
                     Converter.FHD_SCREEN_WIDTH,
                     Converter.FHD_SCREEN_HEIGHT,
