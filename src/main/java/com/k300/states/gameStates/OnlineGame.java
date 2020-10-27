@@ -22,7 +22,9 @@ public class OnlineGame extends GameState {
     public final int sumOfPlayers;
     private String dots;
     private int timeFromLastUpdate;
-    private double loadingAngle;
+    private double loadingAngle1;
+    private BufferedImage loadingCar1;
+    private double loadingAngle2;
     private BufferedImage loadingCar;
     final WebInteractor webInteractor;
 
@@ -33,7 +35,8 @@ public class OnlineGame extends GameState {
         dots = "";
         timeFromLastUpdate = 0;
 
-        loadingAngle = 0;
+        loadingAngle1 = 0;
+        loadingAngle2 = 360;
         loadingCar = resizeImage(Assets.getImage(Assets.LOADING_CAR_KEY), Assets.getImage(Assets.LOADING_CAR_KEY).getWidth() * 4, Assets.getImage(Assets.LOADING_CAR_KEY).getHeight() * 4);
 
         webInteractor.startMatch(sumOfPlayers);
@@ -83,9 +86,14 @@ public class OnlineGame extends GameState {
 
     private void loading(Graphics graphics) {
         AffineTransform carAngle = AffineTransform.getTranslateInstance(Converter.FHD_SCREEN_WIDTH / 2f - loadingCar.getWidth() / 2f, Converter.FHD_SCREEN_HEIGHT / 2f -  loadingCar.getHeight() / 2f);
-        carAngle.rotate(Math.toRadians(-loadingAngle), loadingCar.getWidth() / 2f, loadingCar.getHeight() / 2f); //need Minus because Java is multiplier minus
+
+        carAngle.rotate(Math.toRadians(-loadingAngle1), loadingCar.getWidth() / 2f, loadingCar.getHeight() / 2f); //need Minus because Java is multiplier minus
         ((Graphics2D) graphics).drawImage(loadingCar, carAngle, null);
-        loadingAngle -= 3;
+        loadingAngle1 -= 3;
+
+        carAngle.rotate(Math.toRadians(-loadingAngle2), loadingCar.getWidth() / 2f, loadingCar.getHeight() / 2f); //need Minus because Java is multiplier minus
+        ((Graphics2D) graphics).drawImage(loadingCar, carAngle, null);
+        loadingAngle2 -= 3;
     }
 
     public void connectionError(String errorMessage) {
