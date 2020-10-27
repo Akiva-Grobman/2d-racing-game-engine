@@ -4,6 +4,7 @@ import com.k300.Launcher;
 import com.k300.cars.Car;
 import com.k300.cars.EnemyCar;
 import com.k300.display.Toast;
+import com.k300.graphics.Assets;
 import com.k300.io.api.WebInteractor;
 import com.k300.io.api.models.Player;
 import com.k300.states.MenuState;
@@ -11,13 +12,18 @@ import com.k300.states.StateManager;
 import com.k300.tracks.OnlineTrack;
 import com.k300.utils.math.Converter;
 import java.awt.*;
-import static com.k300.utils.Utils.drawStringInCenter;
+import java.awt.geom.AffineTransform;
+import java.awt.image.BufferedImage;
+
+import static com.k300.utils.Utils.*;
 
 public class OnlineGame extends GameState {
 
     public final int sumOfPlayers;
     private String dots;
     private int timeFromLastUpdate;
+    private double loadingAngle;
+    private BufferedImage loadingCar;
     final WebInteractor webInteractor;
 
     public OnlineGame(Launcher launcher, int sumOfPlayers) {
@@ -26,6 +32,10 @@ public class OnlineGame extends GameState {
         this.sumOfPlayers = sumOfPlayers;
         dots = "";
         timeFromLastUpdate = 0;
+
+        loadingAngle = 0;
+        loadingCar = resizeImage(Assets.getImage(Assets.LOADING_CAR_KEY), Assets.getImage(Assets.LOADING_CAR_KEY).getWidth() * 4, Assets.getImage(Assets.LOADING_CAR_KEY).getHeight() * 4);
+
         webInteractor.startMatch(sumOfPlayers);
     }
 
@@ -48,13 +58,14 @@ public class OnlineGame extends GameState {
         if(webInteractor.gameIsStarted()) {
             super.render(graphics);
         } else {
+            loading(graphics);
             updateDots();
             drawStringInCenter(graphics.getFontMetrics().stringWidth(dots),
                     0,
                     Converter.FHD_SCREEN_WIDTH,
                     Converter.FHD_SCREEN_HEIGHT,
                     graphics,
-                    "Loading" + dots);
+                    "Waiting for players" + dots);
         }
     }
 
@@ -68,6 +79,13 @@ public class OnlineGame extends GameState {
                 dots += ".";
             }
         }
+    }
+
+    private void loading(Graphics graphics) {
+        AffineTransform carAngle = AffineTransform.getTranslateInstance(Converter.FHD_SCREEN_WIDTH / 2f - loadingCar.getWidth() / 2f, Converter.FHD_SCREEN_HEIGHT / 2f -  loadingCar.getHeight() / 2f);
+        carAngle.rotate(Math.toRadians(-loadingAngle), loadingCar.getWidth() / 2f, loadingCar.getHeight() / 2f); //need Minus because Java is multiplier minus
+        ((Graphics2D) graphics).drawImage(loadingCar, carAngle, null);
+        loadingAngle -= 3;
     }
 
     public void connectionError(String errorMessage) {
