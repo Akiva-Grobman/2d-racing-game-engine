@@ -5,10 +5,13 @@ import com.k300.graphics.Assets;
 import com.k300.obstacles.Obstacle;
 import com.k300.obstacles.ObstacleManager;
 import com.k300.states.gameStates.GameState;
+import com.k300.utils.Utils;
 import com.k300.utils.configarations.Config;
 import com.k300.utils.math.Converter;
 
 import java.awt.*;
+
+import static com.k300.utils.Utils.drawStringInCenter;
 
 public abstract class Track {
 
@@ -53,9 +56,30 @@ public abstract class Track {
 
     private void render(Graphics graphics, int width, int height) {
         graphics.drawImage(Assets.getImage(Assets.TRACK_KEY), 0, 0, width, height, null);
-        for (Car car : cars) {
+
+
+        Font currentFont = graphics.getFont();
+        Color currentColor = graphics.getColor();
+        int heightMargin = 80;
+
+        graphics.setColor(Color.black);
+        graphics.setFont(new Font(currentFont.getName(), Font.PLAIN, 40));
+        int size = 600;
+        graphics.fillOval(Converter.FHD_SCREEN_WIDTH - size / 2, -size/2, size, size + heightMargin);
+
+        graphics.setColor(Color.white);
+        drawStringInCenter(Converter.FHD_SCREEN_WIDTH - size / 2f, 0, size/2 + 50, heightMargin, graphics,"SCORE");
+
+
+        graphics.setColor(currentColor);
+
+
+        for (int i = 0; i < cars.length; i++) {
+            Car car = cars[i];
             car.render((Graphics2D) graphics);
+            drawStringInCenter(Converter.FHD_SCREEN_WIDTH - size / 2f, (i + 1) * heightMargin, size / 2 + 50, 100, graphics, car.carColor + ": " + car.rounds);
         }
+
     }
 
     protected abstract void renderDevMonitor(Graphics graphics);
