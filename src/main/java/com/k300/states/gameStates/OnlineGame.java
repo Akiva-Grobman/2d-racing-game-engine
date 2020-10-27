@@ -15,7 +15,7 @@ import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 
-import static com.k300.utils.Utils.drawStringInCenter;
+import static com.k300.utils.Utils.*;
 
 public class OnlineGame extends GameState {
 
@@ -34,8 +34,7 @@ public class OnlineGame extends GameState {
         timeFromLastUpdate = 0;
 
         loadingAngle = 0;
-        loadingCar = Assets.getImage(Assets.RED_CAR_KEY);
-
+        loadingCar = resizeImage(Assets.getImage(Assets.LOADING_CAR_KEY), Assets.getImage(Assets.LOADING_CAR_KEY).getWidth() * 4, Assets.getImage(Assets.LOADING_CAR_KEY).getHeight() * 4);
 
         webInteractor.startMatch(sumOfPlayers);
     }
@@ -60,13 +59,13 @@ public class OnlineGame extends GameState {
             super.render(graphics);
         } else {
             loading(graphics);
-            //updateDots();
-//            drawStringInCenter(graphics.getFontMetrics().stringWidth(dots),
-//                    0,
-//                    Converter.FHD_SCREEN_WIDTH,
-//                    Converter.FHD_SCREEN_HEIGHT,
-//                    graphics,
-//                    "Loading" + dots);
+            updateDots();
+            drawStringInCenter(graphics.getFontMetrics().stringWidth(dots),
+                    0,
+                    Converter.FHD_SCREEN_WIDTH,
+                    Converter.FHD_SCREEN_HEIGHT,
+                    graphics,
+                    "Waiting for players" + dots);
         }
     }
 
@@ -83,10 +82,10 @@ public class OnlineGame extends GameState {
     }
 
     private void loading(Graphics graphics) {
-        AffineTransform carAngle = AffineTransform.getTranslateInstance(Converter.FHD_SCREEN_WIDTH / 2f - loadingCar.getWidth() / 2f - 100, Converter.FHD_SCREEN_HEIGHT / 2f -  loadingCar.getHeight() / 2f - 100);
+        AffineTransform carAngle = AffineTransform.getTranslateInstance(Converter.FHD_SCREEN_WIDTH / 2f - loadingCar.getWidth() / 2f, Converter.FHD_SCREEN_HEIGHT / 2f -  loadingCar.getHeight() / 2f);
         carAngle.rotate(Math.toRadians(-loadingAngle), loadingCar.getWidth() / 2f, loadingCar.getHeight() / 2f); //need Minus because Java is multiplier minus
         ((Graphics2D) graphics).drawImage(loadingCar, carAngle, null);
-        loadingAngle += 1;
+        loadingAngle -= 3;
     }
 
     public void connectionError(String errorMessage) {
