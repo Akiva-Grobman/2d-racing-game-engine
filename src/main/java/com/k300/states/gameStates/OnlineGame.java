@@ -4,6 +4,7 @@ import com.k300.Launcher;
 import com.k300.cars.Car;
 import com.k300.cars.EnemyCar;
 import com.k300.display.Toast;
+import com.k300.graphics.Assets;
 import com.k300.io.api.WebInteractor;
 import com.k300.io.api.models.Player;
 import com.k300.states.MenuState;
@@ -11,6 +12,9 @@ import com.k300.states.StateManager;
 import com.k300.tracks.OnlineTrack;
 import com.k300.utils.math.Converter;
 import java.awt.*;
+import java.awt.geom.AffineTransform;
+import java.awt.image.BufferedImage;
+
 import static com.k300.utils.Utils.drawStringInCenter;
 
 public class OnlineGame extends GameState {
@@ -18,6 +22,8 @@ public class OnlineGame extends GameState {
     public final int sumOfPlayers;
     private String dots;
     private int timeFromLastUpdate;
+    private double loadingAngle;
+    private BufferedImage loadingCar;
     final WebInteractor webInteractor;
 
     public OnlineGame(Launcher launcher, int sumOfPlayers) {
@@ -26,6 +32,11 @@ public class OnlineGame extends GameState {
         this.sumOfPlayers = sumOfPlayers;
         dots = "";
         timeFromLastUpdate = 0;
+
+        loadingAngle = 0;
+        loadingCar = Assets.getImage(Assets.RED_CAR_KEY);
+
+
         webInteractor.startMatch(sumOfPlayers);
     }
 
@@ -48,13 +59,14 @@ public class OnlineGame extends GameState {
         if(webInteractor.gameIsStarted()) {
             super.render(graphics);
         } else {
-            updateDots();
-            drawStringInCenter(graphics.getFontMetrics().stringWidth(dots),
-                    0,
-                    Converter.FHD_SCREEN_WIDTH,
-                    Converter.FHD_SCREEN_HEIGHT,
-                    graphics,
-                    "Loading" + dots);
+            loading(graphics);
+            //updateDots();
+//            drawStringInCenter(graphics.getFontMetrics().stringWidth(dots),
+//                    0,
+//                    Converter.FHD_SCREEN_WIDTH,
+//                    Converter.FHD_SCREEN_HEIGHT,
+//                    graphics,
+//                    "Loading" + dots);
         }
     }
 
@@ -68,6 +80,13 @@ public class OnlineGame extends GameState {
                 dots += ".";
             }
         }
+    }
+
+    private void loading(Graphics graphics) {
+        AffineTransform carAngle = AffineTransform.getTranslateInstance(Converter.FHD_SCREEN_WIDTH / 2f - loadingCar.getWidth() / 2f - 100, Converter.FHD_SCREEN_HEIGHT / 2f -  loadingCar.getHeight() / 2f - 100);
+        carAngle.rotate(Math.toRadians(-loadingAngle), loadingCar.getWidth() / 2f, loadingCar.getHeight() / 2f); //need Minus because Java is multiplier minus
+        ((Graphics2D) graphics).drawImage(loadingCar, carAngle, null);
+        loadingAngle += 1;
     }
 
     public void connectionError(String errorMessage) {

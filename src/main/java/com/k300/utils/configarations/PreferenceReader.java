@@ -22,7 +22,7 @@ public class PreferenceReader {
         Map<String, String> map = new HashMap<>();
         String defaultZoomStatus = "false";
         map.put(ZOOM_STATUS, preferences.get(ZOOM_STATUS, defaultZoomStatus));
-        String defaultDevMode = "false";
+        String defaultDevMode = "true";
         map.put(DEV_MODE_STATUS, preferences.get(DEV_MODE_STATUS, defaultDevMode));
         String defaultUrl = "http://localhost:3000";
         map.put(SERVER_URL, preferences.get(SERVER_URL, defaultUrl));
