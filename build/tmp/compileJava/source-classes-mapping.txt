@@ -28,8 +28,8 @@ com/k300/tracks/OfflineTrack.java
  com.k300.tracks.OfflineTrack
 com/k300/utils/Point.java
  com.k300.utils.Point
-com/k300/display/OpeningFadeState.java
- com.k300.display.OpeningFadeState
+com/k300/io/api/handlers/PostRequestHandler.java
+ com.k300.io.api.handlers.PostRequestHandler
 com/k300/tracks/trackLogic/Margins.java
  com.k300.tracks.trackLogic.Margins
 com/k300/ui/buttons/UIBackButton.java
@@ -58,8 +58,8 @@ com/k300/states/gameStates/OnlineGame.java
  com.k300.states.gameStates.OnlineGame
 com/k300/states/MenuState.java
  com.k300.states.MenuState
-com/k300/graphics/FadeState.java
- com.k300.graphics.FadeState
+com/k300/io/api/API.java
+ com.k300.io.api.API
 com/k300/cars/player_car/PlayerCar.java
  com.k300.cars.player_car.PlayerCar
 com/k300/states/OnlineState.java
@@ -80,8 +80,8 @@ com/k300/ui/SettingsList.java
  com.k300.ui.SettingsList
 com/k300/io/api/models/PostBody.java
  com.k300.io.api.models.PostBody
-com/k300/ui/listeners/FadeListener.java
- com.k300.ui.listeners.FadeListener
+com/k300/io/PlayerKeyListener.java
+ com.k300.io.PlayerKeyListener
 com/k300/display/MenuBackground.java
  com.k300.display.MenuBackground
 com/k300/graphics/Zoom.java
@@ -113,8 +113,8 @@ com/k300/cars/player_car/PlayerCarCorners.java
  com.k300.cars.player_car.PlayerCarCorners
 com/k300/graphics/Assets.java
  com.k300.graphics.Assets
-com/k300/ui/listeners/OpenFadeListener.java
- com.k300.ui.listeners.OpenFadeListener
+com/k300/states/gameStates/GameState.java
+ com.k300.states.gameStates.GameState
 com/k300/cars/player_car/TURNING_DIRECTION.java
  com.k300.cars.player_car.TURNING_DIRECTION
 com/k300/display/Toast.java
@@ -125,11 +125,11 @@ com/k300/utils/configarations/PreferenceReader.java
  com.k300.utils.configarations.PreferenceReader
 com/k300/utils/math/Converter.java
  com.k300.utils.math.Converter
-com/k300/io/api/API.java
- com.k300.io.api.API
-com/k300/states/gameStates/GameState.java
- com.k300.states.gameStates.GameState
-com/k300/io/PlayerKeyListener.java
- com.k300.io.PlayerKeyListener
-com/k300/io/api/handlers/PostRequestHandler.java
- com.k300.io.api.handlers.PostRequestHandler
+com/k300/display/OpeningFadeState.java
+ com.k300.display.OpeningFadeState
+com/k300/ui/listeners/FadeListener.java
+ com.k300.ui.listeners.FadeListener
+com/k300/ui/listeners/OpenFadeListener.java
+ com.k300.ui.listeners.OpenFadeListener
+com/k300/graphics/FadeState.java
+ com.k300.graphics.FadeState
