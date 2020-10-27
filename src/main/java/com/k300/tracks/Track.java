@@ -2,6 +2,7 @@ package com.k300.tracks;
 
 import com.k300.cars.Car;
 import com.k300.graphics.Assets;
+import com.k300.graphics.FontLoader;
 import com.k300.obstacles.Obstacle;
 import com.k300.obstacles.ObstacleManager;
 import com.k300.states.gameStates.GameState;
@@ -63,7 +64,7 @@ public abstract class Track {
         int heightMargin = 80;
 
         graphics.setColor(Color.black);
-        graphics.setFont(new Font(currentFont.getName(), Font.PLAIN, 40));
+        graphics.setFont(FontLoader.loadFont("Minecraft", 60));
         int size = 600;
         graphics.fillOval(Converter.FHD_SCREEN_WIDTH - size / 2, -size/2, size, size + heightMargin);
 
@@ -77,8 +78,22 @@ public abstract class Track {
         for (int i = 0; i < cars.length; i++) {
             Car car = cars[i];
             car.render((Graphics2D) graphics);
-            drawStringInCenter(Converter.FHD_SCREEN_WIDTH - size / 2f, (i + 1) * heightMargin, size / 2 + 50, 100, graphics, car.carColor + ": " + car.rounds);
+
+
+            graphics.setFont(FontLoader.loadFont("Minecraft", 50));
+            if(car.carColor.contains("red")) {
+                graphics.setColor(Color.red);
+                drawStringInCenter(Converter.FHD_SCREEN_WIDTH - size / 2f, (i + 1) * heightMargin, size / 2 + 50, 100, graphics, "Red: " + car.rounds);
+            } else if(car.carColor.contains("blue")) {
+                graphics.setColor(Color.blue);
+                drawStringInCenter(Converter.FHD_SCREEN_WIDTH - size / 2f, (i + 1) * heightMargin, size / 2 + 50, 100, graphics, "Blue: " + car.rounds);
+            } else if(car.carColor.contains("yellow")) {
+                graphics.setColor(Color.yellow);
+                drawStringInCenter(Converter.FHD_SCREEN_WIDTH - size / 2f, (i + 1) * heightMargin, size / 2 + 50, 100, graphics, "Yellow: " + car.rounds);
+            }
         }
+
+        graphics.setFont(new Font(currentFont.getName(), Font.PLAIN, 40));
 
     }
 
