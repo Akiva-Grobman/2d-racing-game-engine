@@ -24,6 +24,7 @@ public class Assets {
     public static final String RED_CAR_KEY = "car_red";
     public static final String BLUE_CAR_KEY = "car_blue";
     public static final String YELLOW_CAR_KEY = "car_yellow";
+    public static final String LOADING_CAR_KEY = "loadingCar";
 
     public static final String BUTTON_KEY = "Button";
     public static final String BUTTON_HOVER_KEY = "ButtonHover";
@@ -73,6 +74,7 @@ public class Assets {
         addCarImage(RED_CAR_KEY);
         addCarImage(BLUE_CAR_KEY);
         addCarImage(YELLOW_CAR_KEY);
+        addCarImage(LOADING_CAR_KEY);
 
         addButtonImage(BUTTON_KEY);
         addButtonImage(BUTTON_HOVER_KEY);
