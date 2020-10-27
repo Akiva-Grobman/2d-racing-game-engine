@@ -83,24 +83,12 @@ public class OnlineGame extends GameState {
 
     private void loading(Graphics graphics) {
         AffineTransform carAngle1 = AffineTransform.getTranslateInstance(Converter.FHD_SCREEN_WIDTH / 2f - loadingCar.getWidth() / 2f, Converter.FHD_SCREEN_HEIGHT / 2f -  loadingCar.getHeight() / 2f);
-
         carAngle1.rotate(Math.toRadians(-loadingAngle), loadingCar.getWidth() / 2f, loadingCar.getHeight() / 2f); //need Minus because Java is multiplier minus
         ((Graphics2D) graphics).drawImage(loadingCar, carAngle1, null);
 
         AffineTransform carAngle2 = AffineTransform.getTranslateInstance(Converter.FHD_SCREEN_WIDTH / 2f - loadingCar.getWidth() / 2f, Converter.FHD_SCREEN_HEIGHT / 2f -  loadingCar.getHeight() / 2f);
-
         carAngle2.rotate(Math.toRadians(180-loadingAngle), loadingCar.getWidth() / 2f, loadingCar.getHeight() / 2f); //need Minus because Java is multiplier minus
         ((Graphics2D) graphics).drawImage(loadingCar, carAngle2, null);
-//
-//        AffineTransform carAngle3 = AffineTransform.getTranslateInstance(Converter.FHD_SCREEN_WIDTH / 2f - loadingCar.getWidth() / 2f, Converter.FHD_SCREEN_HEIGHT / 2f -  loadingCar.getHeight() / 2f);
-//
-//        carAngle3.rotate(Math.toRadians(180-loadingAngle), loadingCar.getWidth() / 2f, loadingCar.getHeight() / 2f); //need Minus because Java is multiplier minus
-//        ((Graphics2D) graphics).drawImage(loadingCar, carAngle3, null);
-//
-//        AffineTransform carAngle4 = AffineTransform.getTranslateInstance(Converter.FHD_SCREEN_WIDTH / 2f - loadingCar.getWidth() / 2f, Converter.FHD_SCREEN_HEIGHT / 2f -  loadingCar.getHeight() / 2f);
-//
-//        carAngle4.rotate(Math.toRadians(270-loadingAngle), loadingCar.getWidth() / 2f, loadingCar.getHeight() / 2f); //need Minus because Java is multiplier minus
-//        ((Graphics2D) graphics).drawImage(loadingCar, carAngle4, null);
 
         loadingAngle -= 4;
     }
