@@ -2,13 +2,17 @@ package com.k300.tracks;
 
 import com.k300.cars.Car;
 import com.k300.graphics.Assets;
+import com.k300.graphics.FontLoader;
 import com.k300.obstacles.Obstacle;
 import com.k300.obstacles.ObstacleManager;
 import com.k300.states.gameStates.GameState;
+import com.k300.utils.Utils;
 import com.k300.utils.configarations.Config;
 import com.k300.utils.math.Converter;
 
 import java.awt.*;
+
+import static com.k300.utils.Utils.drawStringInCenter;
 
 public abstract class Track {
 
@@ -53,9 +57,44 @@ public abstract class Track {
 
     private void render(Graphics graphics, int width, int height) {
         graphics.drawImage(Assets.getImage(Assets.TRACK_KEY), 0, 0, width, height, null);
-        for (Car car : cars) {
+
+
+        Font currentFont = graphics.getFont();
+        Color currentColor = graphics.getColor();
+        int heightMargin = 60;
+
+        graphics.setColor(Color.black);
+        graphics.setFont(FontLoader.loadFont("Minecraft", 60));
+        int size = 600;
+        graphics.fillOval(Converter.FHD_SCREEN_WIDTH - size / 2, -size/2, size, size + heightMargin);
+
+        graphics.setColor(Color.white);
+        drawStringInCenter(Converter.FHD_SCREEN_WIDTH - size / 2f, 0, size/2 + 30, 100, graphics,"SCORE");
+
+
+        graphics.setColor(currentColor);
+
+
+        for (int i = 0; i < cars.length; i++) {
+            Car car = cars[i];
             car.render((Graphics2D) graphics);
+
+
+            graphics.setFont(FontLoader.loadFont("Minecraft", 40));
+            if(car.carColor.contains("red")) {
+                graphics.setColor(Color.red);
+                drawStringInCenter(Converter.FHD_SCREEN_WIDTH - size / 2f, (i + 1) * heightMargin, size / 2 + 30, 100, graphics, "Red: " + car.rounds);
+            } else if(car.carColor.contains("blue")) {
+                graphics.setColor(Color.blue);
+                drawStringInCenter(Converter.FHD_SCREEN_WIDTH - size / 2f, (i + 1) * heightMargin, size / 2 + 30, 100, graphics, "Blue: " + car.rounds);
+            } else if(car.carColor.contains("yellow")) {
+                graphics.setColor(Color.yellow);
+                drawStringInCenter(Converter.FHD_SCREEN_WIDTH - size / 2f, (i + 1) * heightMargin, size / 2 + 30, 100, graphics, "Yellow: " + car.rounds);
+            }
         }
+
+        graphics.setFont(new Font(currentFont.getName(), Font.PLAIN, 40));
+
     }
 
     protected abstract void renderDevMonitor(Graphics graphics);
