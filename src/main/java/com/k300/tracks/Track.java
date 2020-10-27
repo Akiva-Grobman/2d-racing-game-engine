@@ -61,7 +61,7 @@ public abstract class Track {
 
         Font currentFont = graphics.getFont();
         Color currentColor = graphics.getColor();
-        int heightMargin = 80;
+        int heightMargin = 60;
 
         graphics.setColor(Color.black);
         graphics.setFont(FontLoader.loadFont("Minecraft", 60));
@@ -69,7 +69,7 @@ public abstract class Track {
         graphics.fillOval(Converter.FHD_SCREEN_WIDTH - size / 2, -size/2, size, size + heightMargin);
 
         graphics.setColor(Color.white);
-        drawStringInCenter(Converter.FHD_SCREEN_WIDTH - size / 2f, 0, size/2 + 50, heightMargin, graphics,"SCORE");
+        drawStringInCenter(Converter.FHD_SCREEN_WIDTH - size / 2f, 0, size/2 + 30, 100, graphics,"SCORE");
 
 
         graphics.setColor(currentColor);
@@ -80,16 +80,16 @@ public abstract class Track {
             car.render((Graphics2D) graphics);
 
 
-            graphics.setFont(FontLoader.loadFont("Minecraft", 50));
+            graphics.setFont(FontLoader.loadFont("Minecraft", 40));
             if(car.carColor.contains("red")) {
                 graphics.setColor(Color.red);
-                drawStringInCenter(Converter.FHD_SCREEN_WIDTH - size / 2f, (i + 1) * heightMargin, size / 2 + 50, 100, graphics, "Red: " + car.rounds);
+                drawStringInCenter(Converter.FHD_SCREEN_WIDTH - size / 2f, (i + 1) * heightMargin, size / 2 + 30, 100, graphics, "Red: " + car.rounds);
             } else if(car.carColor.contains("blue")) {
                 graphics.setColor(Color.blue);
-                drawStringInCenter(Converter.FHD_SCREEN_WIDTH - size / 2f, (i + 1) * heightMargin, size / 2 + 50, 100, graphics, "Blue: " + car.rounds);
+                drawStringInCenter(Converter.FHD_SCREEN_WIDTH - size / 2f, (i + 1) * heightMargin, size / 2 + 30, 100, graphics, "Blue: " + car.rounds);
             } else if(car.carColor.contains("yellow")) {
                 graphics.setColor(Color.yellow);
-                drawStringInCenter(Converter.FHD_SCREEN_WIDTH - size / 2f, (i + 1) * heightMargin, size / 2 + 50, 100, graphics, "Yellow: " + car.rounds);
+                drawStringInCenter(Converter.FHD_SCREEN_WIDTH - size / 2f, (i + 1) * heightMargin, size / 2 + 30, 100, graphics, "Yellow: " + car.rounds);
             }
         }
 
