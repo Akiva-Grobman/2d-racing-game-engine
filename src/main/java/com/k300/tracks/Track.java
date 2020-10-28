@@ -1,10 +1,13 @@
 package com.k300.tracks;
 
 import com.k300.cars.Car;
+import com.k300.cars.player_car.PlayerCar;
 import com.k300.graphics.Assets;
 import com.k300.obstacles.Obstacle;
 import com.k300.obstacles.ObstacleManager;
+import com.k300.obstacles.StartLine;
 import com.k300.states.gameStates.GameState;
+import com.k300.tracks.trackLogic.Collisions;
 import com.k300.utils.configarations.Config;
 import com.k300.utils.math.Converter;
 
@@ -69,6 +72,21 @@ public abstract class Track {
         }
     }
 
+    // initialize a local car
+    protected PlayerCar initLocalCar(Collisions playerCollisionLogic, StartLine startLine, int carIndex) {
+        // the first element in the array will always be the local player
+        assert cars[carIndex] instanceof PlayerCar;
+        PlayerCar localPlayer = (PlayerCar) cars[carIndex];
+        // set the collisions for the local player (see more in the Collisions and PlayerCar classes)
+        localPlayer.setCollisions(playerCollisionLogic);
+        // set the start line for the local player (see more in the StartLine and PlayerCar classes)
+        localPlayer.setStartLine(startLine);
+        // add the key listener for the local car to the game state (witch will add it to the display object)
+        gameState.getLauncher().setKeyListener(localPlayer.getKeyListener());
+        // return the initialized car
+        return localPlayer;
+    }
+
     // will render the track and cars on the full screen
     private void render(Graphics graphics, int width, int height) {
         // render track
@@ -79,7 +97,7 @@ public abstract class Track {
         }
     }
 
-    // all tracks must render a dev monitor
+    // all tracks must render a dev monitor (for dev mode)
     protected abstract void renderDevMonitor(Graphics graphics);
 
 }

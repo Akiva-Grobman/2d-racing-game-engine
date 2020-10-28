@@ -36,7 +36,7 @@ public class OnlineTrack extends Track {
         // create a collisions object, this is used to calculate local player collisions (see more in the Collisions class).
         Collisions collisions = new Collisions(margins, obstacleManager);
         // initialize the local player (with the collisions, and start line information).
-        cars[LOCAL_PLAYER_INDEX] = initLocalCar(collisions, startLine);
+        cars[LOCAL_PLAYER_INDEX] = initLocalCar(collisions, startLine, LOCAL_PLAYER_INDEX);
     }
 
     // render using the zoom camera (see more in the ZoomCamera class)
@@ -86,21 +86,6 @@ public class OnlineTrack extends Track {
         cars[index].position.y = updatedCar.getY();
         // update the car angle
         cars[index].angle = updatedCar.getAngle();
-    }
-
-    // initialize local car
-    private Car initLocalCar(Collisions playerCollisionLogic, StartLine startLine) {
-        // the first element in the array will always be the local player
-        assert cars[LOCAL_PLAYER_INDEX] instanceof PlayerCar;
-        PlayerCar localPlayer = (PlayerCar) cars[LOCAL_PLAYER_INDEX];
-        // set the collisions for the local player (see more in the Collisions and PlayerCar classes)
-        localPlayer.setCollisions(playerCollisionLogic);
-        // set the start line for the local player (see more in the StartLine and PlayerCar classes)
-        localPlayer.setStartLine(startLine);
-        // add the key listener for the local car to the game state (witch will add it to the display object)
-        gameState.getLauncher().setKeyListener(localPlayer.getKeyListener());
-        // return the initialized car
-        return localPlayer;
     }
 
 }
