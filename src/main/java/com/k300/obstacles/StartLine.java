@@ -63,7 +63,7 @@ public class StartLine {
         } else if (carIsOnStartLineIllegally(car, driveDirection)) {
             // it isn't in the middle of a legal round (because it's at the start of one) we set the legal round flag to false
             isLegalRound = false;
-        } else if (wholeCarIsPassedTheStartLine(car, driveDirection)) {
+        } else if (wholeCarPassedTheStartLine(car, driveDirection)) {
             // if the whole car has passed the line (driving forwards and on the right side of the starting line)
             readyForNewRound = true;
         }
@@ -126,11 +126,11 @@ public class StartLine {
     private boolean carIsOnStartLineLegally(PlayerCar car, MOVEMENT_DIRECTION direction) {
         // if the car is moving forwards
         if(direction == MOVEMENT_DIRECTION.FORWARDS) {
-            // check if the front of the car is on the right and the back of the car is on the left
+            // check if the car is on the line facing right (front on right side of line)
             return isOnStartLineFacingTheRight(car);
             // if the car is moving backwards
         } else {
-            // check if the front of the car is on the left and the back of the car is on the right
+            // check if the car is on the line facing left (front on left side of line)
             return isOnStartLineFacingTheLeft(car);
         }
     }
@@ -139,24 +139,33 @@ public class StartLine {
     private boolean carIsOnStartLineIllegally(PlayerCar car, MOVEMENT_DIRECTION direction) {
         // if the car is moving backwards
         if(direction == MOVEMENT_DIRECTION.BACKWARDS) {
+            // check if the car is on the line facing right (front on right side of line)
             return isOnStartLineFacingTheRight(car);
         } else {
+            // check if the car is on the line facing left (front on left side of line)
             return isOnStartLineFacingTheLeft(car);
         }
     }
 
+    // will return true if the car is on the line facing the right
     private boolean isOnStartLineFacingTheRight(PlayerCar car) {
         return frontOfTheCarIsAfterStartLine(car) && rearOfTheCarIsBeforeStartLine(car);
     }
 
+    // will return true if the car is on the line facing the left
     private boolean isOnStartLineFacingTheLeft(PlayerCar car) {
         return frontOfTheCarIsBeforeStartLine(car) && rearOfTheCarIsAfterStartLine(car);
     }
 
-    private boolean wholeCarIsPassedTheStartLine(PlayerCar car, MOVEMENT_DIRECTION direction) {
+    // will return true if the line is behind the car
+    private boolean wholeCarPassedTheStartLine(PlayerCar car, MOVEMENT_DIRECTION direction) {
+        // if the car is driving forwards
         if(direction == MOVEMENT_DIRECTION.FORWARDS) {
+            // check if all of the car corners are to the right of the line (putting it behind the car)
             return frontOfTheCarIsAfterStartLine(car) && rearOfTheCarIsAfterStartLine(car);
+            // if the car is driving backwards
         } else {
+            // check if all of the car corners are to the left of the line (putting the line behind the car)
             return frontOfTheCarIsBeforeStartLine(car) && rearOfTheCarIsBeforeStartLine(car);
         }
     }
