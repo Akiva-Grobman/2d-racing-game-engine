@@ -86,12 +86,12 @@ public class MenuState extends State {
     }
 
     // initialize a big button
-    private UIMenuButton initSmallButton(double x, double y, String text, ClickListener clickListener) {
+    private UIMenuButton initBigButton(double x, double y, String text, ClickListener clickListener) {
         return initButton(x, y, bigButtonWidth, bigButtonHeight, bigButtonFontSize, text, clickListener);
     }
 
     // initialize a small menu button
-    private UIMenuButton initBigButton(double x, double y, String text, ClickListener clickListener) {
+    private UIMenuButton initSmallButton(double x, double y, String text, ClickListener clickListener) {
         return initButton(x, y, smallButtonWidth, smallButtonHeight, smallButtonFontSize, text, clickListener);
     }
 
