@@ -15,6 +15,7 @@ import com.k300.utils.configarations.Config;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 /*
@@ -73,7 +74,24 @@ public class Launcher {
         // add the mouse listener to the display object
         window.addMouseListener(mouseListener);
         // will set a key listener for the display object
-        setKeyListener(new com.k300.io.KeyListener());
+        setKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if(e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+                   stop();
+                }
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+
+            }
+        });
         // if we aren't in dev mode (see more in the config class), we'll start from the first state
         if(!Config.isInDevMode()) {
             // setting state to the first state (will show the k-300 logo with a fade effect
