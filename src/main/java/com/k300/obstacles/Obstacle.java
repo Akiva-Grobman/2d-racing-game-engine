@@ -36,7 +36,7 @@ public class Obstacle {
     }
 
     // will return false if the point is on the obstacle
-    public boolean isOnTrack(double carX, double carY) {
+    public boolean isOffObstacle(double carX, double carY) {
         // we store the distance from our point and the circle center
         double distance = getDistance(a, b, carX, carY);
         // if the distance is smaller than r the point given is on the obstacle
