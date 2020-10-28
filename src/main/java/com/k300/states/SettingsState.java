@@ -4,9 +4,7 @@ import com.k300.Launcher;
 import com.k300.display.ZoomExample;
 import com.k300.ui.SettingsList;
 import com.k300.ui.UIManager;
-import com.k300.ui.buttons.SettingsListElement;
-import com.k300.ui.buttons.UIBackButton;
-import com.k300.ui.buttons.ZoomCustomizerButton;
+import com.k300.ui.buttons.*;
 import com.k300.utils.SETTING_LIST_ELEMENTS;
 import com.k300.utils.configarations.Config;
 import com.k300.utils.math.Converter;
@@ -25,11 +23,13 @@ public class SettingsState extends State {
         uiManager = new UIManager();
         addedZoomCustomizingButtons = false;
         launcher.getMouseListener().setUiManager(uiManager);
-        UIBackButton backButton = new UIBackButton(Converter.FHD_SCREEN_WIDTH / 10f * 8,
+        UIButton backButton = new UIMenuButton(Converter.FHD_SCREEN_WIDTH / 5f * 4,
                 Converter.FHD_SCREEN_HEIGHT / 5f * 4,
-                (int) (Converter.FHD_SCREEN_WIDTH / 10f),
-                (int) (Converter.FHD_SCREEN_HEIGHT / 5f),
-                launcher);
+                (int) (Converter.FHD_SCREEN_WIDTH / 10.2f),
+                (int) (Converter.FHD_SCREEN_HEIGHT / 10f),
+                "Back",
+                40,
+                () -> StateManager.setCurrentState(new MenuState(launcher)));
         uiManager.addUIObject(backButton);
         SettingsList settingsList = new SettingsList(Converter.FHD_SCREEN_WIDTH / 10, Converter.FHD_SCREEN_HEIGHT / 5 - Converter.FHD_SCREEN_HEIGHT / 20);
         for (SettingsListElement element: settingsList.getElements()) {
