@@ -11,66 +11,96 @@ import com.k300.tracks.trackLogic.Margins;
 import com.k300.utils.math.Converter;
 
 import java.awt.*;
+import java.util.Arrays;
+import java.util.stream.IntStream;
+
+/*
+*       Purpose:
+*           this represents a track for an online game i.e. only one local player, and with a zoom in option.
+*
+*/
 
 public class OnlineTrack extends Track {
 
+    // store the index of the local player
     public static final int LOCAL_PLAYER_INDEX = 0;
 
+    // only initialization option
     public OnlineTrack(GameState gameState, Car[] cars) {
+        // initialize the abstract track
         super(gameState, cars);
+        // create a margins object, this is used to determine the track dimensions (see more in Margins class).
         Margins margins = new Margins();
+        // create a start line object, this is used to track the number of rounds (see more in StartLine class).
         StartLine startLine = new StartLine(margins.getFrameBigBPoint(), margins.getFrameSmallBPoint());
+        // create a collisions object, this is used to calculate local player collisions (see more in the Collisions class).
         Collisions collisions = new Collisions(margins, obstacleManager);
+        // initialize the local player (with the collisions, and start line information).
         cars[LOCAL_PLAYER_INDEX] = initLocalCar(collisions, startLine);
     }
 
+    // render using the zoom camera (see more in the ZoomCamera class)
     void renderWithZoom(Graphics graphics) {
+        // initialize a zoom in camera object
         ZoomInCamera zoomInCamera = new ZoomInCamera(graphics, cars);
+        // render
         zoomInCamera.render();
     }
 
+    // local car accessor
     public Car getLocalCar() {
         return cars[LOCAL_PLAYER_INDEX];
     }
 
-    private Car initLocalCar(Collisions playerCollisionLogic, StartLine startLine) {
-        assert cars[LOCAL_PLAYER_INDEX] instanceof PlayerCar;
-        PlayerCar localPlayer = (PlayerCar) cars[LOCAL_PLAYER_INDEX];
-        localPlayer.setCollisions(playerCollisionLogic);
-        localPlayer.setStartLine(startLine);
-        gameState.getLauncher().setKeyListener(localPlayer.getKeyListener());
-        return localPlayer;
-    }
-
+    // will update all enemy cars based on the list received from the server
     public void updateEnemyCars(Player[] newCars) {
-        //update only enemy cars
+        // this list will not contain the local players values hence it being one item shorter than the local car list
         assert newCars.length + 1 == cars.length;
-        int index = 1;
-        for (Player updatedCar : newCars) {
-            updateLocalCar(index, updatedCar);
-            index++;
-        }
+        // the first position contains the local player so we only start changing cars from index 1
+        IntStream.range(1, newCars.length)
+                .forEach(i -> updateEnemyCar(i, newCars[i]));
     }
 
-    private void updateLocalCar(int index, Player updatedCar) {
+    // render the dev monitor (this is used in dev mode to display the local players x,y,angle)
+    @Override
+    protected void renderDevMonitor(Graphics graphics) {
+        // change font to Tahoma
+        graphics.setFont(new Font("Tahoma", Font.PLAIN, 40));
+        // the first car will always be the local car instance
+        assert cars[LOCAL_PLAYER_INDEX] instanceof PlayerCar;
+        // change color to white
+        graphics.setColor(Color.white);
+        // draw angle, x, y on the bottom right corner
+        graphics.drawString("Angle: " + (int) cars[LOCAL_PLAYER_INDEX].angle, 50, Converter.FHD_SCREEN_HEIGHT - 50);
+        graphics.drawString("X: " + (int) cars[LOCAL_PLAYER_INDEX].position.x, 50, Converter.FHD_SCREEN_HEIGHT - 100);
+        graphics.drawString("Y: " + (int) cars[LOCAL_PLAYER_INDEX].position.y, 50, Converter.FHD_SCREEN_HEIGHT - 150);
+    }
+
+    // will update the values of an enemy
+    private void updateEnemyCar(int index, Player updatedCar) {
+        // this done in case to order of players in the list received from the server has change it's order
         cars[index].updateColor(updatedCar.getColor());
+        // update the x coordinate
         cars[index].position.x = updatedCar.getX();
+        // update the y coordinate
         cars[index].position.y = updatedCar.getY();
+        // update the car angle
         cars[index].angle = updatedCar.getAngle();
     }
 
-    @Override
-    protected void renderDevMonitor(Graphics graphics) {
-
-        graphics.setFont(new Font("Tahoma", Font.PLAIN, 40));
-
-        assert cars[0] instanceof PlayerCar;
-
-        graphics.setColor(Color.white);
-
-        graphics.drawString("Angle: " + (int) cars[0].angle, 50, Converter.FHD_SCREEN_HEIGHT - 50);
-        graphics.drawString("X: " + (int) cars[0].position.x, 50, Converter.FHD_SCREEN_HEIGHT - 100);
-        graphics.drawString("Y: " + (int) cars[0].position.y, 50, Converter.FHD_SCREEN_HEIGHT - 150);
+    // initialize local car
+    private Car initLocalCar(Collisions playerCollisionLogic, StartLine startLine) {
+        // the first element in the array will always be the local player
+        assert cars[LOCAL_PLAYER_INDEX] instanceof PlayerCar;
+        PlayerCar localPlayer = (PlayerCar) cars[LOCAL_PLAYER_INDEX];
+        // set the collisions for the local player (see more in the Collisions and PlayerCar classes)
+        localPlayer.setCollisions(playerCollisionLogic);
+        // set the start line for the local player (see more in the StartLine and PlayerCar classes)
+        localPlayer.setStartLine(startLine);
+        // add the key listener for the local car to the game state (witch will add it to the display object)
+        gameState.getLauncher().setKeyListener(localPlayer.getKeyListener());
+        // return the initialized car
+        return localPlayer;
     }
 
 }
