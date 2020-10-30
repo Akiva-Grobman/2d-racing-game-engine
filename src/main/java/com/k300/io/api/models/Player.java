@@ -4,7 +4,7 @@ import java.util.Objects;
 
 /*
  *       Purpose:
- *           represent a JSon object in a POJO
+ *           represent a JSon Player object in a POJO
  *       Contains:
  *           a player id, x,y position of car, angle of car, car color, and a flag if it finished the game.
  */

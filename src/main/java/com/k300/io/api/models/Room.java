@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 /*
 *       Purpose:
-*           represent a JSon object in a POJO
+*           represent a JSon Room object in a POJO
 *       Contains:
 *           a room id, number of players in the room, a list of all players in the room, if the game has started
 */
