@@ -95,8 +95,6 @@ public abstract class Track {
     private void render(Graphics graphics, int width, int height) {
         // render track
         graphics.drawImage(Assets.getImage(Assets.TRACK_KEY), 0, 0, width, height, null);
-
-
         Font currentFont = graphics.getFont();
         Color currentColor = graphics.getColor();
         int heightMargin = 60;
@@ -106,7 +104,7 @@ public abstract class Track {
         int size = 600;
         int scoreFontSize = 50;
 
-        graphics.fillOval(Converter.FHD_SCREEN_WIDTH - size / 2, -size/2, size, size + heightMargin);
+        graphics.fillOval(Converter.FHD_SCREEN_WIDTH - size / 2, -size / 2, size, size + heightMargin);
 
         graphics.setColor(Color.white);
         drawStringInCenter(Converter.FHD_SCREEN_WIDTH - size / 2f, 0, size/2 + 30, 100, graphics,"SCORE");

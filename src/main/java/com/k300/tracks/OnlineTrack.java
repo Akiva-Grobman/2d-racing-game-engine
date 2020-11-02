@@ -57,8 +57,11 @@ public class OnlineTrack extends Track {
         // this list will not contain the local players values hence it being one item shorter than the local car list
         assert newCars.length + 1 == cars.length;
         // the first position contains the local player so we only start changing cars from index 1
-        IntStream.range(1, newCars.length)
-                .forEach(i -> updateEnemyCar(i, newCars[i]));
+        for (int i = 0; i < newCars.length; i++) {
+            updateEnemyCar(i + 1, newCars[i]);
+        }
+//        IntStream.range(1, newCars.length)
+//                .forEach(i -> updateEnemyCar(i, newCars[i]));
     }
 
     // render the dev monitor (this is used in dev mode to display the local players x,y,angle)
