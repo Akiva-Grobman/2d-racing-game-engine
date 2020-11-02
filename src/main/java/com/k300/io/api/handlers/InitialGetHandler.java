@@ -5,6 +5,13 @@ import com.k300.io.api.models.GameStartingInfo;
 import retrofit2.Call;
 import retrofit2.Response;
 
+/*
+*       Purpose:
+*           this will handle the first get request response.
+*           the response will contain a GameStartingInfo object (see more GameStartingInfo class).
+*           the room id and player in the web interactor will be set by the response object(GameStartingInfo).
+*/
+
 public class InitialGetHandler extends MyCallBack<GameStartingInfo> {
 
     private volatile GameStartingInfo startingInfo;
