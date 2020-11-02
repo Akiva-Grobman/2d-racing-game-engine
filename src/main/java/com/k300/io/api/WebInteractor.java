@@ -38,7 +38,7 @@ public class WebInteractor {
     }
 
     public void startMatch(int sumOfPlayers) {
-        Call<GameStartingInfo> call = client.getCarLocalColor(sumOfPlayers);
+        Call<GameStartingInfo> call = client.initLocalCar(sumOfPlayers);
         if(Config.isInDevMode()) {
             System.out.println("Initial Get Request\n>>\n" + sumOfPlayers);
         }
@@ -80,17 +80,7 @@ public class WebInteractor {
 
     public PlayerCar getPlayerCar() {
         Point carStartingPosition;
-
-        /*
-        if(Config.isInDevMode()) {
-            carStartingPosition = GameState.startingPosition;
-        } else {
-            carStartingPosition = new Point(player.getX(), player.getY());
-        }
-         */
-
         carStartingPosition = GameState.startingPosition;
-
         return new PlayerCar(getCarColor(player.getColor()), carStartingPosition);
     }
 

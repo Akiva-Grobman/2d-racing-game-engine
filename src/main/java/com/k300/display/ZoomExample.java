@@ -15,8 +15,8 @@ public class ZoomExample {
 
     private final int leftEdge;
 
-    public ZoomExample(int xPositionOfEndOfDevModeText) {
-        leftEdge = xPositionOfEndOfDevModeText;
+    public ZoomExample(int xPositionOfEndOfBottomElementText) {
+        leftEdge = xPositionOfEndOfBottomElementText;
     }
 
     public void render(Graphics graphics) {

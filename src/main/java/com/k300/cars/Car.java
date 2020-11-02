@@ -3,18 +3,14 @@ package com.k300.cars;
 import com.k300.cars.player_car.PlayerCar;
 import com.k300.cars.player_car.PlayerCarCorners;
 import com.k300.graphics.Assets;
-import com.k300.states.OnlineState;
-import com.k300.states.State;
-import com.k300.states.StateManager;
-import com.k300.states.gameStates.OfflineGame;
-import com.k300.states.gameStates.OnlineGame;
 import com.k300.utils.Point;
 import com.k300.utils.configarations.Config;
-import com.k300.utils.math.Converter;
 
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
+
+import static com.k300.graphics.FontLoader.loadFont;
 
 public abstract class Car {
 
@@ -47,7 +43,7 @@ public abstract class Car {
 
         if(!Config.isUsingZoom() && this instanceof PlayerCar) {
             graphics.setColor(Color.white);
-            graphics.setFont(new Font("Minecraft", Font.BOLD, 120));
+            graphics.setFont(loadFont("Minecraft", 120));
             graphics.drawString("ROUNDS: " + rounds, 625, 570);
         }
 

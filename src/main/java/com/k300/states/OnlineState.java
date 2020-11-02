@@ -9,74 +9,88 @@ import com.k300.utils.math.Converter;
 
 import java.awt.*;
 
+/*
+*       Purpose:
+*           this will allow the user to start an online game with 2/3/4 players.
+*       Contains:
+*           four button for the 2/3/4 player game and a button that will return to the menu, a UIManager that will manage all of the buttons,
+*           as well as a MenuBackground to be displayed in the background
+*/
+
 public class OnlineState extends State {
 
+    // this will manage all of the buttons (update, render, onclick)
     private final UIManager uiManager;
+    // this will be displayed in the background
     private final MenuBackground background;
+    // button dimensions
     private final double buttonWidth;
     private final double buttonHeight;
 
-    private final double buttonsXLeft;
-    private final double buttonsXRight;
-
-    private final double buttonsYUp;
-    private final double buttonsYDown;
-
+    // only initialization option
     public OnlineState(Launcher launcher) {
+        // initialize abstract state
         super(launcher);
+        // initialize the manager
         uiManager = new UIManager();
+        // initialize the background
         background = new MenuBackground();
+        // set the manager as mouse listener
         launcher.getMouseListener().setUiManager(uiManager);
-
+        // set button margins
         double buttonHeightMargin = 150;
         double buttonWidthMargin = 250;
-
+        // determine button dimensions
         buttonWidth = Converter.FHD_SCREEN_WIDTH / 3f;
         buttonHeight = Converter.FHD_SCREEN_HEIGHT / 4f;
-
-        buttonsXLeft = buttonWidthMargin;
-        buttonsXRight = (Converter.FHD_SCREEN_WIDTH -  buttonWidth) - buttonWidthMargin;
-        buttonsYUp = buttonHeightMargin;
-        buttonsYDown = (Converter.FHD_SCREEN_HEIGHT -  buttonHeight) - buttonHeightMargin;
-
-        UIMenuButton twoPlayersButton = get2PlayersButton(launcher);
-        UIMenuButton threePlayersButton = get3PlayersButton(launcher);
-        UIMenuButton fourPlayersButton = get4PlayersButton(launcher);
-        UIMenuButton backButton = getBackButton(launcher);
+        // initialize the two player game button, location: top left
+        UIMenuButton twoPlayersButton = getPlayerButton(2,
+                buttonWidthMargin,
+                buttonHeightMargin);
+        // initialize the three player game button, location: top right
+        UIMenuButton threePlayersButton = getPlayerButton(3,
+                (Converter.FHD_SCREEN_WIDTH -  buttonWidth) - buttonWidthMargin,
+                buttonHeightMargin);
+        // initialize the four player game button, location: bottom left
+        UIMenuButton fourPlayersButton = getPlayerButton(4,
+                buttonWidthMargin,
+                (Converter.FHD_SCREEN_HEIGHT -  buttonHeight) - buttonHeightMargin);
+        // initialize the back player game button, location: bottom right
+        UIMenuButton backButton = getButton((Converter.FHD_SCREEN_WIDTH -  buttonWidth) - buttonWidthMargin,
+                (Converter.FHD_SCREEN_HEIGHT -  buttonHeight) - buttonHeightMargin,
+                "BACK",
+                () -> StateManager.setCurrentState(new MenuState(launcher)));
+        // add the buttons to the manager
         uiManager.addUIObject(twoPlayersButton);
         uiManager.addUIObject(threePlayersButton);
         uiManager.addUIObject(fourPlayersButton);
         uiManager.addUIObject(backButton);
     }
 
-    private UIMenuButton get2PlayersButton(Launcher launcher) {
-        ClickListener listener = () -> launcher.startOnlineGame(2);
-        return new UIMenuButton((int) buttonsXLeft, (int) buttonsYUp, (int) buttonWidth, (int) buttonHeight,"2 PLAYERS", listener);
+    // initialize a player button (this will determine how many players will be in the game)
+    private UIMenuButton getPlayerButton(int sumOfPlayers, double x, double y) {
+        String text = sumOfPlayers + " PLAYERS";
+        return getButton(x, y, text, () -> launcher.startOnlineGame(sumOfPlayers));
     }
 
-    private UIMenuButton get3PlayersButton(Launcher launcher) {
-        ClickListener listener = () -> launcher.startOnlineGame(3);
-        return new UIMenuButton((int) buttonsXRight, (int) buttonsYUp, (int) buttonWidth, (int) buttonHeight, "3 PLAYERS", listener);
+    // initialize a button
+    private UIMenuButton getButton(double x, double y, String text, ClickListener listener) {
+        return new UIMenuButton((int) x, (int) y, (int) buttonWidth, (int) buttonHeight, text, listener);
     }
 
-    private UIMenuButton get4PlayersButton(Launcher launcher) {
-        ClickListener listener = () -> launcher.startOnlineGame(4);
-        return new UIMenuButton((int) buttonsXLeft, (int) buttonsYDown, (int) buttonWidth, (int) buttonHeight, "4 PLAYERS", listener);
-    }
-
-    private UIMenuButton getBackButton(Launcher launcher) {
-        ClickListener listener = () -> StateManager.setCurrentState(new MenuState(launcher));
-        return new UIMenuButton((int) buttonsXRight, (int) buttonsYDown, (int) buttonWidth, (int) buttonHeight, "BACK", listener);
-    }
-
+    // this will update the background (the background contains moving components)
     @Override
     public void tick() {
+        // update the background
         background.tick();
     }
 
+    // render the background and the buttons
     @Override
     public void render(Graphics graphics) {
+        // render the background
         background.render(graphics);
+        // render the buttons
         uiManager.render(graphics);
     }
 
