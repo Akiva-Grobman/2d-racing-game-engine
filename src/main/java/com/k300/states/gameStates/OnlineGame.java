@@ -36,7 +36,6 @@ public class OnlineGame extends GameState {
     private int timeFromLastUpdate;
     private double loadingAngle;
     private BufferedImage loadingCar;
-    final WebInteractor webInteractor;
     // this is the way we interact with the server
     private final WebInteractor webInteractor;
 
@@ -92,9 +91,8 @@ public class OnlineGame extends GameState {
             // update the string of dots
             updateDots();
             graphics.setFont(FontLoader.loadFont("Minecraft", 40));
-            drawStringInCenter(graphics.getFontMetrics().stringWidth(dots) / 2f,
             // draw "Loading" + the current state of dots in the middle of the screen
-            drawStringInCenter(graphics.getFontMetrics().stringWidth(dots),
+            drawStringInCenter(graphics.getFontMetrics().stringWidth(dots) / 2f,
                     0,
                     Converter.FHD_SCREEN_WIDTH,
                     Converter.FHD_SCREEN_HEIGHT,

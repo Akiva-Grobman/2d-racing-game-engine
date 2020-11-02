@@ -41,11 +41,11 @@ public abstract class Car {
         carAngle.rotate(Math.toRadians(-angle), carImage.getWidth() / 2f, carImage.getHeight() / 2f); //need Minus because Java is multiplier minus
         graphics.drawImage(carImage, carAngle, null);
 
-        if(!Config.isUsingZoom() && this instanceof PlayerCar) {
-            graphics.setColor(Color.white);
-            graphics.setFont(loadFont("Minecraft", 120));
-            graphics.drawString("ROUNDS: " + rounds, 625, 570);
-        }
+//        if(!Config.isUsingZoom() && this instanceof PlayerCar) {
+//            graphics.setColor(Color.white);
+//            graphics.setFont(loadFont("Minecraft", 120));
+//            graphics.drawString("ROUNDS: " + rounds, 625, 570);
+//        }
 
         if(Config.isInDevMode()) {
             graphics.setColor(Color.white);

@@ -118,10 +118,9 @@ public abstract class Track {
             heightMargin = 40;
             scoreFontSize = 30;
         }
+        // render cars
         for (int i = 0; i < cars.length; i++) {
             Car car = cars[i];
-        // render cars
-        for (Car car : cars) {
             car.render((Graphics2D) graphics);
 
             graphics.setFont(FontLoader.loadFont("Minecraft", scoreFontSize));
