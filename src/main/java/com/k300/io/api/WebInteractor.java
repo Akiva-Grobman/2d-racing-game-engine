@@ -81,23 +81,13 @@ public class WebInteractor {
     public PlayerCar getPlayerCar() {
         Point carStartingPosition;
         carStartingPosition = GameState.startingPosition;
-        return new PlayerCar(getCarColor(player.getColor()), carStartingPosition);
+        return new PlayerCar(Assets.getCarKeyByValue(player.getColor()), carStartingPosition);
     }
 
     public static Gson getPrettyGson() {
         GsonBuilder gsonBuilder = new GsonBuilder();
         gsonBuilder.setPrettyPrinting();
         return gsonBuilder.create();
-    }
-
-    private String getCarColor(String color) {
-        color = color.toLowerCase();
-        if(color.contains("red")) {
-            return Assets.RED_CAR_KEY;
-        } else if(color.contains("blue")) {
-            return Assets.BLUE_CAR_KEY;
-        }
-        return Assets.YELLOW_CAR_KEY;
     }
 
     public synchronized void updateCars(Player[] playersFromServer) {

@@ -10,6 +10,7 @@ import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 
+import static com.k300.graphics.Assets.getCarKeyByValue;
 import static com.k300.graphics.FontLoader.loadFont;
 
 public abstract class Car {
@@ -71,21 +72,11 @@ public abstract class Car {
 
     public void updateColor(String color) {
         if(!color.contains("_")) {
-            carColor = getColor(color);
+            carColor = getCarKeyByValue(color);
         } else {
             carColor = color;
         }
         carImage = Assets.getImage(carColor);
-    }
-
-    private String getColor(String color) {
-        color = color.toLowerCase();
-        if(color.contains("blue")) {
-            return Assets.BLUE_CAR_KEY;
-        } else if(color.contains("red")) {
-            return Assets.RED_CAR_KEY;
-        }
-        return Assets.YELLOW_CAR_KEY;
     }
 
     public double getX() {

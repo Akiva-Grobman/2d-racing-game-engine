@@ -4,18 +4,15 @@ import com.k300.cars.Car;
 import com.k300.cars.player_car.PlayerCar;
 import com.k300.graphics.Assets;
 import com.k300.graphics.FontLoader;
-import com.k300.obstacles.Obstacle;
-import com.k300.obstacles.ObstacleManager;
-import com.k300.obstacles.StartLine;
+import com.k300.tracks.trackLogic.obstacles.Obstacle;
+import com.k300.tracks.trackLogic.obstacles.ObstacleManager;
+import com.k300.tracks.trackLogic.obstacles.StartLine;
 import com.k300.states.gameStates.GameState;
-import com.k300.ui.listeners.FadeListener;
-import com.k300.utils.Utils;
 import com.k300.tracks.trackLogic.Collisions;
 import com.k300.utils.configarations.Config;
 import com.k300.utils.math.Converter;
 
 import java.awt.*;
-import java.awt.image.BufferedImage;
 
 /*
 *       Purpose:
@@ -38,15 +35,13 @@ public abstract class Track {
     protected final Car[] cars;
 
     public boolean gameStarted;
-    private int SECONDS;
+    private int secondsForEachRotation;
     private String introCounter;
-    private int realSeconds;
-    private float alpha;
     private Long startTime;
 
     // only initialization option
     public Track(GameState gameState, Car[] cars) {
-        SECONDS = 3;
+        secondsForEachRotation = 3;
         gameStarted = false;
         // set the cars array
         this.cars = cars;
@@ -64,7 +59,6 @@ public abstract class Track {
 
     // update all cars
     public void tick() {
-        System.out.println(SECONDS);
         if(!gameStarted) {
             if (startTime == null) {
                 startTime = System.currentTimeMillis();
@@ -73,16 +67,16 @@ public abstract class Track {
             int duration = 1000;
             if(difference >= duration /*duration*/) {
                 startTime = System.currentTimeMillis();
-                SECONDS--;
+                secondsForEachRotation--;
             }
 
-            if(SECONDS <= 0) {
+            if(secondsForEachRotation <= 0) {
                 introCounter = "GO!";
             } else {
-                introCounter = String.valueOf(SECONDS);
+                introCounter = String.valueOf(secondsForEachRotation);
             }
 
-            if(SECONDS == -1) {
+            if(secondsForEachRotation == -1) {
                 gameStarted = true;
             }
         }

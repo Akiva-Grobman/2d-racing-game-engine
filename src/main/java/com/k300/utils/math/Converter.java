@@ -6,6 +6,7 @@ import java.awt.*;
 *       Purpose:
 *           this class is used to make sure all rendering is relative to screen size.
 *       How:
+*           /todo
 *           all rendering will be done relative to a full HD screen (1900,1080) on to a temporary image.
 *           than the image is scaled to fit the current machine screen size.
 *       Contains:

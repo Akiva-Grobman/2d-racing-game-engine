@@ -4,7 +4,7 @@ import com.k300.cars.Car;
 import com.k300.io.KEY_MOVEMENT_TYPE;
 import com.k300.io.PlayerKeyListener;
 import com.k300.tracks.trackLogic.Collisions;
-import com.k300.obstacles.StartLine;
+import com.k300.tracks.trackLogic.obstacles.StartLine;
 import com.k300.utils.Point;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
