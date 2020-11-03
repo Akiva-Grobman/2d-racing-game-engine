@@ -92,7 +92,7 @@ public abstract class Utils {
         // (height / 2) will give us the y of the rectangle center(relative to the rectangle).
         // (stringHeight * 1.5) will give us the y of the string center (relative to the string).
         // center(y) of the rectangle minus the center(y) of the string plus the y will give us the y coordinate that will center the string(relative to the graphics display).
-        int startingY = (int) (height / 2 + stringHeight * 1.5 + y);
+        int startingY = (int) (height / 2 + stringHeight * 1.25 + y);
         // draw the sting based on the new x,y.
         graphics.drawString(string, startingX, startingY);
     }
