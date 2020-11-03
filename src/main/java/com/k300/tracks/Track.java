@@ -4,11 +4,10 @@ import com.k300.cars.Car;
 import com.k300.cars.player_car.PlayerCar;
 import com.k300.graphics.Assets;
 import com.k300.graphics.FontLoader;
-import com.k300.obstacles.Obstacle;
-import com.k300.obstacles.ObstacleManager;
-import com.k300.obstacles.StartLine;
+import com.k300.tracks.trackLogic.obstacles.Obstacle;
+import com.k300.tracks.trackLogic.obstacles.ObstacleManager;
+import com.k300.tracks.trackLogic.obstacles.StartLine;
 import com.k300.states.gameStates.GameState;
-import com.k300.utils.Utils;
 import com.k300.tracks.trackLogic.Collisions;
 import com.k300.utils.configarations.Config;
 import com.k300.utils.math.Converter;
@@ -35,8 +34,15 @@ public abstract class Track {
     // all of the cars in the game
     protected final Car[] cars;
 
+    public boolean gameStarted;
+    private int secondsForEachRotation;
+    private String introCounter;
+    private Long startTime;
+
     // only initialization option
     public Track(GameState gameState, Car[] cars) {
+        secondsForEachRotation = 3;
+        gameStarted = false;
         // set the cars array
         this.cars = cars;
         // set the game state reference
@@ -53,8 +59,32 @@ public abstract class Track {
 
     // update all cars
     public void tick() {
-        for (Car car: cars) {
-            car.tick();
+        if(!gameStarted) {
+            if (startTime == null) {
+                startTime = System.currentTimeMillis();
+            }
+            long difference = System.currentTimeMillis() - startTime;
+            int duration = 1000;
+            if(difference >= duration /*duration*/) {
+                startTime = System.currentTimeMillis();
+                secondsForEachRotation--;
+            }
+
+            if(secondsForEachRotation <= 0) {
+                introCounter = "GO!";
+            } else {
+                introCounter = String.valueOf(secondsForEachRotation);
+            }
+
+            if(secondsForEachRotation == -1) {
+                gameStarted = true;
+            }
+        }
+
+        if(gameStarted) {
+            for (Car car : cars) {
+                car.tick();
+            }
         }
     }
 
@@ -63,6 +93,9 @@ public abstract class Track {
         // default width and height
         int width = Converter.FHD_SCREEN_WIDTH;
         int height = Converter.FHD_SCREEN_HEIGHT;
+
+
+
         // if the user is playing online and wants to use the zoom in option
         if(this instanceof OnlineTrack && Config.isUsingZoom()) {
             ((OnlineTrack) this).renderWithZoom(graphics);
@@ -74,6 +107,18 @@ public abstract class Track {
         if(Config.isInDevMode()) {
             renderDevMonitor(graphics);
         }
+
+        if(!gameStarted) {
+            Graphics2D graphics2D = (Graphics2D) graphics.create();
+            graphics2D.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, (float) 0.9));
+            graphics2D.setColor(new Color(180, 19, 19));
+            graphics2D.fillRect(0, 0, width, height);
+            graphics2D.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1));
+            graphics.setColor(Color.white);
+            graphics.setFont(new Font("Calibri", Font.BOLD, 600));
+            drawStringInCenter(0, 0, width, height, graphics, introCounter);
+        }
+
     }
 
     // initialize a local car

@@ -32,6 +32,7 @@ public class FadeState extends State {
             fadeStarted();
         }
         long difference = System.currentTimeMillis() - startTime;
+        //todo need to change the fadeTime and not the multiplication
         int duration = SECONDS * 1500;
         alpha = difference / (float) duration;
         if(alpha > 1) {

@@ -1,4 +1,4 @@
-package com.k300.obstacles;
+package com.k300.tracks.trackLogic.obstacles;
 
 import com.k300.cars.player_car.PlayerCar;
 import com.k300.cars.player_car.MOVEMENT_DIRECTION;

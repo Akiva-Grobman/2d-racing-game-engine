@@ -4,6 +4,8 @@ import com.k300.utils.math.Converter;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Hashtable;
 import static com.k300.utils.Utils.loadImage;
 import static com.k300.utils.Utils.resizeImage;
@@ -43,6 +45,16 @@ public class Assets {
             singletonInstance = new Assets();
         }
         return singletonInstance.images.get(imageKey);
+    }
+
+    public static String getCarKeyByValue(String color) {
+        String[] carColors = {BLUE_CAR_KEY, RED_CAR_KEY, YELLOW_CAR_KEY};
+        for (String carColor : carColors) {
+            if (carColor.contains(color)) {
+                return carColor;
+            }
+        }
+        throw new Error(color + " Color is not supported");
     }
 
     private Assets() {
