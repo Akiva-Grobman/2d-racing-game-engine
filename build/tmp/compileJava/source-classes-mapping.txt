@@ -18,8 +18,8 @@ com/k300/utils/SLANT_ANGLE.java
  com.k300.utils.SLANT_ANGLE
 com/k300/cars/player_car/MOVEMENT_DIRECTION.java
  com.k300.cars.player_car.MOVEMENT_DIRECTION
-com/k300/io/api/handlers/MyCallBack.java
- com.k300.io.api.handlers.MyCallBack
+com/k300/states/gameStates/GameState.java
+ com.k300.states.gameStates.GameState
 com/k300/states/State.java
  com.k300.states.State
 com/k300/tracks/OfflineTrack.java
@@ -63,8 +63,8 @@ com/k300/cars/Car.java
  com.k300.cars.Car
 com/k300/io/MouseListener.java
  com.k300.io.MouseListener
-com/k300/io/api/handlers/InitialGetHandler.java
- com.k300.io.api.handlers.InitialGetHandler
+com/k300/io/PlayerKeyListener.java
+ com.k300.io.PlayerKeyListener
 com/k300/tracks/Track.java
  com.k300.tracks.Track
 com/k300/cars/EnemyCar.java
@@ -124,9 +124,9 @@ com/k300/tracks/trackLogic/obstacles/StartLine.java
  com.k300.tracks.trackLogic.obstacles.StartLine
 com/k300/io/api/API.java
  com.k300.io.api.API
-com/k300/states/gameStates/GameState.java
- com.k300.states.gameStates.GameState
-com/k300/io/PlayerKeyListener.java
- com.k300.io.PlayerKeyListener
+com/k300/io/api/handlers/MyCallBack.java
+ com.k300.io.api.handlers.MyCallBack
+com/k300/io/api/handlers/InitialGetHandler.java
+ com.k300.io.api.handlers.InitialGetHandler
 com/k300/io/api/handlers/PostRequestHandler.java
  com.k300.io.api.handlers.PostRequestHandler
