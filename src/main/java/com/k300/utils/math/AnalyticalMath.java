@@ -47,12 +47,13 @@ public class AnalyticalMath {
             if (angleIsInBoundsOf(angle, 90, 270)) {
                 //Then we need to reduce the x because the car is turning to the left of the screen and we want forwards.
                 newPoint.x = point.x - getXDistanceFactor(distance, angle);
-                // The y will be relative to the x(positive/negative).
+                // The y will be relative to the x(positive/negative) because it's calculate the new y in term the whole "line function".
                 newPoint.y = point.y + getYDistanceFactor(distance, angle);
-            // If the angle is in the right of the angle "circle", that mean we need to redound the x because the car is turning to the right of the screen and we want forwards.
-            // The y will be relative to the x(positive/negative).
+            // If the angle is in the right of the angle "circle"
             } else /*if(angleIsInBoundsOf(angle, 0, 90) || if(angleIsInBoundsOf(angle, 270, 360))*/ {
+                // Then we need to redound the x because the car is turning to the right of the screen and we want forwards.
                 newPoint.x = point.x + getXDistanceFactor(distance, angle);
+                // The y will be relative to the x(positive/negative) because it's calculate the new y in term the whole "line function".
                 newPoint.y = point.y - getYDistanceFactor(distance, angle);
             }
         // If we need to find backwards new point in "human looking"
@@ -61,13 +62,13 @@ public class AnalyticalMath {
             if (angleIsInBoundsOf(angle, 90, 270)) {
                 // Then we need to reduce the x because the car is turning to the left of the screen and we want backwards.
                 newPoint.x = point.x + getXDistanceFactor(distance, angle);
-                // The y will be relative to the x(positive/negative).
+                // The y will be relative to the x(positive/negative) because it's calculate the new y in term the whole "line function".
                 newPoint.y = point.y - getYDistanceFactor(distance, angle);
             // If the angle is in the right of the angle "circle"
             } else /*if(isInBoundsOf(car.angle, 0, 90) || if(isInBoundsOf(car.angle, 270, 360))*/ {
                 // Then we need to redound the x because the car is turning to the right of the screen and we want backwards.
                 newPoint.x = point.x - getXDistanceFactor(distance, angle);
-                // The y will be relative to the x(positive/negative).
+                // The y will be relative to the x(positive/negative) because it's calculate the new y in term the whole "line function".
                 newPoint.y = point.y + getYDistanceFactor(distance, angle);
             }
         }
