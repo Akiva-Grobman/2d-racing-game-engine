@@ -10,7 +10,7 @@ import java.net.ConnectException;
 
 /*
 *       Purpose:
-*           this represents an abstract representation of a response from the server.
+*           this is an abstract representation of a response from the server.
 *           both responses extend this response because they both handle errors the same.
 *       Contains:
 *           a WebInteractor object to modify based on the server response, a flag for dev mode(if in dev mode all incoming data is logged to the console).
