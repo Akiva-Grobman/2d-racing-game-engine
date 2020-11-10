@@ -49,6 +49,7 @@ public class Assets {
 
     public static String getCarKeyByValue(String color) {
         String[] carColors = {BLUE_CAR_KEY, RED_CAR_KEY, YELLOW_CAR_KEY};
+        color = color.toLowerCase();
         for (String carColor : carColors) {
             if (carColor.contains(color)) {
                 return carColor;

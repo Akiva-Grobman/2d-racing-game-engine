@@ -103,7 +103,7 @@ public class Launcher {
                     )
             );
         } else { // this is for development purposes only
-            StateManager.setCurrentState(new SettingsState(this));
+            StateManager.setCurrentState(new OnlineState(this));
         }
     }
 
