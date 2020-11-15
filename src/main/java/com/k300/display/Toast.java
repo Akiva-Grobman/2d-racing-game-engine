@@ -8,7 +8,7 @@ public class Toast extends JDialog {
 
     public static final int SHORT = 1500;
     public static final int LONG = 3000;
-    public static final int VERY_LONG = LONG * 2;
+    public static final int VERY_LONG = (int) Math.floor(LONG * 1.2);
     private static final long serialVersionUID = 1L;
     private static boolean spamProtect = false;
 

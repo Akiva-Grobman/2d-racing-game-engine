@@ -6,8 +6,8 @@ com/k300/display/Window.java
  com.k300.display.Window
 com/k300/graphics/ZoomInCamera.java
  com.k300.graphics.ZoomInCamera
-com/k300/states/gameStates/GameState.java
- com.k300.states.gameStates.GameState
+com/k300/utils/math/AnalyticalMath.java
+ com.k300.utils.math.AnalyticalMath
 com/k300/Main.java
  com.k300.Main
 com/k300/ui/buttons/SettingsListElement.java
@@ -93,8 +93,8 @@ com/k300/utils/Utils.java
  com.k300.utils.Utils
 com/k300/tracks/trackLogic/obstacles/Obstacle.java
  com.k300.tracks.trackLogic.obstacles.Obstacle
-com/k300/io/api/handlers/PostRequestHandler.java
- com.k300.io.api.handlers.PostRequestHandler
+com/k300/cars/player_car/PlayerCarMover.java
+ com.k300.cars.player_car.PlayerCarMover
 com/k300/io/api/models/Room.java
  com.k300.io.api.models.Room
 com/k300/ui/buttons/UIButton.java
@@ -104,8 +104,8 @@ com/k300/ui/buttons/ZoomCustomizerButton.java
  com.k300.ui.buttons.ZoomCustomizerButton$BUTTON_TYPE
 com/k300/tracks/trackLogic/Collisions.java
  com.k300.tracks.trackLogic.Collisions
-com/k300/io/PlayerKeyListener.java
- com.k300.io.PlayerKeyListener
+com/k300/cars/player_car/PlayerCarCorners.java
+ com.k300.cars.player_car.PlayerCarCorners
 com/k300/graphics/Assets.java
  com.k300.graphics.Assets
 com/k300/ui/listeners/OpenFadeListener.java
@@ -124,9 +124,9 @@ com/k300/tracks/trackLogic/obstacles/StartLine.java
  com.k300.tracks.trackLogic.obstacles.StartLine
 com/k300/io/api/API.java
  com.k300.io.api.API
-com/k300/cars/player_car/PlayerCarMover.java
- com.k300.cars.player_car.PlayerCarMover
-com/k300/cars/player_car/PlayerCarCorners.java
- com.k300.cars.player_car.PlayerCarCorners
-com/k300/utils/math/AnalyticalMath.java
- com.k300.utils.math.AnalyticalMath
+com/k300/states/gameStates/GameState.java
+ com.k300.states.gameStates.GameState
+com/k300/io/PlayerKeyListener.java
+ com.k300.io.PlayerKeyListener
+com/k300/io/api/handlers/PostRequestHandler.java
+ com.k300.io.api.handlers.PostRequestHandler
