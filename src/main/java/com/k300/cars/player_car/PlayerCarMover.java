@@ -71,7 +71,7 @@ public class PlayerCarMover {
         resetAngle();
     }
 
-    // cares to have angle only between 0 - 360, because the angle is cyclic and we put it inside tan().
+    // cares to have angle only between 0-360, because the angle is cyclic and we put it inside tan().
     private void resetAngle() {
         if (car.angle > 360) {
             car.angle = 0;
