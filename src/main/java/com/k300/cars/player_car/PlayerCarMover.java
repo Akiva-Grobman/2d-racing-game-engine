@@ -8,6 +8,8 @@ import static com.k300.utils.math.AnalyticalMath.*;
  *       Purpose:
  *           This class is responsible to move a car from the the current position to the next position,
  *           depends on the driving direction, car angle, turning angle and speed.
+ *       Contains:
+ *           Margin, ObstacleManager of the current track.
  *       How:
  *           this class is used AnalyticalMath class to get new positions that depends on the variables.
  */
