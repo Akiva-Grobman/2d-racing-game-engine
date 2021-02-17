@@ -1,5 +1,10 @@
 <img src="https://i.ibb.co/R00tPh5/Whats-App-Image-2020-09-24-at-19-29-27.jpg" width="300" />
 
+Small snipit of the game, please ecuse my gameing skills I'm no gammer :).
+
+Settings menu:
+![Game demo(1)](https://j.gifs.com/ZY3rzR.gif)
+
 # 2D Racing Game Engine
 This is based on the <a href="https://github.com/ELK4N4/K300-RacingGame">K-300 Capslock Hackathon entry</a>.
 <br>The server can be found <a href="https://github.com/ELK4N4/2d-racing-game-server">here</a>.
