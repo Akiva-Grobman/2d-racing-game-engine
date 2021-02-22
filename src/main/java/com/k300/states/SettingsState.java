@@ -49,7 +49,7 @@ public class SettingsState extends State {
                 "Back",
                 40,
                 () -> {
-                    // we need to restart the UIManager before we replace the state to MenuState
+                    // we need to restart the UIManager before we are replacing the state to MenuState
                     if(backState instanceof MenuState) {
                         launcher.getMouseListener().setUiManager(((MenuState) backState).getUiManager());
                     }
