@@ -34,10 +34,10 @@ com/k300/io/api/models/GameStartingInfo.java
  com.k300.io.api.models.GameStartingInfo
 com/k300/io/api/models/Player.java
  com.k300.io.api.models.Player
-com/k300/display/IpWindow.java
- com.k300.display.IpWindow
 com/k300/states/StateManager.java
  com.k300.states.StateManager
+com/k300/io/PlayerKeyListener.java
+ com.k300.io.PlayerKeyListener
 com/k300/io/api/WebInteractor.java
  com.k300.io.api.WebInteractor
 com/k300/ui/buttons/UIMenuButton.java
@@ -53,8 +53,8 @@ com/k300/ui/listeners/ClickListener.java
  com.k300.ui.listeners.ClickListener
 com/k300/states/gameStates/OnlineGame.java
  com.k300.states.gameStates.OnlineGame
-com/k300/states/MenuState.java
- com.k300.states.MenuState
+com/k300/io/api/handlers/PostRequestHandler.java
+ com.k300.io.api.handlers.PostRequestHandler
 com/k300/graphics/FadeState.java
  com.k300.graphics.FadeState
 com/k300/cars/player_car/PlayerCar.java
@@ -129,7 +129,7 @@ com/k300/io/api/API.java
  com.k300.io.api.API
 com/k300/states/gameStates/GameState.java
  com.k300.states.gameStates.GameState
-com/k300/io/PlayerKeyListener.java
- com.k300.io.PlayerKeyListener
-com/k300/io/api/handlers/PostRequestHandler.java
- com.k300.io.api.handlers.PostRequestHandler
+com/k300/states/MenuState.java
+ com.k300.states.MenuState
+com/k300/display/ServerUrlWindow.java
+ com.k300.display.ServerUrlWindow
