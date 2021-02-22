@@ -53,7 +53,7 @@ public class Window {
         }
     }
 
-    public void setKeyListener(KeyListener keyListener) {
+    public void addKeyListener(KeyListener keyListener) {
         frame.addKeyListener(keyListener);
     }
 

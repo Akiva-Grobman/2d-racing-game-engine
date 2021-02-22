@@ -131,7 +131,7 @@ public abstract class Track {
         // set the start line for the local player (see more in the StartLine and PlayerCar classes)
         localPlayer.setStartLine(startLine);
         // add the key listener for the local car to the game state (witch will add it to the display object)
-        gameState.getLauncher().setKeyListener(localPlayer.getKeyListener());
+        gameState.getLauncher().addKeyListener(localPlayer.getKeyListener());
         // return the initialized car
         return localPlayer;
     }
