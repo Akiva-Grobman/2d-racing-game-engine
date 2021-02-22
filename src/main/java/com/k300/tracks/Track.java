@@ -4,6 +4,8 @@ import com.k300.cars.Car;
 import com.k300.cars.player_car.PlayerCar;
 import com.k300.graphics.Assets;
 import com.k300.graphics.FontLoader;
+import com.k300.states.SettingsState;
+import com.k300.states.StateManager;
 import com.k300.tracks.trackLogic.obstacles.Obstacle;
 import com.k300.tracks.trackLogic.obstacles.ObstacleManager;
 import com.k300.tracks.trackLogic.obstacles.StartLine;
@@ -13,6 +15,8 @@ import com.k300.utils.configarations.Config;
 import com.k300.utils.math.Converter;
 
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 /*
 *       Purpose:
@@ -55,6 +59,25 @@ public abstract class Track {
         obstacleManager.addObstacle(new Obstacle(-350, 550, 1100));
         obstacleManager.addObstacle(new Obstacle(650, 480, 500));
         obstacleManager.addObstacle(new Obstacle(300, 1250, 900));
+
+        this.gameState.getLauncher().addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if(e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+                    StateManager.setCurrentState(new SettingsState(gameState.getLauncher(), gameState));
+                }
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+
+            }
+        });
     }
 
     // update all cars

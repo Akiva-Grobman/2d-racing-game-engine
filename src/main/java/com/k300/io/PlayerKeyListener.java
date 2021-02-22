@@ -71,10 +71,11 @@ public class PlayerKeyListener implements java.awt.event.KeyListener {
     // called when a key is pressed
     @Override
     public void keyPressed(KeyEvent e) {
-        // if the escape key is pressed exit the program
-        if(e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-            Launcher.stop();
-        }
+        // TODO delete those lines
+//        // if the escape key is pressed exit the program
+//        if(e.getKeyCode() == KeyEvent.VK_ALT) {
+//            Launcher.stop();
+//        }
         // update a key status to pressed
         keyPressed(e.getKeyCode(), true);
     }

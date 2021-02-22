@@ -30,9 +30,11 @@ public class SettingsState extends State {
     // a flag to know if the zoom in/out buttons are already in the uiManager
     private boolean addedZoomCustomizingButtons;
 
-    public SettingsState(Launcher launcher) {
+
+    public SettingsState(Launcher launcher, State backState) {
         // initialize abstract state
         super(launcher);
+
         // initialize empty manager
         uiManager = new UIManager();
         // set flag to default
@@ -46,7 +48,13 @@ public class SettingsState extends State {
                 (int) (Converter.FHD_SCREEN_HEIGHT / 10f),
                 "Back",
                 40,
-                () -> StateManager.setCurrentState(new MenuState(launcher)));
+                () -> {
+                    if(backState instanceof MenuState) {
+                        launcher.getMouseListener().setUiManager(((MenuState) backState).getUiManager());
+                    }
+                    StateManager.setCurrentState(backState);
+                }
+        );
         // add the back button to the manager
         uiManager.addUIObject(backButton);
         // create a settings list

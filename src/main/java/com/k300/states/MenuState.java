@@ -72,7 +72,7 @@ public class MenuState extends State {
         UIMenuButton settingsButton = initSmallButton(leftEdge,
                 topEdge + (2 * bigButtonMargin),
                 "SETTINGS",
-                        () -> StateManager.setCurrentState(new SettingsState(launcher)));
+                () -> StateManager.setCurrentState(new SettingsState(launcher, this)));
         // initialize an exit button that will close the program
         UIMenuButton exitButton = initSmallButton(leftEdge + smallButtonWidth + smallButtonMargin,
                 topEdge + (2 * bigButtonMargin),
@@ -113,6 +113,10 @@ public class MenuState extends State {
         background.render(graphics);
         // render buttons
         uiManager.render(graphics);
+    }
+
+    public UIManager getUiManager() {
+        return uiManager;
     }
 
 }

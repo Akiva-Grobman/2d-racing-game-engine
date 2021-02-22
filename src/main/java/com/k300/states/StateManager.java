@@ -39,6 +39,7 @@ public class StateManager {
 
     // current state modifier
     public static void setCurrentState(State currentState) {
+
         // will make sure class object is instantiated
         handleInstance();
         singletonStateManagerInstance.currentState = currentState;
