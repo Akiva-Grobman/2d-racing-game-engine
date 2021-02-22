@@ -5,9 +5,7 @@ import com.k300.graphics.Assets;
 import com.k300.graphics.FontLoader;
 import com.k300.display.OpeningFadeState;
 import com.k300.io.MouseListener;
-import com.k300.states.MenuState;
 import com.k300.states.OnlineState;
-import com.k300.states.SettingsState;
 import com.k300.states.StateManager;
 import com.k300.states.gameStates.OfflineGame;
 import com.k300.states.gameStates.OnlineGame;
@@ -75,7 +73,7 @@ public class Launcher {
         // add the mouse listener to the display object
         window.addMouseListener(mouseListener);
         // will set a key listener for the display object
-        setKeyListener(new KeyListener() {
+        addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
 
@@ -196,8 +194,8 @@ public class Launcher {
     }
 
     // This method will set the display object's key listener
-    public void setKeyListener(KeyListener listener) {
-        window.setKeyListener(listener);
+    public void addKeyListener(KeyListener listener) {
+        window.addKeyListener(listener);
     }
 
     // This method will set the current state to an offline game (essentially starting the game)
