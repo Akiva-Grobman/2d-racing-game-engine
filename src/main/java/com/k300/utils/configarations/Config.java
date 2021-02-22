@@ -72,4 +72,9 @@ public class Config {
         return singletonInstance.preferenceReader.getServerUrl();
     }
 
+    // url modifier
+    public static void setUrl(String url) {
+        handleInstance();
+        singletonInstance.preferenceReader.setServerUrl(url);
+    }
 }

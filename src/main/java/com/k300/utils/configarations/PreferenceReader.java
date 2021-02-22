@@ -72,6 +72,11 @@ public class PreferenceReader {
         return configData.get(SERVER_URL);
     }
 
+    // url modifier
+    void setServerUrl(String url) {
+        updateString(SERVER_URL, String.valueOf(url));
+    }
+
     // dev mode accessor
     boolean isInDevMode() {
         return configData.get(DEV_MODE_STATUS).contains(TRUE);

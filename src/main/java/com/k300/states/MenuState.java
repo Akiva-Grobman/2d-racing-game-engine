@@ -4,6 +4,7 @@ import com.k300.Launcher;
 
 import java.awt.*;
 
+import com.k300.display.ServerUrlWindow;
 import com.k300.display.MenuBackground;
 import com.k300.ui.*;
 import com.k300.ui.buttons.*;
@@ -67,7 +68,7 @@ public class MenuState extends State {
         UIMenuButton onlineButton = initBigButton(leftEdge,
                 topEdge + bigButtonMargin,
                 "ONLINE",
-                () -> StateManager.setCurrentState(new OnlineState(launcher)));
+                () -> new ServerUrlWindow(launcher)); // StateManager.setCurrentState(new OnlineState(launcher)));
         // initialize a button that will change to the settings menu
         UIMenuButton settingsButton = initSmallButton(leftEdge,
                 topEdge + (2 * bigButtonMargin),
