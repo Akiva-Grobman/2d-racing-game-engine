@@ -68,7 +68,6 @@ public class ServerUrlWindow extends JDialog implements ActionListener {
         int yCoordinate = window.getLocationOnScreen().y + window.getHeight() / 2 - this.getHeight() / 2;
         this.setLocation(xCoordinate, yCoordinate);
         this.setShape(new RoundRectangle2D.Double(0, 0, this.getWidth(), this.getHeight(), 30, 30));
-        this.setVisible(true);
     }
 
     @Override
@@ -76,5 +75,10 @@ public class ServerUrlWindow extends JDialog implements ActionListener {
         Config.setUrl(serverUrlBox.getText());
         this.dispose();
         StateManager.setCurrentState(new OnlineState(launcher));
+    }
+
+    public void showWindow() {
+        this.setVisible(true);
+        this.toFront();
     }
 }

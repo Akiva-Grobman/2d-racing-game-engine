@@ -25,6 +25,8 @@ public class MenuState extends State {
     // this will be displayed in the background
     private final MenuBackground background;
 
+    private ServerUrlWindow serverUrlWindow;
+
     private final double bigButtonWidth;
     private final double bigButtonHeight;
     private final double smallButtonWidth;
@@ -36,6 +38,7 @@ public class MenuState extends State {
     public MenuState(Launcher launcher) {
         // initialize abstract state
         super(launcher);
+        serverUrlWindow = new ServerUrlWindow(launcher);
         // initialize empty manager
         uiManager = new UIManager();
         // initialize the background
@@ -68,7 +71,8 @@ public class MenuState extends State {
         UIMenuButton onlineButton = initBigButton(leftEdge,
                 topEdge + bigButtonMargin,
                 "ONLINE",
-                () -> new ServerUrlWindow(launcher)); // StateManager.setCurrentState(new OnlineState(launcher)));
+                () -> serverUrlWindow.showWindow()
+        );
         // initialize a button that will change to the settings menu
         UIMenuButton settingsButton = initSmallButton(leftEdge,
                 topEdge + (2 * bigButtonMargin),
