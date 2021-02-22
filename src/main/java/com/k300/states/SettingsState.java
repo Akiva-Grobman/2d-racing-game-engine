@@ -41,7 +41,7 @@ public class SettingsState extends State {
         addedZoomCustomizingButtons = false;
         // set manager to be the mouse manager
         launcher.getMouseListener().setUiManager(uiManager);
-        // create a back button that will return to the menu state when clicked
+        // create a back button that will return to the back state when clicked
         UIButton backButton = new UIMenuButton(Converter.FHD_SCREEN_WIDTH / 5f * 4,
                 Converter.FHD_SCREEN_HEIGHT / 5f * 4,
                 (int) (Converter.FHD_SCREEN_WIDTH / 10.2f),
@@ -49,6 +49,7 @@ public class SettingsState extends State {
                 "Back",
                 40,
                 () -> {
+                    // we need to restart the UIManager before we replace the state to MenuState
                     if(backState instanceof MenuState) {
                         launcher.getMouseListener().setUiManager(((MenuState) backState).getUiManager());
                     }
