@@ -68,7 +68,6 @@ public abstract class UIButton {
 
     // if the mouse constants are in the rectangle called bounds the mouse is currently hovering over the button
     public void onMouseMove(MouseEvent e) {
-        System.out.println("moving");
         isHovering = bounds.contains(e.getX(), e.getY());
     }
 

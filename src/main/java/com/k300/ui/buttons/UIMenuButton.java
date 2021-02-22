@@ -43,7 +43,6 @@ public class UIMenuButton extends UIButton {
         // if the mouse is over the button set hte button image to the corresponding image, otherwise set it to the regular button image
         if(isHovering) {
             image = Assets.getImage(Assets.BUTTON_HOVER_KEY);
-            System.out.println(text);
         } else {
             image = Assets.getImage(Assets.BUTTON_KEY);
         }
