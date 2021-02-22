@@ -42,11 +42,11 @@ public class SettingsState extends State {
         // set manager to be the mouse manager
         launcher.getMouseListener().setUiManager(uiManager);
         // create a back button that will return to the back state when clicked
-        UIButton backButton = new UIMenuButton(Converter.FHD_SCREEN_WIDTH / 5f * 4,
-                Converter.FHD_SCREEN_HEIGHT / 5f * 4,
-                (int) (Converter.FHD_SCREEN_WIDTH / 10.2f),
+        UIButton backButton = new UIMenuButton(Converter.FHD_SCREEN_WIDTH / 1.35f,
+                Converter.FHD_SCREEN_HEIGHT / 1.2f,
+                (int) (Converter.FHD_SCREEN_WIDTH / 5f),
                 (int) (Converter.FHD_SCREEN_HEIGHT / 10f),
-                "Back",
+                "BACK",
                 40,
                 () -> {
                     // we need to restart the UIManager before we are replacing the state to MenuState
@@ -56,8 +56,20 @@ public class SettingsState extends State {
                     StateManager.setCurrentState(backState);
                 }
         );
+
+        UIButton exitButton = new UIMenuButton(Converter.FHD_SCREEN_WIDTH / 18f,
+                Converter.FHD_SCREEN_HEIGHT / 1.2f,
+                (int) (Converter.FHD_SCREEN_WIDTH / 5f),
+                (int) (Converter.FHD_SCREEN_HEIGHT / 10f),
+                "MAIN MENU",
+                40,
+                () -> StateManager.setCurrentState(new MenuState(launcher))
+        );
         // add the back button to the manager
         uiManager.addUIObject(backButton);
+        if(!(backState instanceof MenuState)) {
+            uiManager.addUIObject(exitButton);
+        }
         // create a settings list
         SettingsList settingsList = new SettingsList(Converter.FHD_SCREEN_WIDTH / 10, Converter.FHD_SCREEN_HEIGHT / 5 - Converter.FHD_SCREEN_HEIGHT / 20);
         // add all elements in the settings list to the manager(and save the lowest(by y) element)
