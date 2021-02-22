@@ -115,7 +115,7 @@ public abstract class Track {
             graphics2D.fillRect(0, 0, width, height);
             graphics2D.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1));
             graphics.setColor(Color.white);
-            graphics.setFont(new Font("Calibri", Font.BOLD, 600));
+            graphics.setFont(new Font("Ariel", Font.BOLD, 600));
             drawStringInCenter(0, 0, width, height, graphics, introCounter);
         }
 
