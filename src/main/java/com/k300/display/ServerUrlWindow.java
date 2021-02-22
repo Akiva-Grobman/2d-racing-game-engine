@@ -31,7 +31,6 @@ public class ServerUrlWindow extends JDialog implements ActionListener {
         JComponent caller = launcher.getWindowJComponent();
         this.launcher = launcher;
         this.setUndecorated(true);
-        this.setAlwaysOnTop(true);
 
         JPanel panel = new JPanel();
         panel.setBorder(BorderFactory.createEmptyBorder(50, 450, 100, 450));
