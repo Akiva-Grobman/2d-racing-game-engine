@@ -23,7 +23,7 @@ public abstract class Car {
 
     public Car(String carColor, Point startingPosition) {
         carImage = Assets.getImage(carColor);
-        position = startingPosition;
+        position = new Point(startingPosition.x, startingPosition.y);
         angle = 0;
         this.carColor = carColor;
     }

@@ -25,7 +25,7 @@ public class MenuState extends State {
     // this will be displayed in the background
     private final MenuBackground background;
 
-    private ServerUrlWindow serverUrlWindow;
+    private final ServerUrlWindow serverUrlWindow;
 
     private final double bigButtonWidth;
     private final double bigButtonHeight;
@@ -71,7 +71,7 @@ public class MenuState extends State {
         UIMenuButton onlineButton = initBigButton(leftEdge,
                 topEdge + bigButtonMargin,
                 "ONLINE",
-                () -> serverUrlWindow.showWindow()
+                serverUrlWindow::showWindow
         );
         // initialize a button that will change to the settings menu
         UIMenuButton settingsButton = initSmallButton(leftEdge,

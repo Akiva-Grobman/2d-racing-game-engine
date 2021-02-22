@@ -20,6 +20,7 @@ public class OfflineGame extends GameState {
     public OfflineGame(Launcher launcher) {
         // initialize abstract game state
         super(launcher);
+        System.out.println(startingPosition.x);
         // initialize track to an offline track with a list of two local players
         track = new OfflineTrack(this, getInitCars());
     }
