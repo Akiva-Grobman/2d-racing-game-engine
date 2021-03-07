@@ -1,6 +1,6 @@
 <img src="https://i.ibb.co/R00tPh5/Whats-App-Image-2020-09-24-at-19-29-27.jpg" width="300" />
 
-Small snipit of the game, please ecuse my gameing skills I'm no gammer :).
+Small snipit of the game.
 
 Settings menu:
 ![Game demo(1)](https://j.gifs.com/ZY3rzR.gif)
